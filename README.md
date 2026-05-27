@@ -11,17 +11,15 @@
 
 ## 🚀 一鍵部署到 Streamlit Community Cloud
 
-[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=linchen-20200325/my-English-learn&branch=claude/brave-lovelace-Q786A&mainModule=streamlit_app.py)
+[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=linchen-20200325/my-English-learn&branch=main&mainModule=streamlit_app.py)
 
 點上方按鈕，使用 GitHub 帳號登入 [share.streamlit.io](https://share.streamlit.io) 後即可部署。部署設定已預填：
 
 | 欄位 | 值 |
 |------|----|
 | Repository | `linchen-20200325/my-English-learn` |
-| Branch | `claude/brave-lovelace-Q786A` |
+| Branch | `main` |
 | Main file path | `streamlit_app.py` |
-
-> 合併到 `main` 後，建議把上方徽章連結與部署設定的 Branch 改為 `main`。
 
 部署所需檔案皆已就緒：`requirements.txt`（相依套件）、`.streamlit/config.toml`（主題）、`streamlit_app.py`（進入點）。
 
