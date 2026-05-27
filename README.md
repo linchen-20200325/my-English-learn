@@ -6,8 +6,11 @@
 - **總覽** — 學習統計、每日一句、今日目標、本週學習圖、待辦提醒
 - **單字學習** — 翻面單字卡 + 單字庫（新增／刪除／標記學會）
 - **單字測驗** — 從單字庫隨機四選一、即時對錯回饋與計分
+- **情境會話生成** — 輸入生活情境，串接 Claude API 產生對話心智圖（Mermaid）與可複習句卡（詞塊／高頻口語），可存成課程
 - **學習進度** — 累計天數／時間、最佳連續天數、平均測驗分數、單字掌握度
 - **學習計畫** — 待辦清單 + 每週七天計畫
+
+> 「情境會話生成」需設定 Anthropic API 金鑰：本機設環境變數 `ANTHROPIC_API_KEY`，Streamlit Cloud 則於 **Settings → Secrets** 加入 `ANTHROPIC_API_KEY`。未設定時其餘分頁照常運作。
 
 ## 🚀 一鍵部署到 Streamlit Community Cloud
 
@@ -35,9 +38,9 @@ streamlit run streamlit_app.py
 ## 🗂️ 專案結構
 
 ```
-streamlit_app.py        # 主程式（五個分頁與互動邏輯）
+streamlit_app.py        # 主程式（六個分頁與互動邏輯）
 data.py                 # 種子單字、每日一句、每週計畫範本
-requirements.txt        # 相依套件
+requirements.txt        # 相依套件（streamlit、pandas、anthropic）
 .streamlit/config.toml  # 主題設定
 dashboard_data.json     # 執行期自動產生的學習資料（已 gitignore）
 ```
