@@ -1,0 +1,9 @@
+# 執行期產生的使用者資料
+dashboard_data.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.streamlit/secrets.toml
