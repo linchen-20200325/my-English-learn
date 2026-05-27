@@ -1,0 +1,12 @@
+# Streamlit 主題與伺服器設定
+# Streamlit Community Cloud 部署時會自動套用此設定。
+
+[theme]
+primaryColor = "#4f46e5"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f4f6fb"
+textColor = "#1e293b"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false
