@@ -236,8 +236,15 @@ def get_github_token() -> str | None:
             or _read_secret("GITHUB_PAT"))
 
 
-def _llm_generate(system_prompt: str, user_msg: str, tier: str, max_tokens: int = 2000) -> str:
-    """單次生成。tier 對應 _MODEL_MAP 的標籤。"""
+_TRANSIENT_HINTS = ("503", "UNAVAILABLE", "overloaded", "high demand",
+                    "Resource has been exhausted", "DEADLINE_EXCEEDED",
+                    "RESOURCE_EXHAUSTED")
+
+
+def _llm_generate(system_prompt: str, user_msg: str, tier: str,
+                  max_tokens: int = 2000, retries: int = 3) -> str:
+    """單次生成(含 503/quota 暫時錯誤自動退避重試)。tier 對應 _MODEL_MAP 標籤。"""
+    import time
     key = get_api_key()
     if not key:
         raise RuntimeError("尚未設定 GEMINI_API_KEY")
@@ -247,16 +254,30 @@ def _llm_generate(system_prompt: str, user_msg: str, tier: str, max_tokens: int 
     from google.genai import types
 
     client = genai.Client(api_key=key)
-    resp = client.models.generate_content(
-        model=model_id,
-        contents=user_msg,
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=0.7,
-            max_output_tokens=max_tokens,
-        ),
-    )
-    return resp.text or ""
+    last_err = None
+    for attempt in range(retries):
+        try:
+            resp = client.models.generate_content(
+                model=model_id,
+                contents=user_msg,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_prompt,
+                    temperature=0.7,
+                    max_output_tokens=max_tokens,
+                ),
+            )
+            return resp.text or ""
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+            em = str(e)
+            if attempt < retries - 1 and any(h in em for h in _TRANSIENT_HINTS):
+                wait = 2 ** attempt  # 1, 2, 4 秒
+                time.sleep(wait)
+                continue
+            raise
+    if last_err:
+        raise last_err
+    return ""
 
 
 def generate_material(scenario: str, tier: str) -> str:
@@ -573,6 +594,16 @@ def view_overview() -> None:
 
 
 def view_vocab() -> None:
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**單字學習**＝主學習區。**單字卡**翻面+間隔複習，是記單字最有效的方法之一。\n\n"
+            "**怎麼用**：\n"
+            "1. 卡片正面看英文 + 諧音 + KK + 自然發音，按「🔊 唸這個字」聽發音\n"
+            "2. 心裡先想中文意思，再按「🔄 翻面」對答案；背面有圖像聯想、口語例句（含翻譯+🔊）、用法、字根拆解\n"
+            "3. 記得了按「✅ 標記學會」；忘了按「↩︎ 取消學會」回到複習池\n"
+            "4. deck 自動合併 20 個 SEED + 「📖 單字庫」生成的字（目前合計顯示在下方計數）\n\n"
+            "**清單區**＝你自己加的單字（可手動新增/刪除）；單字庫的字管理請到 📖 單字庫。"
+        )
     data = st.session_state.data
     words = data["words"]
 
@@ -839,7 +870,21 @@ def view_plan() -> None:
 
 def view_generate() -> None:
     data = st.session_state.data
-    st.caption("輸入一個生活情境，AI 會產生對話心智圖與可複習的句卡（採用詞塊與高頻口語）。")
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**情境生成**＝把你想練的「真實場景」一鍵變成可學的內容。\n\n"
+            "**怎麼用**：\n"
+            "1. 輸入一個生活情境，例如：\n"
+            "   - 在咖啡廳跟店員點餐，並反映飲料做錯了\n"
+            "   - 面試自我介紹 + 回答「你的缺點」\n"
+            "   - 跟外國朋友抱怨工作壓力\n"
+            "   - 訂飯店 / 退換貨 / 機場海關問答\n"
+            "2. 按「生成 ✨」，Gemini 會產出：\n"
+            "   - 一張**對話心智圖**（流程：開口→反映→請求→確認）\n"
+            "   - **5–8 張句卡**：英文 + 中文翻譯 + 詞塊 + KK + 自然發音 + 台味諧音\n"
+            "3. 喜歡的句卡按「加入複習」→ 之後在「🔁 複習」分頁 SRS 排程練習\n\n"
+            "**模型差別**：Flash 快又便宜（推薦），Pro 慢但句子更精緻。"
+        )
 
     if not get_api_key():
         st.warning("尚未設定 Gemini API 金鑰，無法生成。")
@@ -991,7 +1036,19 @@ def view_review() -> None:
 
 
 def view_morphology() -> None:
-    st.caption("離線字根字首字尾心智圖 + SEED 單字台味諧音速記，完全不需 API。")
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**字根速記**＝看到沒學過的字也能猜意思。英文 70% 單字可拆成「字首 + 字根 + 字尾」，"
+            "記住元件就能組合理解新字。\n\n"
+            "**例子**：\n"
+            "- `inspect` ＝ `in-`（進入）+ `spect`（看）→ 進去看 → **檢查**\n"
+            "- `transport` ＝ `trans-`（跨越）+ `port`（搬運）→ 跨越搬運 → **運輸**\n"
+            "- `unhappy` ＝ `un-`（不）+ `happy`（快樂）→ **不快樂**\n\n"
+            "**怎麼用**：點下方 3 個分頁分別看 25 個字首 / 24 個字根 / 24 個字尾。"
+            "想專注少數可用「挑選想看」filter，例如只挑 `anti-` 與 `pre-`，就只渲染這兩棵分支。"
+            "翻面卡背也會自動拆解當下單字。"
+        )
+    st.caption("離線字根字首字尾樹狀圖 + SEED 單字台味諧音速記，完全不需 API。")
 
     tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
     for tab, title, items, key in (
@@ -1136,6 +1193,19 @@ def _push_bank_to_github(silent: bool = False) -> bool:
 
 
 def view_vocab_bank() -> None:
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**單字庫**＝可成長到 4000+ 字的單字資料庫。每筆都有 8 欄完整資訊：\n"
+            "中文意思、KK 音標、自然發音、台味諧音、圖像聯想、口語例句、中文翻譯、用法說明。\n\n"
+            "**怎麼用**：\n"
+            "1. 展開「🤖 用 AI 在雲端即時生成」面板，按「🚀 開始生成」"
+            "（一次 5–50 字，從 `scripts/vocab_wordlist.txt` 取尚未做過的字）\n"
+            "2. 想永久保存：勾選「✅ 生成完自動推回 GitHub」（需在 Cloud Secrets 設 `GITHUB_TOKEN`）"
+            "或手動按「⬇️ 下載」覆蓋 repo 的 `vocab_bank.json`\n"
+            "3. 這裡生成的字會**自動出現在「🗂️ 單字學習」flashcard**（deck 數字增加）\n"
+            "4. 下方搜尋框可查英文/中文/諧音；分頁瀏覽\n\n"
+            "**換 4000 字詞表**：替換 `scripts/vocab_wordlist.txt` 為正版 COCA / TOEIC / Oxford 4000，再按生成。"
+        )
     file_bank = load_vocab_bank()
     live_bank = st.session_state.setdefault("live_bank", {})
     bank = {**file_bank, **live_bank}
@@ -1162,36 +1232,6 @@ def view_vocab_bank() -> None:
             help="勾選後每次生成完會用 GitHub Contents API 把 vocab_bank.json commit 回 repo。"
                  "需在 Cloud Secrets 設 GITHUB_TOKEN（PAT，含 repo 寫權限）。",
         )
-        # 一鍵測金鑰是否真的可以叫 Gemini(避免 sidebar 抓到但 Google 拒的情況)
-        if st.button("🔍 測試金鑰是否能叫到 Gemini",
-                     disabled=not api_key, use_container_width=True):
-            with st.spinner("呼叫 gemini-2.5-flash 問候一下..."):
-                try:
-                    from google import genai
-                    from google.genai import types
-                    client = genai.Client(api_key=api_key)
-                    resp = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents="Reply with just: hi from gemini",
-                        config=types.GenerateContentConfig(max_output_tokens=20),
-                    )
-                    text = (resp.text or "(空回應)").strip()
-                    st.success(f"✅ Gemini 回:{text}　·　key 沒問題,可開始生成。")
-                except Exception as e:  # noqa: BLE001
-                    em = str(e)
-                    if "API_KEY_INVALID" in em or "API key not valid" in em:
-                        st.error(
-                            f"❌ key 字串送到 Google 被拒（{type(e).__name__}）。\n\n"
-                            f"app 端讀到的字串長度 = **{len(api_key)}**、前 8 字 = `{api_key[:8]}`、"
-                            f"後 4 字 = `{api_key[-4:]}`。\n\n"
-                            "如果你別處(curl / AI Studio / 其他 app)可以用同一把 key,"
-                            "極可能是 Cloud Secrets 編輯時多塞了奇怪字元(如換行、引號、整行貼進來)。"
-                            "請到 Streamlit Cloud Secrets,把 GEMINI_API_KEYS 整條刪掉重貼:\n"
-                            "```toml\nGEMINI_API_KEYS = \"AIzaSy...\"\n```\n"
-                            "(只貼 AIza 開頭那串純 key,前後不留空白)。"
-                        )
-                    else:
-                        st.error(f"❌ 失敗:{type(e).__name__}: {em[:300]}")
         if col3.button("🚀 開始生成", disabled=not api_key,
                        use_container_width=True, type="primary"):
             try:
@@ -1199,7 +1239,17 @@ def view_vocab_bank() -> None:
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 msg = str(e)
-                if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+                if any(h in msg for h in _TRANSIENT_HINTS):
+                    st.warning(
+                        "⏳ Google 伺服器當下忙碌（503 UNAVAILABLE / 配額暫滿）。"
+                        "這是 Gemini 服務端問題,跟你的 key 與我的程式都無關。\n\n"
+                        "**做法**:\n"
+                        "1. 等 30 秒～2 分鐘再按一次（高峰時段常見）\n"
+                        "2. 改用 Flash（已是預設,負載比 Pro 輕,成功率高很多）\n"
+                        "3. 把每批字數調小（從 50 改成 20）\n"
+                        "4. 已經自動重試 3 次仍失敗,請稍後再試"
+                    )
+                elif "API key not valid" in msg or "API_KEY_INVALID" in msg:
                     st.error(
                         "❌ Google 拒絕了你的 API key（不是 app 抓不到，是 key 本身被拒）。\n\n"
                         "**常見原因（請逐項檢查）**：\n"
@@ -1287,6 +1337,8 @@ def view_vocab_bank() -> None:
                 c2.markdown(f"🖼️ {e['image']}")
             if e.get("example_en"):
                 c2.markdown(f"💬 *{e['example_en']}*")
+            if e.get("example_zh"):
+                c2.markdown(f"🇹🇼 {e['example_zh']}")
             if e.get("usage_zh"):
                 c2.caption(f"💡 {e['usage_zh']}")
 
@@ -1316,21 +1368,36 @@ def main() -> None:
         m1.metric("🔥 連續天數", compute_streak())
         m2.metric("🔁 待複習", due_count())
         st.divider()
-        # API key 狀態(讓使用者一眼看到 Cloud Secrets 是否有抓到)
+        # 一鍵測試金鑰是否真的可叫到 Gemini(取代原本的狀態 caption)
         gem = get_api_key()
-        ghk = get_github_token()
-        st.caption(f"Gemini API：{'🟢 已偵測 ' + gem[:6] + '…' if gem else '🔴 未設定'}")
-        st.caption(f"GitHub Token：{'🟢 已偵測' if ghk else '⚪ 未設定（無法自動推回）'}")
-        with st.expander("偵錯：列出 secrets 名稱"):
-            names = _secret_names()
-            if names:
-                st.write(names)
-            else:
-                st.caption("st.secrets 為空（本機無 .streamlit/secrets.toml）")
-            env_match = [n for n in os.environ
-                         if any(k in n.upper() for k in ("GEMINI", "GOOGLE", "GITHUB", "ANTHROPIC"))]
-            if env_match:
-                st.write({"env vars": env_match})
+        if st.button("🔍 測試金鑰", use_container_width=True, disabled=not gem,
+                     help="呼叫 gemini-2.5-flash 問候一句,確認 key 真的可用。"
+                          if gem else "尚未在 Secrets 設定 GEMINI_API_KEY 或類似名稱。"):
+            try:
+                from google import genai
+                from google.genai import types
+                client = genai.Client(api_key=gem)
+                with st.spinner("呼叫 Gemini..."):
+                    resp = client.models.generate_content(
+                        model="gemini-2.5-flash",
+                        contents="Reply with just: hi",
+                        config=types.GenerateContentConfig(max_output_tokens=20),
+                    )
+                st.session_state["_key_test"] = ("ok", (resp.text or "(空)").strip()[:80])
+            except Exception as e:  # noqa: BLE001
+                st.session_state["_key_test"] = ("err", f"{type(e).__name__}: {str(e)[:160]}")
+        # 上次測試結果
+        last = st.session_state.get("_key_test")
+        if last:
+            kind, msg = last
+            (st.success if kind == "ok" else st.error)(msg)
+        elif not gem:
+            st.caption("⚪ 尚未偵測到金鑰")
+        # GitHub Token 仍顯示一行(自動推回功能用)
+        if get_github_token():
+            st.caption("🟢 GitHub Token 已設定（可自動推回 repo）")
+        else:
+            st.caption("⚪ GitHub Token 未設（無法自動推回）")
 
     st.title(view)
     st.caption(date.today().strftime("%Y 年 %m 月 %d 日"))
