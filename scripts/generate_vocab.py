@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""批次生成單字庫：呼叫 Claude API 為 vocab_wordlist.txt 內每個字補上諧音／造句／用法,
+"""批次生成單字庫：呼叫 Gemini API 為 vocab_wordlist.txt 內每個字補上諧音／造句／用法,
 結果寫進 vocab_bank.json,Streamlit「📖 單字庫」分頁即時讀取。
 
 使用方式：
-    pip install anthropic
-    export ANTHROPIC_API_KEY=sk-ant-...
+    pip install google-genai
+    export GEMINI_API_KEY=...                            # 取得 https://aistudio.google.com/apikey
     python scripts/generate_vocab.py --limit 30          # 先試 30 字
     python scripts/generate_vocab.py                     # 跑完整份詞表
-    python scripts/generate_vocab.py --model haiku       # 改用 Haiku 省錢
+    python scripts/generate_vocab.py --model pro         # 改用 Gemini 2.5 Pro 高品質
     python scripts/generate_vocab.py --batch-size 25     # 自訂批次
 
 可重跑：已在 vocab_bank.json 內的字會自動略過。
@@ -28,9 +28,8 @@ WORDLIST = ROOT / "scripts" / "vocab_wordlist.txt"
 BANK = ROOT / "vocab_bank.json"
 
 MODELS = {
-    "sonnet": "claude-sonnet-4-6",
-    "haiku": "claude-haiku-4-5",
-    "opus": "claude-opus-4-7",
+    "flash": "gemini-2.5-flash",
+    "pro": "gemini-2.5-pro",
 }
 
 SYSTEM_PROMPT = """你是台味英文單字記憶教練,擅長把英文聲音強行接到中文意思,並寫出母語人士日常口語例句。
@@ -108,24 +107,27 @@ def extract_json_array(text: str):
     return json.loads(text)
 
 
-def generate_batch(client, model: str, words: list[str]) -> list[dict]:
-    resp = client.messages.create(
+def generate_batch(client, model: str, words: list[str]):
+    """呼叫 Gemini 一次生成一批單字的 JSON 資料。"""
+    from google.genai import types
+    resp = client.models.generate_content(
         model=model,
-        max_tokens=4000,
-        system=[{"type": "text", "text": SYSTEM_PROMPT,
-                 "cache_control": {"type": "ephemeral"}}],
-        messages=[{"role": "user", "content": "請為以下單字生成資料: " + ", ".join(words)}],
+        contents="請為以下單字生成資料: " + ", ".join(words),
+        config=types.GenerateContentConfig(
+            system_instruction=SYSTEM_PROMPT,
+            temperature=0.7,
+            max_output_tokens=8000,
+        ),
     )
-    text = "".join(b.text for b in resp.content if b.type == "text")
-    return extract_json_array(text)
+    return extract_json_array(resp.text or "")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="批次生成 vocab_bank.json")
+    parser = argparse.ArgumentParser(description="批次生成 vocab_bank.json (Gemini)")
     parser.add_argument("--limit", type=int, default=None,
                         help="只跑前 N 個待補單字(用於試跑)")
-    parser.add_argument("--model", choices=list(MODELS), default="sonnet",
-                        help="模型: sonnet(預設) | haiku(便宜) | opus(最強)")
+    parser.add_argument("--model", choices=list(MODELS), default="flash",
+                        help="模型: flash(預設,便宜) | pro(高品質)")
     parser.add_argument("--batch-size", type=int, default=20,
                         help="每批字數,預設 20")
     parser.add_argument("--retries", type=int, default=3,
@@ -133,14 +135,16 @@ def main() -> None:
     args = parser.parse_args()
 
     try:
-        import anthropic
+        from google import genai
     except ImportError:
-        sys.exit("請先安裝套件: pip install anthropic")
+        sys.exit("請先安裝套件: pip install google-genai")
 
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        sys.exit("請先設定環境變數: export ANTHROPIC_API_KEY=sk-ant-...")
+    api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+        sys.exit("請先設定環境變數: export GEMINI_API_KEY=... "
+                 "(取得 https://aistudio.google.com/apikey)")
 
-    client = anthropic.Anthropic()
+    client = genai.Client(api_key=api_key)
     bank = load_bank()
     words = load_wordlist()
     todo = [w for w in words if w not in bank]
@@ -160,9 +164,9 @@ def main() -> None:
             try:
                 entries = generate_batch(client, MODELS[args.model], batch)
                 break
-            except (json.JSONDecodeError, anthropic.APIError, anthropic.APITimeoutError) as e:
+            except (json.JSONDecodeError, Exception) as e:  # Gemini 例外類型較雜,廣泛攔截
                 wait = 2 ** attempt
-                print(f"  retry {attempt + 1}/{args.retries} after {wait}s ({e!s:.80})")
+                print(f"  retry {attempt + 1}/{args.retries} after {wait}s ({type(e).__name__}: {e!s:.80})")
                 time.sleep(wait)
         if entries is None:
             print(f"  ⚠️  跳過此批: {batch}")

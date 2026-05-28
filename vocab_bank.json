@@ -298,5 +298,205 @@
     "image": "朱古力凜冬可 drink，溫暖好喝。",
     "example_en": "Want a drink?",
     "usage_zh": "Want a drink? 常暗指「來杯酒」；soft drink = 無酒精飲料；drink up = 喝完。"
+  },
+  "time": {
+    "word": "time",
+    "meaning_zh": "時間、次數、時代",
+    "kk": "[taɪm]",
+    "phonics": "TYME",
+    "homophone": "太晚",
+    "image": "「太晚」了，time 已經來不及。",
+    "example_en": "What time is it?",
+    "usage_zh": "what time = 幾點；on time = 準時；have a good time = 玩得開心。"
+  },
+  "year": {
+    "word": "year",
+    "meaning_zh": "年、年度",
+    "kk": "[jɪr]",
+    "phonics": "YEER",
+    "homophone": "醫兒",
+    "image": "每年帶醫兒去做健檢一次。",
+    "example_en": "Last year was crazy.",
+    "usage_zh": "this year / last year / next year；five years old = 五歲；year by year = 一年一年。"
+  },
+  "day": {
+    "word": "day",
+    "meaning_zh": "日子、白天",
+    "kk": "[de]",
+    "phonics": "DAY",
+    "homophone": "爹",
+    "image": "爹爹陪我度過 day 的每一刻。",
+    "example_en": "Have a nice day!",
+    "usage_zh": "have a nice day = 祝你今天順利；one day = 有一天；day off = 休假日。"
+  },
+  "week": {
+    "word": "week",
+    "meaning_zh": "週、星期",
+    "kk": "[wik]",
+    "phonics": "WEEK",
+    "homophone": "尾客",
+    "image": "週末尾巴接待最後 week 的客人。",
+    "example_en": "See you next week.",
+    "usage_zh": "this/last/next week；weekend = 週末；weekday = 平日；twice a week = 一週兩次。"
+  },
+  "life": {
+    "word": "life",
+    "meaning_zh": "生命、生活、人生",
+    "kk": "[laɪf]",
+    "phonics": "LYFE",
+    "homophone": "賴撫",
+    "image": "賴在媽媽的撫摸裡，那才是 life。",
+    "example_en": "That's life!",
+    "usage_zh": "That's life = 人生就是這樣（無奈）；life is good = 生活美好；real life = 現實生活。"
+  },
+  "family": {
+    "word": "family",
+    "meaning_zh": "家庭、家人",
+    "kk": "[ˈfæməli]",
+    "phonics": "FAM-uh-lee",
+    "homophone": "凡米力",
+    "image": "凡是有米有力的，都是 family。",
+    "example_en": "Family comes first.",
+    "usage_zh": "family comes first = 家人最重要；family member = 家人；start a family = 成家。"
+  },
+  "friend": {
+    "word": "friend",
+    "meaning_zh": "朋友",
+    "kk": "[frɛnd]",
+    "phonics": "FREND",
+    "homophone": "福練",
+    "image": "練福氣的最佳搭檔就是 friend。",
+    "example_en": "He's a good friend of mine.",
+    "usage_zh": "make friends = 交朋友；best friend = 最好的朋友；friend of mine = 我的朋友（口語）。"
+  },
+  "world": {
+    "word": "world",
+    "meaning_zh": "世界、世間",
+    "kk": "[wɝld]",
+    "phonics": "WURLD",
+    "homophone": "我兒的",
+    "image": "我兒的 world 就是他的小宇宙。",
+    "example_en": "The world is changing fast.",
+    "usage_zh": "around the world = 全世界；in the world = 全世界（強調語氣）；World Cup = 世界盃。"
+  },
+  "home": {
+    "word": "home",
+    "meaning_zh": "家、家鄉",
+    "kk": "[hom]",
+    "phonics": "HOHM",
+    "homophone": "厚母",
+    "image": "厚實的母愛就是 home 的味道。",
+    "example_en": "I'm going home.",
+    "usage_zh": "go home / get home = 回家；at home = 在家／自在；feel at home = 賓至如歸。"
+  },
+  "house": {
+    "word": "house",
+    "meaning_zh": "房子、住宅",
+    "kk": "[haʊs]",
+    "phonics": "HOWS",
+    "homophone": "好喔死",
+    "image": "好大的 house，好喔，貴死人。",
+    "example_en": "Welcome to my house!",
+    "usage_zh": "my house = 我家（建築）；on the house = 店家招待（免費）；house party = 在家裡開派對。"
+  },
+  "school": {
+    "word": "school",
+    "meaning_zh": "學校、學派",
+    "kk": "[skul]",
+    "phonics": "SKOOL",
+    "homophone": "司酷",
+    "image": "管教很嚴的司長很酷，這就是 school。",
+    "example_en": "I have to go to school.",
+    "usage_zh": "go to school = 上學；after school = 放學後；school year = 學年。"
+  },
+  "job": {
+    "word": "job",
+    "meaning_zh": "工作、職位",
+    "kk": "[dʒɑb]",
+    "phonics": "JOB",
+    "homophone": "炸爆",
+    "image": "工作壓力炸爆，這就是 job。",
+    "example_en": "Good job!",
+    "usage_zh": "good job = 做得好；get a job = 找到工作；day job = 正職；odd jobs = 零工。"
+  },
+  "money": {
+    "word": "money",
+    "meaning_zh": "錢、貨幣",
+    "kk": "[ˈmʌni]",
+    "phonics": "MUH-nee",
+    "homophone": "媽妮",
+    "image": "媽媽叫妮妮要好好存 money。",
+    "example_en": "I need to make more money.",
+    "usage_zh": "make money = 賺錢；save money = 存錢；waste money = 浪費錢；out of money = 沒錢。"
+  },
+  "water": {
+    "word": "water",
+    "meaning_zh": "水",
+    "kk": "[ˈwɔtɚ]",
+    "phonics": "WAW-ter",
+    "homophone": "我大",
+    "image": "我大口喝下 water 解渴。",
+    "example_en": "Can I have some water?",
+    "usage_zh": "drink water = 喝水；hot/cold water = 熱／冷水；water bottle = 水瓶。"
+  },
+  "food": {
+    "word": "food",
+    "meaning_zh": "食物",
+    "kk": "[fud]",
+    "phonics": "FOOD",
+    "homophone": "夫的",
+    "image": "夫的胃容不下這麼多 food。",
+    "example_en": "The food is amazing here.",
+    "usage_zh": "comfort food = 療癒食物；fast food = 速食；junk food = 垃圾食物；food court = 美食街。"
+  },
+  "music": {
+    "word": "music",
+    "meaning_zh": "音樂",
+    "kk": "[ˈmjuzɪk]",
+    "phonics": "MYOO-zik",
+    "homophone": "謬日課",
+    "image": "把奇謬的日課放成 music，超療癒。",
+    "example_en": "I love this music.",
+    "usage_zh": "listen to music = 聽音樂；play music = 演奏／播放音樂；music to my ears = 我愛聽的（好消息）。"
+  },
+  "book": {
+    "word": "book",
+    "meaning_zh": "書、預訂",
+    "kk": "[bʊk]",
+    "phonics": "BOOK",
+    "homophone": "不克",
+    "image": "不克制就一口氣讀完一本 book。",
+    "example_en": "I'm reading a great book.",
+    "usage_zh": "名詞「書」也是動詞「預訂」(book a table 訂位)；book club = 讀書會。"
+  },
+  "idea": {
+    "word": "idea",
+    "meaning_zh": "點子、想法",
+    "kk": "[aɪˈdiə]",
+    "phonics": "eye-DEE-uh",
+    "homophone": "愛逮兒",
+    "image": "愛逮兒的偵探，腦中總有奇 idea。",
+    "example_en": "Good idea!",
+    "usage_zh": "good idea = 好主意；no idea = 不知道；I have an idea = 我有個想法。"
+  },
+  "problem": {
+    "word": "problem",
+    "meaning_zh": "問題、麻煩",
+    "kk": "[ˈprɑbləm]",
+    "phonics": "PROB-lum",
+    "homophone": "怕怖冷",
+    "image": "怕得渾身冒怖、發冷，那就是 problem。",
+    "example_en": "No problem!",
+    "usage_zh": "no problem = 沒問題（謙辭）；have a problem = 有困難；problem solver = 解決問題的人。"
+  },
+  "way": {
+    "word": "way",
+    "meaning_zh": "方法、路、方向",
+    "kk": "[we]",
+    "phonics": "WAY",
+    "homophone": "喂",
+    "image": "「喂」問路：哪條 way 走得到？",
+    "example_en": "There's gotta be a way.",
+    "usage_zh": "in a way = 某種程度上；on my way = 我在路上；no way = 不可能；by the way = 對了。"
   }
 }
