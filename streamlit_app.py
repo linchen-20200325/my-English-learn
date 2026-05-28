@@ -29,17 +29,18 @@ GEN_MODELS = {
 }
 
 GEN_SYSTEM_PROMPT = """# 角色
-你是科學化語言學習專家兼資料工程師。
+你是科學化語言學習專家、記憶法大師兼資料工程師。
 
 # 理論依據
 1. 雙碼理論：透過心智圖視覺化建立大腦基模。
 2. 間隔重複（SRS）：透過 JSON 抽認卡固化長期記憶。
-3. 詞塊教學法：學習母語人士的固定搭配「詞塊（chunks）」，而非單一單字。
-4. 齊夫定律：嚴格只用日常最高頻的核心詞彙，確保實用性。
+3. 詞塊教學法：學習母語人士的固定搭配「詞塊（chunks）」。
+4. 齊夫定律：嚴格只用日常最高頻的核心詞彙。
+5. 精細複述與關鍵字記憶法：透過荒謬搞笑的中文諧音或視覺圖像，將外語聲音與母語意義強行連結。
 
 # 任務
 根據使用者訊息提供的【目標職業或情境】，產出符合上述理論的實用英文對話教材。
-語言風格必須是母語人士的日常真實對話（casual & native），拒絕生硬的教科書英文、拒絕艱澀冷僻的單字。
+語言風格必須是母語人士的日常真實對話（casual & native）。
 
 # 輸出限制（嚴格）
 只輸出以下兩個程式碼區塊，前後與中間不得有任何開場白、結語或解釋文字。
@@ -47,21 +48,25 @@ GEN_SYSTEM_PROMPT = """# 角色
 ## 區塊一：Mermaid 心智圖
 用 ```mermaid 區塊製作一個 mindmap，歸納該情境的核心對話流程：
 - 根節點：情境名稱
-- 主分支：對話階段（例如 開場、核心討論、突發狀況、結語）
-- 子節點：實用的完整短句，每個節點嚴格限制在 7 個英文單字以內
+- 主分支：對話階段（例如 開場、核心討論、結語）
+- 子節點：實用短句，每個節點嚴格限制在 7 個英文單字以內
 
-## 區塊二：SRS 抽認卡
-用 ```json 區塊輸出 4 到 6 張最具代表性的實用金句，須取自心智圖中出現的句子。
-嚴格符合此結構：
+## 區塊二：SRS 抽認卡與速記法
+用 ```json 區塊輸出 3 到 5 張最具代表性的金句，須取自心智圖中出現的句子。
+嚴格符合此結構（請確保 JSON 完全合法、可被 Python 讀取）：
 {
   "flashcards": [
-    {"id": 1, "sentence": "...", "chunk": "...", "chinese": "...", "context": "..."}
+    {"id": 1, "sentence": "...", "chinese": "...", "chunk": "...", "target_word": "...", "kk": "[...]", "phonics": "...", "mnemonic": "...", "context": "..."}
   ]
 }
 - "id"：唯一流水號（整數）
 - "sentence"：完整實用英文句子
-- "chunk"：該句中最核心的母語人士常用詞塊
 - "chinese"：繁體中文自然翻譯
+- "chunk"：該句中最核心的母語人士常用詞塊
+- "target_word"：從 chunk 中挑出一個最關鍵或最難記的單字
+- "kk"：target_word 的 KK 音標（格式：[...]）
+- "phonics"：target_word 的直覺式自然發音拆解（例如 schedule -> SKEH-jool）
+- "mnemonic"：針對 target_word 的速記法，須是符合台灣人語感的搞笑諧音、網路迷因或極具視覺衝擊力的圖像記憶，越荒謬越好，一句話搞定
 - "context"：一句繁體中文，說明在什麼具體情況下使用這句話
 """
 
@@ -197,10 +202,19 @@ def render_flashcards(cards: list) -> None:
     for c in cards:
         with st.container(border=True):
             st.markdown(f"**{c.get('sentence', '')}**")
-            if c.get("chunk"):
-                st.markdown(f"🧩 詞塊：`{c['chunk']}`")
             if c.get("chinese"):
                 st.markdown(f"🇹🇼 {c['chinese']}")
+            if c.get("chunk"):
+                st.markdown(f"🧩 詞塊：`{c['chunk']}`")
+            if c.get("target_word"):
+                bits = [f"🎯 **{c['target_word']}**"]
+                if c.get("kk"):
+                    bits.append(f"KK `{c['kk']}`")
+                if c.get("phonics"):
+                    bits.append(f"自然發音 `{c['phonics']}`")
+                st.markdown("　".join(bits))
+            if c.get("mnemonic"):
+                st.markdown(f"🤯 速記：{c['mnemonic']}")
             if c.get("context"):
                 st.caption(f"💡 {c['context']}")
 
