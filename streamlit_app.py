@@ -20,6 +20,7 @@ from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
 from morphology import PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
+VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # 情境生成可選模型（標籤 -> 模型 ID）
@@ -374,12 +375,15 @@ def view_vocab() -> None:
                 <div class="example">{w.get('example', '')}</div></div>""",
                 unsafe_allow_html=True,
             )
-            mn = MNEMONICS.get(w["word"])
+            mn = MNEMONICS.get(w["word"]) or load_vocab_bank().get(w["word"])
             if mn:
                 st.markdown(
                     f"🔊 諧音 **{mn['homophone']}**　·　自然發音 `{mn['phonics']}`　·　KK `{mn['kk']}`"
                 )
-                st.caption(f"🖼️ {mn['image']}")
+                if mn.get("image"):
+                    st.caption(f"🖼️ {mn['image']}")
+                if mn.get("example_en"):
+                    st.markdown(f"💬 *{mn['example_en']}*")
         else:
             st.markdown(
                 f"""<div class="flash-card"><div class="word">{w['word']}</div></div>""",
@@ -784,6 +788,76 @@ def view_morphology() -> None:
             c2.markdown(f"🖼️ {mn['image']}")
 
 
+@st.cache_data
+def load_vocab_bank() -> dict:
+    """讀取 vocab_bank.json;檔不存在或損毀回空 dict。Streamlit 會快取直到檔案修改。"""
+    try:
+        with open(VOCAB_BANK_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def view_vocab_bank() -> None:
+    st.markdown("### 📖 單字庫")
+    bank = load_vocab_bank()
+
+    if not bank:
+        st.info(
+            "單字庫是空的。請執行批次生成腳本來補上諧音／例句／用法："
+        )
+        st.code(
+            "pip install anthropic\n"
+            "export ANTHROPIC_API_KEY=sk-ant-...\n"
+            "python scripts/generate_vocab.py --limit 30      # 先試 30 字\n"
+            "python scripts/generate_vocab.py                 # 跑完整份詞表\n"
+            "python scripts/generate_vocab.py --model haiku   # 改用 Haiku 省錢",
+            language="bash",
+        )
+        st.caption("詞表位於 `scripts/vocab_wordlist.txt`，可自由增刪換成 COCA / TOEIC / Oxford 4000。")
+        return
+
+    words = sorted(bank.keys())
+    query = st.text_input(
+        "搜尋（英文／中文／諧音）",
+        placeholder="輸入單字、諧音、或中文意思片段",
+    ).strip().lower()
+    if query:
+        def _match(w: str) -> bool:
+            e = bank[w]
+            return (query in w.lower()
+                    or query in (e.get("meaning_zh") or "").lower()
+                    or query in (e.get("homophone") or "").lower())
+        filtered = [w for w in words if _match(w)]
+    else:
+        filtered = words
+
+    per_page = 10
+    total_pages = max(1, (len(filtered) + per_page - 1) // per_page)
+    page = st.number_input("頁", min_value=1, max_value=total_pages, value=1, step=1) - 1
+    st.caption(f"庫存 {len(bank)} 字　|　符合 {len(filtered)} 字　|　頁 {page + 1}/{total_pages}")
+
+    for word in filtered[page * per_page:(page + 1) * per_page]:
+        e = bank[word]
+        with st.container(border=True):
+            c1, c2 = st.columns([2, 5])
+            c1.markdown(f"### {word}")
+            if e.get("meaning_zh"):
+                c1.markdown(f"**{e['meaning_zh']}**")
+            if e.get("kk"):
+                c1.caption(f"KK `{e['kk']}`")
+            if e.get("phonics"):
+                c1.caption(f"自然發音 `{e['phonics']}`")
+            if e.get("homophone"):
+                c2.markdown(f"🔊 諧音 **{e['homophone']}**")
+            if e.get("image"):
+                c2.markdown(f"🖼️ {e['image']}")
+            if e.get("example_en"):
+                c2.markdown(f"💬 *{e['example_en']}*")
+            if e.get("usage_zh"):
+                c2.caption(f"💡 {e['usage_zh']}")
+
+
 # ----------------------------- 主程式 -----------------------------
 def main() -> None:
     st.set_page_config(page_title="英文學習儀表板", page_icon="📚", layout="wide")
@@ -801,7 +875,7 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "🤖 情境生成", "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
+             "📖 單字庫", "🤖 情境生成", "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -820,6 +894,8 @@ def main() -> None:
         view_quiz()
     elif view.endswith("字根速記"):
         view_morphology()
+    elif view.endswith("單字庫"):
+        view_vocab_bank()
     elif view.endswith("情境生成"):
         view_generate()
     elif view.endswith("複習"):

@@ -3,15 +3,18 @@
 ## 📌 當前狀態
 - **專案**: 英文學習儀表板 (English Learning Dashboard)
 - **環境**: Streamlit Cloud + GitHub
-- **進度**: 八大分頁已完成並通過 AppTest 驗證（新增「🔤 字根速記」離線分頁：字首／字中／字尾 Mermaid 心智圖 + 20 個 SEED 單字台味諧音速記，並同步顯示於單字學習翻面卡背面）；Streamlit Cloud 部署設定就緒；協議 v2.0 已部署
+- **進度**: 九大分頁已完成並通過 AppTest 驗證（新增「📖 單字庫」分頁＋批次生成腳本 `scripts/generate_vocab.py`：本機跑 Claude API 把 ~250 字啟動詞表填上諧音／例句／用法寫進 `vocab_bank.json`，分頁支援搜尋與分頁瀏覽）；Streamlit Cloud 部署設定就緒；協議 v2.0 已部署
 - **分支**: `main`（預設分支）+ 開發分支 `claude/brave-lovelace-Q786A`
 
 ## 🛠️ 檔案結構與核心組件
 - `CLAUDE.md`: 核心開發與治理協議 (v2.0)
 - `STATE.md`: 專案熱資料與進度追蹤（本檔）
-- `streamlit_app.py`: Streamlit 主程式入口（八分頁：總覽／單字學習／測驗／字根速記／情境生成／複習／進度／計畫）
+- `streamlit_app.py`: Streamlit 主程式入口（九分頁：總覽／單字學習／測驗／字根速記／單字庫／情境生成／複習／進度／計畫）
 - `data.py`: 種子單字、每日一句、每週計畫範本
 - `morphology.py`: 字根字首字尾構詞元件 + SEED 單字台味諧音速記（離線資料）
+- `vocab_bank.json`: 大型單字庫（由 `scripts/generate_vocab.py` 透過 Claude API 批次填入，含諧音／例句／用法）
+- `scripts/generate_vocab.py`: 批次生成腳本（讀 `vocab_wordlist.txt` → 呼叫 Claude → 寫 `vocab_bank.json`，可重跑略過已完成）
+- `scripts/vocab_wordlist.txt`: 詞表（預設 ~250 字高頻詞,可換成 COCA/TOEIC/Oxford 4000）
 - `requirements.txt`: 依賴清單（streamlit、pandas、anthropic）
 - `.streamlit/config.toml`: 主題與瀏覽器設定
 - `README.md`: 專案說明 + 一鍵部署徽章

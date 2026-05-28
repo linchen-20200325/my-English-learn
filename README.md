@@ -7,6 +7,7 @@
 - **單字學習** — 翻面單字卡 + 單字庫（新增／刪除／標記學會）
 - **單字測驗** — 從單字庫隨機四選一、即時對錯回饋與計分
 - **字根速記（離線）** — 字首／字中／字尾三張 Mermaid 心智圖 + 20 個 SEED 單字台味諧音速記（含 KK 音標、自然發音、圖像聯想），同步顯示於單字學習翻面卡背面，**不需 API**
+- **單字庫** — 大型單字資料庫（諧音、KK、自然發音、口語例句、用法說明），支援搜尋與分頁；資料由 `scripts/generate_vocab.py` 用 Claude API 批次生成寫入 `vocab_bank.json`
 - **情境會話生成** — 輸入生活情境，串接 Claude API 產生對話心智圖（Mermaid）與速記句卡（詞塊、KK 音標、自然發音、搞笑諧音），可存成課程或加入複習
 - **複習（SRS）** — 句卡以 SM-2 間隔重複排程，每天只複習到期卡，三鍵評分（忘記／普通／簡單）自動安排下次出現
 - **學習進度** — 累計天數／時間、最佳連續天數、平均測驗分數、單字掌握度
@@ -40,9 +41,13 @@ streamlit run streamlit_app.py
 ## 🗂️ 專案結構
 
 ```
-streamlit_app.py        # 主程式（八個分頁與互動邏輯）
+streamlit_app.py        # 主程式（九個分頁與互動邏輯）
 data.py                 # 種子單字、每日一句、每週計畫範本
 morphology.py           # 字根字首字尾 + SEED 單字諧音速記（離線資料）
+vocab_bank.json         # 大型單字庫（由生成腳本填入）
+scripts/
+  generate_vocab.py     # 批次呼叫 Claude API 生成單字資料
+  vocab_wordlist.txt    # 詞表（一行一字，預設 ~250 高頻詞）
 requirements.txt        # 相依套件（streamlit、pandas、anthropic）
 .streamlit/config.toml  # 主題設定
 dashboard_data.json     # 執行期自動產生的學習資料（已 gitignore）
