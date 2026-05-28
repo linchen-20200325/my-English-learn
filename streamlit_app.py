@@ -86,6 +86,7 @@ def default_state() -> dict:
         "best_streak": 0,
         "phrase_index": datetime.now().timetuple().tm_yday % len(DAILY_PHRASES),
         "lessons": [],
+        "review_cards": [],
     }
 
 
@@ -217,6 +218,58 @@ def render_flashcards(cards: list) -> None:
                 st.markdown(f"🤯 速記：{c['mnemonic']}")
             if c.get("context"):
                 st.caption(f"💡 {c['context']}")
+
+
+# ----------------------------- 複習 (SRS) -----------------------------
+def add_cards_to_review(cards: list) -> int:
+    """把句卡複製進複習清單並掛上 SM-2 排程欄位；以句子去重。回傳新增數。"""
+    deck = st.session_state.data.setdefault("review_cards", [])
+    existing = {c.get("sentence") for c in deck}
+    next_id = max((c["id"] for c in deck), default=0) + 1
+    added = 0
+    for c in cards:
+        if not c.get("sentence") or c["sentence"] in existing:
+            continue
+        rc = dict(c)
+        rc.update(id=next_id, interval=0, ease=2.5, reps=0, due=today_str())
+        deck.append(rc)
+        existing.add(rc["sentence"])
+        next_id += 1
+        added += 1
+    return added
+
+
+def schedule_card(card: dict, grade: str) -> None:
+    """SM-2 簡化版：grade 為 again / good / easy，就地更新排程。"""
+    ease = card.get("ease", 2.5)
+    reps = card.get("reps", 0)
+    interval = card.get("interval", 0)
+    if grade == "again":
+        reps, interval = 0, 1
+        ease = max(1.3, ease - 0.2)
+    else:
+        if reps == 0:
+            interval = 1 if grade == "good" else 2
+        elif reps == 1:
+            interval = 3 if grade == "good" else 5
+        else:
+            interval = max(1, round(interval * (ease if grade == "good" else ease * 1.3)))
+        reps += 1
+        if grade == "easy":
+            ease += 0.15
+    card.update(
+        ease=round(ease, 2),
+        reps=reps,
+        interval=interval,
+        due=(date.today() + timedelta(days=interval)).isoformat(),
+        last=today_str(),
+    )
+
+
+def due_count() -> int:
+    today = today_str()
+    return sum(1 for c in st.session_state.data.get("review_cards", [])
+               if c.get("due", today) <= today)
 
 
 # ----------------------------- 樣式 -----------------------------
@@ -600,7 +653,7 @@ def view_generate() -> None:
             with st.expander("原始回應"):
                 st.code(result["raw"], language="text")
 
-        c1, c2 = st.columns(2)
+        c1, c2, c3 = st.columns(3)
         if c1.button("💾 儲存這課", type="primary", use_container_width=True):
             new_id = max((l["id"] for l in data["lessons"]), default=0) + 1
             data["lessons"].append({
@@ -614,7 +667,12 @@ def view_generate() -> None:
             st.session_state.gen_result = None
             st.success("已儲存到下方的課程清單。")
             st.rerun()
-        if c2.button("🗑️ 清除結果", use_container_width=True):
+        if c2.button("➕ 加入複習", use_container_width=True,
+                     disabled=not result["flashcards"]):
+            n = add_cards_to_review(result["flashcards"])
+            save_data()
+            st.success(f"已加入 {n} 張到複習清單。" if n else "這些句卡已在複習清單中。")
+        if c3.button("🗑️ 清除結果", use_container_width=True):
             st.session_state.gen_result = None
             st.rerun()
 
@@ -627,10 +685,67 @@ def view_generate() -> None:
                     render_mermaid(lesson["mermaid"])
                 if lesson.get("flashcards"):
                     render_flashcards(lesson["flashcards"])
-                if st.button("刪除這課", key=f"lesson_del_{lesson['id']}"):
+                lc1, lc2 = st.columns(2)
+                if lc1.button("➕ 加入複習", key=f"lesson_rev_{lesson['id']}",
+                              use_container_width=True,
+                              disabled=not lesson.get("flashcards")):
+                    n = add_cards_to_review(lesson["flashcards"])
+                    save_data()
+                    st.success(f"已加入 {n} 張。" if n else "已在複習清單中。")
+                if lc2.button("🗑️ 刪除這課", key=f"lesson_del_{lesson['id']}",
+                              use_container_width=True):
                     data["lessons"] = [l for l in data["lessons"] if l["id"] != lesson["id"]]
                     save_data()
                     st.rerun()
+
+
+def view_review() -> None:
+    data = st.session_state.data
+    deck = data.setdefault("review_cards", [])
+    st.markdown("### 🔁 複習")
+
+    if not deck:
+        st.info("複習清單是空的。到「🤖 情境生成」把句卡加入複習。")
+        return
+
+    today = today_str()
+    due = [c for c in deck if c.get("due", today) <= today]
+    st.caption(f"清單共 {len(deck)} 張，今天到期 {len(due)} 張。")
+
+    if not due:
+        nxt = min((c.get("due", today) for c in deck), default=today)
+        st.success(f"今天沒有要複習的卡 🎉 下次到期：{nxt}")
+        with st.expander("清空複習清單"):
+            if st.button("確認清空", type="primary"):
+                data["review_cards"] = []
+                save_data()
+                st.rerun()
+        return
+
+    card = due[0]
+    st.progress((len(deck) - len(due)) / len(deck), text=f"剩 {len(due)} 張待複習")
+    st.markdown(f"## {card.get('sentence', '')}")
+
+    if st.session_state.get("review_reveal_id") != card["id"]:
+        if st.button("🔄 翻面看答案", type="primary", use_container_width=True):
+            st.session_state.review_reveal_id = card["id"]
+            st.rerun()
+        return
+
+    render_flashcards([card])
+    g1, g2, g3 = st.columns(3)
+    graded = None
+    if g1.button("😵 忘記", use_container_width=True):
+        graded = "again"
+    if g2.button("🙂 普通", use_container_width=True):
+        graded = "good"
+    if g3.button("😎 簡單", use_container_width=True):
+        graded = "easy"
+    if graded:
+        schedule_card(card, graded)
+        save_data()
+        st.session_state.pop("review_reveal_id", None)
+        st.rerun()
 
 
 # ----------------------------- 主程式 -----------------------------
@@ -641,6 +756,7 @@ def main() -> None:
     if "data" not in st.session_state:
         st.session_state.data = load_data()
     st.session_state.data.setdefault("lessons", [])  # 相容舊資料
+    st.session_state.data.setdefault("review_cards", [])
     st.session_state.setdefault("fc_index", 0)
     st.session_state.setdefault("fc_flipped", False)
 
@@ -648,11 +764,14 @@ def main() -> None:
         st.markdown("# 📚 English\nDashboard")
         view = st.radio(
             "導覽",
-            ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🤖 情境生成", "📈 學習進度", "✅ 學習計畫"],
+            ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🤖 情境生成",
+             "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
-        st.metric("🔥 連續學習天數", compute_streak())
+        m1, m2 = st.columns(2)
+        m1.metric("🔥 連續天數", compute_streak())
+        m2.metric("🔁 待複習", due_count())
 
     st.title(view)
     st.caption(date.today().strftime("%Y 年 %m 月 %d 日"))
@@ -665,6 +784,8 @@ def main() -> None:
         view_quiz()
     elif view.endswith("情境生成"):
         view_generate()
+    elif view.endswith("複習"):
+        view_review()
     elif view.endswith("學習進度"):
         view_progress()
     elif view.endswith("學習計畫"):
