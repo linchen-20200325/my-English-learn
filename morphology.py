@@ -13,6 +13,26 @@ PREFIXES = [
     {"m": "over-", "zh": "過度", "ex": ["overdo", "overcook", "overpay"]},
     {"m": "under-", "zh": "在下／不足", "ex": ["underline", "undergo", "understand"]},
     {"m": "in- im-", "zh": "不／向內", "ex": ["incorrect", "impossible", "include"]},
+    {"m": "ex-", "zh": "向外／前任", "ex": ["exit", "export", "ex-wife"]},
+    {"m": "en- em-", "zh": "使成為", "ex": ["enable", "ensure", "embrace"]},
+    {"m": "co-", "zh": "共同", "ex": ["coworker", "cooperate", "coexist"]},
+    {"m": "de-", "zh": "向下／除去", "ex": ["delete", "decline", "decode"]},
+    {"m": "anti-", "zh": "反對", "ex": ["antibody", "antiwar", "antisocial"]},
+    {"m": "auto-", "zh": "自動／自己", "ex": ["automatic", "autograph", "autobiography"]},
+    {"m": "bi-", "zh": "二／雙", "ex": ["bicycle", "bilingual", "biweekly"]},
+    {"m": "bio-", "zh": "生命／生物", "ex": ["biology", "biography", "biotech"]},
+    {"m": "micro-", "zh": "微小", "ex": ["microwave", "microscope", "microchip"]},
+    {"m": "mono-", "zh": "單一", "ex": ["monologue", "monopoly", "monorail"]},
+    {"m": "fore-", "zh": "前面／先", "ex": ["forecast", "forehead", "foresee"]},
+    {"m": "inter-", "zh": "之間", "ex": ["internet", "interact", "international"]},
+    {"m": "multi-", "zh": "多", "ex": ["multimedia", "multitask", "multiple"]},
+    {"m": "non-", "zh": "非", "ex": ["nonstop", "nonsense", "nonprofit"]},
+    {"m": "post-", "zh": "之後", "ex": ["postpone", "postwar", "postscript"]},
+    {"m": "sub-", "zh": "在下／次", "ex": ["submarine", "subway", "subtract"]},
+    {"m": "super-", "zh": "超級", "ex": ["superman", "supermarket", "supervise"]},
+    {"m": "trans-", "zh": "跨越", "ex": ["transport", "translate", "transfer"]},
+    {"m": "tri-", "zh": "三", "ex": ["triangle", "tricycle", "trio"]},
+    {"m": "uni-", "zh": "單一", "ex": ["unique", "uniform", "universe"]},
 ]
 
 ROOTS = [
@@ -24,6 +44,22 @@ ROOTS = [
     {"m": "vis vid", "zh": "看見", "ex": ["vision", "visible", "evidence"]},
     {"m": "struct", "zh": "建造", "ex": ["construct", "instruct", "structure"]},
     {"m": "form", "zh": "形狀", "ex": ["inform", "transform", "uniform"]},
+    {"m": "tract", "zh": "拉", "ex": ["attract", "contract", "extract"]},
+    {"m": "ped pod", "zh": "腳", "ex": ["pedal", "pedestrian", "podium"]},
+    {"m": "man manu", "zh": "手", "ex": ["manual", "manage", "manufacture"]},
+    {"m": "dict", "zh": "說／指示", "ex": ["dictate", "predict", "dictionary"]},
+    {"m": "mit miss", "zh": "送出", "ex": ["submit", "permit", "mission"]},
+    {"m": "fac fact fect", "zh": "做／製造", "ex": ["factory", "effect", "perfect"]},
+    {"m": "graph gram", "zh": "寫／圖", "ex": ["photograph", "diagram", "program"]},
+    {"m": "log logy", "zh": "話／學科", "ex": ["dialogue", "biology", "psychology"]},
+    {"m": "phon", "zh": "聲音", "ex": ["phone", "phonics", "symphony"]},
+    {"m": "tele", "zh": "遠距", "ex": ["telephone", "television", "telescope"]},
+    {"m": "cycl", "zh": "輪／循環", "ex": ["cycle", "bicycle", "recycle"]},
+    {"m": "geo", "zh": "地球／土地", "ex": ["geography", "geology", "geometry"]},
+    {"m": "audi", "zh": "聽", "ex": ["audio", "audience", "audible"]},
+    {"m": "ven vent", "zh": "來", "ex": ["event", "invent", "prevent"]},
+    {"m": "cap capt", "zh": "抓取／頭", "ex": ["capture", "captain", "capable"]},
+    {"m": "mov mot", "zh": "移動", "ex": ["move", "motion", "motivate"]},
 ]
 
 SUFFIXES = [
@@ -35,6 +71,22 @@ SUFFIXES = [
     {"m": "-ment", "zh": "名詞／結果", "ex": ["development", "agreement", "treatment"]},
     {"m": "-ly", "zh": "副詞", "ex": ["quickly", "slowly", "happily"]},
     {"m": "-ness", "zh": "名詞／性質", "ex": ["happiness", "kindness", "darkness"]},
+    {"m": "-ity -ty", "zh": "名詞／性質", "ex": ["ability", "reality", "safety"]},
+    {"m": "-ist", "zh": "…主義者／專家", "ex": ["artist", "scientist", "tourist"]},
+    {"m": "-ism", "zh": "主義／思想", "ex": ["tourism", "racism", "criticism"]},
+    {"m": "-ish", "zh": "略帶…的／動詞化", "ex": ["childish", "selfish", "accomplish"]},
+    {"m": "-ous", "zh": "充滿…的", "ex": ["famous", "dangerous", "curious"]},
+    {"m": "-ive", "zh": "有…性質的", "ex": ["active", "creative", "expensive"]},
+    {"m": "-ize -ise", "zh": "使…化", "ex": ["realize", "organize", "modernize"]},
+    {"m": "-ate", "zh": "動詞／使成為", "ex": ["create", "celebrate", "educate"]},
+    {"m": "-ic -ical", "zh": "形容詞／…的", "ex": ["magic", "logical", "tropical"]},
+    {"m": "-en", "zh": "使變成", "ex": ["wooden", "darken", "strengthen"]},
+    {"m": "-ship", "zh": "關係／身份", "ex": ["friendship", "leadership", "relationship"]},
+    {"m": "-hood", "zh": "時期／身份", "ex": ["childhood", "neighborhood", "motherhood"]},
+    {"m": "-ward", "zh": "向…方向", "ex": ["forward", "backward", "upward"]},
+    {"m": "-wise", "zh": "在…方面／如…", "ex": ["clockwise", "otherwise", "likewise"]},
+    {"m": "-ee", "zh": "被…的人", "ex": ["employee", "trainee", "interviewee"]},
+    {"m": "-ant -ent", "zh": "做…的人／形容詞", "ex": ["assistant", "student", "important"]},
 ]
 
 
@@ -76,9 +128,6 @@ def decompose_word(word: str) -> dict | None:
     Heuristic 簡單匹配,純供記憶聯想參考(可能有誤匹配)。
     """
     w = word.lower().strip()
-    if len(w) < 4:
-        return None
-
     prefix = None
     for p in PREFIXES:
         for v in _affix_variants(p["m"], "prefix"):
@@ -102,11 +151,10 @@ def decompose_word(word: str) -> dict | None:
                 if not root or len(v) > root["_len"]:
                     root = {"form": v, "zh": r["zh"], "_len": len(v)}
 
-    if not (prefix or root or suffix):
-        return None
     for d in (prefix, root, suffix):
         if d:
             d.pop("_len", None)
+    # 即使無詞素匹配也回 dict(stem = 原字),確保每個單字都能畫出心智圖。
     return {"prefix": prefix, "root": root, "suffix": suffix, "stem": stem}
 
 

@@ -4,6 +4,7 @@
 資料以本機 JSON 檔 (dashboard_data.json) 持久化。
 """
 
+import html as _html
 import json
 import os
 import random
@@ -24,8 +25,7 @@ DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_
 VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
-# 情境生成可選模型（標籤 -> 模型 ID）
-  # GEN_MODEL_TIERS 由下方 dispatcher 區段定義(以 provider 動態映射模型)。
+# GEN_MODEL_TIERS 在下方 dispatcher 區段定義（依供應商映射到實際模型 ID）。
 
 GEN_SYSTEM_PROMPT = """# 角色
 你是科學化語言學習專家、記憶法大師兼資料工程師。
@@ -141,23 +141,12 @@ def last_7_days_df() -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("日期")
 
 
-# ----------------------------- LLM dispatcher（Gemini 優先,Anthropic 備援） -----------------------------
-_KEY_ENVS = {
-    "gemini": ("GEMINI_API_KEY", "GOOGLE_API_KEY"),
-    "anthropic": ("ANTHROPIC_API_KEY",),
-}
-
+# ----------------------------- Gemini LLM dispatcher -----------------------------
 _MODEL_MAP = {
-    "gemini": {
-        "快速（便宜，推薦）": "gemini-2.5-flash",
-        "高品質（慢）": "gemini-2.5-pro",
-    },
-    "anthropic": {
-        "快速（便宜，推薦）": "claude-haiku-4-5",
-        "高品質（慢）": "claude-sonnet-4-6",
-    },
+    "Flash（快速・推薦）": "gemini-2.5-flash",
+    "Pro（高品質・慢）": "gemini-2.5-pro",
 }
-GEN_MODEL_TIERS = list(_MODEL_MAP["gemini"].keys())
+GEN_MODEL_TIERS = list(_MODEL_MAP.keys())
 
 
 def _read_secret(name: str) -> str | None:
@@ -169,59 +158,32 @@ def _read_secret(name: str) -> str | None:
     return os.environ.get(name)
 
 
-def get_provider() -> str | None:
-    """回傳 'gemini' 或 'anthropic'(優先 Gemini),都沒設定回 None。"""
-    for prov, envs in _KEY_ENVS.items():
-        for env in envs:
-            if _read_secret(env):
-                return prov
-    return None
-
-
 def get_api_key() -> str | None:
-    prov = get_provider()
-    if not prov:
-        return None
-    for env in _KEY_ENVS[prov]:
-        v = _read_secret(env)
-        if v:
-            return v
-    return None
+    """讀 GEMINI_API_KEY(或 GOOGLE_API_KEY)。Streamlit Cloud secrets > 環境變數。"""
+    return _read_secret("GEMINI_API_KEY") or _read_secret("GOOGLE_API_KEY")
 
 
 def _llm_generate(system_prompt: str, user_msg: str, tier: str, max_tokens: int = 2000) -> str:
-    """供應商無關的單次生成。讀 get_provider() 自動分派 Gemini 或 Anthropic。"""
-    provider = get_provider()
-    if not provider:
-        raise RuntimeError("尚未設定 GEMINI_API_KEY 或 ANTHROPIC_API_KEY")
-    model_id = _MODEL_MAP[provider].get(tier) or list(_MODEL_MAP[provider].values())[0]
+    """單次生成。tier 對應 _MODEL_MAP 的標籤。"""
     key = get_api_key()
+    if not key:
+        raise RuntimeError("尚未設定 GEMINI_API_KEY")
+    model_id = _MODEL_MAP.get(tier) or next(iter(_MODEL_MAP.values()))
 
-    if provider == "gemini":
-        from google import genai
-        from google.genai import types
-        client = genai.Client(api_key=key)
-        resp = client.models.generate_content(
-            model=model_id,
-            contents=user_msg,
-            config=types.GenerateContentConfig(
-                system_instruction=system_prompt,
-                temperature=0.7,
-                max_output_tokens=max_tokens,
-            ),
-        )
-        return resp.text or ""
+    from google import genai
+    from google.genai import types
 
-    # anthropic
-    import anthropic
-    client = anthropic.Anthropic(api_key=key)
-    resp = client.messages.create(
-        model=model_id, max_tokens=max_tokens,
-        system=[{"type": "text", "text": system_prompt,
-                 "cache_control": {"type": "ephemeral"}}],
-        messages=[{"role": "user", "content": user_msg}],
+    client = genai.Client(api_key=key)
+    resp = client.models.generate_content(
+        model=model_id,
+        contents=user_msg,
+        config=types.GenerateContentConfig(
+            system_instruction=system_prompt,
+            temperature=0.7,
+            max_output_tokens=max_tokens,
+        ),
     )
-    return "".join(b.text for b in resp.content if b.type == "text")
+    return resp.text or ""
 
 
 def generate_material(scenario: str, tier: str) -> str:
@@ -280,6 +242,118 @@ def render_flashcards(cards: list) -> None:
                 st.markdown(f"🤯 速記：{c['mnemonic']}")
             if c.get("context"):
                 st.caption(f"💡 {c['context']}")
+
+
+def _embed_html(html: str, height: int) -> None:
+    """渲染 HTML(含 JS)。優先 st.iframe(Streamlit ≥ 1.57),退回 components.html。"""
+    if hasattr(st, "iframe"):
+        st.iframe(html, height=height)
+    else:
+        components.html(html, height=height, scrolling=False)
+
+
+def _esc_js(s) -> str:
+    """逃脫字串以放入 JS string literal(單引號內)。"""
+    return (str(s or "")
+            .replace("\\", "\\\\").replace("'", "\\'")
+            .replace("\n", " ").replace("\r", " "))
+
+
+_TTS_BTN_TEMPLATE = """<button onclick="
+  const u = new SpeechSynthesisUtterance('__TEXT__');
+  u.lang='en-US'; u.rate=__RATE__;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+" style="__STYLE__">__LABEL__</button>"""
+
+
+def _tts_button_html(text: str, rate: float, style: str, label: str) -> str:
+    return (_TTS_BTN_TEMPLATE
+            .replace("__TEXT__", _esc_js(text))
+            .replace("__RATE__", str(rate))
+            .replace("__STYLE__", style)
+            .replace("__LABEL__", label))
+
+
+def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
+    """整張單字卡用單一 components.html 渲染(讓 Web Speech API 在 iframe 內可執行 TTS)。
+    正面:英文 + 諧音 + KK + 自然發音 + 🔊 唸；背面:中文意思 + 圖像 + 例句(含🔊) + 用法。"""
+    w_en = _html.escape(word["word"])
+    mn = mn or {}
+
+    if not flipped:
+        homophone = _html.escape(mn.get("homophone", ""))
+        kk = _html.escape(mn.get("kk", ""))
+        phonics = _html.escape(mn.get("phonics", ""))
+        tts_word = _tts_button_html(
+            word["word"], 0.9,
+            "margin-top:18px; padding:10px 22px; font-size:16px; border:none; "
+            "border-radius:999px; cursor:pointer; background:rgba(255,255,255,.28); "
+            "color:#fff; font-weight:600;",
+            "🔊 唸這個字",
+        )
+        homophone_block = (
+            f'<div style="font-size:28px; margin-top:12px; opacity:.95; '
+            f'letter-spacing:1px;">📣 {homophone}</div>' if homophone else ""
+        )
+        kk_block = (
+            f'<span>KK <code style="background:rgba(255,255,255,.18); '
+            f'padding:2px 8px; border-radius:6px;">{kk}</code></span>' if kk else ""
+        )
+        ph_block = (
+            f'<span>自然發音 <code style="background:rgba(255,255,255,.18); '
+            f'padding:2px 8px; border-radius:6px;">{phonics}</code></span>' if phonics else ""
+        )
+        html = f"""
+        <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff;
+                    border-radius:16px; padding:30px 24px; text-align:center;
+                    font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+            <div style="font-size:44px; font-weight:800; letter-spacing:0.5px;">{w_en}</div>
+            {homophone_block}
+            <div style="margin-top:16px; display:flex; justify-content:center;
+                        gap:18px; flex-wrap:wrap; font-size:15px; opacity:.92;">
+                {kk_block}
+                {ph_block}
+            </div>
+            {tts_word}
+        </div>
+        """
+        _embed_html(html, 300 if homophone else 230)
+        return
+
+    meaning = _html.escape(word.get("meaning", ""))
+    example = mn.get("example_en") or word.get("example", "")
+    example_esc = _html.escape(example)
+    usage = _html.escape(mn.get("usage_zh", ""))
+    image = _html.escape(mn.get("image", ""))
+    tts_example = _tts_button_html(
+        example, 0.95,
+        "margin-left:8px; padding:6px 12px; font-size:14px; border:none; "
+        "border-radius:999px; cursor:pointer; background:#4f46e5; color:#fff;",
+        "🔊",
+    ) if example else ""
+
+    image_block = (f'<div style="margin-top:14px; padding:10px 14px; background:#fff; '
+                   f'border-radius:10px;">🖼️ {image}</div>') if image else ""
+    example_block = (f'<div style="margin-top:10px; padding:10px 14px; background:#fff; '
+                     f'border-radius:10px; display:flex; align-items:center; '
+                     f'flex-wrap:wrap;">💬 <i style="flex:1; min-width:200px;">'
+                     f'{example_esc}</i>{tts_example}</div>') if example else ""
+    usage_block = (f'<div style="margin-top:10px; padding:10px 14px; background:#fff; '
+                   f'border-radius:10px; font-size:14px; color:#475569;">💡 '
+                   f'{usage}</div>') if usage else ""
+    html = f"""
+    <div style="background:#f8fafc; color:#312e81; border:2px solid #4f46e5;
+                border-radius:16px; padding:22px;
+                font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+        <div style="font-size:32px; font-weight:800; text-align:center;">{meaning}</div>
+        {image_block}
+        {example_block}
+        {usage_block}
+    </div>
+    """
+    # 動態高度估計
+    h = 130 + (50 if image else 0) + (60 if example else 0) + (50 if usage else 0)
+    _embed_html(html, h)
 
 
 # ----------------------------- 複習 (SRS) -----------------------------
@@ -446,32 +520,13 @@ def view_vocab() -> None:
             f"{idx + 1} / {len(deck)}"
             + (f"　·　共 {len(full_bank)} 字來自單字庫" if full_bank else "")
         )
-        if st.session_state.fc_flipped:
-            st.markdown(
-                f"""<div class="flash-card back"><div class="meaning">{w['meaning']}</div>
-                <div class="example">{w.get('example', '')}</div></div>""",
-                unsafe_allow_html=True,
-            )
-            mn = MNEMONICS.get(w["word"]) or full_bank.get(w["word"])
-            if mn:
-                st.markdown(
-                    f"🔊 諧音 **{mn['homophone']}**　·　自然發音 `{mn['phonics']}`　·　KK `{mn['kk']}`"
-                )
-                if mn.get("image"):
-                    st.caption(f"🖼️ {mn['image']}")
-                if mn.get("example_en"):
-                    st.markdown(f"💬 *{mn['example_en']}*")
-                if mn.get("usage_zh"):
-                    st.caption(f"💡 {mn['usage_zh']}")
-            decomp = decompose_word(w["word"])
-            if decomp:
-                st.caption("🧩 字首／字根／字尾拆解")
-                render_mermaid(build_word_mindmap(w["word"], decomp), height=260)
-        else:
-            st.markdown(
-                f"""<div class="flash-card"><div class="word">{w['word']}</div></div>""",
-                unsafe_allow_html=True,
-            )
+        mn = MNEMONICS.get(w["word"]) or full_bank.get(w["word"])
+        render_flashcard(w, mn, st.session_state.fc_flipped)
+        # 每個單字都畫字首/字根/字尾心智圖(無詞素時退化為純字幹)
+        decomp = decompose_word(w["word"])
+        if decomp:
+            st.caption("🧩 字首／字根／字尾拆解")
+            render_mermaid(build_word_mindmap(w["word"], decomp), height=260)
 
         b1, b2, b3, b4 = st.columns(4)
         if b1.button("← 上一個", use_container_width=True):
@@ -705,18 +760,16 @@ def view_generate() -> None:
     data = st.session_state.data
     st.caption("輸入一個生活情境，AI 會產生對話心智圖與可複習的句卡（採用詞塊與高頻口語）。")
 
-    provider = get_provider()
-    if not provider:
-        st.warning("尚未設定 API 金鑰（Gemini 或 Anthropic 擇一即可）。")
+    if not get_api_key():
+        st.warning("尚未設定 Gemini API 金鑰，無法生成。")
         st.markdown(
-            "- **Streamlit Cloud**：到 **Settings → Secrets** 加入下列其一：\n"
-            "  ```\n  GEMINI_API_KEY = \"...\"\n  ```\n"
-            "  或\n"
-            "  ```\n  ANTHROPIC_API_KEY = \"sk-ant-...\"\n  ```\n"
-            "- **本機**：`export GEMINI_API_KEY=...` 或 `export ANTHROPIC_API_KEY=sk-ant-...`"
+            "- **Streamlit Cloud**：到 **Settings → Secrets** 加入：\n"
+            "  ```\n  GEMINI_API_KEY = \"你的_key\"\n  ```\n"
+            "- **本機**：`export GEMINI_API_KEY=你的_key`\n"
+            "- 取得方式：https://aistudio.google.com/apikey"
         )
     else:
-        st.caption(f"目前供應商：**{provider.upper()}**")
+        st.caption("供應商：**Google Gemini**")
         with st.form("gen_form", clear_on_submit=False):
             scenario = st.text_input(
                 "目標情境",
@@ -892,7 +945,7 @@ def load_vocab_bank() -> dict:
 
 
 def _run_inapp_generation(n: int, tier: str) -> None:
-    """雲端內以供應商無關方式生成 N 字資料,寫進 st.session_state.live_bank。"""
+    """雲端內用 Gemini 生成 N 字資料,寫進 st.session_state.live_bank。"""
     from scripts.generate_vocab import (SYSTEM_PROMPT, extract_json_array,
                                         load_wordlist)
     file_bank = load_vocab_bank()
@@ -903,11 +956,10 @@ def _run_inapp_generation(n: int, tier: str) -> None:
     if not todo:
         st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
         return
-    provider = get_provider()
-    with st.spinner(f"用 {provider} ({tier}) 生成 {len(todo)} 字…"):
+    with st.spinner(f"用 Gemini ({tier}) 生成 {len(todo)} 字…"):
         text = _llm_generate(SYSTEM_PROMPT,
                              "請為以下單字生成資料: " + ", ".join(todo),
-                             tier, max_tokens=4000)
+                             tier, max_tokens=8000)
         entries = extract_json_array(text)
     added = 0
     for e in entries:
@@ -922,23 +974,22 @@ def view_vocab_bank() -> None:
     file_bank = load_vocab_bank()
     live_bank = st.session_state.setdefault("live_bank", {})
     bank = {**file_bank, **live_bank}
-    provider = get_provider()
+    api_key = get_api_key()
 
     with st.expander("🤖 用 AI 在雲端即時生成（無需本機）", expanded=not bank):
-        if not provider:
+        if not api_key:
             st.warning(
-                "尚未設定 API 金鑰。請至 Streamlit Cloud → **Manage app → "
-                "Settings → Secrets** 加入下列其一後重新部署：\n\n"
-                "```\nGEMINI_API_KEY = \"...\"\n```\n"
-                "或\n"
-                "```\nANTHROPIC_API_KEY = \"sk-ant-...\"\n```"
+                "尚未設定 Gemini API 金鑰。請至 Streamlit Cloud → **Manage app → "
+                "Settings → Secrets** 加入下列一行後重新部署：\n\n"
+                "```\nGEMINI_API_KEY = \"你的_key\"\n```\n"
+                "取得方式：https://aistudio.google.com/apikey"
             )
         else:
-            st.caption(f"目前供應商：**{provider.upper()}**")
+            st.caption("供應商：**Google Gemini**")
         col1, col2, col3 = st.columns([2, 2, 2])
         n = col1.number_input("一次生成幾個字", min_value=5, max_value=50, value=20, step=5)
         tier = col2.selectbox("模型", GEN_MODEL_TIERS, index=0)
-        if col3.button("🚀 開始生成", disabled=not provider,
+        if col3.button("🚀 開始生成", disabled=not api_key,
                        use_container_width=True, type="primary"):
             try:
                 _run_inapp_generation(int(n), tier)
