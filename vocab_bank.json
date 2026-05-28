@@ -1,1 +1,302 @@
-{}
+{
+  "get": {
+    "word": "get",
+    "meaning_zh": "得到、變得、抵達",
+    "kk": "[ɡɛt]",
+    "phonics": "GET",
+    "homophone": "蓋特",
+    "image": "把寶藏「蓋特」蓋住，誰先發現誰就 get。",
+    "example_en": "Did you get the email?",
+    "usage_zh": "萬用動詞：拿到 (get a job)、變化 (get sick / get up)、抵達 (get there)。口語高頻第一名。"
+  },
+  "make": {
+    "word": "make",
+    "meaning_zh": "做、製作、使（變成）",
+    "kk": "[mek]",
+    "phonics": "MAKE",
+    "homophone": "美客",
+    "image": "美客來店裡用心做手作甜點。",
+    "example_en": "Can you make dinner tonight?",
+    "usage_zh": "製作或讓某事發生：make sense（合理）、make money（賺錢）、make sb. happy（讓某人開心）。"
+  },
+  "take": {
+    "word": "take",
+    "meaning_zh": "拿取、花費（時間）、搭乘",
+    "kk": "[tek]",
+    "phonics": "TAKE",
+    "homophone": "提客",
+    "image": "提客人的行李上樓，take 起來真重。",
+    "example_en": "It takes about an hour to get there.",
+    "usage_zh": "take a shower（洗澡）、take the bus（搭公車）、take time（花時間）。口語很常用。"
+  },
+  "give": {
+    "word": "give",
+    "meaning_zh": "給予、提供",
+    "kk": "[ɡɪv]",
+    "phonics": "GIV",
+    "homophone": "給夫",
+    "image": "把禮物 give 給夫人，她超開心。",
+    "example_en": "Can you give me a hand?",
+    "usage_zh": "give sb. a hand（幫忙）、give up（放棄）、give it a try（試一下）都是日常高頻片語。"
+  },
+  "go": {
+    "word": "go",
+    "meaning_zh": "去、進行、運作",
+    "kk": "[ɡo]",
+    "phonics": "GO",
+    "homophone": "購",
+    "image": "我們現在「購」物去 ── let's go！",
+    "example_en": "Let's go!",
+    "usage_zh": "移動或進行動作。how's it going?（最近怎樣）、go for it（拚了）是日常起手式。"
+  },
+  "come": {
+    "word": "come",
+    "meaning_zh": "來、發生、變成",
+    "kk": "[kʌm]",
+    "phonics": "KUM",
+    "homophone": "卡姆",
+    "image": "媽媽叫「卡姆」過來吃飯，孩子就 come。",
+    "example_en": "Come over to my place!",
+    "usage_zh": "邀人來：come over（來我家）；come on 是萬用「加油／別這樣／來吧」。"
+  },
+  "see": {
+    "word": "see",
+    "meaning_zh": "看見、明白、見面",
+    "kk": "[si]",
+    "phonics": "SEE",
+    "homophone": "西",
+    "image": "我面向西邊 see 夕陽落下。",
+    "example_en": "I see what you mean.",
+    "usage_zh": "I see = 我懂了；see you 是道別；see a doctor 是去看醫生。"
+  },
+  "look": {
+    "word": "look",
+    "meaning_zh": "看、樣子、似乎",
+    "kk": "[lʊk]",
+    "phonics": "LOOK",
+    "homophone": "路克",
+    "image": "路克回頭 look 一下路況再過馬路。",
+    "example_en": "Look at this!",
+    "usage_zh": "主動看：look at；表「樣子」：look tired（看起來累）、look like（像）。"
+  },
+  "want": {
+    "word": "want",
+    "meaning_zh": "想要、需要",
+    "kk": "[wɑnt]",
+    "phonics": "WONT",
+    "homophone": "王特",
+    "image": "國王特別想要的東西都拿得到。",
+    "example_en": "I want some water, please.",
+    "usage_zh": "直接想要：want a coffee；want to do = wanna do（口語縮）。"
+  },
+  "need": {
+    "word": "need",
+    "meaning_zh": "需要、必須",
+    "kk": "[nid]",
+    "phonics": "NEED",
+    "homophone": "你的",
+    "image": "「你的」幫忙我很需要。",
+    "example_en": "I need a break.",
+    "usage_zh": "need to do = 必須；比 must 軟；in need = 有困難。"
+  },
+  "know": {
+    "word": "know",
+    "meaning_zh": "知道、認識",
+    "kk": "[no]",
+    "phonics": "NOH",
+    "homophone": "弄",
+    "image": "一弄就 know，原來這麼簡單。",
+    "example_en": "I don't know.",
+    "usage_zh": "you know 是口語語助詞；know how to 知道怎麼做；I know, right? = 我也覺得對吧。"
+  },
+  "think": {
+    "word": "think",
+    "meaning_zh": "思考、認為",
+    "kk": "[θɪŋk]",
+    "phonics": "THINGK",
+    "homophone": "性可",
+    "image": "個性可以從 think 的方式看出來。",
+    "example_en": "I think so.",
+    "usage_zh": "I think... 是日常表達意見；what do you think? = 你覺得呢？比 I believe 軟。"
+  },
+  "feel": {
+    "word": "feel",
+    "meaning_zh": "感覺、覺得",
+    "kk": "[fil]",
+    "phonics": "FEEL",
+    "homophone": "飛喔",
+    "image": "飛上天的 feel 超棒。",
+    "example_en": "How do you feel?",
+    "usage_zh": "feel like + Ving = 想要做某事；feel free to ask = 別客氣儘管問。"
+  },
+  "work": {
+    "word": "work",
+    "meaning_zh": "工作、運作、起作用",
+    "kk": "[wɝk]",
+    "phonics": "WURK",
+    "homophone": "我課",
+    "image": "上完我課就去 work。",
+    "example_en": "It works!",
+    "usage_zh": "it works = 可行／管用；work out = 健身或事情解決；at work = 上班中。"
+  },
+  "find": {
+    "word": "find",
+    "meaning_zh": "找到、發現、覺得",
+    "kk": "[faɪnd]",
+    "phonics": "FYND",
+    "homophone": "飯的",
+    "image": "find 到飯的香味，才知道餓了。",
+    "example_en": "I can't find my keys.",
+    "usage_zh": "find it hard to do = 覺得某事困難；find out = 查明、發現真相。"
+  },
+  "become": {
+    "word": "become",
+    "meaning_zh": "變成、成為",
+    "kk": "[bɪˈkʌm]",
+    "phonics": "bih-KUM",
+    "homophone": "必卡姆",
+    "image": "必須卡進姆指縫，才能 become 新形狀。",
+    "example_en": "He became a teacher last year.",
+    "usage_zh": "正式「變成」，後接名詞或形容詞；口語常改用 get / turn into。"
+  },
+  "leave": {
+    "word": "leave",
+    "meaning_zh": "離開、留下、託付",
+    "kk": "[liv]",
+    "phonics": "LEEV",
+    "homophone": "立夫",
+    "image": "立刻送丈夫出差，要 leave 半年。",
+    "example_en": "I have to leave now.",
+    "usage_zh": "同時表「離開」與「留下」(leave it here)；leave me alone = 別煩我。"
+  },
+  "help": {
+    "word": "help",
+    "meaning_zh": "幫助、援助",
+    "kk": "[hɛlp]",
+    "phonics": "HELP",
+    "homophone": "黑耳普",
+    "image": "戴上黑色耳機普遍能 help 專注。",
+    "example_en": "Can you help me with this?",
+    "usage_zh": "help sb. with sth.（幫某人某事）；help yourself = 請自便；can I help you? 是店員開場白。"
+  },
+  "talk": {
+    "word": "talk",
+    "meaning_zh": "說話、談論、聊天",
+    "kk": "[tɔk]",
+    "phonics": "TAWK",
+    "homophone": "透客",
+    "image": "透過 talk 招攬客人下單。",
+    "example_en": "Let's talk later.",
+    "usage_zh": "雙向對話：talk to sb. = 跟誰說；talk about = 聊關於；talk it over = 商量。"
+  },
+  "ask": {
+    "word": "ask",
+    "meaning_zh": "問、要求、邀請",
+    "kk": "[æsk]",
+    "phonics": "ASK",
+    "homophone": "阿斯",
+    "image": "阿斯匹靈藥師，要先 ask 醫師再吃。",
+    "example_en": "Can I ask you something?",
+    "usage_zh": "ask for sth.（索取）、ask sb. out（約會邀請）、ask sb. to do（請求）。"
+  },
+  "try": {
+    "word": "try",
+    "meaning_zh": "嘗試、努力、試吃／穿",
+    "kk": "[traɪ]",
+    "phonics": "TRY",
+    "homophone": "踹",
+    "image": "用力踹門看會不會開，try 一下嘛！",
+    "example_en": "Just try it, you might like it.",
+    "usage_zh": "try to do = 努力做；try doing = 試試看做；give it a try = 試試看。"
+  },
+  "call": {
+    "word": "call",
+    "meaning_zh": "打電話、稱呼、呼喚",
+    "kk": "[kɔl]",
+    "phonics": "KAWL",
+    "homophone": "摳",
+    "image": "用手指摳手機螢幕 call 朋友。",
+    "example_en": "Call me later.",
+    "usage_zh": "give sb. a call = 打電話給某人；what's it called? = 那叫什麼？call sb. names = 罵人。"
+  },
+  "seem": {
+    "word": "seem",
+    "meaning_zh": "似乎、看起來、好像",
+    "kk": "[sim]",
+    "phonics": "SEEM",
+    "homophone": "心",
+    "image": "心裡覺得他 seem 不太開心。",
+    "example_en": "It seems okay to me.",
+    "usage_zh": "seem + 形容詞、seems like + 子句、it seems that + 子句 都很常用，表客觀印象。"
+  },
+  "keep": {
+    "word": "keep",
+    "meaning_zh": "保持、繼續、留著",
+    "kk": "[kip]",
+    "phonics": "KEEP",
+    "homophone": "雞噗",
+    "image": "雞撲翅噗噗，keep 持續向前飛。",
+    "example_en": "Keep going, you're almost there!",
+    "usage_zh": "keep + Ving = 持續做；keep it up = 保持下去（鼓勵）；keep in touch = 保持聯絡。"
+  },
+  "start": {
+    "word": "start",
+    "meaning_zh": "開始、啟動、出發",
+    "kk": "[stɑrt]",
+    "phonics": "START",
+    "homophone": "思踏",
+    "image": "動腦思考踏出第一步，start！",
+    "example_en": "When does the movie start?",
+    "usage_zh": "通用「開始」：start with = 從...開始；start over = 重來；get started = 動起來。"
+  },
+  "stop": {
+    "word": "stop",
+    "meaning_zh": "停止、停下、阻止",
+    "kk": "[stɑp]",
+    "phonics": "STOP",
+    "homophone": "死頭破",
+    "image": "撞牆死頭破，必須立刻 stop！",
+    "example_en": "Stop it, that's enough.",
+    "usage_zh": "stop it = 命令「住手」；stop + Ving = 別再做；stop to do = 停下來去做。語意差很多注意！"
+  },
+  "run": {
+    "word": "run",
+    "meaning_zh": "跑、經營、運轉",
+    "kk": "[rʌn]",
+    "phonics": "RUN",
+    "homophone": "讓",
+    "image": "讓孩子在公園 run 來 run 去。",
+    "example_en": "I have to run, see you later!",
+    "usage_zh": "I have to run = 我要走了（趕時間）；run a shop = 經營店；in the long run = 長遠來看。"
+  },
+  "walk": {
+    "word": "walk",
+    "meaning_zh": "走路、散步、遛",
+    "kk": "[wɔk]",
+    "phonics": "WAWK",
+    "homophone": "我克",
+    "image": "我克服懶惰，每天 walk 三十分鐘。",
+    "example_en": "Let's go for a walk.",
+    "usage_zh": "go for a walk = 去散步；walk the dog = 遛狗；a short walk away = 走一下就到。"
+  },
+  "eat": {
+    "word": "eat",
+    "meaning_zh": "吃、進食",
+    "kk": "[it]",
+    "phonics": "EET",
+    "homophone": "一頓",
+    "image": "一頓飯就 eat 解決飢餓。",
+    "example_en": "What do you want to eat?",
+    "usage_zh": "eat out = 外食；eat in = 在家吃；what's eating you? = 你怎麼了（看起來不悅）。"
+  },
+  "drink": {
+    "word": "drink",
+    "meaning_zh": "喝、飲料、（有時）喝酒",
+    "kk": "[drɪŋk]",
+    "phonics": "DRINGK",
+    "homophone": "朱凜可",
+    "image": "朱古力凜冬可 drink，溫暖好喝。",
+    "example_en": "Want a drink?",
+    "usage_zh": "Want a drink? 常暗指「來杯酒」；soft drink = 無酒精飲料；drink up = 喝完。"
+  }
+}
