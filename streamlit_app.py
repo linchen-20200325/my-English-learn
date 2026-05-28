@@ -17,6 +17,7 @@ import streamlit.components.v1 as components
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
+from morphology import PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
@@ -373,6 +374,12 @@ def view_vocab() -> None:
                 <div class="example">{w.get('example', '')}</div></div>""",
                 unsafe_allow_html=True,
             )
+            mn = MNEMONICS.get(w["word"])
+            if mn:
+                st.markdown(
+                    f"🔊 諧音 **{mn['homophone']}**　·　自然發音 `{mn['phonics']}`　·　KK `{mn['kk']}`"
+                )
+                st.caption(f"🖼️ {mn['image']}")
         else:
             st.markdown(
                 f"""<div class="flash-card"><div class="word">{w['word']}</div></div>""",
@@ -748,6 +755,35 @@ def view_review() -> None:
         st.rerun()
 
 
+def view_morphology() -> None:
+    st.markdown("### 🔤 字根速記")
+    st.caption("離線字根字首字尾心智圖 + SEED 單字台味諧音速記，完全不需 API。")
+
+    tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
+    for tab, title, items in (
+        (tab1, "字首 Prefix", PREFIXES),
+        (tab2, "字中 Root", ROOTS),
+        (tab3, "字尾 Suffix", SUFFIXES),
+    ):
+        with tab:
+            render_mermaid(build_mindmap(title, items), height=520)
+            with st.expander("檢視清單"):
+                for it in items:
+                    st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
+
+    st.divider()
+    st.markdown("### 🤯 SEED 單字諧音速記")
+    st.caption("把英文聲音強行接到中文意思的搞笑諧音 + 圖像聯想。翻單字學習卡也看得到。")
+    for word, mn in MNEMONICS.items():
+        with st.container(border=True):
+            c1, c2 = st.columns([2, 5])
+            c1.markdown(f"### {word}")
+            c1.caption(f"KK `{mn['kk']}`")
+            c1.caption(f"自然發音 `{mn['phonics']}`")
+            c2.markdown(f"🔊 諧音 **{mn['homophone']}**")
+            c2.markdown(f"🖼️ {mn['image']}")
+
+
 # ----------------------------- 主程式 -----------------------------
 def main() -> None:
     st.set_page_config(page_title="英文學習儀表板", page_icon="📚", layout="wide")
@@ -764,8 +800,8 @@ def main() -> None:
         st.markdown("# 📚 English\nDashboard")
         view = st.radio(
             "導覽",
-            ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🤖 情境生成",
-             "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
+            ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
+             "🤖 情境生成", "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -782,6 +818,8 @@ def main() -> None:
         view_vocab()
     elif view.endswith("單字測驗"):
         view_quiz()
+    elif view.endswith("字根速記"):
+        view_morphology()
     elif view.endswith("情境生成"):
         view_generate()
     elif view.endswith("複習"):
