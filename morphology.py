@@ -173,19 +173,44 @@ def decompose_word(word: str) -> dict | None:
 
 
 def build_word_mindmap(word: str, decomp: dict) -> str:
-    """為單一單字建構迷你 Mermaid mindmap(字首/字根/字尾分支)。"""
-    lines = ["mindmap", f'  root(("{_mm_escape(word)}"))']
+    """為單一單字建構迷你樹狀圖。改用 flowchart LR(橫向左→右),避免 mindmap 對
+    少節點(只有字首沒字根/字尾時)自動轉成垂直佈局把高度撐爆。"""
+    lines = [
+        "flowchart LR",
+        "    classDef cat fill:#dbeafe,stroke:#1d4ed8,stroke-width:1px;",
+        "    classDef leaf fill:#fef3c7,stroke:#b45309,stroke-width:1px;",
+        f'    root(("{_mm_escape(word)}"))',
+    ]
+    idx = 0
     if decomp.get("prefix"):
-        lines.append(f'    ["字首 {_mm_escape(decomp["prefix"]["form"])}"]')
-        lines.append(f'      ["{_mm_escape(decomp["prefix"]["zh"])}"]')
+        zh = _mm_escape(decomp["prefix"]["zh"])
+        form = _mm_escape(decomp["prefix"]["form"])
+        lines.append(f'    n{idx}["字首 {form}"]:::cat')
+        lines.append(f'    root --> n{idx}')
+        lines.append(f'    n{idx}m["{zh}"]:::leaf')
+        lines.append(f'    n{idx} --> n{idx}m')
+        idx += 1
     if decomp.get("root"):
-        lines.append(f'    ["字根 {_mm_escape(decomp["root"]["form"])}"]')
-        lines.append(f'      ["{_mm_escape(decomp["root"]["zh"])}"]')
+        zh = _mm_escape(decomp["root"]["zh"])
+        form = _mm_escape(decomp["root"]["form"])
+        lines.append(f'    n{idx}["字根 {form}"]:::cat')
+        lines.append(f'    root --> n{idx}')
+        lines.append(f'    n{idx}m["{zh}"]:::leaf')
+        lines.append(f'    n{idx} --> n{idx}m')
+        idx += 1
     elif decomp.get("stem"):
-        lines.append(f'    ["字幹 {_mm_escape(decomp["stem"])}"]')
+        stem = _mm_escape(decomp["stem"])
+        lines.append(f'    n{idx}["字幹 {stem}"]:::cat')
+        lines.append(f'    root --> n{idx}')
+        idx += 1
     if decomp.get("suffix"):
-        lines.append(f'    ["字尾 {_mm_escape(decomp["suffix"]["form"])}"]')
-        lines.append(f'      ["{_mm_escape(decomp["suffix"]["zh"])}"]')
+        zh = _mm_escape(decomp["suffix"]["zh"])
+        form = _mm_escape(decomp["suffix"]["form"])
+        lines.append(f'    n{idx}["字尾 {form}"]:::cat')
+        lines.append(f'    root --> n{idx}')
+        lines.append(f'    n{idx}m["{zh}"]:::leaf')
+        lines.append(f'    n{idx} --> n{idx}m')
+        idx += 1
     return "\n".join(lines)
 
 
