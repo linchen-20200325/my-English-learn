@@ -45,14 +45,47 @@ GEN_SYSTEM_PROMPT = """# 角色
 # 輸出限制（嚴格）
 只輸出以下兩個程式碼區塊，前後與中間不得有任何開場白、結語或解釋文字。
 
-## 區塊一：Mermaid 心智圖（每個子節點必須中英雙語）
-用 ```mermaid 區塊製作一個 mindmap，歸納該情境的核心對話流程：
-- 根節點：情境名稱（中文）
-- 主分支：對話階段中英並列，例如 `開場 Opening`、`核心 Core`、`結語 Closing`
-- 子節點：英文實用短句 + 繁中翻譯，格式為 `"English phrase (中文翻譯)"`，例如：
-  - `"Have a good weekend? (週末愉快!)"`
-  - `"How's your day going? (今天過得怎樣?)"`
-- 每個子節點英文嚴格 ≤ 7 字；節點文字務必用雙引號 `"..."` 包起來（避免 mermaid 解析失敗）。
+## 區塊一：Mermaid flowchart 樹狀圖（中英雙語、嚴格語法）
+用 ```mermaid 區塊製作一個 **`flowchart LR`** 樹狀圖（不要用 mindmap，mindmap 對特殊
+字元容易解析失敗）。嚴格遵守以下語法,任何違規都會讓畫面顯示「Syntax error in text」:
+
+**規則**:
+- 第一行固定:`flowchart LR`
+- 每個節點用 `nodeId["顯示文字"]` 寫法,nodeId 只能是 ASCII 英數字(n0、n1、n0_0、n1_2 ...)
+- 節點文字務必用雙引號包起來
+- **節點文字內絕對不可出現 `(` `)` `[` `]` `{` `}` 半形括號**(會被 mermaid 當形狀語法)。
+  要表達括號請用全形 `（）` 或 `「」`
+- 用 `-->` 連線
+- 雙語用「英文 | 中文」分隔,例如 `n0_0["Hi there! | 你好!"]`
+
+**結構**:
+- root 節點:`root(("情境名稱中文"))`(雙重圓括號是 cloud 形狀,這裡是唯一允許的括號)
+- 主分支 3-5 個,代表對話階段(開場、核心、結語等),英文 ≤ 3 字 + 中文標籤
+- 每分支底下 2-4 個子節點,英文短句 ≤ 7 字 + 中文翻譯,用 `|` 分隔
+
+**完整範例(請仿照產出,結構與標點都照抄)**:
+```
+flowchart LR
+    root(("咖啡廳點餐"))
+    n0["Opening 開場"]
+    n1["Order 點餐"]
+    n2["Complaint 反映問題"]
+    n3["Closing 收尾"]
+    root --> n0
+    root --> n1
+    root --> n2
+    root --> n3
+    n0_0["Hi there! | 嗨!"]
+    n0 --> n0_0
+    n0_1["What can I get you? | 想點什麼?"]
+    n0 --> n0_1
+    n1_0["A tall latte, please | 一杯中杯拿鐵"]
+    n1 --> n1_0
+    n2_0["This isn't what I ordered | 這不是我點的"]
+    n2 --> n2_0
+    n3_0["Sorry about that | 不好意思"]
+    n3 --> n3_0
+```
 
 ## 區塊二：SRS 抽認卡與速記法
 用 ```json 區塊輸出 3 到 5 張最具代表性的金句，須取自心智圖中出現的句子。
@@ -337,13 +370,42 @@ def generate_material(scenario: str, tier: str) -> str:
     return _llm_generate(GEN_SYSTEM_PROMPT, f"Scenario: {scenario}", tier, max_tokens=2000)
 
 
+def _sanitize_mermaid(text: str) -> str:
+    """清潔 Gemini 產出的 mermaid 文字,避免常見解析失敗:
+    - 移除節點標籤 `["..."]` 內部的半形括號(常被當形狀語法),改全形
+    - 若第一行是 'mindmap',改成 'flowchart LR'(mindmap 對特殊字元易爆)
+    - 保留 root((...)) 不動(這是合法的 cloud 形狀)
+    """
+    if not text:
+        return text
+    lines = text.splitlines()
+    # 開頭規一化
+    if lines and lines[0].strip().lower().startswith("mindmap"):
+        lines[0] = "flowchart LR"
+
+    # 清理 ["..."] 內的半形括號
+    def _clean_label(m):
+        inner = m.group(1)
+        # 不動 root((..)) 形狀:這個函式只命中方括號雙引號內容
+        inner = (inner.replace("(", "（").replace(")", "）")
+                       .replace("[", "「").replace("]", "」")
+                       .replace("{", "「").replace("}", "」"))
+        return f'["{inner}"]'
+
+    cleaned = []
+    for ln in lines:
+        ln = re.sub(r'\["([^"]*)"\]', _clean_label, ln)
+        cleaned.append(ln)
+    return "\n".join(cleaned)
+
+
 def parse_blocks(text: str) -> tuple[str | None, list | None]:
-    """從回應中抽出 mermaid 圖與 flashcards JSON。"""
+    """從回應中抽出 mermaid 圖與 flashcards JSON。mermaid 經 _sanitize_mermaid 清潔。"""
     mermaid = None
     cards = None
     m = re.search(r"```mermaid\s*(.*?)```", text, re.DOTALL)
     if m:
-        mermaid = m.group(1).strip()
+        mermaid = _sanitize_mermaid(m.group(1).strip())
     j = re.search(r"```json\s*(.*?)```", text, re.DOTALL)
     if j:
         try:
@@ -984,10 +1046,17 @@ def view_generate() -> None:
         st.markdown(f"#### 📍 情境：{result['scenario']}")
         if result["mermaid"]:
             render_mermaid(result["mermaid"])
-            with st.expander("檢視 Mermaid 原始碼"):
+            st.caption("↑ 若上方畫面顯示「Syntax error in text」💣，代表 Gemini 違反 flowchart 語法；"
+                       "可展開下方原始碼回報給開發者，或重新按「生成 ✨」(Gemini 偶有發揮)。")
+            with st.expander("🔍 檢視 Mermaid 原始碼 / Gemini 完整回應"):
+                st.markdown("**Mermaid 清潔後**:")
                 st.code(result["mermaid"], language="text")
+                st.markdown("**Gemini 完整原始輸出**:")
+                st.code(result.get("raw", ""), language="text")
         else:
             st.info("未能解析出心智圖。")
+            with st.expander("檢視 Gemini 原始回應"):
+                st.code(result.get("raw", ""), language="text")
 
         if result["flashcards"]:
             st.markdown("#### 🃏 句卡")
