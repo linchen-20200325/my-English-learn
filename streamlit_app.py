@@ -18,6 +18,7 @@ import streamlit.components.v1 as components
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
+from dialogues import CONVERSATIONS, STORIES
 from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
                         decompose_word, build_word_mindmap)
 
@@ -44,11 +45,14 @@ GEN_SYSTEM_PROMPT = """# 角色
 # 輸出限制（嚴格）
 只輸出以下兩個程式碼區塊，前後與中間不得有任何開場白、結語或解釋文字。
 
-## 區塊一：Mermaid 心智圖
+## 區塊一：Mermaid 心智圖（每個子節點必須中英雙語）
 用 ```mermaid 區塊製作一個 mindmap，歸納該情境的核心對話流程：
-- 根節點：情境名稱
-- 主分支：對話階段（例如 開場、核心討論、結語）
-- 子節點：實用短句，每個節點嚴格限制在 7 個英文單字以內
+- 根節點：情境名稱（中文）
+- 主分支：對話階段中英並列，例如 `開場 Opening`、`核心 Core`、`結語 Closing`
+- 子節點：英文實用短句 + 繁中翻譯，格式為 `"English phrase (中文翻譯)"`，例如：
+  - `"Have a good weekend? (週末愉快!)"`
+  - `"How's your day going? (今天過得怎樣?)"`
+- 每個子節點英文嚴格 ≤ 7 字；節點文字務必用雙引號 `"..."` 包起來（避免 mermaid 解析失敗）。
 
 ## 區塊二：SRS 抽認卡與速記法
 用 ```json 區塊輸出 3 到 5 張最具代表性的金句，須取自心智圖中出現的句子。
@@ -1195,6 +1199,152 @@ def _push_bank_to_github(silent: bool = False) -> bool:
         return False
 
 
+def _build_dialogue_html(lines: list) -> str:
+    """把對話列表渲染成單一 HTML 區塊(含每行 🔊 TTS 按鈕)。"""
+    rows = []
+    for line in lines:
+        en = _html.escape(line["en"])
+        zh = _html.escape(line["zh"])
+        spk = _html.escape(line["speaker"])
+        en_js = _esc_js(line["en"])
+        rows.append(f"""
+        <div style="margin:6px 0; padding:10px 14px; background:#f8fafc; border-radius:8px;
+                    border-left:4px solid #6366f1; display:flex; gap:10px;
+                    align-items:flex-start;">
+            <div style="flex:1;">
+                <div><span style="font-weight:700; color:#4f46e5;">{spk}：</span>{en}</div>
+                <div style="color:#475569; font-size:13px; margin-top:4px;">🇹🇼 {zh}</div>
+            </div>
+            <button onclick="
+              const u=new SpeechSynthesisUtterance('{en_js}');
+              u.lang='en-US'; u.rate=0.92;
+              speechSynthesis.cancel(); speechSynthesis.speak(u);
+            " style="padding:6px 12px; font-size:14px; border:none; border-radius:999px;
+                     cursor:pointer; background:#4f46e5; color:#fff; flex-shrink:0;
+                     align-self:center;">🔊</button>
+        </div>""")
+    play_all_js = "; ".join(
+        f"q.push(new SpeechSynthesisUtterance('{_esc_js(L['en'])}'))" for L in lines
+    )
+    header = f"""
+    <div style="margin-bottom:10px; text-align:right;">
+        <button onclick="
+          const q=[]; {play_all_js};
+          q.forEach(u => {{ u.lang='en-US'; u.rate=0.9; speechSynthesis.speak(u); }});
+        " style="padding:8px 16px; font-size:14px; border:none; border-radius:999px;
+                 cursor:pointer; background:#10b981; color:#fff;">▶️ 唸整段對話</button>
+        <button onclick="speechSynthesis.cancel();" style="padding:8px 14px; font-size:14px;
+                border:1px solid #ddd; border-radius:999px; cursor:pointer;
+                background:#fff; color:#475569; margin-left:6px;">⏹ 停止</button>
+    </div>"""
+    return ('<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">'
+            + header + "".join(rows) + "</div>")
+
+
+def _build_story_html(paragraphs: list) -> str:
+    rows = []
+    full_text = " ".join(p["en"] for p in paragraphs)
+    full_js = _esc_js(full_text)
+    for p in paragraphs:
+        en = _html.escape(p["en"])
+        zh = _html.escape(p["zh"])
+        en_js = _esc_js(p["en"])
+        rows.append(f"""
+        <div style="margin:8px 0; padding:12px 16px; background:#f8fafc;
+                    border-radius:10px; border-left:4px solid #10b981;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+                <div style="flex:1; line-height:1.7;">{en}</div>
+                <button onclick="
+                  const u=new SpeechSynthesisUtterance('{en_js}');
+                  u.lang='en-US'; u.rate=0.92;
+                  speechSynthesis.cancel(); speechSynthesis.speak(u);
+                " style="padding:6px 12px; font-size:14px; border:none; border-radius:999px;
+                         cursor:pointer; background:#10b981; color:#fff; flex-shrink:0;
+                         align-self:center;">🔊</button>
+            </div>
+            <div style="color:#475569; font-size:14px; margin-top:6px; line-height:1.6;">
+                🇹🇼 {zh}
+            </div>
+        </div>""")
+    header = f"""
+    <div style="margin-bottom:10px; text-align:right;">
+        <button onclick="
+          const u=new SpeechSynthesisUtterance('{full_js}');
+          u.lang='en-US'; u.rate=0.9;
+          speechSynthesis.cancel(); speechSynthesis.speak(u);
+        " style="padding:8px 16px; font-size:14px; border:none; border-radius:999px;
+                 cursor:pointer; background:#10b981; color:#fff;">▶️ 唸整篇故事</button>
+        <button onclick="speechSynthesis.cancel();" style="padding:8px 14px; font-size:14px;
+                border:1px solid #ddd; border-radius:999px; cursor:pointer;
+                background:#fff; color:#475569; margin-left:6px;">⏹ 停止</button>
+    </div>"""
+    return ('<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">'
+            + header + "".join(rows) + "</div>")
+
+
+def _render_grammar(items: list) -> None:
+    """渲染文法重點區塊。"""
+    st.markdown("##### 📚 文法重點")
+    for g in items:
+        with st.container(border=True):
+            st.markdown(f"**🎯 {g['point']}**")
+            st.caption(g["explain"])
+            for ex in g["examples"]:
+                st.markdown(f"　- `{ex}`")
+
+
+def view_speak_story() -> None:
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**口說範本**＝離線預載的「情境對話 + 短篇故事」雙語對照範本，每段附文法重點。\n\n"
+            "**怎麼用**：\n"
+            "1. 展開任一情境（咖啡廳／同事閒聊／退換貨／抱怨工作／週末約）或故事（晨間日常／旅行回憶）\n"
+            "2. 每句／每段右側「🔊」唸該句；頂部「▶️ 唸整段／整篇」一鍵連讀\n"
+            "3. **跟著唸**（shadowing 跟讀法）：聽一遍 → 暫停 → 模仿語調再唸一次。是進步口說最有效的練習\n"
+            "4. 下方「📚 文法重點」逐句解說 + 同類型例句，可結合到日常表達\n"
+            "5. 喜歡的對話可「加入複習」，SRS 排程之後回頭練\n\n"
+            "**程度**：A2 = 基礎對話、B1 = 中級流暢、B2 = 進階表達。從低到高循序漸進。"
+        )
+    tab1, tab2 = st.tabs([f"🗣️ 情境對話（{len(CONVERSATIONS)} 個）",
+                          f"📖 短篇故事（{len(STORIES)} 篇）"])
+
+    with tab1:
+        for conv in CONVERSATIONS:
+            with st.expander(
+                f"**{conv['title']}**　·　程度 {conv['level']}　·　{conv['scene']}",
+            ):
+                _embed_html(_build_dialogue_html(conv["lines"]),
+                            height=120 + 78 * len(conv["lines"]))
+                st.divider()
+                _render_grammar(conv["grammar"])
+                if st.button(f"➕ 加入 {len(conv['lines'])} 句到「🔁 複習」",
+                             key=f"add_conv_{conv['id']}", use_container_width=True):
+                    cards = [
+                        {"sentence": L["en"], "chinese": L["zh"],
+                         "chunk": L["en"][:40], "context": f"情境：{conv['title']}"}
+                        for L in conv["lines"]
+                    ]
+                    n = add_cards_to_review(cards)
+                    st.success(f"已加入 {n} 句到複習清單。")
+
+    with tab2:
+        for story in STORIES:
+            with st.expander(f"**{story['title']}**　·　程度 {story['level']}　·　{story['scene']}"):
+                _embed_html(_build_story_html(story["paragraphs"]),
+                            height=120 + 130 * len(story["paragraphs"]))
+                st.divider()
+                _render_grammar(story["grammar"])
+                if st.button(f"➕ 加入 {len(story['paragraphs'])} 段到「🔁 複習」",
+                             key=f"add_story_{story['id']}", use_container_width=True):
+                    cards = [
+                        {"sentence": p["en"], "chinese": p["zh"],
+                         "chunk": p["en"][:40], "context": f"故事：{story['title']}"}
+                        for p in story["paragraphs"]
+                    ]
+                    n = add_cards_to_review(cards)
+                    st.success(f"已加入 {n} 段到複習清單。")
+
+
 def view_vocab_bank() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -1363,7 +1513,8 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "📖 單字庫", "🤖 情境生成", "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
+             "🗣️ 口說範本", "📖 單字庫", "🤖 情境生成", "🔁 複習",
+             "📈 學習進度", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -1413,6 +1564,8 @@ def main() -> None:
         view_quiz()
     elif view.endswith("字根速記"):
         view_morphology()
+    elif view.endswith("口說範本"):
+        view_speak_story()
     elif view.endswith("單字庫"):
         view_vocab_bank()
     elif view.endswith("情境生成"):
