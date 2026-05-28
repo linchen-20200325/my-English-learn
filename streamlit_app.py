@@ -146,9 +146,16 @@ def last_7_days_df() -> pd.DataFrame:
 
 
 # ----------------------------- Gemini LLM dispatcher -----------------------------
+# 免費 tier 每日請求數(GenerateRequestsPerDayPerProjectPerModel-FreeTier):
+# - gemini-2.5-pro        ≈ 5  RPD  最強但極少
+# - gemini-2.5-flash      ≈ 20 RPD  平衡
+# - gemini-2.5-flash-lite ≈ 200 RPD 輕量、額度最多 ← 推薦
+# - gemini-2.0-flash      ≈ 200 RPD 舊版但額度多、穩定
 _MODEL_MAP = {
-    "Flash（快速・推薦）": "gemini-2.5-flash",
-    "Pro（高品質・慢）": "gemini-2.5-pro",
+    "Flash-Lite（推薦，免費 ~200/天）": "gemini-2.5-flash-lite",
+    "2.0 Flash（舊版但額度多，~200/天）": "gemini-2.0-flash",
+    "Flash（平衡，免費 ~20/天）": "gemini-2.5-flash",
+    "Pro（最強，免費僅 ~5/天）": "gemini-2.5-pro",
 }
 GEN_MODEL_TIERS = list(_MODEL_MAP.keys())
 
@@ -170,67 +177,90 @@ def _secret_names() -> list:
         return []
 
 
-def _clean_key(v) -> str | None:
-    """超兇 key 清洗:處理 list/dict/控制字元/引號/換行/多 key 串接/'KEY=VALUE' 形式。
-    最後優先回傳開頭含 AIza 的合法 Gemini key 樣式。"""
+def _clean_keys(v) -> list:
+    """從任何輸入(string/list/dict/含分隔符串接)抽出所有 AIza 開頭、長度 ≥ 30 的合法
+    Gemini key 樣式。處理:控制字元、BOM、引號、換行/逗號/分號/Tab 分隔、'KEY=VAL' 形式。
+    回傳去重且保序的 key 列表。"""
     import unicodedata as _ud
     if v is None:
-        return None
+        return []
     if isinstance(v, (list, tuple)):
+        out = []
         for item in v:
-            s = _clean_key(item)
-            if s:
-                return s
-        return None
+            for k in _clean_keys(item):
+                if k not in out:
+                    out.append(k)
+        return out
     if isinstance(v, dict):
+        out = []
         for item in v.values():
-            s = _clean_key(item)
-            if s:
-                return s
-        return None
-    s = str(v)
-    # 去掉控制字元、BOM、不可見 mark
+            for k in _clean_keys(item):
+                if k not in out:
+                    out.append(k)
+        return out
+    # 字串:剝雜質。先把行尾/tab 換成空白(免得後面被當控制字元剝掉,失去 key 分隔)
+    s = str(v).replace("\n", " ").replace("\r", " ").replace("\t", " ")
     s = "".join(c for c in s if _ud.category(c)[0] not in ("C", "M") or c == " ")
     s = s.strip()
-    # 連續剝外層引號 / 反引號
     while len(s) >= 2 and s[0] == s[-1] and s[0] in ('"', "'", "`"):
         s = s[1:-1].strip()
-    # 處理 "KEY = AIza..." 這種把整行貼進來的失誤
-    if "=" in s and "AIza" in s:
-        for chunk in re.split(r"[=]", s):
-            chunk = chunk.strip().strip('"').strip("'")
-            if chunk.startswith("AIza") and len(chunk) >= 30:
-                return chunk
-    # 多 key 用分隔符串接:取第一個合法的
-    if re.search(r"[,;\n\r\t]", s):
-        for chunk in re.split(r"[,;\n\r\t]+", s):
-            chunk = chunk.strip().strip('"').strip("'")
-            if chunk.startswith("AIza") and len(chunk) >= 30:
-                return chunk
-    return s or None
+    # 切多 key:逗號/分號/換行/tab/等號/空白
+    chunks = re.split(r"[,;\n\r\t=\s]+", s)
+    out = []
+    for c in chunks:
+        c = c.strip().strip('"').strip("'").strip("`")
+        if c.startswith("AIza") and len(c) >= 30 and c not in out:
+            out.append(c)
+    # 若整段沒切出任何 AIza key 但本身就是純 key,直接收
+    if not out and s.startswith("AIza") and len(s) >= 30:
+        out.append(s)
+    return out
 
 
-def get_api_key() -> str | None:
-    """讀 Gemini key。標準名稱優先,沒中就掃所有 secrets/env vars 含 GEMINI/GOOGLE。
-    經 _clean_key 超兇清洗(剝引號、控制字元、多 key 拆解、KEY=VALUE 拆解)。"""
+def _clean_key(v):
+    """單一 key 取得(回傳第一個合法 key)。向後相容,sidebar 顯示用。"""
+    keys = _clean_keys(v)
+    return keys[0] if keys else None
+
+
+def get_all_api_keys() -> list:
+    """讀所有 Gemini key。標準名稱優先,再掃所有含 GEMINI/GOOGLE 名稱的 secret/env。
+    支援單一 key、list、逗號串接、編號變體(GEMINI_API_KEY_1 / _2 ...)。
+    回傳去重且保序的 key 列表,可在 _llm_generate 內輪流嘗試。"""
+    keys = []
+    seen = set()
+
+    def _push(v):
+        for k in _clean_keys(v):
+            if k not in seen:
+                seen.add(k)
+                keys.append(k)
+
     for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GEMINI_KEY",
                  "GOOGLE_GENAI_API_KEY", "GEMINI_API_KEYS"):
-        v = _clean_key(_read_secret(name))
-        if v:
-            return v
+        _push(_read_secret(name))
     for name in _secret_names():
         upper = name.upper()
         if ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
-            v = _clean_key(_read_secret(name))
-            if v:
-                return v
+            _push(_read_secret(name))
     for name, val in os.environ.items():
         upper = name.upper()
         if val and ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
-            cleaned = _clean_key(val)
-            if cleaned:
-                return cleaned
-    return None
+            _push(val)
+    return keys
+
+
+def get_api_key() -> str | None:
+    """回傳第一把可用 key(優先未在 session 標記為耗盡的)。"""
+    all_keys = get_all_api_keys()
+    if not all_keys:
+        return None
+    try:
+        exhausted = st.session_state.get("_exhausted_keys", set())
+    except Exception:
+        exhausted = set()
+    fresh = [k for k in all_keys if k not in exhausted]
+    return fresh[0] if fresh else all_keys[0]
 
 
 def get_github_token() -> str | None:
@@ -240,45 +270,64 @@ def get_github_token() -> str | None:
             or _read_secret("GITHUB_PAT"))
 
 
+# 短暫伺服器忙(秒級重試有用)
 _TRANSIENT_HINTS = ("503", "UNAVAILABLE", "overloaded", "high demand",
-                    "Resource has been exhausted", "DEADLINE_EXCEEDED",
-                    "RESOURCE_EXHAUSTED")
+                    "DEADLINE_EXCEEDED")
+# 配額耗盡(每日 free tier 上限,秒級重試無用,要等到隔天或換模型)
+_QUOTA_HINTS = ("RESOURCE_EXHAUSTED", "429", "exceeded your current quota",
+                "Resource has been exhausted")
 
 
 def _llm_generate(system_prompt: str, user_msg: str, tier: str,
                   max_tokens: int = 2000, retries: int = 3) -> str:
-    """單次生成(含 503/quota 暫時錯誤自動退避重試)。tier 對應 _MODEL_MAP 標籤。"""
+    """單次生成。支援多 key 輪轉:撞 429 RESOURCE_EXHAUSTED 自動換下一把 key,
+    並把該 key 標記為今日已耗盡(放 st.session_state._exhausted_keys)。
+    503 等暫時性錯誤仍走秒級退避重試。"""
     import time
-    key = get_api_key()
-    if not key:
+
+    all_keys = get_all_api_keys()
+    if not all_keys:
         raise RuntimeError("尚未設定 GEMINI_API_KEY")
+    try:
+        exhausted = st.session_state.setdefault("_exhausted_keys", set())
+    except Exception:
+        exhausted = set()
+    # 優先用未耗盡的,全耗盡時再從頭跑一輪(也許 Google 已 reset)
+    fresh_keys = [k for k in all_keys if k not in exhausted] or list(all_keys)
+
     model_id = _MODEL_MAP.get(tier) or next(iter(_MODEL_MAP.values()))
 
     from google import genai
     from google.genai import types
 
-    client = genai.Client(api_key=key)
     last_err = None
-    for attempt in range(retries):
-        try:
-            resp = client.models.generate_content(
-                model=model_id,
-                contents=user_msg,
-                config=types.GenerateContentConfig(
-                    system_instruction=system_prompt,
-                    temperature=0.7,
-                    max_output_tokens=max_tokens,
-                ),
-            )
-            return resp.text or ""
-        except Exception as e:  # noqa: BLE001
-            last_err = e
-            em = str(e)
-            if attempt < retries - 1 and any(h in em for h in _TRANSIENT_HINTS):
-                wait = 2 ** attempt  # 1, 2, 4 秒
-                time.sleep(wait)
-                continue
-            raise
+    for key_idx, key in enumerate(fresh_keys):
+        for attempt in range(retries):
+            try:
+                client = genai.Client(api_key=key)
+                resp = client.models.generate_content(
+                    model=model_id,
+                    contents=user_msg,
+                    config=types.GenerateContentConfig(
+                        system_instruction=system_prompt,
+                        temperature=0.7,
+                        max_output_tokens=max_tokens,
+                    ),
+                )
+                return resp.text or ""
+            except Exception as e:  # noqa: BLE001
+                last_err = e
+                em = str(e)
+                # 配額耗盡:標記這把 key、立刻跳下一把,不浪費時間退避
+                if any(h in em for h in _QUOTA_HINTS):
+                    exhausted.add(key)
+                    break  # 跳出 attempt 迴圈,換下一把 key
+                # 短暫伺服器忙:秒級退避重試
+                if attempt < retries - 1 and any(h in em for h in _TRANSIENT_HINTS):
+                    time.sleep(2 ** attempt)
+                    continue
+                # 其他錯誤(API key invalid 等):立刻丟出
+                raise
     if last_err:
         raise last_err
     return ""
@@ -1368,13 +1417,21 @@ def view_vocab_bank() -> None:
         if not api_key:
             st.warning(
                 "尚未設定 Gemini API 金鑰。請至 Streamlit Cloud → **Manage app → "
-                "Settings → Secrets** 加入下列一行後重新部署：\n\n"
-                "```\nGEMINI_API_KEY = \"你的_key\"\n```\n"
-                "取得方式：https://aistudio.google.com/apikey\n\n"
-                "如已設定但這裡仍顯示未偵測，請看左側 sidebar「偵錯：列出 secrets 名稱」核對。"
+                "Settings → Secrets** 加入下列其中一種寫法後重新部署：\n\n"
+                "```toml\n"
+                "# 單一 key:\n"
+                "GEMINI_API_KEY = \"AIzaSy...\"\n\n"
+                "# 多 key 輪轉(撞 429 自動換下一把):\n"
+                "GEMINI_API_KEYS = [\"AIzaSy...1\", \"AIzaSy...2\", \"AIzaSy...3\"]\n"
+                "```\n"
+                "取得方式：https://aistudio.google.com/apikey"
             )
         else:
-            st.caption(f"供應商：**Google Gemini**　·　已偵測 key `{api_key[:8]}…`")
+            n_total = len(get_all_api_keys())
+            n_avail = sum(1 for k in get_all_api_keys()
+                          if k not in st.session_state.get("_exhausted_keys", set()))
+            st.caption(f"供應商:**Google Gemini**　·　偵測到 **{n_total} 把 key**"
+                       f"({n_avail} 把可用)。撞 429 時自動換下一把。")
         col1, col2, col3 = st.columns([2, 2, 2])
         n = col1.number_input("一次生成幾個字", min_value=5, max_value=50, value=20, step=5)
         tier = col2.selectbox("模型", GEN_MODEL_TIERS, index=0)
@@ -1392,15 +1449,42 @@ def view_vocab_bank() -> None:
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 msg = str(e)
-                if any(h in msg for h in _TRANSIENT_HINTS):
+                if any(h in msg for h in _QUOTA_HINTS):
+                    # 解析 retryDelay 與 model name 給具體建議
+                    rd = re.search(r"retryDelay['\"]?\s*:\s*['\"]?(\d+)s", msg)
+                    mm = re.search(r"model:\s*([\w\-.]+)", msg)
+                    qval = re.search(r"quotaValue['\"]?\s*:\s*['\"]?(\d+)", msg)
+                    parts = ["⏰ **Gemini 免費額度用完了** — 這是 Google 的每日上限,跟 key 沒問題。"]
+                    if mm and qval:
+                        parts.append(f"\n當下模型 `{mm.group(1)}` 免費 tier 每日上限 = **{qval.group(1)} 次**。")
+                    elif mm:
+                        parts.append(f"\n當下模型:`{mm.group(1)}`。")
+                    parts.append(
+                        "\n\n**📊 各 Gemini 模型免費每日額度(per project per model)**:\n"
+                        "| 模型 | RPD | 用途 |\n"
+                        "|---|---|---|\n"
+                        "| `gemini-2.5-pro` | ~5 | 最強但極少 |\n"
+                        "| `gemini-2.5-flash` | ~20 | 平衡 |\n"
+                        "| **`gemini-2.5-flash-lite`** | **~200** | 輕量、額度最多 |\n"
+                        "| `gemini-2.0-flash` | ~200 | 舊版穩定 |\n\n"
+                        "**🛠 解法(任選)**:\n"
+                        "1. **上方下拉改選「Flash-Lite」或「2.0 Flash」** ← 額度多 10 倍,**現在馬上能用**\n"
+                        "2. 等明天台灣時間 16:00(UTC 0:00)免費額度重置\n"
+                        "3. 到 https://aistudio.google.com/apikey 開**新 Google project** 再生一把 key\n"
+                        "   (每個 project 有獨立配額,等於額度翻倍)\n"
+                        "4. 升級 AI Studio 付費版(約 USD $1-5 可跑完 4000 字)"
+                    )
+                    if rd:
+                        parts.append(f"\n\n(Google 建議等 {rd.group(1)} 秒,但其實是日配額,等到明天才會完全重置)")
+                    st.warning("".join(parts))
+                elif any(h in msg for h in _TRANSIENT_HINTS):
                     st.warning(
-                        "⏳ Google 伺服器當下忙碌（503 UNAVAILABLE / 配額暫滿）。"
+                        "⏳ Google 伺服器當下忙碌(503 UNAVAILABLE)。"
                         "這是 Gemini 服務端問題,跟你的 key 與我的程式都無關。\n\n"
                         "**做法**:\n"
-                        "1. 等 30 秒～2 分鐘再按一次（高峰時段常見）\n"
-                        "2. 改用 Flash（已是預設,負載比 Pro 輕,成功率高很多）\n"
-                        "3. 把每批字數調小（從 50 改成 20）\n"
-                        "4. 已經自動重試 3 次仍失敗,請稍後再試"
+                        "1. 等 30 秒～2 分鐘再按一次(高峰時段常見)\n"
+                        "2. 改用 Flash-Lite 或 2.0 Flash(負載比 Pro 輕)\n"
+                        "3. 把每批字數調小(從 50 改成 20)"
                     )
                 elif "API key not valid" in msg or "API_KEY_INVALID" in msg:
                     st.error(
@@ -1522,32 +1606,57 @@ def main() -> None:
         m1.metric("🔥 連續天數", compute_streak())
         m2.metric("🔁 待複習", due_count())
         st.divider()
-        # 一鍵測試金鑰是否真的可叫到 Gemini(取代原本的狀態 caption)
-        gem = get_api_key()
-        if st.button("🔍 測試金鑰", use_container_width=True, disabled=not gem,
-                     help="呼叫 gemini-2.5-flash 問候一句,確認 key 真的可用。"
-                          if gem else "尚未在 Secrets 設定 GEMINI_API_KEY 或類似名稱。"):
-            try:
-                from google import genai
-                from google.genai import types
-                client = genai.Client(api_key=gem)
-                with st.spinner("呼叫 Gemini..."):
-                    resp = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents="Reply with just: hi",
-                        config=types.GenerateContentConfig(max_output_tokens=20),
-                    )
-                st.session_state["_key_test"] = ("ok", (resp.text or "(空)").strip()[:80])
-            except Exception as e:  # noqa: BLE001
-                st.session_state["_key_test"] = ("err", f"{type(e).__name__}: {str(e)[:160]}")
-        # 上次測試結果
+        # API key 偵測 + 輪轉狀態
+        all_keys = get_all_api_keys()
+        exhausted = st.session_state.setdefault("_exhausted_keys", set())
+        n_total = len(all_keys)
+        n_avail = sum(1 for k in all_keys if k not in exhausted)
+        if n_total:
+            st.caption(f"🔑 Gemini key：**{n_avail} / {n_total} 把可用**"
+                       + (f"（{n_total - n_avail} 把今日已耗盡）" if n_total > n_avail else ""))
+        else:
+            st.caption("⚪ 尚未偵測到 Gemini key")
+
+        # 一鍵測試所有 key
+        if st.button("🔍 測試所有金鑰", use_container_width=True, disabled=not n_total):
+            from google import genai
+            from google.genai import types
+            results = []
+            with st.spinner(f"逐一測試 {n_total} 把 key..."):
+                for i, key in enumerate(all_keys, 1):
+                    try:
+                        client = genai.Client(api_key=key)
+                        client.models.generate_content(
+                            model="gemini-2.5-flash-lite",
+                            contents="hi",
+                            config=types.GenerateContentConfig(max_output_tokens=10),
+                        )
+                        results.append((i, "✅", key[:8] + "…", ""))
+                    except Exception as e:  # noqa: BLE001
+                        em = str(e)
+                        if any(h in em for h in _QUOTA_HINTS):
+                            tag, note = "⏰", "今日配額用完"
+                            exhausted.add(key)
+                        elif "API key not valid" in em or "API_KEY_INVALID" in em:
+                            tag, note = "❌", "key 被拒"
+                        else:
+                            tag, note = "⚠️", f"{type(e).__name__}: {em[:40]}"
+                        results.append((i, tag, key[:8] + "…", note))
+            st.session_state["_key_test"] = results
+
         last = st.session_state.get("_key_test")
         if last:
-            kind, msg = last
-            (st.success if kind == "ok" else st.error)(msg)
-        elif not gem:
-            st.caption("⚪ 尚未偵測到金鑰")
-        # GitHub Token 仍顯示一行(自動推回功能用)
+            for i, tag, prefix, note in last:
+                st.caption(f"{tag} #{i} `{prefix}` {note}")
+
+        if exhausted and st.button("🔄 重置耗盡標記", use_container_width=True,
+                                    help="清掉「今日已耗盡」標記,讓所有 key 再次嘗試。"
+                                         "Google 配額重置時(每日 UTC 0:00)用得到。"):
+            st.session_state["_exhausted_keys"] = set()
+            st.session_state.pop("_key_test", None)
+            st.rerun()
+
+        # GitHub Token
         if get_github_token():
             st.caption("🟢 GitHub Token 已設定（可自動推回 repo）")
         else:
