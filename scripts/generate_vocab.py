@@ -44,6 +44,7 @@ array 內每個物件對應一個輸入單字,順序與輸入相同,且必須含
 - "homophone": 台味諧音(繁中,4–8 字,生動好記,可以荒謬搞笑)
 - "image": 一句繁中(≤30 字),把諧音聲音對應到單字意思的具體畫面
 - "example_en": 一句口語自然的母語人士例句(≤15 字),拒絕生硬教科書英文
+- "example_zh": example_en 的繁中口語翻譯(自然,不死板)
 - "usage_zh": 一句繁中,說明此字在對話中的「使用時機與搭配」(常見 collocation、語感、正式或口語)
 
 # 品質規範
@@ -52,7 +53,7 @@ array 內每個物件對應一個輸入單字,順序與輸入相同,且必須含
 - 用法要點出常見搭配或語境差異。
 
 # 輸出範例（單字 "consider"）
-[{"word":"consider","meaning_zh":"考慮、視為","kk":"[kənˈsɪdɚ]","phonics":"kun-SIH-der","homophone":"肯洗熱","image":"你『肯』不『肯』『洗熱』水？讓你考慮一下。","example_en":"Have you considered taking the train?","usage_zh":"提建議用 'Have you considered ...?' 比直接 'You should' 更委婉,日常對話常見。"}]
+[{"word":"consider","meaning_zh":"考慮、視為","kk":"[kənˈsɪdɚ]","phonics":"kun-SIH-der","homophone":"肯洗熱","image":"你『肯』不『肯』『洗熱』水？讓你考慮一下。","example_en":"Have you considered taking the train?","example_zh":"你考慮過改搭火車嗎?","usage_zh":"提建議用 'Have you considered ...?' 比直接 'You should' 更委婉,日常對話常見。"}]
 """
 
 

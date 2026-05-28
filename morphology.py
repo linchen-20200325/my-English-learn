@@ -96,15 +96,15 @@ def _mm_escape(text: str) -> str:
 
 
 def build_mindmap(title: str, items: list) -> str:
-    """把字根／字首／字尾資料轉成 Mermaid mindmap 字串(縮排式語法)。
-    所有節點都用 ["..."] 包起來,確保空格、中文點(·)、reserved keyword
-    都被當作純文字、而不是 mermaid 的 shape/keyword 語法。"""
+    """把字根／字首／字尾資料轉成 Mermaid mindmap 字串。
+    為每個節點明確產生唯一 id(n0、n0_1...),避免 mermaid 11.15 對「以 dash 開頭」
+    的純 ["..."] 節點解析失敗。"""
     lines = ["mindmap", f'  root(("{_mm_escape(title)}"))']
-    for it in items:
+    for i, it in enumerate(items):
         label = _mm_escape(f"{it['m']} · {it['zh']}")
-        lines.append(f'    ["{label}"]')
-        for ex in it["ex"]:
-            lines.append(f'      ["{_mm_escape(ex)}"]')
+        lines.append(f'    n{i}["{label}"]')
+        for j, ex in enumerate(it["ex"]):
+            lines.append(f'      n{i}_{j}["{_mm_escape(ex)}"]')
     return "\n".join(lines)
 
 

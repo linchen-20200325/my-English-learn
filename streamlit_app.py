@@ -158,9 +158,41 @@ def _read_secret(name: str) -> str | None:
     return os.environ.get(name)
 
 
+def _secret_names() -> list:
+    """列出 st.secrets 中所有 key 名稱(不含值,用於偵錯顯示)。"""
+    try:
+        return list(st.secrets.keys())
+    except Exception:
+        return []
+
+
 def get_api_key() -> str | None:
-    """讀 GEMINI_API_KEY(或 GOOGLE_API_KEY)。Streamlit Cloud secrets > 環境變數。"""
-    return _read_secret("GEMINI_API_KEY") or _read_secret("GOOGLE_API_KEY")
+    """讀 Gemini key。先試標準名稱(GEMINI_API_KEY / GOOGLE_API_KEY),
+    沒中就掃描所有 secrets/環境變數,只要名稱含 GEMINI 或 GOOGLE 就採用,
+    讓使用者在 Cloud Secrets 取的名字較寬鬆也能抓到。"""
+    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GEMINI_KEY", "GOOGLE_GENAI_API_KEY"):
+        v = _read_secret(name)
+        if v:
+            return v
+    # 寬鬆比對
+    for name in _secret_names():
+        upper = name.upper()
+        if ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
+            v = _read_secret(name)
+            if v:
+                return v
+    for name, val in os.environ.items():
+        upper = name.upper()
+        if val and ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
+            return val
+    return None
+
+
+def get_github_token() -> str | None:
+    """讀 GitHub PAT,用於自動把 vocab_bank.json commit 回 repo。"""
+    return (_read_secret("GITHUB_TOKEN")
+            or _read_secret("GH_TOKEN")
+            or _read_secret("GITHUB_PAT"))
 
 
 def _llm_generate(system_prompt: str, user_msg: str, tier: str, max_tokens: int = 2000) -> str:
@@ -323,6 +355,7 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
     meaning = _html.escape(word.get("meaning", ""))
     example = mn.get("example_en") or word.get("example", "")
     example_esc = _html.escape(example)
+    example_zh = _html.escape(mn.get("example_zh", ""))
     usage = _html.escape(mn.get("usage_zh", ""))
     image = _html.escape(mn.get("image", ""))
     tts_example = _tts_button_html(
@@ -334,10 +367,14 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
 
     image_block = (f'<div style="margin-top:14px; padding:10px 14px; background:#fff; '
                    f'border-radius:10px;">🖼️ {image}</div>') if image else ""
+    example_zh_block = (f'<div style="margin-top:6px; padding:8px 14px; background:#eef2ff; '
+                        f'border-radius:8px; color:#3730a3; font-size:14px;">'
+                        f'🇹🇼 {example_zh}</div>') if example_zh else ""
     example_block = (f'<div style="margin-top:10px; padding:10px 14px; background:#fff; '
                      f'border-radius:10px; display:flex; align-items:center; '
                      f'flex-wrap:wrap;">💬 <i style="flex:1; min-width:200px;">'
-                     f'{example_esc}</i>{tts_example}</div>') if example else ""
+                     f'{example_esc}</i>{tts_example}</div>'
+                     f'{example_zh_block}') if example else ""
     usage_block = (f'<div style="margin-top:10px; padding:10px 14px; background:#fff; '
                    f'border-radius:10px; font-size:14px; color:#475569;">💡 '
                    f'{usage}</div>') if usage else ""
@@ -352,7 +389,10 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
     </div>
     """
     # 動態高度估計
-    h = 130 + (50 if image else 0) + (60 if example else 0) + (50 if usage else 0)
+    h = (130 + (50 if image else 0)
+         + (60 if example else 0)
+         + (40 if example_zh else 0)
+         + (50 if usage else 0))
     _embed_html(html, h)
 
 
@@ -913,13 +953,24 @@ def view_morphology() -> None:
     st.caption("離線字根字首字尾心智圖 + SEED 單字台味諧音速記，完全不需 API。")
 
     tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
-    for tab, title, items in (
-        (tab1, "字首 Prefix", PREFIXES),
-        (tab2, "字中 Root", ROOTS),
-        (tab3, "字尾 Suffix", SUFFIXES),
+    for tab, title, items, key in (
+        (tab1, "字首 Prefix", PREFIXES, "pre"),
+        (tab2, "字中 Root", ROOTS, "root"),
+        (tab3, "字尾 Suffix", SUFFIXES, "suf"),
     ):
         with tab:
-            render_mermaid(build_mindmap(title, items), height=520)
+            options = [f"{it['m']} · {it['zh']}" for it in items]
+            picked = st.multiselect(
+                f"挑選想看的（不選 = 全部 {len(items)} 個）",
+                options,
+                key=f"morph_pick_{key}",
+                placeholder="例如：anti-, pre-, dis-",
+            )
+            shown = ([it for it in items
+                     if f"{it['m']} · {it['zh']}" in set(picked)]
+                     if picked else items)
+            render_mermaid(build_mindmap(title, shown),
+                           height=520 if len(shown) >= 5 else 360)
             with st.expander("檢視清單"):
                 for it in items:
                     st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
@@ -944,8 +995,9 @@ def load_vocab_bank() -> dict:
     return _load_vocab_bank_cached(mtime)
 
 
-def _run_inapp_generation(n: int, tier: str) -> None:
-    """雲端內用 Gemini 生成 N 字資料,寫進 st.session_state.live_bank。"""
+def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
+    """雲端內用 Gemini 生成 N 字資料,寫進 st.session_state.live_bank。
+    嚴格去重:已在檔案或 session 內的字不會重新生成,Gemini 回多的字也會丟掉。"""
     from scripts.generate_vocab import (SYSTEM_PROMPT, extract_json_array,
                                         load_wordlist)
     file_bank = load_vocab_bank()
@@ -953,6 +1005,7 @@ def _run_inapp_generation(n: int, tier: str) -> None:
     have = {**file_bank, **live}
     wordlist = load_wordlist()
     todo = [w for w in wordlist if w not in have][:n]
+    todo_set = {w.lower() for w in todo}
     if not todo:
         st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
         return
@@ -961,13 +1014,84 @@ def _run_inapp_generation(n: int, tier: str) -> None:
                              "請為以下單字生成資料: " + ", ".join(todo),
                              tier, max_tokens=8000)
         entries = extract_json_array(text)
-    added = 0
+    added, skipped = 0, 0
     for e in entries:
         ww = (e.get("word") or "").strip().lower()
-        if ww:
+        if not ww:
+            continue
+        # 嚴格去重:必須是我們點名的字,且未在檔案/session 內
+        if ww in todo_set and ww not in have and ww not in live:
             live[ww] = e
             added += 1
-    st.success(f"已生成 {added} 字（暫存於 session）。請按下方「下載」並 commit 到 repo 永久保存。")
+        else:
+            skipped += 1
+    msg = f"已生成 {added} 字（暫存於 session）"
+    if skipped:
+        msg += f"，去重略過 {skipped} 字"
+    st.success(msg)
+    if auto_push:
+        _push_bank_to_github(silent=False)
+
+
+def _push_bank_to_github(silent: bool = False) -> bool:
+    """把目前合併後的 vocab_bank(file + live)透過 GitHub Contents API 推回 repo。
+    需要 GITHUB_TOKEN secret(repo 寫權限)。回傳是否成功。"""
+    import base64
+    import urllib.error
+    import urllib.request
+
+    token = get_github_token()
+    if not token:
+        if not silent:
+            st.error("未設定 GITHUB_TOKEN secret，無法自動推回。"
+                     "請至 Cloud Secrets 加入 `GITHUB_TOKEN = \"github_pat_...\"`。")
+        return False
+
+    repo = _read_secret("GITHUB_REPO") or "linchen-20200325/my-english-learn"
+    branch = _read_secret("GITHUB_BRANCH") or "main"
+    path = "vocab_bank.json"
+
+    file_bank = load_vocab_bank()
+    live = st.session_state.get("live_bank", {})
+    merged = {**file_bank, **live}
+    payload_json = json.dumps(merged, ensure_ascii=False, indent=2) + "\n"
+
+    api = f"https://api.github.com/repos/{repo}/contents/{path}"
+    headers = {"Authorization": f"Bearer {token}",
+               "Accept": "application/vnd.github+json",
+               "User-Agent": "english-learn-cloud"}
+    try:
+        req = urllib.request.Request(f"{api}?ref={branch}", headers=headers)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            current = json.loads(r.read())
+        sha = current["sha"]
+        body = json.dumps({
+            "message": f"vocab_bank: cloud append (+{len(live)} 字, 共 {len(merged)} 字)",
+            "content": base64.b64encode(payload_json.encode("utf-8")).decode("ascii"),
+            "sha": sha,
+            "branch": branch,
+        }).encode("utf-8")
+        req2 = urllib.request.Request(api, data=body, method="PUT",
+                                       headers={**headers,
+                                                "Content-Type": "application/json"})
+        with urllib.request.urlopen(req2, timeout=20) as r:
+            result = json.loads(r.read())
+        commit_sha = result.get("commit", {}).get("sha", "")[:7]
+        if not silent:
+            st.success(f"✅ 已推回 GitHub commit `{commit_sha}` 到 `{repo}@{branch}`。"
+                       "Cloud 將自動重新部署後永久保存。")
+        # 清掉 live(已落地)與檔案快取
+        st.session_state["live_bank"] = {}
+        load_vocab_bank.clear() if hasattr(load_vocab_bank, "clear") else None
+        return True
+    except urllib.error.HTTPError as e:
+        if not silent:
+            st.error(f"推回失敗（HTTP {e.code}）：{e.read().decode('utf-8', 'replace')[:300]}")
+        return False
+    except Exception as e:  # noqa: BLE001
+        if not silent:
+            st.error(f"推回失敗：{type(e).__name__}: {e}")
+        return False
 
 
 def view_vocab_bank() -> None:
@@ -982,17 +1106,25 @@ def view_vocab_bank() -> None:
                 "尚未設定 Gemini API 金鑰。請至 Streamlit Cloud → **Manage app → "
                 "Settings → Secrets** 加入下列一行後重新部署：\n\n"
                 "```\nGEMINI_API_KEY = \"你的_key\"\n```\n"
-                "取得方式：https://aistudio.google.com/apikey"
+                "取得方式：https://aistudio.google.com/apikey\n\n"
+                "如已設定但這裡仍顯示未偵測，請看左側 sidebar「偵錯：列出 secrets 名稱」核對。"
             )
         else:
-            st.caption("供應商：**Google Gemini**")
+            st.caption(f"供應商：**Google Gemini**　·　已偵測 key `{api_key[:8]}…`")
         col1, col2, col3 = st.columns([2, 2, 2])
         n = col1.number_input("一次生成幾個字", min_value=5, max_value=50, value=20, step=5)
         tier = col2.selectbox("模型", GEN_MODEL_TIERS, index=0)
+        auto_push = st.checkbox(
+            "✅ 生成完自動推回 GitHub repo（永久保存，需 GITHUB_TOKEN）",
+            value=bool(get_github_token()),
+            disabled=not get_github_token(),
+            help="勾選後每次生成完會用 GitHub Contents API 把 vocab_bank.json commit 回 repo。"
+                 "需在 Cloud Secrets 設 GITHUB_TOKEN（PAT，含 repo 寫權限）。",
+        )
         if col3.button("🚀 開始生成", disabled=not api_key,
                        use_container_width=True, type="primary"):
             try:
-                _run_inapp_generation(int(n), tier)
+                _run_inapp_generation(int(n), tier, auto_push=auto_push)
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 st.error(f"生成失敗：{e}")
@@ -1003,13 +1135,25 @@ def view_vocab_bank() -> None:
         )
 
     if bank:
+        col_dl, col_push = st.columns([3, 2])
         merged_json = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
-        st.download_button(
-            "⬇️ 下載合併後 vocab_bank.json（commit 回 repo 永久保存）",
+        col_dl.download_button(
+            "⬇️ 下載合併後 vocab_bank.json",
             data=merged_json,
             file_name="vocab_bank.json",
             mime="application/json",
+            use_container_width=True,
         )
+        if col_push.button(
+            "🚀 立即推回 GitHub repo",
+            disabled=not get_github_token() or not live_bank,
+            use_container_width=True,
+            help="把目前 session 內已生成的字 commit 回 repo,永久保存。需設定 GITHUB_TOKEN。"
+                 if get_github_token() else
+                 "未設 GITHUB_TOKEN secret 或 session 沒有新生成的字。",
+        ):
+            _push_bank_to_github()
+            st.rerun()
 
     if not bank:
         st.info(
@@ -1083,6 +1227,22 @@ def main() -> None:
         m1, m2 = st.columns(2)
         m1.metric("🔥 連續天數", compute_streak())
         m2.metric("🔁 待複習", due_count())
+        st.divider()
+        # API key 狀態(讓使用者一眼看到 Cloud Secrets 是否有抓到)
+        gem = get_api_key()
+        ghk = get_github_token()
+        st.caption(f"Gemini API：{'🟢 已偵測 ' + gem[:6] + '…' if gem else '🔴 未設定'}")
+        st.caption(f"GitHub Token：{'🟢 已偵測' if ghk else '⚪ 未設定（無法自動推回）'}")
+        with st.expander("偵錯：列出 secrets 名稱"):
+            names = _secret_names()
+            if names:
+                st.write(names)
+            else:
+                st.caption("st.secrets 為空（本機無 .streamlit/secrets.toml）")
+            env_match = [n for n in os.environ
+                         if any(k in n.upper() for k in ("GEMINI", "GOOGLE", "GITHUB", "ANTHROPIC"))]
+            if env_match:
+                st.write({"env vars": env_match})
 
     st.title(view)
     st.caption(date.today().strftime("%Y 年 %m 月 %d 日"))
