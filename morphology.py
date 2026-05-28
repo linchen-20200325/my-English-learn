@@ -95,16 +95,30 @@ def _mm_escape(text: str) -> str:
     return str(text).replace('"', "'")
 
 
+def _norm_morph(m: str) -> str:
+    """把 'in- im-' 之類多 token 標籤、含開頭 dash 的標籤,規一化成 mermaid 友善寫法:
+    切空白 → 去前後 dash → 用 / 連起來。'-tion -sion' → 'tion/sion'。"""
+    return "/".join(t.strip("-") for t in m.split() if t.strip("-"))
+
+
 def build_mindmap(title: str, items: list) -> str:
-    """把字根／字首／字尾資料轉成 Mermaid mindmap 字串。
-    為每個節點明確產生唯一 id(n0、n0_1...),避免 mermaid 11.15 對「以 dash 開頭」
-    的純 ["..."] 節點解析失敗。"""
-    lines = ["mindmap", f'  root(("{_mm_escape(title)}"))']
+    """改用 flowchart LR(樹狀左→右)取代 mermaid mindmap 渲染:同樣是樹狀視覺,
+    但 mermaid flowchart 是最早最穩定的圖類型,不會因為標籤裡有 dash、中文點、
+    多 token、reserved 詞(log/script...)而炸。每個節點用具名 id `nN` / `nN_M`。"""
+    safe_title = _mm_escape(title)
+    lines = [
+        "flowchart LR",
+        "    classDef cat fill:#dbeafe,stroke:#1d4ed8,stroke-width:1px;",
+        "    classDef leaf fill:#fef3c7,stroke:#b45309,stroke-width:1px;",
+        f'    root(("{safe_title}"))',
+    ]
     for i, it in enumerate(items):
-        label = _mm_escape(f"{it['m']} · {it['zh']}")
-        lines.append(f'    n{i}["{label}"]')
+        label = _mm_escape(f"{_norm_morph(it['m'])} : {it['zh']}")
+        lines.append(f'    n{i}["{label}"]:::cat')
+        lines.append(f'    root --> n{i}')
         for j, ex in enumerate(it["ex"]):
-            lines.append(f'      n{i}_{j}["{_mm_escape(ex)}"]')
+            lines.append(f'    n{i}_{j}["{_mm_escape(ex)}"]:::leaf')
+            lines.append(f'    n{i} --> n{i}_{j}')
     return "\n".join(lines)
 
 
