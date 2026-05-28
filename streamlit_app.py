@@ -19,6 +19,7 @@ import streamlit.components.v1 as components
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
 from dialogues import CONVERSATIONS, STORIES
+from readings import READINGS
 from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
                         decompose_word, build_word_mindmap)
 
@@ -490,20 +491,45 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
     mn = mn or {}
 
     if not flipped:
+        meaning_zh = _html.escape(mn.get("meaning_zh") or word.get("meaning", ""))
+        pos = _html.escape(mn.get("pos", ""))
         homophone = _html.escape(mn.get("homophone", ""))
         kk = _html.escape(mn.get("kk", ""))
         phonics = _html.escape(mn.get("phonics", ""))
         tts_word = _tts_button_html(
             word["word"], 0.9,
-            "margin-top:18px; padding:10px 22px; font-size:16px; border:none; "
+            "margin-top:14px; padding:10px 22px; font-size:16px; border:none; "
             "border-radius:999px; cursor:pointer; background:rgba(255,255,255,.28); "
             "color:#fff; font-weight:600;",
             "🔊 唸這個字",
         )
-        homophone_block = (
-            f'<div style="font-size:28px; margin-top:12px; opacity:.95; '
-            f'letter-spacing:1px;">📣 {homophone}</div>' if homophone else ""
+        meaning_block = (
+            f'<div style="font-size:26px; margin-top:10px; font-weight:600;">'
+            f'{meaning_zh}</div>' if meaning_zh else ""
         )
+        pos_block = (
+            f'<div style="margin-top:8px;"><span style="display:inline-block; '
+            f'background:rgba(255,255,255,.25); padding:4px 14px; border-radius:999px; '
+            f'font-size:14px; font-weight:600;">📝 {pos}</span></div>' if pos else ""
+        )
+        # 其他型態列表
+        other_forms = mn.get("other_forms") or []
+        forms_html = ""
+        if other_forms:
+            items = "".join(
+                f'<div style="margin:4px 0;"><span style="font-weight:600; color:#fef3c7;">'
+                f'{_html.escape(f.get("word",""))}</span> '
+                f'<span style="opacity:.85; font-size:13px;">({_html.escape(f.get("pos",""))})</span>'
+                f' — {_html.escape(f.get("meaning_zh",""))}</div>'
+                for f in other_forms[:4]
+            )
+            forms_html = (
+                f'<div style="margin-top:14px; padding:10px 14px; '
+                f'background:rgba(255,255,255,.12); border-radius:10px; '
+                f'text-align:left; font-size:14px;">'
+                f'<div style="opacity:.85; margin-bottom:4px;">💎 其他型態</div>'
+                f'{items}</div>'
+            )
         kk_block = (
             f'<span>KK <code style="background:rgba(255,255,255,.18); '
             f'padding:2px 8px; border-radius:6px;">{kk}</code></span>' if kk else ""
@@ -512,21 +538,38 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
             f'<span>自然發音 <code style="background:rgba(255,255,255,.18); '
             f'padding:2px 8px; border-radius:6px;">{phonics}</code></span>' if phonics else ""
         )
+        pronunciation_block = (
+            f'<div style="margin-top:14px; display:flex; justify-content:center; '
+            f'gap:18px; flex-wrap:wrap; font-size:14px; opacity:.92;">'
+            f'{kk_block}{ph_block}</div>' if (kk or phonics) else ""
+        )
+        # 諧音縮小放最下方
+        homophone_block = (
+            f'<div style="margin-top:14px; padding-top:10px; '
+            f'border-top:1px solid rgba(255,255,255,.25); font-size:13px; opacity:.78;">'
+            f'📣 諧音 {homophone}</div>' if homophone else ""
+        )
         html = f"""
         <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff;
-                    border-radius:16px; padding:30px 24px; text-align:center;
+                    border-radius:16px; padding:26px 24px; text-align:center;
                     font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
-            <div style="font-size:44px; font-weight:800; letter-spacing:0.5px;">{w_en}</div>
-            {homophone_block}
-            <div style="margin-top:16px; display:flex; justify-content:center;
-                        gap:18px; flex-wrap:wrap; font-size:15px; opacity:.92;">
-                {kk_block}
-                {ph_block}
-            </div>
+            <div style="font-size:42px; font-weight:800; letter-spacing:0.5px;">{w_en}</div>
+            {meaning_block}
+            {pos_block}
+            {forms_html}
             {tts_word}
+            {pronunciation_block}
+            {homophone_block}
         </div>
         """
-        _embed_html(html, 300 if homophone else 230)
+        # 動態高度估計
+        h = 260
+        if meaning_zh: h += 40
+        if pos: h += 30
+        if forms_html: h += 30 + 28 * min(len(other_forms), 4)
+        if pronunciation_block: h += 40
+        if homophone: h += 40
+        _embed_html(html, h)
         return
 
     meaning = _html.escape(word.get("meaning", ""))
@@ -1463,6 +1506,186 @@ def view_speak_story() -> None:
                     st.success(f"已加入 {n} 段到複習清單。")
 
 
+def _annotate_sentence_html(en: str, vocab: dict) -> str:
+    """把英文句子每個字包成 <span class="word" data-zh="...">word</span>。
+    可點看翻譯與聽發音。標點與空白保留原樣。"""
+    vocab_lower = {k.lower(): v for k, v in (vocab or {}).items()}
+
+    def _wrap(match):
+        word = match.group(0)
+        zh = vocab_lower.get(word.lower(), "")
+        if zh:
+            return (f'<span class="word" data-zh="{_html.escape(zh)}">'
+                    f'{_html.escape(word)}</span>')
+        return f'<span class="word">{_html.escape(word)}</span>'
+
+    parts = re.findall(r"[A-Za-zÀ-ɏ一-鿿']+|[^A-Za-zÀ-ɏ一-鿿'\s]+|\s+", en)
+    out = []
+    for p in parts:
+        if re.match(r"[A-Za-z']+$", p):
+            out.append(_wrap(re.match(r".*", p)))
+        else:
+            out.append(_html.escape(p))
+    return "".join(out)
+
+
+def _build_reading_html(passage: dict) -> str:
+    """把整篇閱讀渲染成單一 HTML(含 JS):點字看翻譯、點句子高亮+全句翻譯+朗讀。"""
+    sentence_blocks = []
+    for i, s in enumerate(passage["sentences"]):
+        body = _annotate_sentence_html(s["en"], s.get("vocab", {}))
+        zh_full = _html.escape(s["zh"])
+        en_js = _esc_js(s["en"])
+        sentence_blocks.append(
+            f'<span class="sentence" data-id="{i}" data-zh="{zh_full}" '
+            f'data-en="{_html.escape(s["en"])}" data-enjs="{en_js}">{body}</span> '
+        )
+    full_text_js = _esc_js(" ".join(s["en"] for s in passage["sentences"]))
+
+    css = """
+    .reading {
+        font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+        font-size: 18px; line-height: 2.0; padding: 18px 22px;
+        background: #fafaf9; border-radius: 12px; border:1px solid #e7e5e4;
+    }
+    .word {
+        cursor: pointer; padding: 1px 2px; border-radius: 4px;
+        transition: background 0.1s;
+    }
+    .word[data-zh]:hover { background: #fde68a; }
+    .word.tts-active { background: #fbbf24; }
+    .sentence { transition: background 0.15s; padding: 2px 0; }
+    .sentence:hover { background: #f5f5f4; }
+    .sentence.active { background: #dbeafe; }
+    #tooltip {
+        position: fixed; background: #0f172a; color: #fff;
+        padding: 6px 10px; border-radius: 6px; font-size: 14px;
+        pointer-events: none; z-index: 9999; display: none; max-width: 280px;
+        box-shadow: 0 4px 12px rgba(0,0,0,.18);
+    }
+    #panel {
+        margin-top: 14px; padding: 14px 18px; background: #fff;
+        border: 2px solid #4f46e5; border-radius: 12px; color: #312e81;
+        min-height: 50px; font-size: 15px;
+    }
+    #panel .pen { color: #4338ca; font-weight: 600; }
+    #panel .pzh { color: #1e293b; margin-top: 6px; }
+    .controls { margin-bottom: 10px; }
+    .btn {
+        padding: 8px 16px; font-size: 14px; border: none; border-radius: 999px;
+        cursor: pointer; margin-right: 6px;
+    }
+    .btn-play { background:#10b981; color:#fff; }
+    .btn-stop { background:#fff; color:#475569; border:1px solid #ddd; }
+    .hint { color: #64748b; font-size: 13px; margin-top: 8px; }
+    """
+    body = "".join(sentence_blocks)
+    html = f"""
+    <style>{css}</style>
+    <div class="controls">
+        <button class="btn btn-play" onclick="
+          const u=new SpeechSynthesisUtterance('{full_text_js}');
+          u.lang='en-US'; u.rate=0.9;
+          speechSynthesis.cancel(); speechSynthesis.speak(u);">▶️ 唸整篇</button>
+        <button class="btn btn-stop" onclick="speechSynthesis.cancel();">⏹ 停止</button>
+    </div>
+    <div class="reading">{body}</div>
+    <div class="hint">💡 滑鼠移到單字可看翻譯，點單字會唸該字；點句子會高亮並在下方顯示全句翻譯與朗讀。</div>
+    <div id="panel">點選任一句子，這裡會顯示中文翻譯。</div>
+    <div id="tooltip"></div>
+    <script>
+    const tooltip = document.getElementById('tooltip');
+    const panel = document.getElementById('panel');
+    document.querySelectorAll('.word').forEach(el => {{
+        el.addEventListener('mouseenter', () => {{
+            const zh = el.dataset.zh;
+            if (!zh) return;
+            tooltip.textContent = zh;
+            tooltip.style.display = 'block';
+            const r = el.getBoundingClientRect();
+            tooltip.style.left = r.left + 'px';
+            tooltip.style.top = (r.top - 36) + 'px';
+        }});
+        el.addEventListener('mouseleave', () => tooltip.style.display = 'none');
+        el.addEventListener('click', e => {{
+            e.stopPropagation();
+            document.querySelectorAll('.word.tts-active').forEach(w => w.classList.remove('tts-active'));
+            el.classList.add('tts-active');
+            const u = new SpeechSynthesisUtterance(el.textContent);
+            u.lang = 'en-US'; u.rate = 0.95;
+            speechSynthesis.cancel(); speechSynthesis.speak(u);
+            setTimeout(() => el.classList.remove('tts-active'), 800);
+        }});
+    }});
+    document.querySelectorAll('.sentence').forEach(el => {{
+        el.addEventListener('click', () => {{
+            document.querySelectorAll('.sentence').forEach(s => s.classList.remove('active'));
+            el.classList.add('active');
+            const en = el.dataset.en || '';
+            const zh = el.dataset.zh || '';
+            panel.innerHTML = '<div class="pen">' + en + '</div><div class="pzh">🇹🇼 ' + zh + '</div>';
+            const u = new SpeechSynthesisUtterance(el.dataset.enjs);
+            u.lang='en-US'; u.rate=0.92;
+            speechSynthesis.cancel(); speechSynthesis.speak(u);
+        }});
+    }});
+    </script>
+    """
+    return html
+
+
+def view_reading() -> None:
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**互動閱讀本**＝可點字看翻譯、點句子聽朗讀、看中文對照的互動式閱讀練習。\n\n"
+            "**操作**：\n"
+            "1. 點開任一篇 → 看英文閱讀正文\n"
+            "2. **滑鼠移到單字**：上方跳小視窗顯示中文翻譯\n"
+            "3. **點單字**：高亮 + 唸該字（瀏覽器 TTS）\n"
+            "4. **點整句**：句子高亮 + 唸該句 + 下方面板顯示「英文 + 🇹🇼 中文翻譯」\n"
+            "5. **▶️ 唸整篇**：從頭到尾連讀\n"
+            "6. 下方有「💡 多字片語」列出該句的固定搭配，與「📚 文法重點」\n\n"
+            "**推薦學法**：\n"
+            "1. 先點「唸整篇」聽一遍（不看翻譯）\n"
+            "2. 一句一句點，先猜中文 → 再看面板對照\n"
+            "3. 滑鼠掃過陌生單字看翻譯\n"
+            "4. 看文法重點 → 試造一句"
+        )
+    for passage in READINGS:
+        with st.expander(
+            f"**{passage['title']}**　·　{passage.get('title_zh','')}　·　"
+            f"程度 {passage['level']}　·　{passage['summary']}"
+        ):
+            _embed_html(_build_reading_html(passage),
+                        height=140 + 80 * len(passage["sentences"]) + 200)
+
+            st.markdown("##### 💡 多字片語（每句的固定搭配）")
+            for i, s in enumerate(passage["sentences"], 1):
+                phrases = s.get("phrases") or []
+                if not phrases:
+                    continue
+                with st.container(border=True):
+                    st.caption(f"句 {i}：{s['en']}")
+                    for p in phrases:
+                        st.markdown(f"　- `{p['en']}` — {p['zh']}")
+
+            st.divider()
+            _render_grammar(passage["grammar"])
+
+            if st.button(
+                f"➕ 加入 {len(passage['sentences'])} 句到「🔁 複習」",
+                key=f"add_reading_{passage['id']}",
+                use_container_width=True,
+            ):
+                cards = [
+                    {"sentence": s["en"], "chinese": s["zh"],
+                     "chunk": s["en"][:40], "context": f"閱讀：{passage['title']}"}
+                    for s in passage["sentences"]
+                ]
+                n = add_cards_to_review(cards)
+                st.success(f"已加入 {n} 句到複習清單。")
+
+
 def view_vocab_bank() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -1666,8 +1889,8 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "🗣️ 口說範本", "📖 單字庫", "🤖 情境生成", "🔁 複習",
-             "📈 學習進度", "✅ 學習計畫"],
+             "🗣️ 口說範本", "📚 互動閱讀", "📖 單字庫", "🤖 情境生成",
+             "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -1744,6 +1967,8 @@ def main() -> None:
         view_morphology()
     elif view.endswith("口說範本"):
         view_speak_story()
+    elif view.endswith("互動閱讀"):
+        view_reading()
     elif view.endswith("單字庫"):
         view_vocab_bank()
     elif view.endswith("情境生成"):

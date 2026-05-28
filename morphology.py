@@ -223,6 +223,11 @@ MNEMONICS = {
         "image": "阿康破除迷思、立起頭緒，終於達成大事。",
         "example_en": "She accomplished her goal of reading 50 books this year.",
         "example_zh": "她今年達成了讀 50 本書的目標。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "accomplishment", "pos": "名詞", "meaning_zh": "成就；完成"},
+            {"word": "accomplished", "pos": "形容詞", "meaning_zh": "已完成的；熟練的"}
+        ],
     },
     "benefit": {
         "kk": "[ˈbɛnəfɪt]",
@@ -231,6 +236,11 @@ MNEMONICS = {
         "image": "辦活動讓你健身 fit，對你有好處。",
         "example_en": "Regular exercise has many health benefits.",
         "example_zh": "規律運動有許多健康上的好處。",
+        "pos": "名詞 / 動詞",
+        "other_forms": [
+            {"word": "beneficial", "pos": "形容詞", "meaning_zh": "有益的"},
+            {"word": "beneficiary", "pos": "名詞", "meaning_zh": "受益者"}
+        ],
     },
     "consider": {
         "kk": "[kənˈsɪdɚ]",
@@ -239,6 +249,12 @@ MNEMONICS = {
         "image": "你『肯』不『肯』『洗熱』水？要『考慮』一下。",
         "example_en": "Please consider my suggestion carefully.",
         "example_zh": "請仔細考慮我的建議。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "consideration", "pos": "名詞", "meaning_zh": "考慮；體貼"},
+            {"word": "considerable", "pos": "形容詞", "meaning_zh": "相當大的"},
+            {"word": "considerate", "pos": "形容詞", "meaning_zh": "體貼的"}
+        ],
     },
     "determine": {
         "kk": "[dɪˈtɝmɪn]",
@@ -247,6 +263,11 @@ MNEMONICS = {
         "image": "弟弟特別敲門，下定『決心』要進去。",
         "example_en": "The test will determine your English level.",
         "example_zh": "這個測驗會判定你的英文程度。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "determination", "pos": "名詞", "meaning_zh": "決心；決定"},
+            {"word": "determined", "pos": "形容詞", "meaning_zh": "下定決心的"}
+        ],
     },
     "efficient": {
         "kk": "[ɪˈfɪʃənt]",
@@ -255,6 +276,11 @@ MNEMONICS = {
         "image": "一個肥神來幫忙，辦什麼都『有效率』。",
         "example_en": "This is a more efficient way to study vocabulary.",
         "example_zh": "這是更有效率的單字學習方法。",
+        "pos": "形容詞",
+        "other_forms": [
+            {"word": "efficiency", "pos": "名詞", "meaning_zh": "效率"},
+            {"word": "efficiently", "pos": "副詞", "meaning_zh": "有效率地"}
+        ],
     },
     "fundamental": {
         "kk": "[ˌfʌndəˈmɛnt!]",
@@ -263,6 +289,11 @@ MNEMONICS = {
         "image": "翻過去『do mental』心算，才打下『基本』功。",
         "example_en": "Grammar is fundamental to learning a language.",
         "example_zh": "文法是學語言的根本。",
+        "pos": "形容詞 / 名詞",
+        "other_forms": [
+            {"word": "fundamentally", "pos": "副詞", "meaning_zh": "根本上"},
+            {"word": "fundamentals", "pos": "名詞（複數）", "meaning_zh": "基本原理"}
+        ],
     },
     "generate": {
         "kk": "[ˈdʒɛnəˌret]",
@@ -271,6 +302,11 @@ MNEMONICS = {
         "image": "姊姊那邊 rate 評分，『產生』新點子。",
         "example_en": "The app can generate a quiz from your word list.",
         "example_zh": "這個 app 可以從你的單字表自動產生測驗。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "generation", "pos": "名詞", "meaning_zh": "產生；世代"},
+            {"word": "generator", "pos": "名詞", "meaning_zh": "發電機；產生者"}
+        ],
     },
     "hesitate": {
         "kk": "[ˈhɛzəˌtet]",
@@ -279,6 +315,11 @@ MNEMONICS = {
         "image": "要不要貼黑系貼紙？你『猶豫』半天。",
         "example_en": "Don't hesitate to ask questions in class.",
         "example_zh": "上課別客氣，有問題就問。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "hesitation", "pos": "名詞", "meaning_zh": "猶豫"},
+            {"word": "hesitant", "pos": "形容詞", "meaning_zh": "猶豫的"}
+        ],
     },
     "improve": {
         "kk": "[ɪmˈpruv]",
@@ -287,6 +328,11 @@ MNEMONICS = {
         "image": "想贏就要『證明』自己持續『進步』。",
         "example_en": "Reading every day will improve your English.",
         "example_zh": "每天閱讀會讓你的英文進步。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "improvement", "pos": "名詞", "meaning_zh": "改善；進步"},
+            {"word": "improved", "pos": "形容詞", "meaning_zh": "改良的"}
+        ],
     },
     "justify": {
         "kk": "[ˈdʒʌstəˌfaɪ]",
@@ -295,6 +341,11 @@ MNEMONICS = {
         "image": "渣男理由太肥（腓），硬要『正當化』自己。",
         "example_en": "Can you justify your decision?",
         "example_zh": "你能為你的決定提出合理理由嗎？",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "justification", "pos": "名詞", "meaning_zh": "正當理由"},
+            {"word": "justified", "pos": "形容詞", "meaning_zh": "有正當理由的"}
+        ],
     },
     "knowledge": {
         "kk": "[ˈnɑlɪdʒ]",
@@ -303,6 +354,11 @@ MNEMONICS = {
         "image": "腦力『擠』一擠，就變成『知識』。",
         "example_en": "Knowledge of vocabulary helps with reading.",
         "example_zh": "認識單字有助於閱讀。",
+        "pos": "名詞",
+        "other_forms": [
+            {"word": "know", "pos": "動詞", "meaning_zh": "知道"},
+            {"word": "knowledgeable", "pos": "形容詞", "meaning_zh": "博學的"}
+        ],
     },
     "luxury": {
         "kk": "[ˈlʌkʃəri]",
@@ -311,6 +367,11 @@ MNEMONICS = {
         "image": "辣到可以去瑞士學廚藝，真『奢侈』。",
         "example_en": "A daily walk is a small luxury for me.",
         "example_zh": "每天散步是我的小確幸。",
+        "pos": "名詞",
+        "other_forms": [
+            {"word": "luxurious", "pos": "形容詞", "meaning_zh": "奢華的"},
+            {"word": "luxuriously", "pos": "副詞", "meaning_zh": "奢華地"}
+        ],
     },
     "maintain": {
         "kk": "[menˈten]",
@@ -319,6 +380,10 @@ MNEMONICS = {
         "image": "燈泡『維持』長亮，才能一直『賣燈』。",
         "example_en": "It's important to maintain a study routine.",
         "example_zh": "維持讀書習慣很重要。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "maintenance", "pos": "名詞", "meaning_zh": "維護；保養"}
+        ],
     },
     "negotiate": {
         "kk": "[nɪˈɡoʃɪˌet]",
@@ -327,6 +392,12 @@ MNEMONICS = {
         "image": "你哥幫你洗鞋，跟你『協商』條件。",
         "example_en": "They negotiated a better price.",
         "example_zh": "他們談到了比較好的價格。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "negotiation", "pos": "名詞", "meaning_zh": "協商；談判"},
+            {"word": "negotiable", "pos": "形容詞", "meaning_zh": "可協商的"},
+            {"word": "negotiator", "pos": "名詞", "meaning_zh": "談判者"}
+        ],
     },
     "obstacle": {
         "kk": "[ˈɑbstək!]",
@@ -335,6 +406,8 @@ MNEMONICS = {
         "image": "歐文被四道路障扣住，變成『障礙』。",
         "example_en": "Fear of mistakes is a common obstacle for learners.",
         "example_zh": "怕犯錯是學習者常見的阻礙。",
+        "pos": "名詞",
+        "other_forms": [],
     },
     "participate": {
         "kk": "[pɑrˈtɪsəˌpet]",
@@ -343,6 +416,11 @@ MNEMONICS = {
         "image": "怕被踢進西胚社，只好硬著頭皮『參與』。",
         "example_en": "Students should participate in class discussions.",
         "example_zh": "學生應該參與課堂討論。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "participation", "pos": "名詞", "meaning_zh": "參與"},
+            {"word": "participant", "pos": "名詞", "meaning_zh": "參與者"}
+        ],
     },
     "qualify": {
         "kk": "[ˈkwɑləˌfaɪ]",
@@ -351,6 +429,11 @@ MNEMONICS = {
         "image": "誇張到肥，才算『合格』入選。",
         "example_en": "She qualified for the advanced course.",
         "example_zh": "她取得了進階課程的資格。",
+        "pos": "動詞",
+        "other_forms": [
+            {"word": "qualification", "pos": "名詞", "meaning_zh": "資格；學歷"},
+            {"word": "qualified", "pos": "形容詞", "meaning_zh": "合格的"}
+        ],
     },
     "reliable": {
         "kk": "[rɪˈlaɪəb!]",
@@ -359,6 +442,12 @@ MNEMONICS = {
         "image": "瑞士賴著阿伯不走，因為他超『可靠』。",
         "example_en": "He is a reliable study partner.",
         "example_zh": "他是個可靠的讀書夥伴。",
+        "pos": "形容詞",
+        "other_forms": [
+            {"word": "rely", "pos": "動詞", "meaning_zh": "依賴"},
+            {"word": "reliability", "pos": "名詞", "meaning_zh": "可靠性"},
+            {"word": "reliance", "pos": "名詞", "meaning_zh": "依賴；信任"}
+        ],
     },
     "significant": {
         "kk": "[sɪɡˈnɪfəkənt]",
@@ -367,6 +456,11 @@ MNEMONICS = {
         "image": "係哥踩泥肥到肯特，『顯著』地引人注目。",
         "example_en": "You've made significant progress this month.",
         "example_zh": "你這個月有顯著的進步。",
+        "pos": "形容詞",
+        "other_forms": [
+            {"word": "significantly", "pos": "副詞", "meaning_zh": "顯著地"},
+            {"word": "significance", "pos": "名詞", "meaning_zh": "重要性"}
+        ],
     },
     "transparent": {
         "kk": "[trænsˈpɛrənt]",
@@ -375,5 +469,10 @@ MNEMONICS = {
         "image": "傳吃播拍人，『透明』看得一清二楚。",
         "example_en": "The teacher gave transparent feedback.",
         "example_zh": "老師給了透明清楚的回饋。",
+        "pos": "形容詞",
+        "other_forms": [
+            {"word": "transparency", "pos": "名詞", "meaning_zh": "透明；透明度"},
+            {"word": "transparently", "pos": "副詞", "meaning_zh": "透明地"}
+        ],
     },
 }
