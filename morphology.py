@@ -38,13 +38,21 @@ SUFFIXES = [
 ]
 
 
+def _mm_escape(text: str) -> str:
+    """Mermaid mindmap 節點字串內不能含雙引號;以單引號取代。"""
+    return str(text).replace('"', "'")
+
+
 def build_mindmap(title: str, items: list) -> str:
-    """把字根／字首／字尾資料轉成 Mermaid mindmap 字串（縮排式語法）。"""
-    lines = ["mindmap", f"  root(({title}))"]
+    """把字根／字首／字尾資料轉成 Mermaid mindmap 字串(縮排式語法)。
+    所有節點都用 ["..."] 包起來,確保空格、中文點(·)、reserved keyword
+    都被當作純文字、而不是 mermaid 的 shape/keyword 語法。"""
+    lines = ["mindmap", f'  root(("{_mm_escape(title)}"))']
     for it in items:
-        lines.append(f"    {it['m']} · {it['zh']}")
+        label = _mm_escape(f"{it['m']} · {it['zh']}")
+        lines.append(f'    ["{label}"]')
         for ex in it["ex"]:
-            lines.append(f"      {ex}")
+            lines.append(f'      ["{_mm_escape(ex)}"]')
     return "\n".join(lines)
 
 
@@ -104,18 +112,18 @@ def decompose_word(word: str) -> dict | None:
 
 def build_word_mindmap(word: str, decomp: dict) -> str:
     """為單一單字建構迷你 Mermaid mindmap(字首/字根/字尾分支)。"""
-    lines = ["mindmap", f'  root(("{word}"))']
+    lines = ["mindmap", f'  root(("{_mm_escape(word)}"))']
     if decomp.get("prefix"):
-        lines.append(f"    字首 {decomp['prefix']['form']}")
-        lines.append(f"      {decomp['prefix']['zh']}")
+        lines.append(f'    ["字首 {_mm_escape(decomp["prefix"]["form"])}"]')
+        lines.append(f'      ["{_mm_escape(decomp["prefix"]["zh"])}"]')
     if decomp.get("root"):
-        lines.append(f"    字根 {decomp['root']['form']}")
-        lines.append(f"      {decomp['root']['zh']}")
+        lines.append(f'    ["字根 {_mm_escape(decomp["root"]["form"])}"]')
+        lines.append(f'      ["{_mm_escape(decomp["root"]["zh"])}"]')
     elif decomp.get("stem"):
-        lines.append(f"    字幹 {decomp['stem']}")
+        lines.append(f'    ["字幹 {_mm_escape(decomp["stem"])}"]')
     if decomp.get("suffix"):
-        lines.append(f"    字尾 {decomp['suffix']['form']}")
-        lines.append(f"      {decomp['suffix']['zh']}")
+        lines.append(f'    ["字尾 {_mm_escape(decomp["suffix"]["form"])}"]')
+        lines.append(f'      ["{_mm_escape(decomp["suffix"]["zh"])}"]')
     return "\n".join(lines)
 
 

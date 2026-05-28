@@ -25,11 +25,7 @@ VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "voca
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # 情境生成可選模型（標籤 -> 模型 ID）
-GEN_MODELS = {
-    "Claude Sonnet 4.6（推薦）": "claude-sonnet-4-6",
-    "Claude Haiku 4.5（快速省錢）": "claude-haiku-4-5",
-    "Claude Opus 4.7（最強）": "claude-opus-4-7",
-}
+  # GEN_MODEL_TIERS 由下方 dispatcher 區段定義(以 provider 動態映射模型)。
 
 GEN_SYSTEM_PROMPT = """# 角色
 你是科學化語言學習專家、記憶法大師兼資料工程師。
@@ -145,28 +141,91 @@ def last_7_days_df() -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("日期")
 
 
-# ----------------------------- 情境生成 -----------------------------
-def get_api_key() -> str | None:
+# ----------------------------- LLM dispatcher（Gemini 優先,Anthropic 備援） -----------------------------
+_KEY_ENVS = {
+    "gemini": ("GEMINI_API_KEY", "GOOGLE_API_KEY"),
+    "anthropic": ("ANTHROPIC_API_KEY",),
+}
+
+_MODEL_MAP = {
+    "gemini": {
+        "快速（便宜，推薦）": "gemini-2.5-flash",
+        "高品質（慢）": "gemini-2.5-pro",
+    },
+    "anthropic": {
+        "快速（便宜，推薦）": "claude-haiku-4-5",
+        "高品質（慢）": "claude-sonnet-4-6",
+    },
+}
+GEN_MODEL_TIERS = list(_MODEL_MAP["gemini"].keys())
+
+
+def _read_secret(name: str) -> str | None:
     try:
-        if "ANTHROPIC_API_KEY" in st.secrets:
-            return st.secrets["ANTHROPIC_API_KEY"]
+        if name in st.secrets:
+            return st.secrets[name]
     except Exception:
         pass
-    return os.environ.get("ANTHROPIC_API_KEY")
+    return os.environ.get(name)
 
 
-def generate_material(scenario: str, model: str) -> str:
+def get_provider() -> str | None:
+    """回傳 'gemini' 或 'anthropic'(優先 Gemini),都沒設定回 None。"""
+    for prov, envs in _KEY_ENVS.items():
+        for env in envs:
+            if _read_secret(env):
+                return prov
+    return None
+
+
+def get_api_key() -> str | None:
+    prov = get_provider()
+    if not prov:
+        return None
+    for env in _KEY_ENVS[prov]:
+        v = _read_secret(env)
+        if v:
+            return v
+    return None
+
+
+def _llm_generate(system_prompt: str, user_msg: str, tier: str, max_tokens: int = 2000) -> str:
+    """供應商無關的單次生成。讀 get_provider() 自動分派 Gemini 或 Anthropic。"""
+    provider = get_provider()
+    if not provider:
+        raise RuntimeError("尚未設定 GEMINI_API_KEY 或 ANTHROPIC_API_KEY")
+    model_id = _MODEL_MAP[provider].get(tier) or list(_MODEL_MAP[provider].values())[0]
+    key = get_api_key()
+
+    if provider == "gemini":
+        from google import genai
+        from google.genai import types
+        client = genai.Client(api_key=key)
+        resp = client.models.generate_content(
+            model=model_id,
+            contents=user_msg,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=0.7,
+                max_output_tokens=max_tokens,
+            ),
+        )
+        return resp.text or ""
+
+    # anthropic
     import anthropic
-
-    client = anthropic.Anthropic(api_key=get_api_key())
+    client = anthropic.Anthropic(api_key=key)
     resp = client.messages.create(
-        model=model,
-        max_tokens=2000,
-        system=[{"type": "text", "text": GEN_SYSTEM_PROMPT,
+        model=model_id, max_tokens=max_tokens,
+        system=[{"type": "text", "text": system_prompt,
                  "cache_control": {"type": "ephemeral"}}],
-        messages=[{"role": "user", "content": f"Scenario: {scenario}"}],
+        messages=[{"role": "user", "content": user_msg}],
     )
     return "".join(b.text for b in resp.content if b.type == "text")
+
+
+def generate_material(scenario: str, tier: str) -> str:
+    return _llm_generate(GEN_SYSTEM_PROMPT, f"Scenario: {scenario}", tier, max_tokens=2000)
 
 
 def parse_blocks(text: str) -> tuple[str | None, list | None]:
@@ -433,6 +492,18 @@ def view_vocab() -> None:
             st.rerun()
 
     st.divider()
+    with st.expander("🤯 SEED 單字諧音速記（20 字一覽）"):
+        st.caption("把英文聲音強行接到中文意思的搞笑諧音 + 圖像聯想。翻面卡背也看得到。")
+        for word, mn in MNEMONICS.items():
+            with st.container(border=True):
+                c1, c2 = st.columns([2, 5])
+                c1.markdown(f"### {word}")
+                c1.caption(f"KK `{mn['kk']}`")
+                c1.caption(f"自然發音 `{mn['phonics']}`")
+                c2.markdown(f"🔊 諧音 **{mn['homophone']}**")
+                c2.markdown(f"🖼️ {mn['image']}")
+
+    st.divider()
     st.markdown("### 📚 單字清單")
     with st.expander("➕ 新增單字"):
         with st.form("add_word", clear_on_submit=True):
@@ -634,20 +705,24 @@ def view_generate() -> None:
     data = st.session_state.data
     st.caption("輸入一個生活情境，AI 會產生對話心智圖與可複習的句卡（採用詞塊與高頻口語）。")
 
-    if not get_api_key():
-        st.warning("尚未設定 Anthropic API 金鑰，無法生成。")
+    provider = get_provider()
+    if not provider:
+        st.warning("尚未設定 API 金鑰（Gemini 或 Anthropic 擇一即可）。")
         st.markdown(
-            "- **本機**：設定環境變數 `ANTHROPIC_API_KEY`\n"
-            "- **Streamlit Cloud**：到 **Settings → Secrets** 加入 "
-            "`ANTHROPIC_API_KEY = \"sk-ant-...\"`"
+            "- **Streamlit Cloud**：到 **Settings → Secrets** 加入下列其一：\n"
+            "  ```\n  GEMINI_API_KEY = \"...\"\n  ```\n"
+            "  或\n"
+            "  ```\n  ANTHROPIC_API_KEY = \"sk-ant-...\"\n  ```\n"
+            "- **本機**：`export GEMINI_API_KEY=...` 或 `export ANTHROPIC_API_KEY=sk-ant-...`"
         )
     else:
+        st.caption(f"目前供應商：**{provider.upper()}**")
         with st.form("gen_form", clear_on_submit=False):
             scenario = st.text_input(
                 "目標情境",
                 placeholder="例如：在咖啡廳跟店員點餐，並反映飲料做錯了",
             )
-            model_label = st.selectbox("生成模型", list(GEN_MODELS.keys()))
+            model_label = st.selectbox("生成模型", GEN_MODEL_TIERS)
             submitted = st.form_submit_button("生成 ✨", type="primary")
 
         if submitted:
@@ -656,7 +731,7 @@ def view_generate() -> None:
             else:
                 with st.spinner("生成中…"):
                     try:
-                        raw = generate_material(scenario.strip(), GEN_MODELS[model_label])
+                        raw = generate_material(scenario.strip(), model_label)
                         mermaid, cards = parse_blocks(raw)
                         st.session_state.gen_result = {
                             "scenario": scenario.strip(),
@@ -796,17 +871,6 @@ def view_morphology() -> None:
                 for it in items:
                     st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
 
-    st.divider()
-    st.markdown("### 🤯 SEED 單字諧音速記")
-    st.caption("把英文聲音強行接到中文意思的搞笑諧音 + 圖像聯想。翻單字學習卡也看得到。")
-    for word, mn in MNEMONICS.items():
-        with st.container(border=True):
-            c1, c2 = st.columns([2, 5])
-            c1.markdown(f"### {word}")
-            c1.caption(f"KK `{mn['kk']}`")
-            c1.caption(f"自然發音 `{mn['phonics']}`")
-            c2.markdown(f"🔊 諧音 **{mn['homophone']}**")
-            c2.markdown(f"🖼️ {mn['image']}")
 
 
 @st.cache_data
@@ -827,11 +891,10 @@ def load_vocab_bank() -> dict:
     return _load_vocab_bank_cached(mtime)
 
 
-def _run_inapp_generation(n: int, model_key: str) -> None:
-    """雲端內呼叫 Claude API 產生 N 字資料,寫進 st.session_state.live_bank。"""
-    from scripts.generate_vocab import (SYSTEM_PROMPT, MODELS, extract_json_array,
+def _run_inapp_generation(n: int, tier: str) -> None:
+    """雲端內以供應商無關方式生成 N 字資料,寫進 st.session_state.live_bank。"""
+    from scripts.generate_vocab import (SYSTEM_PROMPT, extract_json_array,
                                         load_wordlist)
-    import anthropic
     file_bank = load_vocab_bank()
     live = st.session_state.setdefault("live_bank", {})
     have = {**file_bank, **live}
@@ -840,16 +903,11 @@ def _run_inapp_generation(n: int, model_key: str) -> None:
     if not todo:
         st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
         return
-    client = anthropic.Anthropic(api_key=get_api_key())
-    with st.spinner(f"用 {MODELS[model_key]} 生成 {len(todo)} 字…"):
-        resp = client.messages.create(
-            model=MODELS[model_key], max_tokens=4000,
-            system=[{"type": "text", "text": SYSTEM_PROMPT,
-                     "cache_control": {"type": "ephemeral"}}],
-            messages=[{"role": "user",
-                       "content": "請為以下單字生成資料: " + ", ".join(todo)}],
-        )
-        text = "".join(b.text for b in resp.content if b.type == "text")
+    provider = get_provider()
+    with st.spinner(f"用 {provider} ({tier}) 生成 {len(todo)} 字…"):
+        text = _llm_generate(SYSTEM_PROMPT,
+                             "請為以下單字生成資料: " + ", ".join(todo),
+                             tier, max_tokens=4000)
         entries = extract_json_array(text)
     added = 0
     for e in entries:
@@ -864,24 +922,26 @@ def view_vocab_bank() -> None:
     file_bank = load_vocab_bank()
     live_bank = st.session_state.setdefault("live_bank", {})
     bank = {**file_bank, **live_bank}
-    api_key = get_api_key()
+    provider = get_provider()
 
     with st.expander("🤖 用 AI 在雲端即時生成（無需本機）", expanded=not bank):
-        if not api_key:
+        if not provider:
             st.warning(
-                "尚未設定 ANTHROPIC_API_KEY。請至 Streamlit Cloud → **Manage app → "
-                "Settings → Secrets** 加入下列一行後重新部署：\n\n"
+                "尚未設定 API 金鑰。請至 Streamlit Cloud → **Manage app → "
+                "Settings → Secrets** 加入下列其一後重新部署：\n\n"
+                "```\nGEMINI_API_KEY = \"...\"\n```\n"
+                "或\n"
                 "```\nANTHROPIC_API_KEY = \"sk-ant-...\"\n```"
             )
+        else:
+            st.caption(f"目前供應商：**{provider.upper()}**")
         col1, col2, col3 = st.columns([2, 2, 2])
         n = col1.number_input("一次生成幾個字", min_value=5, max_value=50, value=20, step=5)
-        model_label = col2.selectbox(
-            "模型", ["sonnet（品質）", "haiku（便宜）", "opus（最強）"], index=0)
-        model_key = model_label.split("（")[0]
-        if col3.button("🚀 開始生成", disabled=not api_key,
+        tier = col2.selectbox("模型", GEN_MODEL_TIERS, index=0)
+        if col3.button("🚀 開始生成", disabled=not provider,
                        use_container_width=True, type="primary"):
             try:
-                _run_inapp_generation(int(n), model_key)
+                _run_inapp_generation(int(n), tier)
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 st.error(f"生成失敗：{e}")
