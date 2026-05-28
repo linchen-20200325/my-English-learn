@@ -458,7 +458,6 @@ def toggle_learned(word_id: int) -> None:
 def view_quiz() -> None:
     data = st.session_state.data
     words = data["words"]
-    st.markdown("### ✏️ 單字測驗")
 
     if len(words) < 4:
         st.info("至少需要 4 個單字才能開始測驗。")
@@ -608,7 +607,6 @@ def view_plan() -> None:
 
 def view_generate() -> None:
     data = st.session_state.data
-    st.markdown("### 🤖 情境會話生成")
     st.caption("輸入一個生活情境，AI 會產生對話心智圖與可複習的句卡（採用詞塊與高頻口語）。")
 
     if not get_api_key():
@@ -713,7 +711,6 @@ def view_generate() -> None:
 def view_review() -> None:
     data = st.session_state.data
     deck = data.setdefault("review_cards", [])
-    st.markdown("### 🔁 複習")
 
     if not deck:
         st.info("複習清單是空的。到「🤖 情境生成」把句卡加入複習。")
@@ -760,7 +757,6 @@ def view_review() -> None:
 
 
 def view_morphology() -> None:
-    st.markdown("### 🔤 字根速記")
     st.caption("離線字根字首字尾心智圖 + SEED 單字台味諧音速記，完全不需 API。")
 
     tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
@@ -799,7 +795,6 @@ def load_vocab_bank() -> dict:
 
 
 def view_vocab_bank() -> None:
-    st.markdown("### 📖 單字庫")
     bank = load_vocab_bank()
 
     if not bank:
