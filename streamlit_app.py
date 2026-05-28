@@ -17,7 +17,8 @@ import streamlit.components.v1 as components
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
-from morphology import PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap
+from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
+                        decompose_word, build_word_mindmap)
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
 VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab_bank.json")
@@ -361,21 +362,38 @@ def view_vocab() -> None:
     data = st.session_state.data
     words = data["words"]
 
+    # Deck = 使用者自管單字 ∪ vocab_bank.json 的字(以 bank 補上,使用者管理區仍在下方)
+    file_bank = load_vocab_bank()
+    live_bank = st.session_state.get("live_bank", {})
+    full_bank = {**file_bank, **live_bank}
+    user_keys = {w["word"].lower() for w in words}
+    deck = list(words) + [
+        {"id": f"bank:{k}", "word": k,
+         "meaning": e.get("meaning_zh", ""),
+         "example": e.get("example_en", ""),
+         "learned": False}
+        for k, e in full_bank.items() if k.lower() not in user_keys
+    ]
+
     st.markdown("### 🃏 單字卡")
-    if not words:
-        st.info("目前沒有單字，請到下方新增。")
+    if not deck:
+        st.info("目前沒有單字，請到下方新增，或到「📖 單字庫」生成。")
     else:
-        st.session_state.fc_index %= len(words)
+        st.session_state.fc_index %= len(deck)
         idx = st.session_state.fc_index
-        w = words[idx]
-        st.caption(f"{idx + 1} / {len(words)}")
+        w = deck[idx]
+        is_bank_only = isinstance(w["id"], str) and w["id"].startswith("bank:")
+        st.caption(
+            f"{idx + 1} / {len(deck)}"
+            + (f"　·　共 {len(full_bank)} 字來自單字庫" if full_bank else "")
+        )
         if st.session_state.fc_flipped:
             st.markdown(
                 f"""<div class="flash-card back"><div class="meaning">{w['meaning']}</div>
                 <div class="example">{w.get('example', '')}</div></div>""",
                 unsafe_allow_html=True,
             )
-            mn = MNEMONICS.get(w["word"]) or load_vocab_bank().get(w["word"])
+            mn = MNEMONICS.get(w["word"]) or full_bank.get(w["word"])
             if mn:
                 st.markdown(
                     f"🔊 諧音 **{mn['homophone']}**　·　自然發音 `{mn['phonics']}`　·　KK `{mn['kk']}`"
@@ -384,6 +402,12 @@ def view_vocab() -> None:
                     st.caption(f"🖼️ {mn['image']}")
                 if mn.get("example_en"):
                     st.markdown(f"💬 *{mn['example_en']}*")
+                if mn.get("usage_zh"):
+                    st.caption(f"💡 {mn['usage_zh']}")
+            decomp = decompose_word(w["word"])
+            if decomp:
+                st.caption("🧩 字首／字根／字尾拆解")
+                render_mermaid(build_word_mindmap(w["word"], decomp), height=260)
         else:
             st.markdown(
                 f"""<div class="flash-card"><div class="word">{w['word']}</div></div>""",
@@ -392,18 +416,19 @@ def view_vocab() -> None:
 
         b1, b2, b3, b4 = st.columns(4)
         if b1.button("← 上一個", use_container_width=True):
-            st.session_state.fc_index = (idx - 1) % len(words)
+            st.session_state.fc_index = (idx - 1) % len(deck)
             st.session_state.fc_flipped = False
             st.rerun()
         if b2.button("🔄 翻面", use_container_width=True):
             st.session_state.fc_flipped = not st.session_state.fc_flipped
             st.rerun()
-        learn_label = "↩︎ 取消學會" if w["learned"] else "✅ 標記學會"
-        if b3.button(learn_label, use_container_width=True):
+        learn_label = ("（單字庫，到清單區管理）" if is_bank_only
+                       else ("↩︎ 取消學會" if w["learned"] else "✅ 標記學會"))
+        if b3.button(learn_label, use_container_width=True, disabled=is_bank_only):
             toggle_learned(w["id"])
             st.rerun()
         if b4.button("下一個 →", use_container_width=True):
-            st.session_state.fc_index = (idx + 1) % len(words)
+            st.session_state.fc_index = (idx + 1) % len(deck)
             st.session_state.fc_flipped = False
             st.rerun()
 
@@ -785,8 +810,7 @@ def view_morphology() -> None:
 
 
 @st.cache_data
-def load_vocab_bank() -> dict:
-    """讀取 vocab_bank.json;檔不存在或損毀回空 dict。Streamlit 會快取直到檔案修改。"""
+def _load_vocab_bank_cached(_mtime: float) -> dict:
     try:
         with open(VOCAB_BANK_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -794,22 +818,93 @@ def load_vocab_bank() -> dict:
         return {}
 
 
+def load_vocab_bank() -> dict:
+    """讀取 vocab_bank.json;以檔案 mtime 當 cache key,檔案變動會自動失效。"""
+    try:
+        mtime = os.path.getmtime(VOCAB_BANK_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_vocab_bank_cached(mtime)
+
+
+def _run_inapp_generation(n: int, model_key: str) -> None:
+    """雲端內呼叫 Claude API 產生 N 字資料,寫進 st.session_state.live_bank。"""
+    from scripts.generate_vocab import (SYSTEM_PROMPT, MODELS, extract_json_array,
+                                        load_wordlist)
+    import anthropic
+    file_bank = load_vocab_bank()
+    live = st.session_state.setdefault("live_bank", {})
+    have = {**file_bank, **live}
+    wordlist = load_wordlist()
+    todo = [w for w in wordlist if w not in have][:n]
+    if not todo:
+        st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
+        return
+    client = anthropic.Anthropic(api_key=get_api_key())
+    with st.spinner(f"用 {MODELS[model_key]} 生成 {len(todo)} 字…"):
+        resp = client.messages.create(
+            model=MODELS[model_key], max_tokens=4000,
+            system=[{"type": "text", "text": SYSTEM_PROMPT,
+                     "cache_control": {"type": "ephemeral"}}],
+            messages=[{"role": "user",
+                       "content": "請為以下單字生成資料: " + ", ".join(todo)}],
+        )
+        text = "".join(b.text for b in resp.content if b.type == "text")
+        entries = extract_json_array(text)
+    added = 0
+    for e in entries:
+        ww = (e.get("word") or "").strip().lower()
+        if ww:
+            live[ww] = e
+            added += 1
+    st.success(f"已生成 {added} 字（暫存於 session）。請按下方「下載」並 commit 到 repo 永久保存。")
+
+
 def view_vocab_bank() -> None:
-    bank = load_vocab_bank()
+    file_bank = load_vocab_bank()
+    live_bank = st.session_state.setdefault("live_bank", {})
+    bank = {**file_bank, **live_bank}
+    api_key = get_api_key()
+
+    with st.expander("🤖 用 AI 在雲端即時生成（無需本機）", expanded=not bank):
+        if not api_key:
+            st.warning(
+                "尚未設定 ANTHROPIC_API_KEY。請至 Streamlit Cloud → **Manage app → "
+                "Settings → Secrets** 加入下列一行後重新部署：\n\n"
+                "```\nANTHROPIC_API_KEY = \"sk-ant-...\"\n```"
+            )
+        col1, col2, col3 = st.columns([2, 2, 2])
+        n = col1.number_input("一次生成幾個字", min_value=5, max_value=50, value=20, step=5)
+        model_label = col2.selectbox(
+            "模型", ["sonnet（品質）", "haiku（便宜）", "opus（最強）"], index=0)
+        model_key = model_label.split("（")[0]
+        if col3.button("🚀 開始生成", disabled=not api_key,
+                       use_container_width=True, type="primary"):
+            try:
+                _run_inapp_generation(int(n), model_key)
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"生成失敗：{e}")
+        st.caption(
+            f"詞表 {len(__import__('scripts.generate_vocab', fromlist=['load_wordlist']).load_wordlist())} 字"
+            f"　·　已完成 {len(bank)} 字"
+            f"　·　檔案 {len(file_bank)} 字 / session 暫存 {len(live_bank)} 字"
+        )
+
+    if bank:
+        merged_json = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
+        st.download_button(
+            "⬇️ 下載合併後 vocab_bank.json（commit 回 repo 永久保存）",
+            data=merged_json,
+            file_name="vocab_bank.json",
+            mime="application/json",
+        )
 
     if not bank:
         st.info(
-            "單字庫是空的。請執行批次生成腳本來補上諧音／例句／用法："
+            "單字庫是空的。展開上方面板用 AI 即時生成，"
+            "或在本機跑 `python scripts/generate_vocab.py` 後 push 回 repo。"
         )
-        st.code(
-            "pip install anthropic\n"
-            "export ANTHROPIC_API_KEY=sk-ant-...\n"
-            "python scripts/generate_vocab.py --limit 30      # 先試 30 字\n"
-            "python scripts/generate_vocab.py                 # 跑完整份詞表\n"
-            "python scripts/generate_vocab.py --model haiku   # 改用 Haiku 省錢",
-            language="bash",
-        )
-        st.caption("詞表位於 `scripts/vocab_wordlist.txt`，可自由增刪換成 COCA / TOEIC / Oxford 4000。")
         return
 
     words = sorted(bank.keys())
