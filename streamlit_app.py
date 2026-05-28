@@ -7,17 +7,68 @@
 import json
 import os
 import random
+import re
 import sys
 from datetime import date, datetime, timedelta
 
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
+
+# 情境生成可選模型（標籤 -> 模型 ID）
+GEN_MODELS = {
+    "Claude Sonnet 4.6（推薦）": "claude-sonnet-4-6",
+    "Claude Haiku 4.5（快速省錢）": "claude-haiku-4-5",
+    "Claude Opus 4.7（最強）": "claude-opus-4-7",
+}
+
+GEN_SYSTEM_PROMPT = """# 角色
+你是科學化語言學習專家、記憶法大師兼資料工程師。
+
+# 理論依據
+1. 雙碼理論：透過心智圖視覺化建立大腦基模。
+2. 間隔重複（SRS）：透過 JSON 抽認卡固化長期記憶。
+3. 詞塊教學法：學習母語人士的固定搭配「詞塊（chunks）」。
+4. 齊夫定律：嚴格只用日常最高頻的核心詞彙。
+5. 精細複述與關鍵字記憶法：透過荒謬搞笑的中文諧音或視覺圖像，將外語聲音與母語意義強行連結。
+
+# 任務
+根據使用者訊息提供的【目標職業或情境】，產出符合上述理論的實用英文對話教材。
+語言風格必須是母語人士的日常真實對話（casual & native）。
+
+# 輸出限制（嚴格）
+只輸出以下兩個程式碼區塊，前後與中間不得有任何開場白、結語或解釋文字。
+
+## 區塊一：Mermaid 心智圖
+用 ```mermaid 區塊製作一個 mindmap，歸納該情境的核心對話流程：
+- 根節點：情境名稱
+- 主分支：對話階段（例如 開場、核心討論、結語）
+- 子節點：實用短句，每個節點嚴格限制在 7 個英文單字以內
+
+## 區塊二：SRS 抽認卡與速記法
+用 ```json 區塊輸出 3 到 5 張最具代表性的金句，須取自心智圖中出現的句子。
+嚴格符合此結構（請確保 JSON 完全合法、可被 Python 讀取）：
+{
+  "flashcards": [
+    {"id": 1, "sentence": "...", "chinese": "...", "chunk": "...", "target_word": "...", "kk": "[...]", "phonics": "...", "mnemonic": "...", "context": "..."}
+  ]
+}
+- "id"：唯一流水號（整數）
+- "sentence"：完整實用英文句子
+- "chinese"：繁體中文自然翻譯
+- "chunk"：該句中最核心的母語人士常用詞塊
+- "target_word"：從 chunk 中挑出一個最關鍵或最難記的單字
+- "kk"：target_word 的 KK 音標（格式：[...]）
+- "phonics"：target_word 的直覺式自然發音拆解（例如 schedule -> SKEH-jool）
+- "mnemonic"：針對 target_word 的速記法，須是符合台灣人語感的搞笑諧音、網路迷因或極具視覺衝擊力的圖像記憶，越荒謬越好，一句話搞定
+- "context"：一句繁體中文，說明在什麼具體情況下使用這句話
+"""
 
 
 # ----------------------------- 資料存取 -----------------------------
@@ -34,6 +85,8 @@ def default_state() -> dict:
         "goal": 10,
         "best_streak": 0,
         "phrase_index": datetime.now().timetuple().tm_yday % len(DAILY_PHRASES),
+        "lessons": [],
+        "review_cards": [],
     }
 
 
@@ -87,6 +140,136 @@ def last_7_days_df() -> pd.DataFrame:
         rows.append({"日期": f"{d.month}/{d.day}（{WEEKDAY_ZH[d.weekday()]}）",
                      "分鐘": e["minutes"] if e else 0})
     return pd.DataFrame(rows).set_index("日期")
+
+
+# ----------------------------- 情境生成 -----------------------------
+def get_api_key() -> str | None:
+    try:
+        if "ANTHROPIC_API_KEY" in st.secrets:
+            return st.secrets["ANTHROPIC_API_KEY"]
+    except Exception:
+        pass
+    return os.environ.get("ANTHROPIC_API_KEY")
+
+
+def generate_material(scenario: str, model: str) -> str:
+    import anthropic
+
+    client = anthropic.Anthropic(api_key=get_api_key())
+    resp = client.messages.create(
+        model=model,
+        max_tokens=2000,
+        system=[{"type": "text", "text": GEN_SYSTEM_PROMPT,
+                 "cache_control": {"type": "ephemeral"}}],
+        messages=[{"role": "user", "content": f"Scenario: {scenario}"}],
+    )
+    return "".join(b.text for b in resp.content if b.type == "text")
+
+
+def parse_blocks(text: str) -> tuple[str | None, list | None]:
+    """從回應中抽出 mermaid 圖與 flashcards JSON。"""
+    mermaid = None
+    cards = None
+    m = re.search(r"```mermaid\s*(.*?)```", text, re.DOTALL)
+    if m:
+        mermaid = m.group(1).strip()
+    j = re.search(r"```json\s*(.*?)```", text, re.DOTALL)
+    if j:
+        try:
+            cards = json.loads(j.group(1).strip()).get("flashcards")
+        except (json.JSONDecodeError, AttributeError):
+            cards = None
+    return mermaid, cards
+
+
+_MERMAID_HTML = """
+<div class="mermaid">__CODE__</div>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, securityLevel: 'loose' });
+</script>
+"""
+
+
+def render_mermaid(code: str, height: int = 420) -> None:
+    html = _MERMAID_HTML.replace("__CODE__", code)
+    if hasattr(st, "iframe"):  # Streamlit ≥ 1.57；components.html 於 2026-06-01 移除
+        st.iframe(html, height=height)
+    else:
+        components.html(html, height=height, scrolling=True)
+
+
+def render_flashcards(cards: list) -> None:
+    for c in cards:
+        with st.container(border=True):
+            st.markdown(f"**{c.get('sentence', '')}**")
+            if c.get("chinese"):
+                st.markdown(f"🇹🇼 {c['chinese']}")
+            if c.get("chunk"):
+                st.markdown(f"🧩 詞塊：`{c['chunk']}`")
+            if c.get("target_word"):
+                bits = [f"🎯 **{c['target_word']}**"]
+                if c.get("kk"):
+                    bits.append(f"KK `{c['kk']}`")
+                if c.get("phonics"):
+                    bits.append(f"自然發音 `{c['phonics']}`")
+                st.markdown("　".join(bits))
+            if c.get("mnemonic"):
+                st.markdown(f"🤯 速記：{c['mnemonic']}")
+            if c.get("context"):
+                st.caption(f"💡 {c['context']}")
+
+
+# ----------------------------- 複習 (SRS) -----------------------------
+def add_cards_to_review(cards: list) -> int:
+    """把句卡複製進複習清單並掛上 SM-2 排程欄位；以句子去重。回傳新增數。"""
+    deck = st.session_state.data.setdefault("review_cards", [])
+    existing = {c.get("sentence") for c in deck}
+    next_id = max((c["id"] for c in deck), default=0) + 1
+    added = 0
+    for c in cards:
+        if not c.get("sentence") or c["sentence"] in existing:
+            continue
+        rc = dict(c)
+        rc.update(id=next_id, interval=0, ease=2.5, reps=0, due=today_str())
+        deck.append(rc)
+        existing.add(rc["sentence"])
+        next_id += 1
+        added += 1
+    return added
+
+
+def schedule_card(card: dict, grade: str) -> None:
+    """SM-2 簡化版：grade 為 again / good / easy，就地更新排程。"""
+    ease = card.get("ease", 2.5)
+    reps = card.get("reps", 0)
+    interval = card.get("interval", 0)
+    if grade == "again":
+        reps, interval = 0, 1
+        ease = max(1.3, ease - 0.2)
+    else:
+        if reps == 0:
+            interval = 1 if grade == "good" else 2
+        elif reps == 1:
+            interval = 3 if grade == "good" else 5
+        else:
+            interval = max(1, round(interval * (ease if grade == "good" else ease * 1.3)))
+        reps += 1
+        if grade == "easy":
+            ease += 0.15
+    card.update(
+        ease=round(ease, 2),
+        reps=reps,
+        interval=interval,
+        due=(date.today() + timedelta(days=interval)).isoformat(),
+        last=today_str(),
+    )
+
+
+def due_count() -> int:
+    today = today_str()
+    return sum(1 for c in st.session_state.data.get("review_cards", [])
+               if c.get("due", today) <= today)
 
 
 # ----------------------------- 樣式 -----------------------------
@@ -412,6 +595,159 @@ def view_plan() -> None:
                 st.rerun()
 
 
+def view_generate() -> None:
+    data = st.session_state.data
+    st.markdown("### 🤖 情境會話生成")
+    st.caption("輸入一個生活情境，AI 會產生對話心智圖與可複習的句卡（採用詞塊與高頻口語）。")
+
+    if not get_api_key():
+        st.warning("尚未設定 Anthropic API 金鑰，無法生成。")
+        st.markdown(
+            "- **本機**：設定環境變數 `ANTHROPIC_API_KEY`\n"
+            "- **Streamlit Cloud**：到 **Settings → Secrets** 加入 "
+            "`ANTHROPIC_API_KEY = \"sk-ant-...\"`"
+        )
+    else:
+        with st.form("gen_form", clear_on_submit=False):
+            scenario = st.text_input(
+                "目標情境",
+                placeholder="例如：在咖啡廳跟店員點餐，並反映飲料做錯了",
+            )
+            model_label = st.selectbox("生成模型", list(GEN_MODELS.keys()))
+            submitted = st.form_submit_button("生成 ✨", type="primary")
+
+        if submitted:
+            if not scenario.strip():
+                st.warning("請先輸入情境。")
+            else:
+                with st.spinner("生成中…"):
+                    try:
+                        raw = generate_material(scenario.strip(), GEN_MODELS[model_label])
+                        mermaid, cards = parse_blocks(raw)
+                        st.session_state.gen_result = {
+                            "scenario": scenario.strip(),
+                            "mermaid": mermaid,
+                            "flashcards": cards or [],
+                            "raw": raw,
+                        }
+                    except Exception as e:  # noqa: BLE001 — 對使用者顯示友善訊息
+                        st.session_state.gen_result = None
+                        st.error(f"生成失敗：{e}")
+
+    result = st.session_state.get("gen_result")
+    if result:
+        st.divider()
+        st.markdown(f"#### 📍 情境：{result['scenario']}")
+        if result["mermaid"]:
+            render_mermaid(result["mermaid"])
+            with st.expander("檢視 Mermaid 原始碼"):
+                st.code(result["mermaid"], language="text")
+        else:
+            st.info("未能解析出心智圖。")
+
+        if result["flashcards"]:
+            st.markdown("#### 🃏 句卡")
+            render_flashcards(result["flashcards"])
+        else:
+            st.info("未能解析出句卡，可展開下方原始回應檢查。")
+            with st.expander("原始回應"):
+                st.code(result["raw"], language="text")
+
+        c1, c2, c3 = st.columns(3)
+        if c1.button("💾 儲存這課", type="primary", use_container_width=True):
+            new_id = max((l["id"] for l in data["lessons"]), default=0) + 1
+            data["lessons"].append({
+                "id": new_id,
+                "scenario": result["scenario"],
+                "mermaid": result["mermaid"],
+                "flashcards": result["flashcards"],
+                "created": today_str(),
+            })
+            save_data()
+            st.session_state.gen_result = None
+            st.success("已儲存到下方的課程清單。")
+            st.rerun()
+        if c2.button("➕ 加入複習", use_container_width=True,
+                     disabled=not result["flashcards"]):
+            n = add_cards_to_review(result["flashcards"])
+            save_data()
+            st.success(f"已加入 {n} 張到複習清單。" if n else "這些句卡已在複習清單中。")
+        if c3.button("🗑️ 清除結果", use_container_width=True):
+            st.session_state.gen_result = None
+            st.rerun()
+
+    if data["lessons"]:
+        st.divider()
+        st.markdown("### 📂 已儲存的情境課程")
+        for lesson in reversed(data["lessons"]):
+            with st.expander(f"📍 {lesson['scenario']}（{lesson.get('created', '')}）"):
+                if lesson.get("mermaid"):
+                    render_mermaid(lesson["mermaid"])
+                if lesson.get("flashcards"):
+                    render_flashcards(lesson["flashcards"])
+                lc1, lc2 = st.columns(2)
+                if lc1.button("➕ 加入複習", key=f"lesson_rev_{lesson['id']}",
+                              use_container_width=True,
+                              disabled=not lesson.get("flashcards")):
+                    n = add_cards_to_review(lesson["flashcards"])
+                    save_data()
+                    st.success(f"已加入 {n} 張。" if n else "已在複習清單中。")
+                if lc2.button("🗑️ 刪除這課", key=f"lesson_del_{lesson['id']}",
+                              use_container_width=True):
+                    data["lessons"] = [l for l in data["lessons"] if l["id"] != lesson["id"]]
+                    save_data()
+                    st.rerun()
+
+
+def view_review() -> None:
+    data = st.session_state.data
+    deck = data.setdefault("review_cards", [])
+    st.markdown("### 🔁 複習")
+
+    if not deck:
+        st.info("複習清單是空的。到「🤖 情境生成」把句卡加入複習。")
+        return
+
+    today = today_str()
+    due = [c for c in deck if c.get("due", today) <= today]
+    st.caption(f"清單共 {len(deck)} 張，今天到期 {len(due)} 張。")
+
+    if not due:
+        nxt = min((c.get("due", today) for c in deck), default=today)
+        st.success(f"今天沒有要複習的卡 🎉 下次到期：{nxt}")
+        with st.expander("清空複習清單"):
+            if st.button("確認清空", type="primary"):
+                data["review_cards"] = []
+                save_data()
+                st.rerun()
+        return
+
+    card = due[0]
+    st.progress((len(deck) - len(due)) / len(deck), text=f"剩 {len(due)} 張待複習")
+    st.markdown(f"## {card.get('sentence', '')}")
+
+    if st.session_state.get("review_reveal_id") != card["id"]:
+        if st.button("🔄 翻面看答案", type="primary", use_container_width=True):
+            st.session_state.review_reveal_id = card["id"]
+            st.rerun()
+        return
+
+    render_flashcards([card])
+    g1, g2, g3 = st.columns(3)
+    graded = None
+    if g1.button("😵 忘記", use_container_width=True):
+        graded = "again"
+    if g2.button("🙂 普通", use_container_width=True):
+        graded = "good"
+    if g3.button("😎 簡單", use_container_width=True):
+        graded = "easy"
+    if graded:
+        schedule_card(card, graded)
+        save_data()
+        st.session_state.pop("review_reveal_id", None)
+        st.rerun()
+
+
 # ----------------------------- 主程式 -----------------------------
 def main() -> None:
     st.set_page_config(page_title="英文學習儀表板", page_icon="📚", layout="wide")
@@ -419,6 +755,8 @@ def main() -> None:
 
     if "data" not in st.session_state:
         st.session_state.data = load_data()
+    st.session_state.data.setdefault("lessons", [])  # 相容舊資料
+    st.session_state.data.setdefault("review_cards", [])
     st.session_state.setdefault("fc_index", 0)
     st.session_state.setdefault("fc_flipped", False)
 
@@ -426,11 +764,14 @@ def main() -> None:
         st.markdown("# 📚 English\nDashboard")
         view = st.radio(
             "導覽",
-            ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "📈 學習進度", "✅ 學習計畫"],
+            ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🤖 情境生成",
+             "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
-        st.metric("🔥 連續學習天數", compute_streak())
+        m1, m2 = st.columns(2)
+        m1.metric("🔥 連續天數", compute_streak())
+        m2.metric("🔁 待複習", due_count())
 
     st.title(view)
     st.caption(date.today().strftime("%Y 年 %m 月 %d 日"))
@@ -441,6 +782,10 @@ def main() -> None:
         view_vocab()
     elif view.endswith("單字測驗"):
         view_quiz()
+    elif view.endswith("情境生成"):
+        view_generate()
+    elif view.endswith("複習"):
+        view_review()
     elif view.endswith("學習進度"):
         view_progress()
     elif view.endswith("學習計畫"):
