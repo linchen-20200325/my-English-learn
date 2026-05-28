@@ -169,22 +169,36 @@ def _secret_names() -> list:
 def get_api_key() -> str | None:
     """讀 Gemini key。先試標準名稱(GEMINI_API_KEY / GOOGLE_API_KEY),
     沒中就掃描所有 secrets/環境變數,只要名稱含 GEMINI 或 GOOGLE 就採用,
-    讓使用者在 Cloud Secrets 取的名字較寬鬆也能抓到。"""
+    讓使用者在 Cloud Secrets 取的名字較寬鬆也能抓到。
+
+    防呆:剝掉前後空白與多餘引號(常見複製貼上失誤),且若值是 list 則取第一筆。"""
+
+    def _clean(v):
+        if isinstance(v, (list, tuple)) and v:
+            v = v[0]
+        if v is None:
+            return None
+        s = str(v).strip()
+        # 連續剝外層引號(處理 "key" / 'key' / ""key"" 等粗心輸入)
+        while len(s) >= 2 and s[0] == s[-1] and s[0] in ('"', "'"):
+            s = s[1:-1].strip()
+        return s or None
+
     for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GEMINI_KEY", "GOOGLE_GENAI_API_KEY"):
-        v = _read_secret(name)
+        v = _clean(_read_secret(name))
         if v:
             return v
     # 寬鬆比對
     for name in _secret_names():
         upper = name.upper()
         if ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
-            v = _read_secret(name)
+            v = _clean(_read_secret(name))
             if v:
                 return v
     for name, val in os.environ.items():
         upper = name.upper()
         if val and ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
-            return val
+            return _clean(val)
     return None
 
 
@@ -1127,7 +1141,24 @@ def view_vocab_bank() -> None:
                 _run_inapp_generation(int(n), tier, auto_push=auto_push)
                 st.rerun()
             except Exception as e:  # noqa: BLE001
-                st.error(f"生成失敗：{e}")
+                msg = str(e)
+                if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+                    st.error(
+                        "❌ Google 拒絕了你的 API key（不是 app 抓不到，是 key 本身被拒）。\n\n"
+                        "**常見原因（請逐項檢查）**：\n"
+                        "1. **key 寫錯 / 多了空白或引號** — 重新到 "
+                        "https://aistudio.google.com/apikey 複製一遍\n"
+                        "2. **不是 Generative Language API 的 key** — Google Cloud 有多種 key，"
+                        "AI Studio 取出來的才能用\n"
+                        "3. **專案沒啟用 Generative Language API** — "
+                        "https://console.cloud.google.com/apis/library/generativelanguage.googleapis.com\n"
+                        "4. **配額用完或計費未設定** — AI Studio 免費額度足夠日常用，但要先在 "
+                        "Google Cloud Console 確認專案綁定\n\n"
+                        "最簡單的解法：到 https://aistudio.google.com/apikey 按「Create API key in new project」"
+                        "完全新開一把貼回 Streamlit Cloud Secrets 試試。"
+                    )
+                else:
+                    st.error(f"生成失敗：{e}")
         st.caption(
             f"詞表 {len(__import__('scripts.generate_vocab', fromlist=['load_wordlist']).load_wordlist())} 字"
             f"　·　已完成 {len(bank)} 字"
