@@ -598,6 +598,45 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
     usage_block = (f'<div style="margin-top:10px; padding:10px 14px; background:#fff; '
                    f'border-radius:10px; font-size:14px; color:#475569;">💡 '
                    f'{usage}</div>') if usage else ""
+
+    # 其他型態的「用法例句」(含 🔊)
+    other_forms = mn.get("other_forms") or []
+    forms_with_ex = [f for f in other_forms if f.get("example")]
+    forms_block = ""
+    if forms_with_ex:
+        form_rows = []
+        for f in forms_with_ex:
+            fw = _html.escape(f.get("word", ""))
+            fp = _html.escape(f.get("pos", ""))
+            fm = _html.escape(f.get("meaning_zh", ""))
+            fe = f.get("example", "")
+            fe_esc = _html.escape(fe)
+            fe_tts = _tts_button_html(
+                fe, 0.95,
+                "margin-left:6px; padding:4px 10px; font-size:13px; border:none; "
+                "border-radius:999px; cursor:pointer; background:#b45309; color:#fff;",
+                "🔊",
+            )
+            form_rows.append(
+                f'<div style="margin:8px 0; padding:8px 12px; background:#fff; '
+                f'border-radius:8px; border-left:3px solid #b45309;">'
+                f'<div style="font-size:14px; color:#92400e;">'
+                f'<b>{fw}</b> <span style="opacity:.7;">({fp})</span> — {fm}'
+                f'</div>'
+                f'<div style="margin-top:4px; display:flex; align-items:center; '
+                f'flex-wrap:wrap; gap:4px;">'
+                f'<i style="flex:1; min-width:180px; color:#1f2937; font-size:14px;">'
+                f'💬 {fe_esc}</i>{fe_tts}</div>'
+                f'</div>'
+            )
+        forms_block = (
+            f'<div style="margin-top:12px; padding:10px 12px; background:#fffbeb; '
+            f'border-radius:10px;">'
+            f'<div style="font-size:14px; color:#78350f; font-weight:600; margin-bottom:4px;">'
+            f'💎 其他型態用法</div>'
+            + "".join(form_rows) + "</div>"
+        )
+
     html = f"""
     <div style="background:#f8fafc; color:#312e81; border:2px solid #4f46e5;
                 border-radius:16px; padding:22px;
@@ -606,13 +645,15 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
         {image_block}
         {example_block}
         {usage_block}
+        {forms_block}
     </div>
     """
     # 動態高度估計
     h = (130 + (50 if image else 0)
          + (60 if example else 0)
          + (40 if example_zh else 0)
-         + (50 if usage else 0))
+         + (50 if usage else 0)
+         + (40 + 92 * len(forms_with_ex) if forms_with_ex else 0))
     _embed_html(html, h)
 
 
@@ -782,13 +823,20 @@ def view_vocab() -> None:
     if not deck:
         st.info("目前沒有單字，請到下方新增，或到「📖 單字庫」生成。")
     else:
-        st.session_state.fc_index %= len(deck)
-        idx = st.session_state.fc_index
+        # 把 fc_index 從 session_state 改放到 data 內(寫到 dashboard_data.json 持久化,
+        # 重開瀏覽器/重新整理會接續上次的位置,不會每次從頭開始)
+        data.setdefault("fc_index", 0)
+        data["fc_index"] %= len(deck)
+        idx = data["fc_index"]
+        st.session_state.fc_index = idx  # 同步 session 給其他地方用
         w = deck[idx]
         is_bank_only = isinstance(w["id"], str) and w["id"].startswith("bank:")
+        # 學會數計算(只算使用者區的字)
+        learned_n = sum(1 for ww in words if ww.get("learned"))
         st.caption(
-            f"{idx + 1} / {len(deck)}"
+            f"📍 {idx + 1} / {len(deck)}"
             + (f"　·　共 {len(full_bank)} 字來自單字庫" if full_bank else "")
+            + f"　·　已學會 {learned_n} / {len(words)}"
         )
         mn = MNEMONICS.get(w["word"]) or full_bank.get(w["word"])
         render_flashcard(w, mn, st.session_state.fc_flipped)
@@ -796,27 +844,35 @@ def view_vocab() -> None:
         decomp = decompose_word(w["word"])
         if decomp:
             st.caption("🧩 字首／字根／字尾拆解")
-            # 動態高度:有幾個分支就配多高
             branches = sum(1 for k in ("prefix", "root", "suffix") if decomp.get(k))
             h = 200 if branches <= 1 else (260 if branches == 2 else 320)
             render_mermaid(build_word_mindmap(w["word"], decomp), height=h)
 
-        b1, b2, b3, b4 = st.columns(4)
+        b1, b2, b3, b4, b5 = st.columns(5)
         if b1.button("← 上一個", use_container_width=True):
-            st.session_state.fc_index = (idx - 1) % len(deck)
+            data["fc_index"] = (idx - 1) % len(deck)
             st.session_state.fc_flipped = False
+            save_data()
             st.rerun()
         if b2.button("🔄 翻面", use_container_width=True):
             st.session_state.fc_flipped = not st.session_state.fc_flipped
             st.rerun()
-        learn_label = ("（單字庫，到清單區管理）" if is_bank_only
+        learn_label = ("（單字庫專用）" if is_bank_only
                        else ("↩︎ 取消學會" if w["learned"] else "✅ 標記學會"))
         if b3.button(learn_label, use_container_width=True, disabled=is_bank_only):
             toggle_learned(w["id"])
             st.rerun()
-        if b4.button("下一個 →", use_container_width=True):
-            st.session_state.fc_index = (idx + 1) % len(deck)
+        if b4.button("🎲 隨機", use_container_width=True,
+                     help="隨機跳到任一張，避免每次從頭看相同的字"):
+            import random
+            data["fc_index"] = random.randrange(len(deck))
             st.session_state.fc_flipped = False
+            save_data()
+            st.rerun()
+        if b5.button("下一個 →", use_container_width=True):
+            data["fc_index"] = (idx + 1) % len(deck)
+            st.session_state.fc_flipped = False
+            save_data()
             st.rerun()
 
     st.divider()
@@ -1634,6 +1690,53 @@ def _build_reading_html(passage: dict) -> str:
     return html
 
 
+READING_GEN_PROMPT = """你是英文閱讀教材編輯。使用者給「主題 + 程度」,你產出一篇可互動的閱讀練習。
+
+# 嚴格輸出 JSON(只輸出 JSON,前後不得有任何文字、不得包 markdown code fence)
+{
+  "id": "topic-keyword-id",
+  "title": "英文標題",
+  "title_zh": "繁中標題",
+  "level": "A2 / B1 / B2 / C1 擇一",
+  "summary": "繁中一句話描述文章特色與適用文法",
+  "sentences": [
+    {
+      "en": "自然口語/書面英文,≤ 25 字/句",
+      "zh": "繁中翻譯",
+      "vocab": {"word": "中文翻譯", "word2": "..."},
+      "phrases": [{"en": "multi-word phrase", "zh": "中文 + 語境提示"}]
+    }
+  ],
+  "grammar": [
+    {"point": "文法重點", "explain": "繁中解說", "examples": ["例 1", "例 2", "例 3"]}
+  ]
+}
+
+# 數量規範
+- sentences: 6-8 句
+- 每句 vocab 5-8 個字(挑學習者最可能不懂的,key 用小寫純字母,不含標點)
+- 每句 phrases 2-4 個多字片語
+- grammar: 3-5 條重點
+
+# 程度差異
+- A2: 簡單現在式、基礎詞、生活情境
+- B1: 過去式 + 完成式、職場 / 旅行 / 情感
+- B2: 抽象概念、條件式、被動、複合句
+- C1: 文學 / 評論、進階句型、學術詞
+"""
+
+
+def _gen_reading(topic: str, level: str, tier: str) -> dict:
+    """呼叫 Gemini 產出一篇可互動閱讀(結構同 readings.py 條目)。"""
+    text = _llm_generate(READING_GEN_PROMPT,
+                         f"主題:{topic}\n程度:{level}",
+                         tier, max_tokens=6000)
+    m = re.search(r"\{[\s\S]*\}", text)
+    if not m:
+        raise RuntimeError(f"Gemini 回應內無 JSON: {text[:200]}")
+    return json.loads(m.group(0))
+
+
 def view_reading() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -1651,7 +1754,39 @@ def view_reading() -> None:
             "3. 滑鼠掃過陌生單字看翻譯\n"
             "4. 看文法重點 → 試造一句"
         )
-    for passage in READINGS:
+    # 🤖 AI 即時生成新閱讀
+    api_key = get_api_key()
+    with st.expander("🤖 AI 即時生成新閱讀（無上限，主題自選）", expanded=False):
+        if not api_key:
+            st.warning("尚未設定 Gemini API 金鑰。請至 sidebar 確認金鑰狀態。")
+        col1, col2, col3 = st.columns([4, 2, 2])
+        topic = col1.text_input(
+            "主題",
+            placeholder="例如：搬到新城市的第一週 / 創業失敗的教訓 / 養貓日常",
+            key="rd_topic",
+        )
+        level = col2.selectbox("程度", ["A2", "B1", "B2", "C1"], index=1, key="rd_lvl")
+        if col3.button("🚀 生成", disabled=not api_key, use_container_width=True,
+                       type="primary"):
+            try:
+                with st.spinner(f"Gemini 生成「{topic or '日常生活'}」({level})…"):
+                    new_reading = _gen_reading(
+                        topic.strip() or "Daily life", level,
+                        next(iter(_MODEL_MAP.keys()))  # Flash-Lite
+                    )
+                live = st.session_state.setdefault("live_readings", [])
+                live.append(new_reading)
+                st.success(f"已新增「{new_reading.get('title', '(無標題)')}」,展開下方閱讀。")
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
+        live = st.session_state.get("live_readings", [])
+        if live:
+            st.caption(f"🌱 本 session 已生成 {len(live)} 篇（重新整理會消失,記得加入複習保留句子）")
+
+    # 渲染 READINGS(靜態) + live_readings(本 session AI 生成)
+    all_passages = list(READINGS) + st.session_state.get("live_readings", [])
+    for passage in all_passages:
         with st.expander(
             f"**{passage['title']}**　·　{passage.get('title_zh','')}　·　"
             f"程度 {passage['level']}　·　{passage['summary']}"
@@ -1830,6 +1965,22 @@ def view_vocab_bank() -> None:
         return
 
     words = sorted(bank.keys())
+
+    # 📊 統計與去重檢查
+    keys_lower = [k.lower() for k in words]
+    unique_lower = set(keys_lower)
+    dups = [k for k in words if keys_lower.count(k.lower()) > 1]
+    incomplete = [k for k in words if not bank[k].get("meaning_zh")]
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("📚 庫存", len(bank))
+    c2.metric("🔤 唯一鍵", len(unique_lower))
+    c3.metric("⚠️ 重複", len(dups), delta_color="inverse")
+    c4.metric("❓ 缺欄位", len(incomplete), delta_color="inverse")
+    if dups:
+        st.warning(f"發現大小寫重複: {dups[:10]}")
+    if incomplete:
+        st.caption(f"⚠️ {len(incomplete)} 字缺 meaning_zh，可能是 Gemini 生成失敗的殘留")
+
     query = st.text_input(
         "搜尋（英文／中文／諧音）",
         placeholder="輸入單字、諧音、或中文意思片段",

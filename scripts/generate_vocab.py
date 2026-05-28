@@ -48,7 +48,8 @@ array 內每個物件對應一個輸入單字,順序與輸入相同,且必須含
 - "usage_zh": 一句繁中,說明此字在對話中的「使用時機與搭配」(常見 collocation、語感、正式或口語)
 - "pos": 詞性的中文標籤,例如 "動詞"、"名詞"、"形容詞"、"副詞"、"介系詞"、"連接詞"、"助動詞"。
   多詞性用 " / " 連起來,例如 "動詞 / 名詞"
-- "other_forms": 同源衍生字陣列(可空),每筆 {"word": "...", "pos": "...", "meaning_zh": "..."}。
+- "other_forms": 同源衍生字陣列(可空),每筆 {"word", "pos", "meaning_zh", "example"}。
+  example = 一句 ≤ 10 字、自然口語的母語英文例句,展示該衍生字的真實用法。
   最多 4 筆,選最常用的(派生形容詞、名詞化、副詞等)。基本詞可空陣列 []。
 
 # 品質規範
@@ -57,7 +58,7 @@ array 內每個物件對應一個輸入單字,順序與輸入相同,且必須含
 - 用法要點出常見搭配或語境差異。
 
 # 輸出範例（單字 "consider"）
-[{"word":"consider","meaning_zh":"考慮、視為","kk":"[kənˈsɪdɚ]","phonics":"kun-SIH-der","homophone":"肯洗熱","image":"你『肯』不『肯』『洗熱』水？讓你考慮一下。","example_en":"Have you considered taking the train?","example_zh":"你考慮過改搭火車嗎?","usage_zh":"提建議用 'Have you considered ...?' 比直接 'You should' 更委婉,日常對話常見。","pos":"動詞","other_forms":[{"word":"consideration","pos":"名詞","meaning_zh":"考慮；體貼"},{"word":"considerable","pos":"形容詞","meaning_zh":"相當大的"},{"word":"considerate","pos":"形容詞","meaning_zh":"體貼的"}]}]
+[{"word":"consider","meaning_zh":"考慮、視為","kk":"[kənˈsɪdɚ]","phonics":"kun-SIH-der","homophone":"肯洗熱","image":"你『肯』不『肯』『洗熱』水？讓你考慮一下。","example_en":"Have you considered taking the train?","example_zh":"你考慮過改搭火車嗎?","usage_zh":"提建議用 'Have you considered ...?' 比直接 'You should' 更委婉,日常對話常見。","pos":"動詞","other_forms":[{"word":"consideration","pos":"名詞","meaning_zh":"考慮；體貼","example":"Please take my advice into consideration."},{"word":"considerable","pos":"形容詞","meaning_zh":"相當大的","example":"It took considerable effort to finish."},{"word":"considerate","pos":"形容詞","meaning_zh":"體貼的","example":"He's always considerate of others' feelings."}]}]
 """
 
 
