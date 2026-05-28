@@ -8,7 +8,9 @@
     "image": "把寶藏「蓋特」蓋住，誰先發現誰就 get。",
     "example_en": "Did you get the email?",
     "usage_zh": "萬用動詞：拿到 (get a job)、變化 (get sick / get up)、抵達 (get there)。口語高頻第一名。",
-    "example_zh": "你收到那封信了嗎？"
+    "example_zh": "你收到那封信了嗎？",
+    "pos": "動詞",
+    "other_forms": []
   },
   "make": {
     "word": "make",
@@ -19,7 +21,9 @@
     "image": "美客來店裡用心做手作甜點。",
     "example_en": "Can you make dinner tonight?",
     "usage_zh": "製作或讓某事發生：make sense（合理）、make money（賺錢）、make sb. happy（讓某人開心）。",
-    "example_zh": "你今晚可以做晚餐嗎？"
+    "example_zh": "你今晚可以做晚餐嗎？",
+    "pos": "動詞",
+    "other_forms": []
   },
   "take": {
     "word": "take",
@@ -30,7 +34,9 @@
     "image": "提客人的行李上樓，take 起來真重。",
     "example_en": "It takes about an hour to get there.",
     "usage_zh": "take a shower（洗澡）、take the bus（搭公車）、take time（花時間）。口語很常用。",
-    "example_zh": "到那裡大概要一小時。"
+    "example_zh": "到那裡大概要一小時。",
+    "pos": "動詞",
+    "other_forms": []
   },
   "give": {
     "word": "give",
@@ -41,7 +47,9 @@
     "image": "把禮物 give 給夫人，她超開心。",
     "example_en": "Can you give me a hand?",
     "usage_zh": "give sb. a hand（幫忙）、give up（放棄）、give it a try（試一下）都是日常高頻片語。",
-    "example_zh": "可以幫我個忙嗎？"
+    "example_zh": "可以幫我個忙嗎？",
+    "pos": "動詞",
+    "other_forms": []
   },
   "go": {
     "word": "go",
@@ -52,7 +60,9 @@
     "image": "我們現在「購」物去 ── let's go！",
     "example_en": "Let's go!",
     "usage_zh": "移動或進行動作。how's it going?（最近怎樣）、go for it（拚了）是日常起手式。",
-    "example_zh": "走吧！"
+    "example_zh": "走吧！",
+    "pos": "動詞",
+    "other_forms": []
   },
   "come": {
     "word": "come",
@@ -63,7 +73,9 @@
     "image": "媽媽叫「卡姆」過來吃飯，孩子就 come。",
     "example_en": "Come over to my place!",
     "usage_zh": "邀人來：come over（來我家）；come on 是萬用「加油／別這樣／來吧」。",
-    "example_zh": "來我家吧！"
+    "example_zh": "來我家吧！",
+    "pos": "動詞",
+    "other_forms": []
   },
   "see": {
     "word": "see",
@@ -74,7 +86,9 @@
     "image": "我面向西邊 see 夕陽落下。",
     "example_en": "I see what you mean.",
     "usage_zh": "I see = 我懂了；see you 是道別；see a doctor 是去看醫生。",
-    "example_zh": "我懂你的意思。"
+    "example_zh": "我懂你的意思。",
+    "pos": "動詞",
+    "other_forms": []
   },
   "look": {
     "word": "look",
@@ -85,7 +99,15 @@
     "image": "路克回頭 look 一下路況再過馬路。",
     "example_en": "Look at this!",
     "usage_zh": "主動看：look at；表「樣子」：look tired（看起來累）、look like（像）。",
-    "example_zh": "你看這個！"
+    "example_zh": "你看這個！",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "lookout",
+        "pos": "名詞",
+        "meaning_zh": "瞭望；警戒"
+      }
+    ]
   },
   "want": {
     "word": "want",
@@ -96,7 +118,9 @@
     "image": "國王特別想要的東西都拿得到。",
     "example_en": "I want some water, please.",
     "usage_zh": "直接想要：want a coffee；want to do = wanna do（口語縮）。",
-    "example_zh": "麻煩給我一些水。"
+    "example_zh": "麻煩給我一些水。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
   },
   "need": {
     "word": "need",
@@ -107,7 +131,9 @@
     "image": "「你的」幫忙我很需要。",
     "example_en": "I need a break.",
     "usage_zh": "need to do = 必須；比 must 軟；in need = 有困難。",
-    "example_zh": "我需要休息一下。"
+    "example_zh": "我需要休息一下。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
   },
   "know": {
     "word": "know",
@@ -118,7 +144,20 @@
     "image": "一弄就 know，原來這麼簡單。",
     "example_en": "I don't know.",
     "usage_zh": "you know 是口語語助詞；know how to 知道怎麼做；I know, right? = 我也覺得對吧。",
-    "example_zh": "我不知道。"
+    "example_zh": "我不知道。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "knowledge",
+        "pos": "名詞",
+        "meaning_zh": "知識"
+      },
+      {
+        "word": "knowledgeable",
+        "pos": "形容詞",
+        "meaning_zh": "博學的"
+      }
+    ]
   },
   "think": {
     "word": "think",
@@ -129,7 +168,25 @@
     "image": "個性可以從 think 的方式看出來。",
     "example_en": "I think so.",
     "usage_zh": "I think... 是日常表達意見；what do you think? = 你覺得呢？比 I believe 軟。",
-    "example_zh": "我也這麼覺得。"
+    "example_zh": "我也這麼覺得。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "thought",
+        "pos": "名詞 / 動詞過去式",
+        "meaning_zh": "想法；想（過去式）"
+      },
+      {
+        "word": "thinker",
+        "pos": "名詞",
+        "meaning_zh": "思想家"
+      },
+      {
+        "word": "thoughtful",
+        "pos": "形容詞",
+        "meaning_zh": "體貼的"
+      }
+    ]
   },
   "feel": {
     "word": "feel",
@@ -140,7 +197,15 @@
     "image": "飛上天的 feel 超棒。",
     "example_en": "How do you feel?",
     "usage_zh": "feel like + Ving = 想要做某事；feel free to ask = 別客氣儘管問。",
-    "example_zh": "你感覺怎麼樣？"
+    "example_zh": "你感覺怎麼樣？",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "feeling",
+        "pos": "名詞",
+        "meaning_zh": "感覺；情緒"
+      }
+    ]
   },
   "work": {
     "word": "work",
@@ -151,7 +216,20 @@
     "image": "上完我課就去 work。",
     "example_en": "It works!",
     "usage_zh": "it works = 可行／管用；work out = 健身或事情解決；at work = 上班中。",
-    "example_zh": "可以用！"
+    "example_zh": "可以用！",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "worker",
+        "pos": "名詞",
+        "meaning_zh": "工人；勞動者"
+      },
+      {
+        "word": "working",
+        "pos": "形容詞",
+        "meaning_zh": "在工作的；管用的"
+      }
+    ]
   },
   "find": {
     "word": "find",
@@ -162,7 +240,15 @@
     "image": "find 到飯的香味，才知道餓了。",
     "example_en": "I can't find my keys.",
     "usage_zh": "find it hard to do = 覺得某事困難；find out = 查明、發現真相。",
-    "example_zh": "我找不到我的鑰匙。"
+    "example_zh": "我找不到我的鑰匙。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "finding",
+        "pos": "名詞",
+        "meaning_zh": "發現；研究結果"
+      }
+    ]
   },
   "become": {
     "word": "become",
@@ -173,7 +259,9 @@
     "image": "必須卡進姆指縫，才能 become 新形狀。",
     "example_en": "He became a teacher last year.",
     "usage_zh": "正式「變成」，後接名詞或形容詞；口語常改用 get / turn into。",
-    "example_zh": "他去年成為老師。"
+    "example_zh": "他去年成為老師。",
+    "pos": "動詞",
+    "other_forms": []
   },
   "leave": {
     "word": "leave",
@@ -184,7 +272,9 @@
     "image": "立刻送丈夫出差，要 leave 半年。",
     "example_en": "I have to leave now.",
     "usage_zh": "同時表「離開」與「留下」(leave it here)；leave me alone = 別煩我。",
-    "example_zh": "我現在得走了。"
+    "example_zh": "我現在得走了。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
   },
   "help": {
     "word": "help",
@@ -195,7 +285,20 @@
     "image": "戴上黑色耳機普遍能 help 專注。",
     "example_en": "Can you help me with this?",
     "usage_zh": "help sb. with sth.（幫某人某事）；help yourself = 請自便；can I help you? 是店員開場白。",
-    "example_zh": "可以幫我看這個嗎？"
+    "example_zh": "可以幫我看這個嗎？",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "helpful",
+        "pos": "形容詞",
+        "meaning_zh": "有幫助的"
+      },
+      {
+        "word": "helper",
+        "pos": "名詞",
+        "meaning_zh": "幫手"
+      }
+    ]
   },
   "talk": {
     "word": "talk",
@@ -206,7 +309,15 @@
     "image": "透過 talk 招攬客人下單。",
     "example_en": "Let's talk later.",
     "usage_zh": "雙向對話：talk to sb. = 跟誰說；talk about = 聊關於；talk it over = 商量。",
-    "example_zh": "我們等下再聊。"
+    "example_zh": "我們等下再聊。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "talkative",
+        "pos": "形容詞",
+        "meaning_zh": "健談的"
+      }
+    ]
   },
   "ask": {
     "word": "ask",
@@ -217,7 +328,9 @@
     "image": "阿斯匹靈藥師，要先 ask 醫師再吃。",
     "example_en": "Can I ask you something?",
     "usage_zh": "ask for sth.（索取）、ask sb. out（約會邀請）、ask sb. to do（請求）。",
-    "example_zh": "我可以問你個問題嗎？"
+    "example_zh": "我可以問你個問題嗎？",
+    "pos": "動詞",
+    "other_forms": []
   },
   "try": {
     "word": "try",
@@ -228,7 +341,9 @@
     "image": "用力踹門看會不會開，try 一下嘛！",
     "example_en": "Just try it, you might like it.",
     "usage_zh": "try to do = 努力做；try doing = 試試看做；give it a try = 試試看。",
-    "example_zh": "你就試試看，搞不好你會喜歡。"
+    "example_zh": "你就試試看，搞不好你會喜歡。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
   },
   "call": {
     "word": "call",
@@ -239,7 +354,15 @@
     "image": "用手指摳手機螢幕 call 朋友。",
     "example_en": "Call me later.",
     "usage_zh": "give sb. a call = 打電話給某人；what's it called? = 那叫什麼？call sb. names = 罵人。",
-    "example_zh": "等下打給我。"
+    "example_zh": "等下打給我。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "caller",
+        "pos": "名詞",
+        "meaning_zh": "打電話的人"
+      }
+    ]
   },
   "seem": {
     "word": "seem",
@@ -250,7 +373,15 @@
     "image": "心裡覺得他 seem 不太開心。",
     "example_en": "It seems okay to me.",
     "usage_zh": "seem + 形容詞、seems like + 子句、it seems that + 子句 都很常用，表客觀印象。",
-    "example_zh": "我覺得還可以。"
+    "example_zh": "我覺得還可以。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "seemingly",
+        "pos": "副詞",
+        "meaning_zh": "看起來"
+      }
+    ]
   },
   "keep": {
     "word": "keep",
@@ -261,7 +392,15 @@
     "image": "雞撲翅噗噗，keep 持續向前飛。",
     "example_en": "Keep going, you're almost there!",
     "usage_zh": "keep + Ving = 持續做；keep it up = 保持下去（鼓勵）；keep in touch = 保持聯絡。",
-    "example_zh": "繼續加油，你快到了！"
+    "example_zh": "繼續加油，你快到了！",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "keeper",
+        "pos": "名詞",
+        "meaning_zh": "看守者"
+      }
+    ]
   },
   "start": {
     "word": "start",
@@ -272,7 +411,15 @@
     "image": "動腦思考踏出第一步，start！",
     "example_en": "When does the movie start?",
     "usage_zh": "通用「開始」：start with = 從...開始；start over = 重來；get started = 動起來。",
-    "example_zh": "電影幾點開始？"
+    "example_zh": "電影幾點開始？",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "starter",
+        "pos": "名詞",
+        "meaning_zh": "開胃菜；起步者"
+      }
+    ]
   },
   "stop": {
     "word": "stop",
@@ -283,7 +430,9 @@
     "image": "撞牆死頭破，必須立刻 stop！",
     "example_en": "Stop it, that's enough.",
     "usage_zh": "stop it = 命令「住手」；stop + Ving = 別再做；stop to do = 停下來去做。語意差很多注意！",
-    "example_zh": "夠了，住手。"
+    "example_zh": "夠了，住手。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
   },
   "run": {
     "word": "run",
@@ -294,7 +443,20 @@
     "image": "讓孩子在公園 run 來 run 去。",
     "example_en": "I have to run, see you later!",
     "usage_zh": "I have to run = 我要走了（趕時間）；run a shop = 經營店；in the long run = 長遠來看。",
-    "example_zh": "我得走了，晚點見！"
+    "example_zh": "我得走了，晚點見！",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "runner",
+        "pos": "名詞",
+        "meaning_zh": "跑者"
+      },
+      {
+        "word": "running",
+        "pos": "名詞 / 形容詞",
+        "meaning_zh": "跑步；持續的"
+      }
+    ]
   },
   "walk": {
     "word": "walk",
@@ -305,7 +467,15 @@
     "image": "我克服懶惰，每天 walk 三十分鐘。",
     "example_en": "Let's go for a walk.",
     "usage_zh": "go for a walk = 去散步；walk the dog = 遛狗；a short walk away = 走一下就到。",
-    "example_zh": "我們去散散步吧。"
+    "example_zh": "我們去散散步吧。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "walker",
+        "pos": "名詞",
+        "meaning_zh": "步行者"
+      }
+    ]
   },
   "eat": {
     "word": "eat",
@@ -316,7 +486,15 @@
     "image": "一頓飯就 eat 解決飢餓。",
     "example_en": "What do you want to eat?",
     "usage_zh": "eat out = 外食；eat in = 在家吃；what's eating you? = 你怎麼了（看起來不悅）。",
-    "example_zh": "你想吃什麼？"
+    "example_zh": "你想吃什麼？",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "eater",
+        "pos": "名詞",
+        "meaning_zh": "食客"
+      }
+    ]
   },
   "drink": {
     "word": "drink",
@@ -327,7 +505,20 @@
     "image": "朱古力凜冬可 drink，溫暖好喝。",
     "example_en": "Want a drink?",
     "usage_zh": "Want a drink? 常暗指「來杯酒」；soft drink = 無酒精飲料；drink up = 喝完。",
-    "example_zh": "要不要喝一杯？"
+    "example_zh": "要不要喝一杯？",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "drinker",
+        "pos": "名詞",
+        "meaning_zh": "飲酒者"
+      },
+      {
+        "word": "drunk",
+        "pos": "形容詞 / 名詞",
+        "meaning_zh": "喝醉的；醉漢"
+      }
+    ]
   },
   "time": {
     "word": "time",
@@ -338,7 +529,20 @@
     "image": "「太晚」了，time 已經來不及。",
     "example_en": "What time is it?",
     "usage_zh": "what time = 幾點；on time = 準時；have a good time = 玩得開心。",
-    "example_zh": "現在幾點？"
+    "example_zh": "現在幾點？",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "timing",
+        "pos": "名詞",
+        "meaning_zh": "時機"
+      },
+      {
+        "word": "timely",
+        "pos": "形容詞",
+        "meaning_zh": "及時的"
+      }
+    ]
   },
   "year": {
     "word": "year",
@@ -349,7 +553,15 @@
     "image": "每年帶醫兒去做健檢一次。",
     "example_en": "Last year was crazy.",
     "usage_zh": "this year / last year / next year；five years old = 五歲；year by year = 一年一年。",
-    "example_zh": "去年超瘋狂的。"
+    "example_zh": "去年超瘋狂的。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "yearly",
+        "pos": "形容詞 / 副詞",
+        "meaning_zh": "每年的；每年"
+      }
+    ]
   },
   "day": {
     "word": "day",
@@ -360,7 +572,15 @@
     "image": "爹爹陪我度過 day 的每一刻。",
     "example_en": "Have a nice day!",
     "usage_zh": "have a nice day = 祝你今天順利；one day = 有一天；day off = 休假日。",
-    "example_zh": "祝你今天順利！"
+    "example_zh": "祝你今天順利！",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "daily",
+        "pos": "形容詞 / 副詞",
+        "meaning_zh": "每日的；每日"
+      }
+    ]
   },
   "week": {
     "word": "week",
@@ -371,7 +591,20 @@
     "image": "週末尾巴接待最後 week 的客人。",
     "example_en": "See you next week.",
     "usage_zh": "this/last/next week；weekend = 週末；weekday = 平日；twice a week = 一週兩次。",
-    "example_zh": "下週見。"
+    "example_zh": "下週見。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "weekly",
+        "pos": "形容詞 / 副詞",
+        "meaning_zh": "每週的；每週"
+      },
+      {
+        "word": "weekend",
+        "pos": "名詞",
+        "meaning_zh": "週末"
+      }
+    ]
   },
   "life": {
     "word": "life",
@@ -382,7 +615,25 @@
     "image": "賴在媽媽的撫摸裡，那才是 life。",
     "example_en": "That's life!",
     "usage_zh": "That's life = 人生就是這樣（無奈）；life is good = 生活美好；real life = 現實生活。",
-    "example_zh": "人生就是這樣！"
+    "example_zh": "人生就是這樣！",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "live",
+        "pos": "動詞 / 形容詞",
+        "meaning_zh": "居住；現場的"
+      },
+      {
+        "word": "lively",
+        "pos": "形容詞",
+        "meaning_zh": "活潑的"
+      },
+      {
+        "word": "lifetime",
+        "pos": "名詞",
+        "meaning_zh": "一生"
+      }
+    ]
   },
   "family": {
     "word": "family",
@@ -393,7 +644,15 @@
     "image": "凡是有米有力的，都是 family。",
     "example_en": "Family comes first.",
     "usage_zh": "family comes first = 家人最重要；family member = 家人；start a family = 成家。",
-    "example_zh": "家人最重要。"
+    "example_zh": "家人最重要。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "familiar",
+        "pos": "形容詞",
+        "meaning_zh": "熟悉的（同源字）"
+      }
+    ]
   },
   "friend": {
     "word": "friend",
@@ -404,7 +663,20 @@
     "image": "練福氣的最佳搭檔就是 friend。",
     "example_en": "He's a good friend of mine.",
     "usage_zh": "make friends = 交朋友；best friend = 最好的朋友；friend of mine = 我的朋友（口語）。",
-    "example_zh": "他是我的好朋友。"
+    "example_zh": "他是我的好朋友。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "friendly",
+        "pos": "形容詞",
+        "meaning_zh": "友善的"
+      },
+      {
+        "word": "friendship",
+        "pos": "名詞",
+        "meaning_zh": "友誼"
+      }
+    ]
   },
   "world": {
     "word": "world",
@@ -415,7 +687,20 @@
     "image": "我兒的 world 就是他的小宇宙。",
     "example_en": "The world is changing fast.",
     "usage_zh": "around the world = 全世界；in the world = 全世界（強調語氣）；World Cup = 世界盃。",
-    "example_zh": "這個世界變化好快。"
+    "example_zh": "這個世界變化好快。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "worldly",
+        "pos": "形容詞",
+        "meaning_zh": "世俗的"
+      },
+      {
+        "word": "worldwide",
+        "pos": "形容詞 / 副詞",
+        "meaning_zh": "全世界的；在全世界"
+      }
+    ]
   },
   "home": {
     "word": "home",
@@ -426,7 +711,20 @@
     "image": "厚實的母愛就是 home 的味道。",
     "example_en": "I'm going home.",
     "usage_zh": "go home / get home = 回家；at home = 在家／自在；feel at home = 賓至如歸。",
-    "example_zh": "我要回家了。"
+    "example_zh": "我要回家了。",
+    "pos": "名詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "homeless",
+        "pos": "形容詞",
+        "meaning_zh": "無家可歸的"
+      },
+      {
+        "word": "homesick",
+        "pos": "形容詞",
+        "meaning_zh": "想家的"
+      }
+    ]
   },
   "house": {
     "word": "house",
@@ -437,7 +735,20 @@
     "image": "好大的 house，好喔，貴死人。",
     "example_en": "Welcome to my house!",
     "usage_zh": "my house = 我家（建築）；on the house = 店家招待（免費）；house party = 在家裡開派對。",
-    "example_zh": "歡迎來我家！"
+    "example_zh": "歡迎來我家！",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "housing",
+        "pos": "名詞",
+        "meaning_zh": "住房；房地產"
+      },
+      {
+        "word": "household",
+        "pos": "名詞 / 形容詞",
+        "meaning_zh": "家庭；家用的"
+      }
+    ]
   },
   "school": {
     "word": "school",
@@ -448,7 +759,15 @@
     "image": "管教很嚴的司長很酷，這就是 school。",
     "example_en": "I have to go to school.",
     "usage_zh": "go to school = 上學；after school = 放學後；school year = 學年。",
-    "example_zh": "我得去上學了。"
+    "example_zh": "我得去上學了。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "schooling",
+        "pos": "名詞",
+        "meaning_zh": "學校教育"
+      }
+    ]
   },
   "job": {
     "word": "job",
@@ -459,7 +778,9 @@
     "image": "工作壓力炸爆，這就是 job。",
     "example_en": "Good job!",
     "usage_zh": "good job = 做得好；get a job = 找到工作；day job = 正職；odd jobs = 零工。",
-    "example_zh": "做得好！"
+    "example_zh": "做得好！",
+    "pos": "名詞",
+    "other_forms": []
   },
   "money": {
     "word": "money",
@@ -470,7 +791,9 @@
     "image": "媽媽叫妮妮要好好存 money。",
     "example_en": "I need to make more money.",
     "usage_zh": "make money = 賺錢；save money = 存錢；waste money = 浪費錢；out of money = 沒錢。",
-    "example_zh": "我得多賺點錢。"
+    "example_zh": "我得多賺點錢。",
+    "pos": "名詞",
+    "other_forms": []
   },
   "water": {
     "word": "water",
@@ -481,7 +804,15 @@
     "image": "我大口喝下 water 解渴。",
     "example_en": "Can I have some water?",
     "usage_zh": "drink water = 喝水；hot/cold water = 熱／冷水；water bottle = 水瓶。",
-    "example_zh": "可以給我一些水嗎？"
+    "example_zh": "可以給我一些水嗎？",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "watery",
+        "pos": "形容詞",
+        "meaning_zh": "水分多的；淡的"
+      }
+    ]
   },
   "food": {
     "word": "food",
@@ -492,7 +823,9 @@
     "image": "夫的胃容不下這麼多 food。",
     "example_en": "The food is amazing here.",
     "usage_zh": "comfort food = 療癒食物；fast food = 速食；junk food = 垃圾食物；food court = 美食街。",
-    "example_zh": "這裡的食物超好吃。"
+    "example_zh": "這裡的食物超好吃。",
+    "pos": "名詞",
+    "other_forms": []
   },
   "music": {
     "word": "music",
@@ -503,7 +836,20 @@
     "image": "把奇謬的日課放成 music，超療癒。",
     "example_en": "I love this music.",
     "usage_zh": "listen to music = 聽音樂；play music = 演奏／播放音樂；music to my ears = 我愛聽的（好消息）。",
-    "example_zh": "我超愛這首音樂。"
+    "example_zh": "我超愛這首音樂。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "musical",
+        "pos": "形容詞 / 名詞",
+        "meaning_zh": "音樂的；歌舞劇"
+      },
+      {
+        "word": "musician",
+        "pos": "名詞",
+        "meaning_zh": "音樂家"
+      }
+    ]
   },
   "book": {
     "word": "book",
@@ -514,7 +860,20 @@
     "image": "不克制就一口氣讀完一本 book。",
     "example_en": "I'm reading a great book.",
     "usage_zh": "名詞「書」也是動詞「預訂」(book a table 訂位)；book club = 讀書會。",
-    "example_zh": "我在讀一本很棒的書。"
+    "example_zh": "我在讀一本很棒的書。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "booking",
+        "pos": "名詞",
+        "meaning_zh": "預訂"
+      },
+      {
+        "word": "bookish",
+        "pos": "形容詞",
+        "meaning_zh": "書呆子氣的"
+      }
+    ]
   },
   "idea": {
     "word": "idea",
@@ -525,7 +884,15 @@
     "image": "愛逮兒的偵探，腦中總有奇 idea。",
     "example_en": "Good idea!",
     "usage_zh": "good idea = 好主意；no idea = 不知道；I have an idea = 我有個想法。",
-    "example_zh": "好主意！"
+    "example_zh": "好主意！",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "ideal",
+        "pos": "形容詞 / 名詞",
+        "meaning_zh": "理想的；理想"
+      }
+    ]
   },
   "problem": {
     "word": "problem",
@@ -536,7 +903,15 @@
     "image": "怕得渾身冒怖、發冷，那就是 problem。",
     "example_en": "No problem!",
     "usage_zh": "no problem = 沒問題（謙辭）；have a problem = 有困難；problem solver = 解決問題的人。",
-    "example_zh": "沒問題！"
+    "example_zh": "沒問題！",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "problematic",
+        "pos": "形容詞",
+        "meaning_zh": "有問題的"
+      }
+    ]
   },
   "way": {
     "word": "way",
@@ -547,6 +922,8 @@
     "image": "「喂」問路：哪條 way 走得到？",
     "example_en": "There's gotta be a way.",
     "usage_zh": "in a way = 某種程度上；on my way = 我在路上；no way = 不可能；by the way = 對了。",
-    "example_zh": "一定有辦法的。"
+    "example_zh": "一定有辦法的。",
+    "pos": "名詞",
+    "other_forms": []
   }
 }
