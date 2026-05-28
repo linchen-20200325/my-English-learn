@@ -166,39 +166,66 @@ def _secret_names() -> list:
         return []
 
 
+def _clean_key(v) -> str | None:
+    """超兇 key 清洗:處理 list/dict/控制字元/引號/換行/多 key 串接/'KEY=VALUE' 形式。
+    最後優先回傳開頭含 AIza 的合法 Gemini key 樣式。"""
+    import unicodedata as _ud
+    if v is None:
+        return None
+    if isinstance(v, (list, tuple)):
+        for item in v:
+            s = _clean_key(item)
+            if s:
+                return s
+        return None
+    if isinstance(v, dict):
+        for item in v.values():
+            s = _clean_key(item)
+            if s:
+                return s
+        return None
+    s = str(v)
+    # 去掉控制字元、BOM、不可見 mark
+    s = "".join(c for c in s if _ud.category(c)[0] not in ("C", "M") or c == " ")
+    s = s.strip()
+    # 連續剝外層引號 / 反引號
+    while len(s) >= 2 and s[0] == s[-1] and s[0] in ('"', "'", "`"):
+        s = s[1:-1].strip()
+    # 處理 "KEY = AIza..." 這種把整行貼進來的失誤
+    if "=" in s and "AIza" in s:
+        for chunk in re.split(r"[=]", s):
+            chunk = chunk.strip().strip('"').strip("'")
+            if chunk.startswith("AIza") and len(chunk) >= 30:
+                return chunk
+    # 多 key 用分隔符串接:取第一個合法的
+    if re.search(r"[,;\n\r\t]", s):
+        for chunk in re.split(r"[,;\n\r\t]+", s):
+            chunk = chunk.strip().strip('"').strip("'")
+            if chunk.startswith("AIza") and len(chunk) >= 30:
+                return chunk
+    return s or None
+
+
 def get_api_key() -> str | None:
-    """讀 Gemini key。先試標準名稱(GEMINI_API_KEY / GOOGLE_API_KEY),
-    沒中就掃描所有 secrets/環境變數,只要名稱含 GEMINI 或 GOOGLE 就採用,
-    讓使用者在 Cloud Secrets 取的名字較寬鬆也能抓到。
-
-    防呆:剝掉前後空白與多餘引號(常見複製貼上失誤),且若值是 list 則取第一筆。"""
-
-    def _clean(v):
-        if isinstance(v, (list, tuple)) and v:
-            v = v[0]
-        if v is None:
-            return None
-        s = str(v).strip()
-        # 連續剝外層引號(處理 "key" / 'key' / ""key"" 等粗心輸入)
-        while len(s) >= 2 and s[0] == s[-1] and s[0] in ('"', "'"):
-            s = s[1:-1].strip()
-        return s or None
-
-    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GEMINI_KEY", "GOOGLE_GENAI_API_KEY"):
-        v = _clean(_read_secret(name))
+    """讀 Gemini key。標準名稱優先,沒中就掃所有 secrets/env vars 含 GEMINI/GOOGLE。
+    經 _clean_key 超兇清洗(剝引號、控制字元、多 key 拆解、KEY=VALUE 拆解)。"""
+    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GEMINI_KEY",
+                 "GOOGLE_GENAI_API_KEY", "GEMINI_API_KEYS"):
+        v = _clean_key(_read_secret(name))
         if v:
             return v
-    # 寬鬆比對
     for name in _secret_names():
         upper = name.upper()
         if ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
-            v = _clean(_read_secret(name))
+            v = _clean_key(_read_secret(name))
             if v:
                 return v
     for name, val in os.environ.items():
         upper = name.upper()
         if val and ("GEMINI" in upper or "GOOGLE" in upper) and "API" in upper:
-            return _clean(val)
+            cleaned = _clean_key(val)
+            if cleaned:
+                return cleaned
     return None
 
 
@@ -1135,6 +1162,36 @@ def view_vocab_bank() -> None:
             help="勾選後每次生成完會用 GitHub Contents API 把 vocab_bank.json commit 回 repo。"
                  "需在 Cloud Secrets 設 GITHUB_TOKEN（PAT，含 repo 寫權限）。",
         )
+        # 一鍵測金鑰是否真的可以叫 Gemini(避免 sidebar 抓到但 Google 拒的情況)
+        if st.button("🔍 測試金鑰是否能叫到 Gemini",
+                     disabled=not api_key, use_container_width=True):
+            with st.spinner("呼叫 gemini-2.5-flash 問候一下..."):
+                try:
+                    from google import genai
+                    from google.genai import types
+                    client = genai.Client(api_key=api_key)
+                    resp = client.models.generate_content(
+                        model="gemini-2.5-flash",
+                        contents="Reply with just: hi from gemini",
+                        config=types.GenerateContentConfig(max_output_tokens=20),
+                    )
+                    text = (resp.text or "(空回應)").strip()
+                    st.success(f"✅ Gemini 回:{text}　·　key 沒問題,可開始生成。")
+                except Exception as e:  # noqa: BLE001
+                    em = str(e)
+                    if "API_KEY_INVALID" in em or "API key not valid" in em:
+                        st.error(
+                            f"❌ key 字串送到 Google 被拒（{type(e).__name__}）。\n\n"
+                            f"app 端讀到的字串長度 = **{len(api_key)}**、前 8 字 = `{api_key[:8]}`、"
+                            f"後 4 字 = `{api_key[-4:]}`。\n\n"
+                            "如果你別處(curl / AI Studio / 其他 app)可以用同一把 key,"
+                            "極可能是 Cloud Secrets 編輯時多塞了奇怪字元(如換行、引號、整行貼進來)。"
+                            "請到 Streamlit Cloud Secrets,把 GEMINI_API_KEYS 整條刪掉重貼:\n"
+                            "```toml\nGEMINI_API_KEYS = \"AIzaSy...\"\n```\n"
+                            "(只貼 AIza 開頭那串純 key,前後不留空白)。"
+                        )
+                    else:
+                        st.error(f"❌ 失敗:{type(e).__name__}: {em[:300]}")
         if col3.button("🚀 開始生成", disabled=not api_key,
                        use_container_width=True, type="primary"):
             try:
