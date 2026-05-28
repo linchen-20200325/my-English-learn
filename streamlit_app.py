@@ -638,7 +638,10 @@ def view_vocab() -> None:
         decomp = decompose_word(w["word"])
         if decomp:
             st.caption("🧩 字首／字根／字尾拆解")
-            render_mermaid(build_word_mindmap(w["word"], decomp), height=260)
+            # 動態高度:有幾個分支就配多高
+            branches = sum(1 for k in ("prefix", "root", "suffix") if decomp.get(k))
+            h = 200 if branches <= 1 else (260 if branches == 2 else 320)
+            render_mermaid(build_word_mindmap(w["word"], decomp), height=h)
 
         b1, b2, b3, b4 = st.columns(4)
         if b1.button("← 上一個", use_container_width=True):
