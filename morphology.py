@@ -48,6 +48,77 @@ def build_mindmap(title: str, items: list) -> str:
     return "\n".join(lines)
 
 
+def _affix_variants(m: str, side: str) -> list:
+    """把 'in- im-' 拆成 ['in','im'];'-tion -sion' 拆成 ['tion','sion'];'duc duct' 拆成 ['duc','duct']。"""
+    out = []
+    for v in m.split():
+        v = v.strip()
+        if side == "prefix":
+            v = v.rstrip("-")
+        elif side == "suffix":
+            v = v.lstrip("-")
+        if v:
+            out.append(v)
+    return out
+
+
+def decompose_word(word: str) -> dict | None:
+    """用 PREFIXES/ROOTS/SUFFIXES 嘗試把單字拆成字首、字根、字尾。
+    至少匹配到一個元件才回 dict;全沒中回 None。
+    Heuristic 簡單匹配,純供記憶聯想參考(可能有誤匹配)。
+    """
+    w = word.lower().strip()
+    if len(w) < 4:
+        return None
+
+    prefix = None
+    for p in PREFIXES:
+        for v in _affix_variants(p["m"], "prefix"):
+            if len(v) >= 2 and w.startswith(v) and len(w) > len(v) + 2:
+                if not prefix or len(v) > prefix["_len"]:
+                    prefix = {"form": v + "-", "zh": p["zh"], "_len": len(v)}
+    rest = w[prefix["_len"]:] if prefix else w
+
+    suffix = None
+    for s in SUFFIXES:
+        for v in _affix_variants(s["m"], "suffix"):
+            if len(v) >= 2 and rest.endswith(v) and len(rest) > len(v) + 1:
+                if not suffix or len(v) > suffix["_len"]:
+                    suffix = {"form": "-" + v, "zh": s["zh"], "_len": len(v)}
+    stem = rest[:-suffix["_len"]] if suffix else rest
+
+    root = None
+    for r in ROOTS:
+        for v in _affix_variants(r["m"], "root"):
+            if len(v) >= 3 and v in stem:
+                if not root or len(v) > root["_len"]:
+                    root = {"form": v, "zh": r["zh"], "_len": len(v)}
+
+    if not (prefix or root or suffix):
+        return None
+    for d in (prefix, root, suffix):
+        if d:
+            d.pop("_len", None)
+    return {"prefix": prefix, "root": root, "suffix": suffix, "stem": stem}
+
+
+def build_word_mindmap(word: str, decomp: dict) -> str:
+    """為單一單字建構迷你 Mermaid mindmap(字首/字根/字尾分支)。"""
+    lines = ["mindmap", f'  root(("{word}"))']
+    if decomp.get("prefix"):
+        lines.append(f"    字首 {decomp['prefix']['form']}")
+        lines.append(f"      {decomp['prefix']['zh']}")
+    if decomp.get("root"):
+        lines.append(f"    字根 {decomp['root']['form']}")
+        lines.append(f"      {decomp['root']['zh']}")
+    elif decomp.get("stem"):
+        lines.append(f"    字幹 {decomp['stem']}")
+    if decomp.get("suffix"):
+        lines.append(f"    字尾 {decomp['suffix']['form']}")
+        lines.append(f"      {decomp['suffix']['zh']}")
+    return "\n".join(lines)
+
+
 # SEED_WORDS 的台味諧音速記（key 必須對應 data.SEED_WORDS 的 word）
 MNEMONICS = {
     "accomplish": {
