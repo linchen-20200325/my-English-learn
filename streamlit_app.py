@@ -2042,6 +2042,55 @@ READING_GEN_PROMPT = """你是英文閱讀教材編輯。使用者給「主題 +
 """
 
 
+SUBTITLE_GEN_PROMPT = """你是英文影視教學編輯。使用者會貼上一段英文影集／電影台詞（可能含字幕序號與時間軸，請忽略那些）。
+請把台詞整理成可互動的學習課程，逐句英翻中並標註教學重點（特別是教科書學不到的口語、俚語、慣用語）。
+
+# 嚴格輸出 JSON（只輸出 JSON，前後不得有任何文字、不得包 markdown code fence）
+{
+  "id": "短英文 id",
+  "title": "依內容取的英文標題",
+  "title_zh": "繁中標題",
+  "level": "A2 / B1 / B2 / C1 擇一（依台詞難度）",
+  "summary": "繁中一句話：這段在演什麼、適合學什麼",
+  "sentences": [
+    {"en": "原台詞（口語照舊，可略修為完整句）", "zh": "自然繁中翻譯",
+     "vocab": {"word": "中文翻譯"}, "phrases": [{"en": "片語/俚語", "zh": "中文 + 語境提示"}]}
+  ],
+  "grammar": [{"point": "口語/文法重點", "explain": "繁中解說", "examples": ["例 1", "例 2"]}]
+}
+
+# 規範
+- 盡量保留原台詞順序與內容，逐句翻譯（過短的句子可合併）。
+- vocab / phrases 著重「影視口語、俚語、縮寫、慣用語」。
+- sentences 最多 12 句（台詞太長就取最精華的前段）。
+- grammar 3-5 條，點出口語特徵（縮寫如 gonna/wanna、省略主詞、語氣詞等）。
+"""
+
+
+def _clean_subtitle_text(raw: str) -> str:
+    """清理字幕：移除 SRT 序號、時間軸（含 --> 的行）、HTML 標籤與空行。"""
+    out = []
+    for ln in raw.splitlines():
+        s = ln.strip()
+        if not s or s.isdigit() or "-->" in s:
+            continue
+        s = re.sub(r"<[^>]+>", "", s)
+        if s:
+            out.append(s)
+    return "\n".join(out)
+
+
+def _gen_subtitle_lesson(raw_text: str, level: str, tier: str) -> dict:
+    """把貼上的英文台詞／字幕轉成一篇互動學習課程（結構同 readings 條目）。"""
+    cleaned = _clean_subtitle_text(raw_text)[:4000]  # 限長度避免超出 token
+    text = _llm_generate(SUBTITLE_GEN_PROMPT,
+                         f"程度參考：{level}\n台詞：\n{cleaned}", tier, max_tokens=6000)
+    m = re.search(r"\{[\s\S]*\}", text)
+    if not m:
+        raise RuntimeError(f"Gemini 回應內無 JSON：{text[:200]}")
+    return json.loads(m.group(0))
+
+
 def _gen_reading(topic: str, level: str, tier: str) -> dict:
     """呼叫 Gemini 產出一篇可互動閱讀(結構同 readings.py 條目)。"""
     text = _llm_generate(READING_GEN_PROMPT,
@@ -2118,6 +2167,61 @@ def _generate_reading_into_session(topic: str, level: str) -> None:
         live = st.session_state.setdefault("live_readings", [])
         live.insert(0, new_reading)
         st.session_state["_reading_toast"] = f"{title}（暫存本 session；永久保存失敗：{info}）"
+
+
+def view_subtitles() -> None:
+    """🎬 影視字幕學習：貼上英文台詞/字幕 → AI 逐句英翻中 + 教口語/俚語/文法。"""
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**影視字幕學習**＝把真實影集／電影的英文台詞變成互動課程。\n\n"
+            "1. 貼上一段英文台詞，或直接貼 `.srt` 字幕內容（時間軸會自動忽略）\n"
+            "2. 按「🎬 生成字幕課程」→ AI **逐句英翻中** + 標出**口語／俚語／慣用語**與文法\n"
+            "3. 可整段**加入複習（SRS）**，也會**存進閱讀庫永久累積**\n\n"
+            "💡 影視台詞最道地，是教科書學不到的真實英文。"
+        )
+
+    api_key = get_api_key()
+    if st.session_state.pop("_sub_saved", None):
+        st.success("已生成並存進閱讀庫（可在「📚 互動閱讀」重看，資料庫持續長大）。")
+
+    if not api_key:
+        st.warning("需要 Gemini API 金鑰才能生成。請至 sidebar 確認金鑰狀態。")
+    else:
+        raw = st.text_area("貼上英文台詞 / 字幕（.srt 也可）", height=200,
+                           placeholder="例：\nI'm gonna make him an offer he can't refuse.\nYou talking to me?\n\n（可直接貼字幕檔內容，序號與時間軸會自動忽略）",
+                           key="sub_raw")
+        col1, col2 = st.columns([2, 3])
+        level = col1.selectbox("程度參考", ["A2", "B1", "B2", "C1"], index=1, key="sub_lvl")
+        if col2.button("🎬 生成字幕課程", type="primary", use_container_width=True,
+                       disabled=not (raw and raw.strip())):
+            try:
+                with st.spinner("AI 逐句翻譯 + 教學中…"):
+                    lesson = _gen_subtitle_lesson(raw, level, next(iter(_MODEL_MAP.keys())))
+                ok, _info = _persist_reading(lesson)
+                st.session_state["_sub_result"] = lesson
+                st.session_state["_sub_saved"] = ok
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
+
+    lesson = st.session_state.get("_sub_result")
+    if lesson and lesson.get("sentences"):
+        st.divider()
+        st.markdown(f"#### 🎬 {lesson.get('title', '')}　{lesson.get('title_zh', '')}")
+        if lesson.get("summary"):
+            st.caption(lesson["summary"])
+        _embed_html(_build_reading_html(lesson),
+                    height=140 + 80 * len(lesson["sentences"]) + 200)
+        if lesson.get("grammar"):
+            _render_grammar(lesson["grammar"])
+        if st.button(f"➕ 加入 {len(lesson['sentences'])} 句到「🔁 複習」",
+                     use_container_width=True, key="sub_add_review"):
+            cards = [{"sentence": s["en"], "chinese": s.get("zh", ""),
+                      "chunk": s["en"][:40], "context": f"字幕：{lesson.get('title', '')}"}
+                     for s in lesson["sentences"] if s.get("en")]
+            n = add_cards_to_review(cards)
+            save_data()
+            st.success(f"已加入 {n} 句到複習清單。")
 
 
 def view_reading() -> None:
@@ -2524,7 +2628,7 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "💬 情境會話", "📚 互動閱讀", "📖 單字庫",
+             "💬 情境會話", "📚 互動閱讀", "🎬 影視字幕", "📖 單字庫",
              "🔁 複習", "📊 學習儀表板", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
@@ -2711,6 +2815,8 @@ def main() -> None:
         view_scenario()
     elif view.endswith("互動閱讀"):
         view_reading()
+    elif view.endswith("影視字幕"):
+        view_subtitles()
     elif view.endswith("單字庫"):
         view_vocab_bank()
     elif view.endswith("複習"):
