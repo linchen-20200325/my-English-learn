@@ -1467,12 +1467,30 @@ def _github_put_file(path: str, payload_json: str, commit_msg: str) -> tuple:
                "Accept": "application/vnd.github+json",
                "User-Agent": "english-learn-cloud",
                "X-GitHub-Api-Version": "2022-11-28"}
-    # 取現有 sha（不存在則建立新檔，無需 sha）
+    # 取現有 sha + 遠端內容（不存在則建立新檔，無需 sha）
     sha = None
     try:
         req = urllib.request.Request(f"{api}?ref={branch}", headers=headers)
         with urllib.request.urlopen(req, timeout=15) as r:
-            sha = json.loads(r.read()).get("sha")
+            current = json.loads(r.read())
+        sha = current.get("sha")
+        # 與遠端現有內容聯集，避免覆蓋造成倒退流失（list 依 id/title 去重、dict 直接合併）
+        try:
+            remote = json.loads(base64.b64decode(current.get("content", "")).decode("utf-8"))
+            new = json.loads(payload_json)
+            if isinstance(remote, list) and isinstance(new, list):
+                seen, union = set(), []
+                for item in remote + new:  # 遠端在前為底，本機新增疊上
+                    key = item.get("id") or item.get("title") if isinstance(item, dict) else item
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    union.append(item)
+                payload_json = json.dumps(union, ensure_ascii=False, indent=2) + "\n"
+            elif isinstance(remote, dict) and isinstance(new, dict):
+                payload_json = json.dumps({**remote, **new}, ensure_ascii=False, indent=2) + "\n"
+        except Exception:  # noqa: BLE001
+            pass
     except Exception:  # noqa: BLE001 - 404 = 檔案不存在，首次建立
         sha = None
     body = {"message": commit_msg,
@@ -1616,11 +1634,20 @@ def _push_bank_to_github(silent: bool = False) -> bool:
         }
 
     try:
-        # 1) GET current sha
+        # 1) GET current sha + 遠端現有內容
         req = urllib.request.Request(f"{api}?ref={branch}", headers=headers)
         with urllib.request.urlopen(req, timeout=15) as r:
             current = json.loads(r.read())
         sha = current["sha"]
+        # 關鍵：與「遠端現有字庫」做聯集再推，避免用較舊的本機檔覆蓋、造成字數倒退流失。
+        try:
+            remote_raw = base64.b64decode(current.get("content", "")).decode("utf-8")
+            remote_bank = json.loads(remote_raw)
+            if isinstance(remote_bank, dict):
+                merged = {**remote_bank, **merged}  # 遠端為底，本機/session 新增疊上 → 只增不減
+                payload_json = json.dumps(merged, ensure_ascii=False, indent=2) + "\n"
+        except Exception:  # noqa: BLE001 - 遠端解析失敗就用原本的 merged
+            pass
     except urllib.error.HTTPError as e:
         body_text = e.read().decode("utf-8", "replace")
         _save_err("GET sha", e.code, body_text)
