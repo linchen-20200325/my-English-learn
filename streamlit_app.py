@@ -1691,6 +1691,20 @@ def _render_grammar(items: list) -> None:
                 st.markdown(f"　- `{ex}`")
 
 
+def view_scenario() -> None:
+    """情境會話（整合）：把原「口說範本」與「情境生成」合併為單一入口。
+
+    兩者皆圍繞「同一情境的會話練習」：口說範本是離線範本打底，情境生成是
+    Gemini 依任意主題即時產生對話心智圖＋句卡。合併後介面更乾淨、語意不重疊。
+    """
+    st.caption("同一情境的兩種練法：先用離線範本打底跟讀，再用 AI 依你想練的主題即時生成。")
+    tab_template, tab_ai = st.tabs(["🗣️ 口說範本（離線）", "🤖 AI 情境生成"])
+    with tab_template:
+        view_speak_story()
+    with tab_ai:
+        view_generate()
+
+
 def view_speak_story() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -2327,8 +2341,8 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "🗣️ 口說範本", "📚 互動閱讀", "📖 單字庫", "🤖 情境生成",
-             "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
+             "💬 情境會話", "📚 互動閱讀", "📖 單字庫",
+             "🔁 複習", "📊 學習儀表板", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -2510,17 +2524,15 @@ def main() -> None:
         view_quiz()
     elif view.endswith("字根速記"):
         view_morphology()
-    elif view.endswith("口說範本"):
-        view_speak_story()
+    elif view.endswith("情境會話"):
+        view_scenario()
     elif view.endswith("互動閱讀"):
         view_reading()
     elif view.endswith("單字庫"):
         view_vocab_bank()
-    elif view.endswith("情境生成"):
-        view_generate()
     elif view.endswith("複習"):
         view_review()
-    elif view.endswith("學習進度"):
+    elif view.endswith("學習儀表板"):
         view_progress()
     elif view.endswith("學習計畫"):
         view_plan()
