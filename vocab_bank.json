@@ -1885,166 +1885,204 @@
   },
   "return": {
     "word": "return",
-    "meaning_zh": "回來、歸還",
+    "meaning_zh": "回來；歸還",
     "kk": "[rɪˈtɝn]",
     "phonics": "rih-TURN",
-    "homophone": "哩吞",
-    "image": "你『哩』『吞』不下去，得把東西『還』回來。",
+    "homophone": "日吞",
+    "image": "太陽『日』復一日『吞』噬大地，表示該回來了。",
     "example_en": "When will you return home?",
-    "example_zh": "你什麼時候要回家？",
-    "usage_zh": "表示「回去」或「歸還」某物,例如 'return a book' (還書),'return home' (回家)。",
+    "example_zh": "你什麼時候回家？",
+    "usage_zh": "強調回到某個地方或歸還物品,常用 'return home', 'return the book'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
+        "word": "returning",
+        "pos": "動詞",
+        "meaning_zh": "回來",
+        "example": "I'm returning to my hometown next week."
+      },
+      {
         "word": "returned",
-        "pos": "形容詞",
-        "meaning_zh": "被歸還的",
-        "example": "The returned package was damaged."
+        "pos": "動詞",
+        "meaning_zh": "歸還",
+        "example": "He returned the borrowed money."
       }
     ]
   },
   "share": {
     "word": "share",
-    "meaning_zh": "分享、股份",
+    "meaning_zh": "分享；股份",
     "kk": "[ʃɛr]",
     "phonics": "SHARE",
-    "homophone": "撒蝦",
-    "image": "把『撒』了的『蝦』分給大家吃。",
+    "homophone": "蝦仁",
+    "image": "大家搶著吃『蝦仁』，一人一份，一起分享。",
     "example_en": "Can I share my snack with you?",
     "example_zh": "我可以跟你分享我的零食嗎？",
-    "usage_zh": "表示「分享」某物或某事,常與 'with' 搭配,如 'share with friends'。",
+    "usage_zh": "表示與人共用或分享資訊,常用 'share with someone', 'share ideas'。",
     "pos": "動詞 / 名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "sharing",
+        "pos": "名詞",
+        "meaning_zh": "分享",
+        "example": "The sharing of resources is important."
+      },
+      {
+        "word": "shares",
+        "pos": "名詞",
+        "meaning_zh": "股份",
+        "example": "He bought some shares in the company."
+      }
+    ]
   },
   "spend": {
     "word": "spend",
-    "meaning_zh": "花費",
+    "meaning_zh": "花費；度過",
     "kk": "[spɛnd]",
     "phonics": "SPEND",
-    "homophone": "斯噴的",
-    "image": "『斯』『噴的』都是錢，小心別亂花。",
-    "example_en": "How much did you spend on that?",
-    "example_zh": "你那個花了多少錢？",
-    "usage_zh": "主要指花費時間或金錢,例如 'spend time' (花時間),'spend money' (花錢)。",
+    "homophone": "死噴",
+    "image": "錢『死』了，就『噴』光了，只好花錢。",
+    "example_en": "How much did you spend on it?",
+    "example_zh": "你花了多少錢買這個？",
+    "usage_zh": "指花費金錢、時間或精力,常用 'spend money', 'spend time'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "spending",
         "pos": "名詞",
-        "meaning_zh": "支出",
-        "example": "Government spending is rising."
+        "meaning_zh": "花費",
+        "example": "His spending habits are extravagant."
       }
     ]
   },
   "stand": {
     "word": "stand",
-    "meaning_zh": "站、忍受",
+    "meaning_zh": "站立；忍受",
     "kk": "[stænd]",
     "phonics": "STAND",
     "homophone": "死坦",
-    "image": "『死』了也要『坦』然站著。",
+    "image": "『死』也不『坦』白，就一直站著。",
     "example_en": "Please stand up when the judge enters.",
     "example_zh": "法官進來時請起立。",
-    "usage_zh": "表示「站立」的動作,也可用於「忍受」,如 'can't stand it' (受不了)。",
+    "usage_zh": "表示站立的動作或支持某觀點,常用 'stand up', 'stand for' (支持)。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "standing",
-        "pos": "形容詞",
-        "meaning_zh": "站著的；常設的",
-        "example": "He has a standing invitation."
+        "pos": "名詞",
+        "meaning_zh": "地位；名聲",
+        "example": "She has a good standing in the community."
       },
       {
         "word": "standard",
-        "pos": "名詞",
+        "pos": "名詞 / 形容詞",
         "meaning_zh": "標準",
-        "example": "This is the industry standard."
+        "example": "This is the standard procedure."
       }
     ]
   },
   "stay": {
     "word": "stay",
-    "meaning_zh": "停留、保持",
+    "meaning_zh": "停留；保持",
     "kk": "[ste]",
     "phonics": "STAY",
-    "homophone": "斯呆",
-    "image": "『斯』杯『呆』了，請留在原地。",
-    "example_en": "You should stay here for a while.",
-    "example_zh": "你應該在這裡待一會兒。",
-    "usage_zh": "表示「停留」在某地或保持某種狀態,例如 'stay home' (待在家),'stay calm' (保持冷靜)。",
+    "homophone": "死呆",
+    "image": "叫他『死呆』在那裡，不要動，就是要你停留。",
+    "example_en": "Let's stay here for a while.",
+    "example_zh": "我們在這裡待一會兒吧。",
+    "usage_zh": "表示待在某處或保持某種狀態,常用 'stay home', 'stay calm'。",
     "pos": "動詞 / 名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "staying",
+        "pos": "動詞",
+        "meaning_zh": "停留",
+        "example": "They are staying at a hotel downtown."
+      }
+    ]
   },
   "travel": {
     "word": "travel",
-    "meaning_zh": "旅行",
+    "meaning_zh": "旅行；行進",
     "kk": "[ˈtrævəl]",
-    "phonics": "TRAV-uhl",
-    "homophone": "特拉佛",
-    "image": "『特拉』『佛』祖保佑你旅途平安。",
-    "example_en": "I love to travel to new places.",
-    "example_zh": "我喜歡去新的地方旅行。",
-    "usage_zh": "指「旅行」的動作,常用於規劃或談論旅遊行程。",
+    "phonics": "TRAV-ul",
+    "homophone": "特拉烏爾",
+    "image": "『特拉』！『烏爾』！趕快旅行去！",
+    "example_en": "I love to travel to new countries.",
+    "example_zh": "我喜歡去新的國家旅行。",
+    "usage_zh": "指從一個地方到另一個地方的移動,常用 'travel abroad', 'travel by train'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "traveler",
         "pos": "名詞",
         "meaning_zh": "旅行者",
-        "example": "The hotel caters to international travelers."
+        "example": "The traveler was tired after the long journey."
+      },
+      {
+        "word": "traveling",
+        "pos": "動詞",
+        "meaning_zh": "旅行",
+        "example": "She is traveling around the world."
       }
     ]
   },
   "turn": {
     "word": "turn",
-    "meaning_zh": "轉、輪流",
+    "meaning_zh": "轉彎；轉動",
     "kk": "[tɝn]",
     "phonics": "TURN",
-    "homophone": "特恩",
-    "image": "『特』別『恩』惠，輪流給你。",
+    "homophone": "吞",
+    "image": "『吞』下去，然後轉個彎。",
     "example_en": "Turn left at the next corner.",
     "example_zh": "在下個街角左轉。",
-    "usage_zh": "表示「轉彎」或「輪流」,例如 'turn right' (右轉),'take turns' (輪流)。",
+    "usage_zh": "表示方向的改變或事物的變化,常用 'turn right', 'turn into' (變成)。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "turning",
         "pos": "名詞",
         "meaning_zh": "轉彎處",
-        "example": "The turning is sharp."
+        "example": "The turning was sharp."
+      },
+      {
+        "word": "turned",
+        "pos": "動詞",
+        "meaning_zh": "轉動",
+        "example": "He turned the knob to open the door."
       }
     ]
   },
   "understand": {
     "word": "understand",
-    "meaning_zh": "理解",
+    "meaning_zh": "理解；明白",
     "kk": "[ˌʌndɚˈstænd]",
     "phonics": "un-der-STAND",
-    "homophone": "安的死坦",
-    "image": "『安的』『死』了也『坦』白，我才懂。",
+    "homophone": "安的斯坦",
+    "image": "『安』慰『的』人，『斯坦』！我明白了。",
     "example_en": "I don't understand this word.",
     "example_zh": "我不懂這個字。",
-    "usage_zh": "表示「理解」或「明白」,是溝通的基礎,例如 'I understand you' (我懂你)。",
+    "usage_zh": "表示理解或明白某事,常用 'understand someone', 'understand the meaning'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "understanding",
-        "pos": "名詞",
+        "pos": "名詞 / 形容詞",
         "meaning_zh": "理解；諒解",
-        "example": "We need more understanding between us."
+        "example": "We need mutual understanding."
       }
     ]
   },
   "use": {
     "word": "use",
-    "meaning_zh": "使用",
+    "meaning_zh": "使用；用途",
     "kk": "[juz]",
     "phonics": "YOOZ",
-    "homophone": "優死",
-    "image": "『優』點『死』了，才懂得怎麼用。",
-    "example_en": "How do you use this machine?",
-    "example_zh": "這台機器你怎麼用？",
-    "usage_zh": "表示「使用」某物,是日常生活中最常見的動詞之一,例如 'use a phone' (用手機)。",
+    "homophone": "優勢",
+    "image": "善用你的『優勢』，才能使用它。",
+    "example_en": "Can I use your phone?",
+    "example_zh": "我能用一下你的手機嗎？",
+    "usage_zh": "表示實際應用某物,常用 'use something', 'make use of'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
@@ -2057,13 +2095,13 @@
         "word": "useless",
         "pos": "形容詞",
         "meaning_zh": "無用的",
-        "example": "That plan is useless."
+        "example": "The information was useless."
       },
       {
         "word": "usage",
         "pos": "名詞",
-        "meaning_zh": "用法；使用量",
-        "example": "The usage of plastic is increasing."
+        "meaning_zh": "用法；慣例",
+        "example": "The usage of this word is correct."
       }
     ]
   },
@@ -2073,56 +2111,63 @@
     "kk": "[wet]",
     "phonics": "WAIT",
     "homophone": "喂特",
-    "image": "『喂』！『特』務還沒來，請稍等。",
+    "image": "『喂』！『特』！快點，我在等你！",
     "example_en": "Please wait for me here.",
     "example_zh": "請在這裡等我。",
-    "usage_zh": "表示「等待」某人或某事,常與 'for' 搭配,例如 'wait for the bus' (等公車)。",
+    "usage_zh": "表示等待某人或某事發生,常用 'wait for someone', 'wait and see'。",
     "pos": "動詞 / 名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "waiting",
+        "pos": "名詞",
+        "meaning_zh": "等待",
+        "example": "The waiting was long and tedious."
+      }
+    ]
   },
   "month": {
     "word": "month",
     "meaning_zh": "月",
     "kk": "[mʌnθ]",
     "phonics": "MUNTH",
-    "homophone": "門的",
-    "image": "『門的』後面藏著一個秘密，要等一個月才揭曉。",
-    "example_en": "My birthday is next month.",
-    "example_zh": "我生日在下個月。",
-    "usage_zh": "表示時間單位「月」,用於計算日期和時間長度。",
+    "homophone": "門頭",
+    "image": "這個『門頭』是上個月的。",
+    "example_en": "The rent is due at the end of the month.",
+    "example_zh": "租金將在月底到期。",
+    "usage_zh": "表示時間的單位,常用 'this month', 'next month'。",
     "pos": "名詞",
     "other_forms": []
   },
   "hour": {
     "word": "hour",
     "meaning_zh": "小時",
-    "kk": "[ˈaʊɚ]",
+    "kk": "[aʊr]",
     "phonics": "OW-er",
-    "homophone": "奧額",
-    "image": "『奧』運會『額』外延長一小時。",
-    "example_en": "The meeting lasted for an hour.",
-    "example_zh": "會議持續了一個小時。",
-    "usage_zh": "表示時間單位「小時」,常用於計算時間長度。",
+    "homophone": "偶爾",
+    "image": "『偶爾』才出現一次，就是一個小時。",
+    "example_en": "The meeting will last for an hour.",
+    "example_zh": "會議將持續一個小時。",
+    "usage_zh": "表示時間的單位,常用 'an hour', 'for hours'。",
     "pos": "名詞",
     "other_forms": []
   },
   "minute": {
     "word": "minute",
-    "meaning_zh": "分鐘；細微",
+    "meaning_zh": "分鐘；渺小",
     "kk": "[ˈmɪnɪt]",
     "phonics": "MIN-it",
-    "homophone": "米呢",
-    "image": "『米呢』！每一分鐘都很細微。",
-    "example_en": "I'll be there in five minutes.",
-    "example_zh": "我五分鐘就到。",
-    "usage_zh": "表示時間單位「分鐘」,也可用於形容「細微」,例如 'minute details' (細節)。",
+    "homophone": "米你特",
+    "image": "『米』粒『你』拿到，就這麼『特』殊，才一分鐘。",
+    "example_en": "I'll be there in a minute.",
+    "example_zh": "我一分鐘就到。",
+    "usage_zh": "表示時間的單位,常用 'a minute', 'in minutes'。",
     "pos": "名詞 / 形容詞",
     "other_forms": [
       {
-        "word": "minimal",
-        "pos": "形容詞",
-        "meaning_zh": "最小的",
-        "example": "We need minimal changes."
+        "word": "minutes",
+        "pos": "名詞",
+        "meaning_zh": "會議記錄",
+        "example": "Please read the minutes of the last meeting."
       }
     ]
   },
@@ -2131,44 +2176,50 @@
     "meaning_zh": "父母",
     "kk": "[ˈpɛrənt]",
     "phonics": "PAIR-ent",
-    "homophone": "配人",
-    "image": "『配』好『人』才能生小孩，他們是父母。",
+    "homophone": "配偶忍",
+    "image": "『配偶』要『忍』耐，才能當好父母。",
     "example_en": "My parents are very supportive.",
     "example_zh": "我的父母非常支持我。",
-    "usage_zh": "指「父母」,是家庭關係中的重要稱謂。",
+    "usage_zh": "指父親或母親,常用 'my parents', 'single parent'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "parenthood",
         "pos": "名詞",
-        "meaning_zh": "父母的身份",
-        "example": "Parenthood is a big responsibility."
+        "meaning_zh": "父母身份",
+        "example": "Parenthood is a challenging role."
       }
     ]
   },
   "child": {
     "word": "child",
-    "meaning_zh": "小孩",
-    "kk": "[ˈtʃaɪld]",
+    "meaning_zh": "孩子",
+    "kk": "[tʃaɪld]",
     "phonics": "CHILD",
-    "homophone": "柴的",
-    "image": "『柴』做的『的』玩具，是小孩的最愛。",
+    "homophone": "柴爾德",
+    "image": "『柴』火『兒』童，是個孩子。",
     "example_en": "She has two children.",
-    "example_zh": "她有兩個小孩。",
-    "usage_zh": "指「小孩」,是 children 的單數形式。",
+    "example_zh": "她有兩個孩子。",
+    "usage_zh": "指年幼的子女,常用 'my child', 'a child's toy'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "childhood",
         "pos": "名詞",
         "meaning_zh": "童年",
-        "example": "I miss my childhood."
+        "example": "Childhood is a happy time."
       },
       {
         "word": "childish",
         "pos": "形容詞",
         "meaning_zh": "幼稚的",
-        "example": "Don't be so childish."
+        "example": "His behavior is childish."
+      },
+      {
+        "word": "childlike",
+        "pos": "形容詞",
+        "meaning_zh": "天真的",
+        "example": "She has a childlike innocence."
       }
     ]
   },
@@ -2178,37 +2229,30 @@
     "kk": "[kɪd]",
     "phonics": "KID",
     "homophone": "ㄎㄧˋㄉ",
-    "image": "『ㄎㄧˋㄉ』一聲，小孩就出生了。",
-    "example_en": "The kids are playing outside.",
-    "example_zh": "小孩們在外面玩。",
-    "usage_zh": "口語中常用來指「小孩」,比 child 更隨意。",
+    "image": "『ㄎㄧˋㄉ』！小孩子才這麼說。",
+    "example_en": "The kids are playing in the park.",
+    "example_zh": "孩子們在公園裡玩。",
+    "usage_zh": "口語中指小孩,比 'child' 更隨意,常用 'my kid', 'kids' party'。",
     "pos": "名詞",
-    "other_forms": [
-      {
-        "word": "kidnap",
-        "pos": "動詞",
-        "meaning_zh": "綁架",
-        "example": "The child was kidnapped."
-      }
-    ]
+    "other_forms": []
   },
   "man": {
     "word": "man",
-    "meaning_zh": "男人、人類",
+    "meaning_zh": "男人；人類",
     "kk": "[mæn]",
     "phonics": "MAN",
-    "homophone": "悶",
-    "image": "『悶』在心裡很久的男人。",
+    "homophone": "慢",
+    "image": "這個『慢』動作的，是個男人。",
     "example_en": "He is a tall man.",
     "example_zh": "他是一個高大的男人。",
-    "usage_zh": "指「男人」,廣義上也指「人類」。",
+    "usage_zh": "指成年男性,也泛指人類,常用 'every man', 'man and woman'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "mankind",
         "pos": "名詞",
         "meaning_zh": "人類",
-        "example": "All mankind is facing challenges."
+        "example": "We need to protect mankind."
       },
       {
         "word": "manly",
@@ -2224,10 +2268,10 @@
     "kk": "[ˈwʊmən]",
     "phonics": "WOO-mun",
     "homophone": "烏門",
-    "image": "『烏』鴉飛過那『門』，是一位女人。",
+    "image": "『烏』黑的頭髮『門』前，是個女人。",
     "example_en": "She is a successful woman.",
     "example_zh": "她是一位成功的女性。",
-    "usage_zh": "指「女人」。",
+    "usage_zh": "指成年女性,常用 'a woman's rights', 'women's rights'。",
     "pos": "名詞",
     "other_forms": [
       {
@@ -2249,11 +2293,11 @@
     "meaning_zh": "人",
     "kk": "[ˈpɝsən]",
     "phonics": "PER-sun",
-    "homophone": "呸孫",
-    "image": "『呸』！這個『孫』子不是人。",
+    "homophone": "噴砷",
+    "image": "『噴』了『砷』！這下糟了，有個人受傷了。",
     "example_en": "He is a kind person.",
     "example_zh": "他是一個善良的人。",
-    "usage_zh": "指「一個人」,是 person 的單數形式,較為正式。",
+    "usage_zh": "泛指一個人,強調個體,常用 'every person', 'a person of interest'。",
     "pos": "名詞",
     "other_forms": [
       {
@@ -2261,6 +2305,12 @@
         "pos": "形容詞",
         "meaning_zh": "個人的",
         "example": "This is my personal opinion."
+      },
+      {
+        "word": "personally",
+        "pos": "副詞",
+        "meaning_zh": "親自地；個人認為",
+        "example": "I personally don't agree."
       },
       {
         "word": "personality",
@@ -2272,219 +2322,251 @@
   },
   "people": {
     "word": "people",
-    "meaning_zh": "人們",
+    "meaning_zh": "人們；民族",
     "kk": "[ˈpipəl]",
     "phonics": "PEE-pul",
-    "homophone": "皮譜",
-    "image": "『皮』膚『譜』上記載著很多人的事蹟。",
-    "example_en": "Many people like to travel.",
-    "example_zh": "許多人喜歡旅行。",
-    "usage_zh": "指「人們」,是 person 的複數形式,或指「一個民族」。",
+    "homophone": "批譜",
+    "image": "『批』一堆『譜』，是為了這些人。",
+    "example_en": "Many people attended the event.",
+    "example_zh": "許多人參加了這次活動。",
+    "usage_zh": "指一群人或一個民族,常用 'local people', 'Asian people'。",
     "pos": "名詞",
     "other_forms": []
   },
   "room": {
     "word": "room",
-    "meaning_zh": "房間、空間",
+    "meaning_zh": "房間；空間",
     "kk": "[rum]",
     "phonics": "ROOM",
-    "homophone": "入墓",
-    "image": "『入墓』了，裡面還有空間。",
-    "example_en": "There is a big room in my house.",
-    "example_zh": "我房子裡有一個大房間。",
-    "usage_zh": "指「房間」,也可用於表示「空間」或「餘地」,例如 'room for improvement'。",
+    "homophone": "乳母",
+    "image": "『乳母』在房間裡照顧孩子。",
+    "example_en": "My room is upstairs.",
+    "example_zh": "我的房間在樓上。",
+    "usage_zh": "指建築物內的空間,常用 'living room', 'spare room'。也指空間,常用 'room for improvement'。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "roommate",
-        "pos": "名詞",
-        "meaning_zh": "室友",
-        "example": "He is my roommate."
+        "word": "roomy",
+        "pos": "形容詞",
+        "meaning_zh": "寬敞的",
+        "example": "The car is very roomy."
       }
     ]
   },
   "place": {
     "word": "place",
-    "meaning_zh": "地方、地點",
+    "meaning_zh": "地方；地點",
     "kk": "[ples]",
     "phonics": "PLACE",
-    "homophone": "ㄆㄌㄟˋㄙ",
-    "image": "『ㄆㄌㄟˋㄙ』了，找個地方坐。",
-    "example_en": "This is a beautiful place.",
-    "example_zh": "這是一個美麗的地方。",
-    "usage_zh": "指「地方」或「地點」,是日常生活中最常用來描述地點的詞。",
+    "homophone": "ㄆㄌㄙ",
+    "image": "『ㄆㄌㄙ』！這裡有個地方。",
+    "example_en": "This is a nice place.",
+    "example_zh": "這是一個好地方。",
+    "usage_zh": "指空間中的一個位置或地點,常用 'a public place', 'take place' (發生)。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "placement",
         "pos": "名詞",
-        "meaning_zh": "放置；安置",
-        "example": "Job placement is difficult."
+        "meaning_zh": "放置；安插",
+        "example": "Job placement services are available."
       }
     ]
   },
   "thing": {
     "word": "thing",
-    "meaning_zh": "東西、事情",
+    "meaning_zh": "東西；事情",
     "kk": "[θɪŋ]",
     "phonics": "THING",
-    "homophone": " सिंह (梵文，意為獅子)",
-    "image": "『 सिंह 』！那是什麼奇怪的東西？",
+    "homophone": " सिंह",
+    "image": "『 सिंह』！這是什麼東西？",
     "example_en": "What is that thing?",
     "example_zh": "那是什麼東西？",
-    "usage_zh": "指「東西」或「事情」,是最籠統的詞之一。",
+    "usage_zh": "泛指任何事物,常用 'a good thing', 'the main thing'。",
     "pos": "名詞",
     "other_forms": []
   },
   "question": {
     "word": "question",
-    "meaning_zh": "問題",
+    "meaning_zh": "問題；質問",
     "kk": "[ˈkwɛstʃən]",
     "phonics": "KWES-chun",
-    "homophone": "奎斯全",
-    "image": "『奎斯』『全』部答對了，沒有問題。",
+    "homophone": "快問",
+    "image": "『快問』！你有什麼問題？",
     "example_en": "Do you have any questions?",
     "example_zh": "你有什麼問題嗎？",
-    "usage_zh": "指「問題」,用於提問或討論。",
+    "usage_zh": "指需要解答的疑問,常用 'ask a question', 'answer a question'。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "questionable",
         "pos": "形容詞",
-        "meaning_zh": "可疑的",
+        "meaning_zh": "可疑的；有疑問的",
         "example": "His motives are questionable."
+      },
+      {
+        "word": "questionnaire",
+        "pos": "名詞",
+        "meaning_zh": "問卷",
+        "example": "We need to complete the questionnaire."
       }
     ]
   },
   "answer": {
     "word": "answer",
-    "meaning_zh": "答案、回答",
+    "meaning_zh": "回答；答案",
     "kk": "[ˈænsɚ]",
     "phonics": "AN-ser",
-    "homophone": "安瑟",
-    "image": "『安』裝『瑟』，就是答案。",
+    "homophone": "安色兒",
+    "image": "『安』靜地『色兒』，這是答案。",
     "example_en": "What is the answer to this question?",
     "example_zh": "這個問題的答案是什麼？",
-    "usage_zh": "指「答案」或「回答」,是 question 的相對詞。",
+    "usage_zh": "指對問題的回應或解答,常用 'give an answer', 'no answer'。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "answering",
-        "pos": "動名詞",
+        "pos": "動詞",
         "meaning_zh": "回答",
-        "example": "Answering the phone is his job."
+        "example": "He is answering the phone."
       }
     ]
   },
   "story": {
     "word": "story",
-    "meaning_zh": "故事、樓層",
+    "meaning_zh": "故事；樓層",
     "kk": "[ˈstɔri]",
     "phonics": "STOR-ee",
-    "homophone": "死拖泥",
-    "image": "『死拖泥』的，講個故事都講不完。",
+    "homophone": "司徒伊",
+    "image": "『司徒』家的『伊』人，講了個故事。",
     "example_en": "Tell me a story.",
     "example_zh": "講個故事給我聽。",
-    "usage_zh": "指「故事」,也可用於指建築物的「樓層」。",
+    "usage_zh": "指敘述事件或情節,常用 'a bedtime story', 'a sad story'。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "storyteller",
+        "pos": "名詞",
+        "meaning_zh": "講故事的人",
+        "example": "He is a great storyteller."
+      }
+    ]
   },
   "news": {
     "word": "news",
-    "meaning_zh": "新聞、消息",
+    "meaning_zh": "新聞；消息",
     "kk": "[nuz]",
     "phonics": "NOOZ",
-    "homophone": "ㄋㄡˊㄙ",
-    "image": "『ㄋㄡˊㄙ』了，快播報新聞。",
+    "homophone": "牛斯",
+    "image": "『牛』『斯』！有什麼新聞？",
     "example_en": "Did you hear the news?",
-    "example_zh": "你聽說那則新聞了嗎？",
-    "usage_zh": "指「新聞」或「消息」,通常是複數形式。",
+    "example_zh": "你聽說這新聞了嗎？",
+    "usage_zh": "指剛發生的事件或資訊,常用 'breaking news', 'good news'。",
     "pos": "名詞",
     "other_forms": []
   },
   "paper": {
     "word": "paper",
-    "meaning_zh": "紙、文件、論文",
+    "meaning_zh": "紙；文件；論文",
     "kk": "[ˈpepɚ]",
     "phonics": "PAY-per",
-    "homophone": "呸呸",
-    "image": "『呸呸』！這張紙是我的文件。",
-    "example_en": "Please give me a piece of paper.",
-    "example_zh": "請給我一張紙。",
-    "usage_zh": "指「紙」,也可用於指「文件」或「論文」。",
+    "homophone": "配婆",
+    "image": "『配』給『婆』婆的紙。",
+    "example_en": "Please pass me the paper.",
+    "example_zh": "請把紙遞給我。",
+    "usage_zh": "指書寫或印刷用的紙張,也指文件或學術論文,常用 'piece of paper', 'research paper'。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "papers",
+        "word": "paperwork",
         "pos": "名詞",
-        "meaning_zh": "文件；證件",
-        "example": "Do you have your papers?"
+        "meaning_zh": "文書工作",
+        "example": "There's a lot of paperwork involved."
       }
     ]
   },
   "sport": {
     "word": "sport",
-    "meaning_zh": "運動",
+    "meaning_zh": "運動；體育",
     "kk": "[spɔrt]",
     "phonics": "SPORT",
     "homophone": "斯波特",
-    "image": "『斯』『波特』，他熱愛運動。",
-    "example_en": "What's your favorite sport?",
-    "example_zh": "你最喜歡什麼運動？",
-    "usage_zh": "指「運動」,通常是單數形式,但也可能指體育活動的總稱。",
+    "image": "『斯』！『波特』！快來運動！",
+    "example_en": "What is your favorite sport?",
+    "example_zh": "你最喜歡的運動是什麼？",
+    "usage_zh": "指體育活動或競賽,常用 'team sport', 'winter sport'。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "sports",
+        "word": "sportsman",
         "pos": "名詞",
-        "meaning_zh": "體育運動",
-        "example": "He plays many sports."
+        "meaning_zh": "運動員；有運動精神的人",
+        "example": "He is a good sportsman."
+      },
+      {
+        "word": "sporting",
+        "pos": "形容詞",
+        "meaning_zh": "運動的；公平的",
+        "example": "He has a sporting attitude."
       }
     ]
   },
   "game": {
     "word": "game",
-    "meaning_zh": "遊戲、比賽",
+    "meaning_zh": "遊戲；比賽",
     "kk": "[ɡem]",
-    "phonics": "GAYM",
+    "phonics": "GAME",
     "homophone": "ㄍㄟˋㄇ",
-    "image": "『ㄍㄟˋㄇ』？我們來玩個遊戲。",
+    "image": "『ㄍㄟˋㄇ』！這是個遊戲。",
     "example_en": "Let's play a game.",
     "example_zh": "我們來玩個遊戲吧。",
-    "usage_zh": "指「遊戲」或「比賽」,例如 'board game' (棋盤遊戲),'video game' (電子遊戲)。",
+    "usage_zh": "指娛樂活動或體育競賽,常用 'board game', 'video game', 'a football game'。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "gamer",
+        "pos": "名詞",
+        "meaning_zh": "遊戲玩家",
+        "example": "He is a professional gamer."
+      }
+    ]
   },
   "history": {
     "word": "history",
-    "meaning_zh": "歷史",
+    "meaning_zh": "歷史；歷史學",
     "kk": "[ˈhɪstəri]",
     "phonics": "HIS-tuh-ree",
-    "homophone": "西斯拖你",
-    "image": "『西斯』『拖你』下水，學習歷史。",
-    "example_en": "I'm studying history.",
-    "example_zh": "我正在學歷史。",
-    "usage_zh": "指「歷史」,是學術和文化的重要組成部分。",
+    "homophone": "嘻嘻，司徒姨",
+    "image": "『嘻嘻』，『司徒姨』在講歷史。",
+    "example_en": "I love studying history.",
+    "example_zh": "我喜歡研究歷史。",
+    "usage_zh": "指過去的事件或學科,常用 'ancient history', 'world history'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "historical",
         "pos": "形容詞",
-        "meaning_zh": "歷史的",
+        "meaning_zh": "歷史的；有關歷史的",
         "example": "This is a historical site."
+      },
+      {
+        "word": "historian",
+        "pos": "名詞",
+        "meaning_zh": "歷史學家",
+        "example": "She is a famous historian."
       }
     ]
   },
   "country": {
     "word": "country",
-    "meaning_zh": "國家、鄉村",
+    "meaning_zh": "國家；鄉村",
     "kk": "[ˈkʌntri]",
     "phonics": "KUN-tree",
-    "homophone": "看 trees",
-    "image": "『看 trees』，這是個美麗的國家。",
+    "homophone": "墾地",
+    "image": "『墾地』是為了建立國家。",
     "example_en": "He comes from another country.",
     "example_zh": "他來自另一個國家。",
-    "usage_zh": "指「國家」,也可用於指「鄉村」。",
+    "usage_zh": "指一個主權國家或農村地區,常用 'foreign country', 'rural country'。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -2492,45 +2574,58 @@
     "word": "city",
     "meaning_zh": "城市",
     "kk": "[ˈsɪti]",
-    "phonics": "SIT-ee",
+    "phonics": "SIH-tee",
     "homophone": "西堤",
-    "image": "『西堤』島是個大城市。",
-    "example_en": "New York is a big city.",
-    "example_zh": "紐約是一個大城市。",
-    "usage_zh": "指「城市」,通常比 town 大。",
+    "image": "『西堤』是個大城市。",
+    "example_en": "This is a big city.",
+    "example_zh": "這是一個大城市。",
+    "usage_zh": "指人口密集、工商業發達的大城鎮,常用 'major city', 'big city'。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "citizen",
+        "pos": "名詞",
+        "meaning_zh": "公民；市民",
+        "example": "He is a citizen of this country."
+      },
+      {
+        "word": "civic",
+        "pos": "形容詞",
+        "meaning_zh": "市民的；公民的",
+        "example": "Civic duty is important."
+      }
+    ]
   },
   "town": {
     "word": "town",
-    "meaning_zh": "城鎮",
+    "meaning_zh": "鎮；市鎮",
     "kk": "[taʊn]",
     "phonics": "TOWN",
     "homophone": "套恩",
-    "image": "『套恩』，住在城鎮裡。",
-    "example_en": "We live in a small town.",
-    "example_zh": "我們住一個小鎮。",
-    "usage_zh": "指「城鎮」,通常比 city 小。",
+    "image": "『套』住了『恩』人，就是在鎮上。",
+    "example_en": "They live in a small town.",
+    "example_zh": "他們住一個小鎮上。",
+    "usage_zh": "指比城市小但比鄉村大的聚居地,常用 'small town', 'market town'。",
     "pos": "名詞",
     "other_forms": []
   },
   "road": {
     "word": "road",
-    "meaning_zh": "路",
+    "meaning_zh": "道路；公路",
     "kk": "[rod]",
     "phonics": "ROAD",
     "homophone": "肉的",
-    "image": "這條『肉的』路通往何處？",
-    "example_en": "The road is closed.",
-    "example_zh": "這條路關閉了。",
-    "usage_zh": "指「路」,用於交通和導航。",
+    "image": "這條『肉的』路，是條馬路。",
+    "example_en": "The road is blocked.",
+    "example_zh": "這條路被堵住了。",
+    "usage_zh": "指供交通的長條形地面路徑,常用 'main road', 'on the road'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "roadway",
         "pos": "名詞",
-        "meaning_zh": "道路",
-        "example": "The roadway is under construction."
+        "meaning_zh": "（公路的）路面",
+        "example": "The roadway is smooth."
       }
     ]
   },
@@ -2539,136 +2634,163 @@
     "meaning_zh": "汽車",
     "kk": "[kɑr]",
     "phonics": "CAR",
-    "homophone": "卡",
-    "image": "『卡』住了！這台車壞了。",
-    "example_en": "He bought a new car.",
-    "example_zh": "他買了一台新車。",
-    "usage_zh": "指「汽車」,是現代交通工具的代表。",
+    "homophone": "咖",
+    "image": "『咖』！這輛車。",
+    "example_en": "He drives a red car.",
+    "example_zh": "他開一輛紅色的車。",
+    "usage_zh": "指機動車輛,常用 'get in the car', 'drive a car'。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "card",
+        "word": "carriage",
         "pos": "名詞",
-        "meaning_zh": "卡片",
-        "example": "I received a birthday card."
+        "meaning_zh": "馬車；（火車）車廂",
+        "example": "The carriage was pulled by horses."
       }
     ]
   },
   "art": {
     "word": "art",
-    "meaning_zh": "藝術",
+    "meaning_zh": "藝術；藝術品",
     "kk": "[ɑrt]",
     "phonics": "ART",
     "homophone": "阿特",
-    "image": "『阿特』！這幅畫是藝術品。",
+    "image": "『阿特』！這是藝術品。",
     "example_en": "She is interested in art.",
     "example_zh": "她對藝術感興趣。",
-    "usage_zh": "指「藝術」,涵蓋繪畫、雕塑、音樂、文學等多種形式。",
+    "usage_zh": "指美學創作或其體系,常用 'fine art', 'modern art'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "artist",
         "pos": "名詞",
         "meaning_zh": "藝術家",
-        "example": "He is a famous artist."
+        "example": "He is a talented artist."
       },
       {
         "word": "artistic",
         "pos": "形容詞",
-        "meaning_zh": "藝術的",
-        "example": "Her work is very artistic."
+        "meaning_zh": "藝術的；有藝術感的",
+        "example": "She has an artistic flair."
       }
     ]
   },
   "plan": {
     "word": "plan",
-    "meaning_zh": "計畫",
+    "meaning_zh": "計畫；藍圖",
     "kk": "[plæn]",
     "phonics": "PLAN",
-    "homophone": "ㄆㄌㄢ",
-    "image": "『ㄆㄌㄢ』了一下，做出計畫。",
+    "homophone": "盼",
+    "image": "『盼』著這個計畫。",
     "example_en": "What are your plans for the weekend?",
     "example_zh": "你週末有什麼計畫？",
-    "usage_zh": "指「計畫」,是行動前的預想和安排。",
+    "usage_zh": "指預先安排好的行動或意圖,常用 'make a plan', 'business plan'。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "planner",
         "pos": "名詞",
         "meaning_zh": "計畫者；行事曆",
-        "example": "I need a new daily planner."
+        "example": "I use a daily planner."
+      },
+      {
+        "word": "planning",
+        "pos": "名詞",
+        "meaning_zh": "計畫；規劃",
+        "example": "Urban planning is complex."
       }
     ]
   },
   "group": {
     "word": "group",
-    "meaning_zh": "團體、群組",
+    "meaning_zh": "團體；組",
     "kk": "[ɡrup]",
-    "phonics": "GROOP",
-    "homophone": "古肉噗",
-    "image": "『古肉噗』滋滋作響，形成一個群組。",
-    "example_en": "We are a study group.",
-    "example_zh": "我們是一個讀書小組。",
-    "usage_zh": "指「團體」或「群組」,由多人組成。",
+    "phonics": "GROUP",
+    "homophone": "古嚕噗",
+    "image": "『古嚕噗』一聲，形成一個團體。",
+    "example_en": "They are a group of friends.",
+    "example_zh": "他們是一群朋友。",
+    "usage_zh": "指一群人或物聚集在一起,常用 'a group of people', 'study group'。",
     "pos": "名詞 / 動詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "grouping",
+        "pos": "名詞",
+        "meaning_zh": "分組",
+        "example": "The grouping of students was random."
+      }
+    ]
   },
   "team": {
     "word": "team",
-    "meaning_zh": "團隊、隊伍",
+    "meaning_zh": "團隊；隊",
     "kk": "[tim]",
-    "phonics": "TEEM",
+    "phonics": "TEAM",
     "homophone": "踢姆",
-    "image": "『踢姆』哥，帶領著這個團隊。",
+    "image": "『踢姆』！我們是個團隊。",
     "example_en": "Our team won the championship.",
-    "example_zh": "我們的隊伍贏得了冠軍。",
-    "usage_zh": "指「團隊」或「隊伍」,特別是在體育競賽或工作項目中。",
+    "example_zh": "我們的隊贏得了冠軍。",
+    "usage_zh": "指為共同目標合作的一群人,常用 'work as a team', 'sports team'。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "teammate",
+        "pos": "名詞",
+        "meaning_zh": "隊友",
+        "example": "He is my teammate."
+      }
+    ]
   },
   "member": {
     "word": "member",
-    "meaning_zh": "成員",
+    "meaning_zh": "成員；會員",
     "kk": "[ˈmɛmbɚ]",
     "phonics": "MEM-ber",
-    "homophone": "美寶",
-    "image": "『美寶』是這個團隊的忠誠成員。",
+    "homophone": "門把兒",
+    "image": "『門把兒』是這個團體的成員。",
     "example_en": "He is a member of the club.",
-    "example_zh": "他是這個社團的成員。",
-    "usage_zh": "指「成員」,是團體或組織的一部分。",
+    "example_zh": "他是這個俱乐部的成員。",
+    "usage_zh": "指團體或組織的一份子,常用 'member of parliament', 'club member'。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "membership",
+        "pos": "名詞",
+        "meaning_zh": "會員資格",
+        "example": "The membership fee is high."
+      }
+    ]
   },
   "company": {
     "word": "company",
-    "meaning_zh": "公司、陪伴",
+    "meaning_zh": "公司；陪伴",
     "kk": "[ˈkʌmpəni]",
     "phonics": "KUM-puh-nee",
-    "homophone": "康陪你",
-    "image": "『康』康『陪你』去公司。",
+    "homophone": "康譜尼",
+    "image": "『康譜尼』是個大公司。",
     "example_en": "He works for a big company.",
     "example_zh": "他在一家大公司工作。",
-    "usage_zh": "指「公司」,也可用於表示「陪伴」。",
+    "usage_zh": "指商業組織或一起相處的時光,常用 'business company', 'good company'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "companion",
         "pos": "名詞",
-        "meaning_zh": "同伴；伴侶",
-        "example": "He found a good companion."
+        "meaning_zh": "同伴；夥伴",
+        "example": "She is a good companion."
       }
     ]
   },
   "business": {
     "word": "business",
-    "meaning_zh": "生意、商業",
+    "meaning_zh": "生意；事業；公司",
     "kk": "[ˈbɪznəs]",
     "phonics": "BIZ-nuss",
-    "homophone": "必死ㄋㄟ",
-    "image": "『必死ㄋㄟ』？這門生意不好做。",
-    "example_en": "He is in the business of selling cars.",
-    "example_zh": "他做賣車的生意。",
-    "usage_zh": "指「生意」或「商業活動」。",
+    "homophone": "必死能死",
+    "image": "『必死能死』的生意，就是事業。",
+    "example_en": "He is in the real estate business.",
+    "example_zh": "他從事房地產業務。",
+    "usage_zh": "指商業活動、公司或事務,常用 'do business', 'business trip'。",
     "pos": "名詞",
     "other_forms": [
       {
@@ -2681,14 +2803,14 @@
   },
   "market": {
     "word": "market",
-    "meaning_zh": "市場",
+    "meaning_zh": "市場；市集",
     "kk": "[ˈmɑrkɪt]",
-    "phonics": "MAR-kit",
+    "phonics": "MAR-ket",
     "homophone": "馬克特",
-    "image": "『馬克』『特』價，在市場裡賣。",
-    "example_en": "The market is open today.",
-    "example_zh": "市場今天開市。",
-    "usage_zh": "指「市場」,用於買賣商品或服務。",
+    "image": "『馬克』把『特』產拿到市場賣。",
+    "example_en": "The stock market is down today.",
+    "example_zh": "今天的股市下跌了。",
+    "usage_zh": "指買賣商品或服務的場所或系統,常用 'local market', 'online market'。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
@@ -2701,105 +2823,125 @@
   },
   "government": {
     "word": "government",
-    "meaning_zh": "政府",
-    "kk": "[ˈɡʌvɚnmənt]",
+    "meaning_zh": "政府；治理",
+    "kk": "[ˈɡʌvərnmənt]",
     "phonics": "GUV-ern-ment",
-    "homophone": "夠煩悶",
-    "image": "『夠煩悶』的，政府的政策。",
-    "example_en": "The government is trying to help.",
-    "example_zh": "政府正試圖提供幫助。",
-    "usage_zh": "指「政府」,是國家或地區的行政機構。",
+    "homophone": "葛芬門特",
+    "image": "『葛芬』家的『門特』，就是政府。",
+    "example_en": "The government provides public services.",
+    "example_zh": "政府提供公共服務。",
+    "usage_zh": "指管理國家的機構或權力,常用 'local government', 'central government'。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "governor",
         "pos": "名詞",
         "meaning_zh": "州長；總督",
-        "example": "The governor made a speech."
+        "example": "The governor signed the bill."
       }
     ]
   },
   "law": {
     "word": "law",
-    "meaning_zh": "法律",
+    "meaning_zh": "法律；法則",
     "kk": "[lɔ]",
     "phonics": "LAW",
     "homophone": "勞",
-    "image": "『勞』動者必須遵守法律。",
+    "image": "『勞』動者遵守法律。",
     "example_en": "This is against the law.",
     "example_zh": "這是違法的。",
-    "usage_zh": "指「法律」,是社會規範和秩序的基礎。",
+    "usage_zh": "指國家或社群制定的規則,常用 'break the law', 'criminal law'。",
     "pos": "名詞",
     "other_forms": [
+      {
+        "word": "lawyer",
+        "pos": "名詞",
+        "meaning_zh": "律師",
+        "example": "He is a criminal lawyer."
+      },
       {
         "word": "lawful",
         "pos": "形容詞",
         "meaning_zh": "合法的",
         "example": "This is a lawful action."
-      },
-      {
-        "word": "lawyer",
-        "pos": "名詞",
-        "meaning_zh": "律師",
-        "example": "He hired a lawyer."
       }
     ]
   },
   "policy": {
     "word": "policy",
-    "meaning_zh": "政策",
+    "meaning_zh": "政策；方針",
     "kk": "[ˈpɑləsi]",
     "phonics": "POL-uh-see",
-    "homophone": "趴落西",
-    "image": "『趴』在『落』葉『西』邊，制定政策。",
+    "homophone": "破冷氣",
+    "image": "『破冷氣』是公司的政策。",
     "example_en": "The company has a new policy.",
-    "example_zh": "公司有一項新政策。",
-    "usage_zh": "指「政策」,是組織或政府的行為準則。",
+    "example_zh": "公司有新的政策。",
+    "usage_zh": "指組織或政府的行動準則,常用 'government policy', 'company policy'。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "policymaker",
+        "pos": "名詞",
+        "meaning_zh": "決策者",
+        "example": "The policymaker announced the changes."
+      }
+    ]
   },
   "area": {
     "word": "area",
-    "meaning_zh": "區域、地區",
+    "meaning_zh": "區域；地區",
     "kk": "[ˈɛriə]",
     "phonics": "AIR-ee-uh",
-    "homophone": "哎呀",
-    "image": "『哎呀』！這是一個危險區域。",
+    "homophone": "愛瑞亞",
+    "image": "『愛瑞亞』是個特定的區域。",
     "example_en": "This is a residential area.",
-    "example_zh": "這是一個住宅區。",
-    "usage_zh": "指「區域」或「地區」,用於劃分空間。",
+    "example_zh": "這是個住宅區。",
+    "usage_zh": "指一個特定的地理空間或範圍,常用 'large area', 'comfort area'。",
     "pos": "名詞",
     "other_forms": []
   },
   "side": {
     "word": "side",
-    "meaning_zh": "邊、側面",
+    "meaning_zh": "邊；側面；方面",
     "kk": "[saɪd]",
     "phonics": "SIDE",
-    "homophone": "賽的",
-    "image": "『賽的』，你站到另一邊去。",
-    "example_en": "Please come to my side.",
-    "example_zh": "請到我這邊來。",
-    "usage_zh": "指「邊」或「側面」,用於描述位置或方向。",
-    "pos": "名詞 / 形容詞 / 動詞",
-    "other_forms": []
+    "homophone": "塞得",
+    "image": "『塞得』滿滿的，是它的那一邊。",
+    "example_en": "He stood on the other side.",
+    "example_zh": "他站在另一邊。",
+    "usage_zh": "指物體或空間的邊緣、方向或觀點,常用 'left side', 'on my side'。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "sidewalk",
+        "pos": "名詞",
+        "meaning_zh": "人行道",
+        "example": "Walk on the sidewalk."
+      }
+    ]
   },
   "part": {
     "word": "part",
-    "meaning_zh": "部分、零件",
+    "meaning_zh": "部分；零件；角色",
     "kk": "[pɑrt]",
     "phonics": "PART",
-    "homophone": "趴特",
-    "image": "『趴特』！這是其中一部分。",
-    "example_en": "This is the best part.",
-    "example_zh": "這是最棒的部分。",
-    "usage_zh": "指「部分」或「零件」,是整體的一部分。",
+    "homophone": "怕特",
+    "image": "『怕特』！這是我的部分。",
+    "example_en": "This is only a small part of the story.",
+    "example_zh": "這只是故事的一小部分。",
+    "usage_zh": "指整體中的一塊或一個元素,常用 'a part of', 'play a part'。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
+        "word": "partly",
+        "pos": "副詞",
+        "meaning_zh": "部分地；在某種程度上",
+        "example": "It's partly my fault."
+      },
+      {
         "word": "partner",
         "pos": "名詞",
-        "meaning_zh": "夥伴",
+        "meaning_zh": "夥伴；伴侶",
         "example": "He is my business partner."
       }
     ]
