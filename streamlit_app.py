@@ -1301,11 +1301,25 @@ def view_morphology() -> None:
 
 @st.cache_data
 def _load_vocab_bank_cached(_mtime: float) -> dict:
+    """讀取 + 自動清理:把 key 正規化為小寫,大小寫撞 key 只保留第一筆,
+    丟掉缺 meaning_zh 的不完整 entry(Gemini 生成失敗的殘留)。"""
     try:
         with open(VOCAB_BANK_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+            raw = json.load(f)
     except (OSError, json.JSONDecodeError):
         return {}
+    cleaned = {}
+    for k, v in (raw or {}).items():
+        lk = (k or "").strip().lower()
+        if not lk:
+            continue
+        if lk in cleaned:  # 大小寫去重,先到的保留
+            continue
+        if not isinstance(v, dict) or not v.get("meaning_zh"):
+            continue
+        v["word"] = lk  # 同步 word 欄位為正規化的 key
+        cleaned[lk] = v
+    return cleaned
 
 
 def load_vocab_bank() -> dict:
@@ -1319,14 +1333,16 @@ def load_vocab_bank() -> dict:
 
 def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
     """雲端內用 Gemini 生成 N 字資料,寫進 st.session_state.live_bank。
-    嚴格去重:已在檔案或 session 內的字不會重新生成,Gemini 回多的字也會丟掉。"""
+    嚴格三重去重(同 key 大小寫 / 已在檔案 / 已在 session)。
+    auto_push=True 且有 GITHUB_TOKEN 時自動推回 repo,失敗時 banner 顯示。"""
     from scripts.generate_vocab import (SYSTEM_PROMPT, extract_json_array,
                                         load_wordlist)
     file_bank = load_vocab_bank()
     live = st.session_state.setdefault("live_bank", {})
-    have = {**file_bank, **live}
+    # 三重去重池(小寫)
+    have_lower = {k.lower() for k in file_bank} | {k.lower() for k in live}
     wordlist = load_wordlist()
-    todo = [w for w in wordlist if w not in have][:n]
+    todo = [w for w in wordlist if w.lower() not in have_lower][:n]
     todo_set = {w.lower() for w in todo}
     if not todo:
         st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
@@ -1337,22 +1353,37 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
                              tier, max_tokens=8000)
         entries = extract_json_array(text)
     added, skipped = 0, 0
+    new_words = []
     for e in entries:
         ww = (e.get("word") or "").strip().lower()
         if not ww:
             continue
-        # 嚴格去重:必須是我們點名的字,且未在檔案/session 內
-        if ww in todo_set and ww not in have and ww not in live:
+        # 嚴格去重:必須是我們點名的字、未在檔案/session、且 entry 完整
+        if (ww in todo_set and ww not in have_lower
+                and e.get("meaning_zh") and e.get("kk")):
             live[ww] = e
+            have_lower.add(ww)
+            new_words.append(ww)
             added += 1
         else:
             skipped += 1
-    msg = f"已生成 {added} 字（暫存於 session）"
+    msg = f"✅ 已生成 {added} 字：{', '.join(new_words[:10])}{' …' if len(new_words) > 10 else ''}"
     if skipped:
-        msg += f"，去重略過 {skipped} 字"
+        msg += f"\n\n去重/欄位不全略過 {skipped} 字"
     st.success(msg)
+    # 自動推回:把結果記在 session,讓使用者看到「上次推回成功/失敗」
     if auto_push:
-        _push_bank_to_github(silent=False)
+        st.info("⏳ 自動推回 GitHub repo 中…")
+        ok = _push_bank_to_github(silent=False)
+        st.session_state["_last_push"] = {
+            "ok": ok,
+            "added": added,
+            "ts": __import__("datetime").datetime.now().strftime("%H:%M:%S"),
+        }
+        if not ok:
+            st.error("⚠️ **重要**:這批 {added} 字推回失敗,只留在 session,**重整就消失**!\n"
+                     "請手動按下方「⬇️ 下載合併後 vocab_bank.json」存檔。"
+                     .format(added=added))
 
 
 def _push_bank_to_github(silent: bool = False) -> bool:
@@ -1862,13 +1893,17 @@ def view_vocab_bank() -> None:
         col1, col2, col3 = st.columns([2, 2, 2])
         n = col1.number_input("一次生成幾個字", min_value=5, max_value=50, value=20, step=5)
         tier = col2.selectbox("模型", GEN_MODEL_TIERS, index=0)
-        auto_push = st.checkbox(
-            "✅ 生成完自動推回 GitHub repo（永久保存，需 GITHUB_TOKEN）",
-            value=bool(get_github_token()),
-            disabled=not get_github_token(),
-            help="勾選後每次生成完會用 GitHub Contents API 把 vocab_bank.json commit 回 repo。"
-                 "需在 Cloud Secrets 設 GITHUB_TOKEN（PAT，含 repo 寫權限）。",
-        )
+        gh = get_github_token()
+        # 自動推回:有 token 就一律自動推,不再用 checkbox(避免使用者忘記勾)
+        auto_push = bool(gh)
+        if gh:
+            st.caption("🔄 **自動推回**已啟用:生成完會立刻 commit 到 repo,Cloud 重新部署後永久保存。")
+        else:
+            st.warning(
+                "⚠️ 未設 `GITHUB_TOKEN`,生成的字只會留在當前 session,**重新整理就消失**。"
+                "若想永久保存,請至 Cloud Secrets 加 `GITHUB_TOKEN = \"github_pat_...\"`,"
+                "或每次生成後手動按下方「⬇️ 下載」覆蓋 repo 的 vocab_bank.json 再 push。"
+            )
         if col3.button("🚀 開始生成", disabled=not api_key,
                        use_container_width=True, type="primary"):
             try:
@@ -1933,8 +1968,23 @@ def view_vocab_bank() -> None:
         st.caption(
             f"詞表 {len(__import__('scripts.generate_vocab', fromlist=['load_wordlist']).load_wordlist())} 字"
             f"　·　已完成 {len(bank)} 字"
-            f"　·　檔案 {len(file_bank)} 字 / session 暫存 {len(live_bank)} 字"
+            f"　·　📁 repo 已存 {len(file_bank)} 字 / 🌱 session 新增 {len(live_bank)} 字"
         )
+        last_push = st.session_state.get("_last_push")
+        if last_push:
+            if last_push["ok"]:
+                st.success(f"📤 最後一次推回:{last_push['ts']} 成功 (+{last_push['added']} 字)")
+            else:
+                st.error(f"📤 最後一次推回:{last_push['ts']} **失敗** — 請手動下載 JSON 保存!")
+        if live_bank and not get_github_token():
+            st.error(
+                f"🚨 警告:目前 session 有 **{len(live_bank)} 個新生成的字未推回 repo**!\n\n"
+                "重整或重新部署就會消失。**請立刻**:\n"
+                "1. 按下方「⬇️ 下載合併後 vocab_bank.json」\n"
+                "2. 把下載的檔案覆蓋 repo 內 `vocab_bank.json`\n"
+                "3. `git push` → Cloud 重新部署 → 永久保存\n\n"
+                "或設定 `GITHUB_TOKEN` 之後自動推回。"
+            )
 
     if bank:
         col_dl, col_push = st.columns([3, 2])
