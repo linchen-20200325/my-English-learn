@@ -1967,6 +1967,28 @@ def _render_reading_quiz(passage: dict, uid: str) -> None:
         save_data()
 
 
+# 隨機生成用的多元主題池（涵蓋日常／職場／旅行／科技／情感／社會等，讓每次都不同）
+_READING_TOPICS = [
+    "搬到新城市的第一週", "第一次養寵物的趣事", "和老朋友久別重逢", "學一項新技能的過程",
+    "一次難忘的旅行", "在咖啡廳觀察到的人們", "週末的市場採買", "面試當天的緊張",
+    "戒掉一個壞習慣", "一場突如其來的大雨", "深夜的便利商店", "搬家整理舊物的回憶",
+    "嘗試一道新料理", "迷路後的意外發現", "和家人的一頓晚餐", "通勤路上的小確幸",
+    "一封遲來的信", "換工作的決定", "假日的山林健行", "第一次做志工",
+    "手機壞掉的一天", "鄰居之間的小故事", "學外語的挫折與突破", "一個關於夢想的對話",
+    "退休後的生活", "城市與鄉村的對比", "科技如何改變購物", "一次失敗帶來的成長",
+    "陌生人的善意", "重新拾起的興趣",
+]
+
+
+def _generate_reading_into_session(topic: str, level: str) -> None:
+    """用 Gemini 生成一篇閱讀並插到 live_readings 最前面（最新的排最上面）。"""
+    with st.spinner(f"Gemini 生成「{topic}」({level})…"):
+        new_reading = _gen_reading(topic, level, next(iter(_MODEL_MAP.keys())))
+    live = st.session_state.setdefault("live_readings", [])
+    live.insert(0, new_reading)  # 新的排最前
+    st.session_state["_reading_toast"] = new_reading.get("title", "(無標題)")
+
+
 def view_reading() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -1986,7 +2008,29 @@ def view_reading() -> None:
         )
     # 🤖 AI 即時生成新閱讀
     api_key = get_api_key()
-    with st.expander("🤖 AI 即時生成新閱讀（無上限，主題自選）", expanded=False):
+    _toast = st.session_state.pop("_reading_toast", None)
+    if _toast:
+        st.success(f"已生成新閱讀「{_toast}」，見下方最上面那篇。")
+
+    # 一鍵隨機生成：每按一次自動換主題＋程度，源源不絕的新例子（免自己想主題）
+    rc1, rc2 = st.columns([3, 2])
+    if rc1.button("🎲 隨機生成一篇新閱讀", disabled=not api_key,
+                  use_container_width=True, type="primary",
+                  help="自動挑一個主題與程度，生成一篇全新的閱讀。每按一次都不一樣。"):
+        used = {r.get("title") for r in st.session_state.get("live_readings", [])}
+        pool = [t for t in _READING_TOPICS if t not in used] or _READING_TOPICS
+        topic = random.choice(pool)
+        level = random.choice(["A2", "B1", "B2", "C1"])
+        try:
+            _generate_reading_into_session(topic, level)
+            st.rerun()
+        except Exception as e:  # noqa: BLE001
+            st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
+    live_now = st.session_state.get("live_readings", [])
+    rc2.caption(f"🌱 本 session 已生成 **{len(live_now)}** 篇"
+                + ("（新的排在最上面）" if live_now else ""))
+
+    with st.expander("✍️ 想指定主題自己生成？", expanded=False):
         if not api_key:
             st.warning("尚未設定 Gemini API 金鑰。請至 sidebar 確認金鑰狀態。")
         col1, col2, col3 = st.columns([4, 2, 2])
@@ -1996,27 +2040,22 @@ def view_reading() -> None:
             key="rd_topic",
         )
         level = col2.selectbox("程度", ["A2", "B1", "B2", "C1"], index=1, key="rd_lvl")
-        if col3.button("🚀 生成", disabled=not api_key, use_container_width=True,
-                       type="primary"):
+        if col3.button("🚀 生成", disabled=not api_key, use_container_width=True):
             try:
-                with st.spinner(f"Gemini 生成「{topic or '日常生活'}」({level})…"):
-                    new_reading = _gen_reading(
-                        topic.strip() or "Daily life", level,
-                        next(iter(_MODEL_MAP.keys()))  # Flash-Lite
-                    )
-                live = st.session_state.setdefault("live_readings", [])
-                live.append(new_reading)
-                st.success(f"已新增「{new_reading.get('title', '(無標題)')}」,展開下方閱讀。")
+                _generate_reading_into_session(topic.strip() or "Daily life", level)
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
-        live = st.session_state.get("live_readings", [])
-        if live:
-            st.caption(f"🌱 本 session 已生成 {len(live)} 篇（重新整理會消失,記得加入複習保留句子）")
+        st.caption("💡 提示：AI 生成的閱讀重新整理會消失；想永久保留，按文章內「加入複習」把句子存進 SRS。")
 
-    # 渲染 READINGS(靜態) + live_readings(本 session AI 生成)
-    all_passages = list(READINGS) + st.session_state.get("live_readings", [])
+    # 渲染順序：先「本 session 生成的新閱讀」（最新在最上），再「離線範例範本」
+    live_readings = st.session_state.get("live_readings", [])
+    if live_readings:
+        st.markdown("### 🌱 你的新生成閱讀")
+    all_passages = list(live_readings) + list(READINGS)
     for idx, passage in enumerate(all_passages):
+        if idx == len(live_readings):
+            st.markdown("### 📚 範例閱讀（離線範本，固定不變）")
         with st.expander(
             f"**{passage['title']}**　·　{passage.get('title_zh','')}　·　"
             f"程度 {passage['level']}　·　{passage['summary']}"
