@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
 from dialogues import CONVERSATIONS, STORIES
 from readings import READINGS
+from comprehension import get_questions
 from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
                         decompose_word, build_word_mindmap)
 
@@ -686,6 +687,23 @@ def add_cards_to_review(cards: list) -> int:
     return added
 
 
+def vocab_to_card(word: str, entry: dict) -> dict:
+    """把單字庫的一筆單字轉成可進 SRS 的句卡（正面=單字，背面=意思/KK/諧音/例句）。"""
+    ex_en = entry.get("example_en", "")
+    ex_zh = entry.get("example_zh", "")
+    context = f"{ex_en} — {ex_zh}".strip(" —") if (ex_en or ex_zh) else ""
+    return {
+        "sentence": word,                       # 複習正面顯示單字本身
+        "chinese": entry.get("meaning_zh", ""),
+        "target_word": word,
+        "kk": entry.get("kk", ""),
+        "phonics": entry.get("phonics", ""),
+        "mnemonic": entry.get("image") or entry.get("homophone", ""),
+        "context": context,
+        "card_type": "vocab",
+    }
+
+
 def schedule_card(card: dict, grade: str) -> None:
     """SM-2 簡化版：grade 為 again / good / easy，就地更新排程。"""
     ease = card.get("ease", 2.5)
@@ -717,6 +735,44 @@ def due_count() -> int:
     today = today_str()
     return sum(1 for c in st.session_state.data.get("review_cards", [])
                if c.get("due", today) <= today)
+
+
+def card_mastery(card: dict) -> str:
+    """依間隔/複習次數判斷記憶強度：new / learning / young / mature。"""
+    if card.get("reps", 0) == 0:
+        return "new"
+    interval = card.get("interval", 0)
+    if interval >= 21:
+        return "mature"
+    if interval >= 7:
+        return "young"
+    return "learning"
+
+
+def mastery_distribution() -> dict:
+    """統計複習牌組各記憶強度的卡片數。"""
+    dist = {"new": 0, "learning": 0, "young": 0, "mature": 0}
+    for c in st.session_state.data.get("review_cards", []):
+        dist[card_mastery(c)] = dist.get(card_mastery(c), 0) + 1
+    return dist
+
+
+def review_forecast(days: int = 7) -> dict:
+    """回傳未來 days 天每天到期的卡片數（逾期算今天），供複習負擔預測。"""
+    today = date.today()
+    counts = {(today + timedelta(days=i)).strftime("%m/%d"): 0 for i in range(days)}
+    keys = list(counts.keys())
+    for c in st.session_state.data.get("review_cards", []):
+        try:
+            due = date.fromisoformat(c.get("due", today_str()))
+        except ValueError:
+            continue
+        delta = (due - today).days
+        if delta < 0:
+            counts[keys[0]] += 1
+        elif delta < days:
+            counts[keys[delta]] += 1
+    return counts
 
 
 # ----------------------------- 樣式 -----------------------------
@@ -1050,6 +1106,35 @@ def view_progress() -> None:
     pct = learned / len(data["words"]) if data["words"] else 0
     st.progress(pct, text=f"{learned} / {len(data['words'])} 已掌握（{int(pct*100)}%）")
 
+    # ---------------- 🧠 記憶科學監督（SRS 分析）----------------
+    st.divider()
+    st.markdown("#### 🧠 記憶科學監督（間隔重複 SRS）")
+    cards = data.get("review_cards", [])
+    if not cards:
+        st.info("複習牌組是空的。到「📚 互動閱讀」或「🤖 情境生成」把句卡加入複習，"
+                "系統就會用間隔重複幫你科學排程、追蹤記憶強度。")
+        return
+
+    dist = mastery_distribution()
+    total = len(cards)
+    mature_pct = (dist["young"] + dist["mature"]) / total if total else 0
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("🃏 複習卡總數", total)
+    c2.metric("📅 今日待複習", due_count())
+    c3.metric("🌳 已熟（young+mature）", dist["young"] + dist["mature"])
+    c4.metric("💪 熟練比例", f"{int(mature_pct * 100)}%")
+
+    st.markdown("##### 🎯 記憶強度分布")
+    labels = {"new": "🆕 新卡", "learning": "📖 學習中（<7天）",
+              "young": "🌱 漸熟（7–20天）", "mature": "🌳 已掌握（≥21天）"}
+    mc = st.columns(4)
+    for col, k in zip(mc, ["new", "learning", "young", "mature"]):
+        col.metric(labels[k], dist.get(k, 0))
+
+    st.markdown("##### 📈 未來 7 天複習負擔預測")
+    st.caption("提早知道哪天卡片會堆積，方便調配每天學習時間。")
+    st.bar_chart(review_forecast(7), height=240, color="#10b981")
+
 
 def view_plan() -> None:
     data = st.session_state.data
@@ -1226,7 +1311,8 @@ def view_review() -> None:
     deck = data.setdefault("review_cards", [])
 
     if not deck:
-        st.info("複習清單是空的。到「🤖 情境生成」把句卡加入複習。")
+        st.info("複習清單是空的。可從「📖 單字庫」把單字、或「📚 互動閱讀」「🤖 情境生成」"
+                "把句卡加入複習，系統會用間隔重複（SRS）幫你科學排程。")
         return
 
     today = today_str()
@@ -1482,6 +1568,14 @@ def _push_bank_to_github(silent: bool = False) -> bool:
             st.success(f"✅ 已推回 GitHub commit `{commit_sha}` 到 `{repo}@{branch}`("
                        f"+{len(live)} 字)。Cloud 自動重新部署後永久保存。")
         st.session_state.pop("_push_error", None)  # 成功就清掉錯誤紀錄
+        # 同步寫回「本機」vocab_bank.json：否則本機檔仍是部署當下的舊版，
+        # 清掉 live_bank 後畫面會誤顯示舊字數（使用者回報的「資料庫不會更新」）。
+        # 寫本機後 load_vocab_bank 立刻讀到合併結果，數字即時更新；遠端也已是同一份。
+        try:
+            with open(VOCAB_BANK_FILE, "w", encoding="utf-8") as f:
+                f.write(payload_json)
+        except OSError:
+            pass
         st.session_state["live_bank"] = {}
         load_vocab_bank.clear() if hasattr(load_vocab_bank, "clear") else None
         return True
@@ -1595,6 +1689,20 @@ def _render_grammar(items: list) -> None:
             st.caption(g["explain"])
             for ex in g["examples"]:
                 st.markdown(f"　- `{ex}`")
+
+
+def view_scenario() -> None:
+    """情境會話（整合）：把原「口說範本」與「情境生成」合併為單一入口。
+
+    兩者皆圍繞「同一情境的會話練習」：口說範本是離線範本打底，情境生成是
+    Gemini 依任意主題即時產生對話心智圖＋句卡。合併後介面更乾淨、語意不重疊。
+    """
+    st.caption("同一情境的兩種練法：先用離線範本打底跟讀，再用 AI 依你想練的主題即時生成。")
+    tab_template, tab_ai = st.tabs(["🗣️ 口說範本（離線）", "🤖 AI 情境生成"])
+    with tab_template:
+        view_speak_story()
+    with tab_ai:
+        view_generate()
 
 
 def view_speak_story() -> None:
@@ -1824,6 +1932,37 @@ def _gen_reading(topic: str, level: str, tier: str) -> dict:
     return json.loads(m.group(0))
 
 
+def _render_reading_quiz(passage: dict) -> None:
+    """閱讀理解測驗：讀完文章後作答並即時批改（主動回憶）。"""
+    questions = get_questions(passage.get("id", ""))
+    if not questions:
+        return
+    st.divider()
+    st.markdown("##### 🧩 閱讀理解測驗（先別看翻譯，挑戰讀懂了沒）")
+    with st.form(key=f"reading_quiz_{passage['id']}"):
+        answers = []
+        for i, q in enumerate(questions):
+            pick = st.radio(f"Q{i + 1}. {q['q']}", q["options"],
+                            key=f"rq_{passage['id']}_{i}", index=None)
+            answers.append(pick)
+        submitted = st.form_submit_button("送出作答")
+    if submitted:
+        correct = 0
+        for i, q in enumerate(questions):
+            if answers[i] == q["answer"]:
+                correct += 1
+                st.success(f"Q{i + 1} ✅ 正解：{q['answer']}")
+            else:
+                st.error(f"Q{i + 1} ❌ 正確答案：{q['answer']}")
+            if q.get("explain"):
+                st.caption(f"💡 {q['explain']}")
+        score = round(correct / len(questions) * 100)
+        st.info(f"得分：{correct} / {len(questions)}（{score}%）")
+        # 把閱讀理解分數記進今日統計，供「學習進度」追蹤
+        today_entry()["quiz_scores"].append(score)
+        save_data()
+
+
 def view_reading() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -1893,6 +2032,8 @@ def view_reading() -> None:
 
             st.divider()
             _render_grammar(passage["grammar"])
+
+            _render_reading_quiz(passage)
 
             if st.button(
                 f"➕ 加入 {len(passage['sentences'])} 句到「🔁 複習」",
@@ -2145,11 +2286,26 @@ def view_vocab_bank() -> None:
     page = st.number_input("頁", min_value=1, max_value=total_pages, value=1, step=1) - 1
     st.caption(f"庫存 {len(bank)} 字　|　符合 {len(filtered)} 字　|　頁 {page + 1}/{total_pages}")
 
+    # 批次把搜尋結果的單字一次納入 SRS 複習（科學記憶排程）
+    if filtered and st.button(
+        f"🧠 把符合的 {len(filtered)} 字全部加入「🔁 複習」（SRS 排程）",
+        use_container_width=True,
+    ):
+        cards = [vocab_to_card(w, bank[w]) for w in filtered]
+        n = add_cards_to_review(cards)
+        save_data()
+        st.success(f"已加入 {n} 字到複習清單（其餘已在清單中）。到「🔁 複習」開始今日複習。"
+                   if n else "這些字已全部在複習清單中。")
+
     for word in filtered[page * per_page:(page + 1) * per_page]:
         e = bank[word]
         with st.container(border=True):
             c1, c2 = st.columns([2, 5])
             c1.markdown(f"### {word}")
+            if c1.button("➕ 加入複習", key=f"bank_rev_{word}", use_container_width=True):
+                n = add_cards_to_review([vocab_to_card(word, e)])
+                save_data()
+                c1.success("已加入！" if n else "已在清單中")
             if e.get("meaning_zh"):
                 c1.markdown(f"**{e['meaning_zh']}**")
             if e.get("kk"):
@@ -2185,8 +2341,8 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "🗣️ 口說範本", "📚 互動閱讀", "📖 單字庫", "🤖 情境生成",
-             "🔁 複習", "📈 學習進度", "✅ 學習計畫"],
+             "💬 情境會話", "📚 互動閱讀", "📖 單字庫",
+             "🔁 複習", "📊 學習儀表板", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -2368,17 +2524,15 @@ def main() -> None:
         view_quiz()
     elif view.endswith("字根速記"):
         view_morphology()
-    elif view.endswith("口說範本"):
-        view_speak_story()
+    elif view.endswith("情境會話"):
+        view_scenario()
     elif view.endswith("互動閱讀"):
         view_reading()
     elif view.endswith("單字庫"):
         view_vocab_bank()
-    elif view.endswith("情境生成"):
-        view_generate()
     elif view.endswith("複習"):
         view_review()
-    elif view.endswith("學習進度"):
+    elif view.endswith("學習儀表板"):
         view_progress()
     elif view.endswith("學習計畫"):
         view_plan()

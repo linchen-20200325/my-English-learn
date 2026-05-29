@@ -2270,5 +2270,360 @@
         "example": "Different peoples have different customs."
       }
     ]
+  },
+  "study": {
+    "word": "study",
+    "meaning_zh": "讀書、研究",
+    "kk": "[ˈstʌdi]",
+    "phonics": "STU-dy",
+    "homophone": "史塔迪",
+    "image": "歷史『史』學家在『塔』裡『迪』士尼般地 study。",
+    "example_en": "She studies hard every night.",
+    "example_zh": "她每晚都很用功讀書。",
+    "usage_zh": "study 強調用功鑽研；learn 強調學會結果。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "studies",
+      "studied"
+    ]
+  },
+  "love": {
+    "word": "love",
+    "meaning_zh": "愛、喜愛",
+    "kk": "[lʌv]",
+    "phonics": "LOVE",
+    "homophone": "辣夫",
+    "image": "為心愛的『辣』妹當『夫』——那是 love。",
+    "example_en": "I love spending time with my family.",
+    "example_zh": "我喜歡和家人相處。",
+    "usage_zh": "love V-ing/to V 都可;比 like 程度更深。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "loves",
+      "loved"
+    ]
+  },
+  "happy": {
+    "word": "happy",
+    "meaning_zh": "快樂的、高興的",
+    "kk": "[ˈhæpi]",
+    "phonics": "HAP-py",
+    "homophone": "哈皮",
+    "image": "開心到『哈』哈大笑很頑『皮』=happy。",
+    "example_en": "I'm so happy to see you.",
+    "example_zh": "見到你我好開心。",
+    "usage_zh": "be happy with 對…滿意;be happy to V 樂意做。",
+    "pos": "形容詞",
+    "other_forms": [
+      "happier",
+      "happiest"
+    ]
+  },
+  "good": {
+    "word": "good",
+    "meaning_zh": "好的、優秀的",
+    "kk": "[ɡʊd]",
+    "phonics": "GOOD",
+    "homophone": "姑的",
+    "image": "『姑』姑做『的』菜超棒 = good。",
+    "example_en": "That's a good idea.",
+    "example_zh": "那是個好主意。",
+    "usage_zh": "比較級 better、最高級 best;be good at 擅長。",
+    "pos": "形容詞",
+    "other_forms": [
+      "better",
+      "best"
+    ]
+  },
+  "bad": {
+    "word": "bad",
+    "meaning_zh": "壞的、糟的",
+    "kk": "[bæd]",
+    "phonics": "BAD",
+    "homophone": "白的",
+    "image": "心『白』的(空白)做壞事 = bad。",
+    "example_en": "I had a bad day.",
+    "example_zh": "我今天過得很糟。",
+    "usage_zh": "比較級 worse、最高級 worst;not bad 還不錯。",
+    "pos": "形容詞",
+    "other_forms": [
+      "worse",
+      "worst"
+    ]
+  },
+  "big": {
+    "word": "big",
+    "meaning_zh": "大的",
+    "kk": "[bɪɡ]",
+    "phonics": "BIG",
+    "homophone": "逼哥",
+    "image": "『逼』『哥』長得超 big。",
+    "example_en": "They live in a big house.",
+    "example_zh": "他們住在一間大房子。",
+    "usage_zh": "big 偏體積/重要性;large 偏面積數量。",
+    "pos": "形容詞",
+    "other_forms": [
+      "bigger",
+      "biggest"
+    ]
+  },
+  "small": {
+    "word": "small",
+    "meaning_zh": "小的",
+    "kk": "[smɔl]",
+    "phonics": "SMALL",
+    "homophone": "司摩",
+    "image": "『司』機『摩』托車很 small。",
+    "example_en": "It's a small but cozy room.",
+    "example_zh": "這是個小而溫馨的房間。",
+    "usage_zh": "反義 big/large;a small amount 少量。",
+    "pos": "形容詞",
+    "other_forms": [
+      "smaller",
+      "smallest"
+    ]
+  },
+  "new": {
+    "word": "new",
+    "meaning_zh": "新的",
+    "kk": "[nju]",
+    "phonics": "NEW",
+    "homophone": "紐",
+    "image": "『紐』約啥都是 new 的。",
+    "example_en": "I bought a new phone.",
+    "example_zh": "我買了支新手機。",
+    "usage_zh": "反義 old;What's new? 有什麼新鮮事?",
+    "pos": "形容詞",
+    "other_forms": [
+      "newer",
+      "newest"
+    ]
+  },
+  "old": {
+    "word": "old",
+    "meaning_zh": "舊的、年老的",
+    "kk": "[old]",
+    "phonics": "OLD",
+    "homophone": "歐的",
+    "image": "『歐』洲『的』城堡很 old。",
+    "example_en": "This is my old school.",
+    "example_zh": "這是我的母校(舊學校)。",
+    "usage_zh": "問年齡 How old are you?;反義 new/young。",
+    "pos": "形容詞",
+    "other_forms": [
+      "older",
+      "oldest"
+    ]
+  },
+  "close": {
+    "word": "close",
+    "meaning_zh": "關閉;親近的",
+    "kk": "[kloz]/[klos]",
+    "phonics": "CLOSE",
+    "homophone": "扣漏私",
+    "image": "把『扣』子『漏』掉的『私』物 close 起來。",
+    "example_en": "Close the door, please.",
+    "example_zh": "請把門關上。",
+    "usage_zh": "動詞唸 [kloz];形容詞『親近』唸 [klos],be close to。",
+    "pos": "動詞/形容詞",
+    "other_forms": [
+      "closes",
+      "closed"
+    ]
+  },
+  "live": {
+    "word": "live",
+    "meaning_zh": "居住、生活",
+    "kk": "[lɪv]",
+    "phonics": "LIVE",
+    "homophone": "力夫",
+    "image": "用『力』的『夫』妻一起 live。",
+    "example_en": "I live in Taipei.",
+    "example_zh": "我住在台北。",
+    "usage_zh": "動詞唸 [lɪv];形容詞『現場的』唸 [laɪv]。",
+    "pos": "動詞",
+    "other_forms": [
+      "lives",
+      "lived"
+    ]
+  },
+  "important": {
+    "word": "important",
+    "meaning_zh": "重要的",
+    "kk": "[ɪmˈpɔrtn̩t]",
+    "phonics": "im-POR-tant",
+    "homophone": "硬剖疼",
+    "image": "『硬』要『剖』開很『疼』,因為很 important。",
+    "example_en": "This is an important meeting.",
+    "example_zh": "這是場重要的會議。",
+    "usage_zh": "It's important to V / that 子句。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "beautiful": {
+    "word": "beautiful",
+    "meaning_zh": "美麗的",
+    "kk": "[ˈbjutəfl̩]",
+    "phonics": "BEAU-ti-ful",
+    "homophone": "逼優提佛",
+    "image": "『逼』近『優』雅,『提』升『佛』系美=beautiful。",
+    "example_en": "What a beautiful view!",
+    "example_zh": "多美的景色啊!",
+    "usage_zh": "形容人事物皆可;形容男性多用 handsome。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "difficult": {
+    "word": "difficult",
+    "meaning_zh": "困難的",
+    "kk": "[ˈdɪfɪkəlt]",
+    "phonics": "DIF-fi-cult",
+    "homophone": "地非扣",
+    "image": "『地』勢『非』常難『扣』分=difficult。",
+    "example_en": "Learning a language is difficult but fun.",
+    "example_zh": "學語言很難但很有趣。",
+    "usage_zh": "= hard;反義 easy。It's difficult to V。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "hand": {
+    "word": "hand",
+    "meaning_zh": "手;遞交",
+    "kk": "[hænd]",
+    "phonics": "HAND",
+    "homophone": "漢德",
+    "image": "『漢』堡用『德』國手 hand。",
+    "example_en": "Give me a hand, please.",
+    "example_zh": "請幫我一下。",
+    "usage_zh": "give sb. a hand 幫忙;hand in 繳交;on the other hand 另一方面。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "hands",
+      "handed"
+    ]
+  },
+  "eye": {
+    "word": "eye",
+    "meaning_zh": "眼睛",
+    "kk": "[aɪ]",
+    "phonics": "EYE",
+    "homophone": "愛",
+    "image": "用『愛』的眼神 eye 著你。",
+    "example_en": "Keep an eye on the kids.",
+    "example_zh": "看著孩子們。",
+    "usage_zh": "keep an eye on 留意;與 I 同音。",
+    "pos": "名詞",
+    "other_forms": [
+      "eyes"
+    ]
+  },
+  "face": {
+    "word": "face",
+    "meaning_zh": "臉;面對",
+    "kk": "[fes]",
+    "phonics": "FACE",
+    "homophone": "費斯",
+    "image": "『費』心的『斯』文人 face。",
+    "example_en": "We must face the truth.",
+    "example_zh": "我們必須面對真相。",
+    "usage_zh": "face to face 面對面;face a problem 面對問題。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "faces",
+      "faced"
+    ]
+  },
+  "word": {
+    "word": "word",
+    "meaning_zh": "字、詞;話",
+    "kk": "[wɝd]",
+    "phonics": "WORD",
+    "homophone": "沃德",
+    "image": "『沃』土上『德』高望重的人說的 word。",
+    "example_en": "What does this word mean?",
+    "example_zh": "這個字是什麼意思?",
+    "usage_zh": "in other words 換句話說;keep one's word 守信。",
+    "pos": "名詞",
+    "other_forms": [
+      "words"
+    ]
+  },
+  "morning": {
+    "word": "morning",
+    "meaning_zh": "早上",
+    "kk": "[ˈmɔrnɪŋ]",
+    "phonics": "MORN-ing",
+    "homophone": "摸寧",
+    "image": "早上『摸』黑求『寧』靜 = morning。",
+    "example_en": "Good morning!",
+    "example_zh": "早安!",
+    "usage_zh": "in the morning 在早上;this morning 今早。",
+    "pos": "名詞",
+    "other_forms": [
+      "mornings"
+    ]
+  },
+  "night": {
+    "word": "night",
+    "meaning_zh": "夜晚",
+    "kk": "[naɪt]",
+    "phonics": "NIGHT (gh不發音)",
+    "homophone": "耐特",
+    "image": "『耐』得住的騎士(knight)在 night 巡邏。",
+    "example_en": "I'll see you tonight.",
+    "example_zh": "今晚見。",
+    "usage_zh": "at night 在晚上;與 knight 同音。",
+    "pos": "名詞",
+    "other_forms": [
+      "nights"
+    ]
+  },
+  "hope": {
+    "word": "hope",
+    "meaning_zh": "希望",
+    "kk": "[hop]",
+    "phonics": "HOPE",
+    "homophone": "厚普",
+    "image": "『厚』臉皮『普』通人也有 hope。",
+    "example_en": "I hope you feel better soon.",
+    "example_zh": "希望你早日康復。",
+    "usage_zh": "hope to V / hope that 子句;反義 despair。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "hopes",
+      "hoped"
+    ]
+  },
+  "believe": {
+    "word": "believe",
+    "meaning_zh": "相信",
+    "kk": "[bɪˈliv]",
+    "phonics": "be-LIEVE",
+    "homophone": "必力夫",
+    "image": "『必』定有『力』的『夫』妻互相 believe。",
+    "example_en": "I believe in you.",
+    "example_zh": "我相信你。",
+    "usage_zh": "believe in 信任/信仰;believe that 子句。",
+    "pos": "動詞",
+    "other_forms": [
+      "believes",
+      "believed"
+    ]
+  },
+  "happen": {
+    "word": "happen",
+    "meaning_zh": "發生",
+    "kk": "[ˈhæpən]",
+    "phonics": "HAP-pen",
+    "homophone": "哈盆",
+    "image": "『哈』哈打翻『盆』栽,事情 happen 了。",
+    "example_en": "What happened to you?",
+    "example_zh": "你發生什麼事了?",
+    "usage_zh": "happen to V 碰巧;沒有被動式。",
+    "pos": "動詞",
+    "other_forms": [
+      "happens",
+      "happened"
+    ]
   }
 }

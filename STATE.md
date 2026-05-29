@@ -4,7 +4,14 @@
 - **專案**: 英文學習儀表板 (English Learning Dashboard)
 - **環境**: Streamlit Cloud + GitHub
 - **進度**: 九大分頁已完成並通過 AppTest 驗證（新增「📖 單字庫」分頁＋批次生成腳本 `scripts/generate_vocab.py`：本機跑 Claude API 把 ~250 字啟動詞表填上諧音／例句／用法寫進 `vocab_bank.json`，分頁支援搜尋與分頁瀏覽）；Streamlit Cloud 部署設定就緒；協議 v2.0 已部署
-- **分支**: `main`（預設分支）+ 開發分支 `claude/brave-lovelace-Q786A`
+- **分支**: `main`（預設分支）+ 開發分支 `claude/affectionate-bardeen-wMVbS`
+
+## 🆕 本次優化（科學學習 + 閱讀 + 字庫）
+- **介面整理**：導覽 11→10 項。「🗣️ 口說範本」＋「🤖 情境生成」合併為單一「💬 情境會話」（`view_scenario`，分頁：口說範本/AI 情境生成）；「📈 學習進度」更名「📊 學習儀表板」（含 SRS 記憶監督），與日文版一致。
+- **閱讀理解測驗**（`comprehension.py`）：7 篇互動閱讀皆加入選擇題,讀完即時批改+解析,分數計入今日統計（主動回憶 active recall）。
+- **記憶科學監督**（`view_progress`／學習儀表板）：複習牌組的記憶強度分布（新卡/學習中/漸熟/已掌握）、熟練比例、今日待複習、**未來 7 天複習負擔預測圖**。
+- **字庫與詞表擴充**：`vocab_bank.json` 50 → 106 字；`scripts/vocab_wordlist.txt` 擴充至 468 字供 AI 生成。
+- **修正**：AI 生成單字推回成功後資料庫數字不更新（同步寫回本機 + 清快取）。
 
 ## 🛠️ 檔案結構與核心組件
 - `CLAUDE.md`: 核心開發與治理協議 (v2.0)
