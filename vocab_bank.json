@@ -931,11 +931,11 @@
     "meaning_zh": "睡覺",
     "kk": "[slip]",
     "phonics": "SLEEP",
-    "homophone": "撕累不",
-    "image": "撕開疲憊的被單，感覺好累，只想睡覺。",
-    "example_en": "I need to sleep for 8 hours.",
-    "example_zh": "我需要睡足八小時。",
-    "usage_zh": "表示睡眠狀態或動作，常與時間搭配，如 'sleep for X hours'。",
+    "homophone": "失力閉",
+    "image": "睡覺失力，眼睛『閉』起來。",
+    "example_en": "I need more sleep.",
+    "example_zh": "我需要多睡一點。",
+    "usage_zh": "表示睡眠不足或需要睡眠時常用,如 'I can't sleep.' 或 'I slept well.'。",
     "pos": "動詞 / 名詞",
     "other_forms": []
   },
@@ -944,18 +944,18 @@
     "meaning_zh": "閱讀",
     "kk": "[rid]",
     "phonics": "REED",
-    "homophone": "綠的",
-    "image": "綠色的書本，讓我看得入迷。",
-    "example_en": "She likes to read before bed.",
-    "example_zh": "她喜歡睡前閱讀。",
-    "usage_zh": "指閱讀的動作，常用於描述個人習慣或活動。",
+    "homophone": "蕊的",
+    "image": "這朵『蕊』好美，讓我讀一下。",
+    "example_en": "What are you reading?",
+    "example_zh": "你在讀什麼？",
+    "usage_zh": "詢問對方正在做的事,或表達自己正在閱讀的習慣。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "reader",
         "pos": "名詞",
         "meaning_zh": "讀者",
-        "example": "He is an avid reader."
+        "example": "He's a voracious reader."
       }
     ]
   },
@@ -963,25 +963,25 @@
     "word": "write",
     "meaning_zh": "寫作",
     "kk": "[raɪt]",
-    "phonics": "WRITE",
+    "phonics": "RIGHT",
     "homophone": "賴特",
-    "image": "賴特建築師在畫設計圖，正在寫字。",
-    "example_en": "Can you write your name here?",
-    "example_zh": "你可以寫你的名字在這裡嗎？",
-    "usage_zh": "指書寫的動作，常用於要求或指示，如 'write your name'。",
+    "image": "『賴特』律師寫了份報告。",
+    "example_en": "She writes novels.",
+    "example_zh": "她寫小說。",
+    "usage_zh": "描述寫作能力或習慣,如 'I need to write an email.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "writer",
         "pos": "名詞",
         "meaning_zh": "作家；作者",
-        "example": "She is a famous writer."
+        "example": "She's a famous writer."
       },
       {
         "word": "writing",
         "pos": "名詞",
         "meaning_zh": "寫作；文字",
-        "example": "His writing is beautiful."
+        "example": "His handwriting is beautiful."
       }
     ]
   },
@@ -989,39 +989,39 @@
     "word": "learn",
     "meaning_zh": "學習",
     "kk": "[lɝn]",
-    "phonics": "LURN",
+    "phonics": "LERN",
     "homophone": "冷恩",
-    "image": "冷氣開很強，讓我學到要多穿衣服。",
-    "example_en": "I want to learn English.",
-    "example_zh": "我想學英文。",
-    "usage_zh": "表示獲取知識或技能，常與學習內容搭配，如 'learn a language'。",
+    "image": "『冷』冷的天，『恩』情難忘，我要學習。",
+    "example_en": "I want to learn Spanish.",
+    "example_zh": "我想學西班牙語。",
+    "usage_zh": "表達學習新技能或知識的意願,如 'Let's learn something new.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "learning",
         "pos": "名詞",
         "meaning_zh": "學習；學問",
-        "example": "Learning is a lifelong process."
+        "example": "She has a great thirst for learning."
       }
     ]
   },
   "teach": {
     "word": "teach",
     "meaning_zh": "教導",
-    "kk": "[titʃ]",
+    "kk": "[tiʃ]",
     "phonics": "TEACH",
-    "homophone": "提奇",
-    "image": "老師提著奇怪的東西，要教我們。",
-    "example_en": "He teaches math at the university.",
-    "example_zh": "他在大學教數學。",
-    "usage_zh": "指傳授知識或技能，常用於說明職業或教學內容。",
+    "homophone": "替觸",
+    "image": "『替』他『觸』及知識，就是教導。",
+    "example_en": "He teaches history.",
+    "example_zh": "他教歷史。",
+    "usage_zh": "描述教學對象或科目,如 'Can you teach me?'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "teacher",
         "pos": "名詞",
-        "meaning_zh": "老師；教師",
-        "example": "She became a teacher."
+        "meaning_zh": "老師",
+        "example": "She's a great teacher."
       }
     ]
   },
@@ -1031,10 +1031,10 @@
     "kk": "[baɪ]",
     "phonics": "BUY",
     "homophone": "掰",
-    "image": "掰掰！我要去買東西了。",
-    "example_en": "I need to buy some groceries.",
-    "example_zh": "我需要買些雜貨。",
-    "usage_zh": "表示購物的動作，常用於購物清單或需求。",
+    "image": "跟老闆說『掰』，表示我買了。",
+    "example_en": "I need to buy groceries.",
+    "example_zh": "我需要買雜貨。",
+    "usage_zh": "表達購物需求或行為,如 'Where can I buy this?'。",
     "pos": "動詞",
     "other_forms": [
       {
@@ -1047,14 +1047,14 @@
   },
   "sell": {
     "word": "sell",
-    "meaning_zh": "賣出",
+    "meaning_zh": "販售",
     "kk": "[sɛl]",
     "phonics": "SELL",
-    "homophone": "誰",
-    "image": "誰要把這個賣掉？",
+    "homophone": "賽爾",
+    "image": "『賽爾』號飛船在賣東西。",
     "example_en": "They sell handmade crafts.",
     "example_zh": "他們賣手工藝品。",
-    "usage_zh": "表示銷售的動作，常用於描述商店或產品。",
+    "usage_zh": "描述販售的商品或地點,如 'This store sells electronics.'。",
     "pos": "動詞",
     "other_forms": [
       {
@@ -1068,19 +1068,19 @@
   "pay": {
     "word": "pay",
     "meaning_zh": "支付",
-    "kk": "[peɪ]",
+    "kk": "[pe]",
     "phonics": "PAY",
-    "homophone": "配",
-    "image": "你付錢，我跟你配。",
-    "example_en": "You have to pay the bill today.",
-    "example_zh": "你今天必須付帳單。",
-    "usage_zh": "指支付金錢，常用於付款、薪水等情境，如 'pay the bill'。",
+    "homophone": "賠",
+    "image": "付錢『賠』了本，真不爽。",
+    "example_en": "How much do I have to pay?",
+    "example_zh": "我必須付多少錢？",
+    "usage_zh": "詢問付款金額或表達支付意願,如 'I'll pay for it.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "payment",
         "pos": "名詞",
-        "meaning_zh": "支付；付款",
+        "meaning_zh": "付款；支付",
         "example": "The payment is due next week."
       }
     ]
@@ -1090,18 +1090,18 @@
     "meaning_zh": "寄送",
     "kk": "[sɛnd]",
     "phonics": "SEND",
-    "homophone": "三的",
-    "image": "三的！趕快把包裹寄走。",
-    "example_en": "Please send me the report.",
-    "example_zh": "請寄報告給我。",
-    "usage_zh": "表示傳送訊息或物品，常用於郵寄、電子郵件等，如 'send an email'。",
+    "homophone": " xăng的",
+    "image": "這『 xăng』車要寄送包裹。",
+    "example_en": "Please send me the file.",
+    "example_zh": "請寄檔案給我。",
+    "usage_zh": "要求或表達寄送物品或訊息,如 'I sent an email.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "sender",
         "pos": "名詞",
         "meaning_zh": "寄件人",
-        "example": "The sender's address is missing."
+        "example": "The sender's address is on the back."
       }
     ]
   },
@@ -1111,49 +1111,43 @@
     "kk": "[brɪŋ]",
     "phonics": "BRING",
     "homophone": "冰",
-    "image": "冰淇淋請帶來，我好想吃。",
+    "image": "把『冰』塊帶來。",
     "example_en": "Can you bring some snacks?",
-    "example_zh": "你可以帶來一些零食嗎？",
-    "usage_zh": "表示將某物帶到某處，常用於邀請或請求，如 'bring a friend'。",
+    "example_zh": "你能帶來些零食嗎？",
+    "usage_zh": "請求或表示攜帶物品到某處,如 'Don't forget to bring your ID.'。",
     "pos": "動詞",
     "other_forms": []
   },
   "carry": {
     "word": "carry",
-    "meaning_zh": "攜帶",
+    "meaning_zh": "攜帶；搬運",
     "kk": "[ˈkæri]",
     "phonics": "CARRY",
-    "homophone": "咖哩",
-    "image": "咖哩很重，我需要別人幫我攜帶。",
-    "example_en": "Don't carry too much at once.",
-    "example_zh": "一次不要帶太多。",
-    "usage_zh": "指搬運或攜帶物品，常用於描述負重或搬家等情境。",
+    "homophone": "凱瑞",
+    "image": "『凱瑞』要搬運很重的東西。",
+    "example_en": "Be careful, it's heavy to carry.",
+    "example_zh": "小心，這個很重不好拿。",
+    "usage_zh": "描述攜帶或搬運的動作,如 'Can you carry this bag?'。",
     "pos": "動詞",
     "other_forms": []
   },
   "change": {
     "word": "change",
-    "meaning_zh": "改變；換",
+    "meaning_zh": "改變；更換",
     "kk": "[tʃendʒ]",
     "phonics": "CHANGE",
-    "homophone": "千吉",
-    "image": "千吉！你的髮型變了，換了新造型。",
+    "homophone": "錢吉",
+    "image": "『錢吉』公司改變了策略。",
     "example_en": "Things change quickly here.",
-    "example_zh": "這裡的變化很快。",
-    "usage_zh": "表示狀態或樣貌的轉變，也可用於換衣服、換座位等，如 'change clothes'。",
+    "example_zh": "這裡事情變動很快。",
+    "usage_zh": "表示變化或交換,如 'Let's change the topic.' 或 'Do you have change?'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "changer",
         "pos": "名詞",
-        "meaning_zh": "改變者；變革者",
-        "example": "He was a real changer in the industry."
-      },
-      {
-        "word": "changeable",
-        "pos": "形容詞",
-        "meaning_zh": "易變的；可變的",
-        "example": "The weather is very changeable."
+        "meaning_zh": "改變者",
+        "example": "He's a real change-maker."
       }
     ]
   },
@@ -1162,18 +1156,24 @@
     "meaning_zh": "選擇",
     "kk": "[tʃuz]",
     "phonics": "CHOOSE",
-    "homophone": "秋思",
-    "image": "秋天的思緒，讓我難以選擇。",
-    "example_en": "You can choose any color you like.",
-    "example_zh": "你可以選擇任何你喜歡的顏色。",
-    "usage_zh": "指從多個選項中挑選，常用於做決定或給予選項，如 'choose a path'。",
+    "homophone": "趨勢",
+    "image": "『趨勢』是我們選擇的。",
+    "example_en": "Which one do you want to choose?",
+    "example_zh": "你想選哪一個？",
+    "usage_zh": "詢問或表達選擇的偏好,如 'I can't choose.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "choice",
         "pos": "名詞",
-        "meaning_zh": "選擇；抉擇",
-        "example": "It was a difficult choice."
+        "meaning_zh": "選擇；選擇權",
+        "example": "You have no choice."
+      },
+      {
+        "word": "chooser",
+        "pos": "名詞",
+        "meaning_zh": "選擇者",
+        "example": "The chooser made their decision."
       }
     ]
   },
@@ -1182,24 +1182,24 @@
     "meaning_zh": "決定",
     "kk": "[dɪˈsaɪd]",
     "phonics": "dee-SIDE",
-    "homophone": "敵賽",
-    "image": "敵人比賽，決定誰輸誰贏。",
-    "example_en": "We need to decide by tomorrow.",
-    "example_zh": "我們明天必須決定。",
-    "usage_zh": "指做出決定，常用於時間限制或重要決策，如 'decide on a plan'。",
+    "homophone": "低賽",
+    "image": "『低賽』的決定很重要。",
+    "example_en": "Have you decided yet?",
+    "example_zh": "你決定好了嗎？",
+    "usage_zh": "詢問或表達是否做出決定,如 'We need to decide by tomorrow.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "decision",
         "pos": "名詞",
-        "meaning_zh": "決定；決心",
-        "example": "That was a wise decision."
+        "meaning_zh": "決定",
+        "example": "That was a difficult decision."
       },
       {
         "word": "decisive",
         "pos": "形容詞",
         "meaning_zh": "決定性的；果斷的",
-        "example": "She made a decisive move."
+        "example": "He's very decisive."
       }
     ]
   },
@@ -1208,79 +1208,66 @@
     "meaning_zh": "完成",
     "kk": "[ˈfɪnɪʃ]",
     "phonics": "FINISH",
-    "homophone": "飛尼死",
-    "image": "飛機墜落，任務宣告終止，任務完成了。",
-    "example_en": "Did you finish your homework?",
-    "example_zh": "你完成你的功課了嗎？",
-    "usage_zh": "指結束某項活動或任務，常用於檢查進度或確認是否結束。",
+    "homophone": "芬妮絲",
+    "image": "『芬妮絲』完成了她的工作。",
+    "example_en": "I'll finish it later.",
+    "example_zh": "我晚點完成。",
+    "usage_zh": "表示完成某項任務或活動,如 'Did you finish your homework?'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "finisher",
         "pos": "名詞",
-        "meaning_zh": "完成者；終結者",
-        "example": "He was the first finisher in the race."
+        "meaning_zh": "完成者",
+        "example": "He was the first finisher."
       }
     ]
   },
   "follow": {
     "word": "follow",
-    "meaning_zh": "跟隨",
-    "kk": "[ˈfɑloʊ]",
+    "meaning_zh": "跟隨；遵循",
+    "kk": "[ˈfɑlo]",
     "phonics": "FOLLOW",
     "homophone": "佛漏",
-    "image": "佛祖跟著漏水的管道走。",
-    "example_en": "Follow the instructions carefully.",
-    "example_zh": "仔細遵循指示。",
-    "usage_zh": "指跟在後面或按照指示行動，常用於導航、教學或指示。",
+    "image": "『佛』的教誨要『漏』，跟隨。",
+    "example_en": "Follow me, please.",
+    "example_zh": "請跟著我。",
+    "usage_zh": "指示方向或要求遵守,如 'Follow the instructions.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "follower",
         "pos": "名詞",
-        "meaning_zh": "跟隨者；追隨者",
-        "example": "He has many followers online."
+        "meaning_zh": "追隨者；粉絲",
+        "example": "She has many followers online."
       }
     ]
   },
   "hold": {
     "word": "hold",
-    "meaning_zh": "拿著；舉行",
+    "meaning_zh": "持有；拿著",
     "kk": "[hold]",
     "phonics": "HOLD",
-    "homophone": "齁的",
-    "image": "齁！這東西太燙了，趕快放開！",
-    "example_en": "Can you hold this for me?",
-    "example_zh": "你可以幫我拿一下這個嗎？",
-    "usage_zh": "表示握住、持有或舉辦活動，如 'hold a meeting'。",
+    "homophone": "吼得",
+    "image": "『吼得』很大聲，緊緊拿著。",
+    "example_en": "Hold my hand.",
+    "example_zh": "牽著我的手。",
+    "usage_zh": "要求拿穩、握緊或等待,如 'Hold the door open.'。",
     "pos": "動詞 / 名詞",
-    "other_forms": [
-      {
-        "word": "holder",
-        "pos": "名詞",
-        "meaning_zh": "持有者；支架",
-        "example": "He is the current holder of the record."
-      }
-    ]
+    "other_forms": []
   },
   "lose": {
     "word": "lose",
-    "meaning_zh": "失去；輸掉",
+    "meaning_zh": "遺失；輸掉",
     "kk": "[luz]",
-    "phonics": "LOSE",
+    "phonics": "LOOSE",
     "homophone": "路斯",
-    "image": "路斯！你把鑰匙弄丟了。",
-    "example_en": "Don't lose hope.",
-    "example_zh": "不要失去希望。",
-    "usage_zh": "表示失去某物或在競賽中失敗，常用於情感或結果。",
+    "image": "『路斯』讓球隊輸了。",
+    "example_en": "Don't lose your keys.",
+    "example_zh": "別弄丟你的鑰匙。",
+    "usage_zh": "表達遺失東西或比賽輸掉,如 'I don't want to lose.'。",
     "pos": "動詞",
     "other_forms": [
-      {
-        "word": "loser",
-        "pos": "名詞",
-        "meaning_zh": "失敗者；輸家",
-        "example": "Nobody likes to be a loser."
-      },
       {
         "word": "loss",
         "pos": "名詞",
@@ -1291,21 +1278,21 @@
   },
   "win": {
     "word": "win",
-    "meaning_zh": "贏得；獲勝",
+    "meaning_zh": "贏得",
     "kk": "[wɪn]",
     "phonics": "WIN",
     "homophone": "穩",
-    "image": "穩贏的！他們一定會贏。",
-    "example_en": "We hope to win the championship.",
-    "example_zh": "我們希望贏得冠軍。",
-    "usage_zh": "表示在競賽或爭奪中獲勝，常用於比賽、獎項等。",
+    "image": "『穩』操勝券，贏了。",
+    "example_en": "We won the game!",
+    "example_zh": "我們贏了比賽！",
+    "usage_zh": "表達獲勝或贏得獎項,如 'She won first prize.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "winner",
         "pos": "名詞",
-        "meaning_zh": "獲勝者；贏家",
-        "example": "She was the sole winner."
+        "meaning_zh": "贏家",
+        "example": "He's a true winner."
       }
     ]
   },
@@ -1314,136 +1301,143 @@
     "meaning_zh": "觀看",
     "kk": "[wɑtʃ]",
     "phonics": "WATCH",
-    "homophone": "瓦特",
-    "image": "瓦特發明的蒸汽機，大家都在看。",
-    "example_en": "Let's watch a movie tonight.",
-    "example_zh": "我們今晚來看電影吧。",
-    "usage_zh": "指觀看電視、電影、比賽等，常用於休閒活動。",
+    "homophone": "瓦雀",
+    "image": "『瓦雀』在看什麼？",
+    "example_en": "Let's watch a movie.",
+    "example_zh": "我們看場電影吧。",
+    "usage_zh": "表示觀看電視、電影、比賽等,如 'I like to watch sports.'。",
     "pos": "動詞 / 名詞",
     "other_forms": []
   },
   "listen": {
     "word": "listen",
-    "meaning_zh": "聆聽",
+    "meaning_zh": "傾聽",
     "kk": "[ˈlɪsən]",
-    "phonics": "LISTEN",
-    "homophone": "李森",
-    "image": "李森博士在聽心跳聲。",
-    "example_en": "Listen to your heart.",
-    "example_zh": "傾聽你的心。",
-    "usage_zh": "專注地聽，常用於聽音樂、演講或建議。",
+    "phonics": "LISS-en",
+    "homophone": "李 son",
+    "image": "『李』先生的『son』在講話，請傾聽。",
+    "example_en": "Listen carefully.",
+    "example_zh": "仔細聽。",
+    "usage_zh": "強調仔細聽取聲音或意見,如 'Listen to me.'。",
     "pos": "動詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "listener",
+        "pos": "名詞",
+        "meaning_zh": "聽眾",
+        "example": "The podcast has many listeners."
+      }
+    ]
   },
   "hear": {
     "word": "hear",
-    "meaning_zh": "聽到",
+    "meaning_zh": "聽見",
     "kk": "[hɪr]",
     "phonics": "HEAR",
-    "homophone": "黑兒",
-    "image": "黑色的兒子，竟然聽到了奇怪的聲音。",
+    "homophone": "嘿兒",
+    "image": "『嘿兒』，聽見了嗎？",
     "example_en": "Did you hear that noise?",
-    "example_zh": "你有聽到那個聲音嗎？",
-    "usage_zh": "指接收到聲音，不一定專注，常用於詢問或描述聽到的事物。",
+    "example_zh": "你聽見那個聲音了嗎？",
+    "usage_zh": "表示聽到聲音,與 listen 不同,不強調主動。如 'I can hear music.'。",
     "pos": "動詞",
     "other_forms": []
   },
   "speak": {
     "word": "speak",
-    "meaning_zh": "說話",
+    "meaning_zh": "說話；講",
     "kk": "[spik]",
     "phonics": "SPEAK",
-    "homophone": "司必克",
-    "image": "司必克！請你說話。",
+    "homophone": "司撇",
+    "image": "『司』機『撇』嘴說話。",
     "example_en": "Can you speak English?",
     "example_zh": "你會說英語嗎？",
-    "usage_zh": "指說話的能力或動作，常用於語言能力詢問。",
+    "usage_zh": "詢問語言能力或發表演講,如 'He will speak at the conference.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "speaker",
         "pos": "名詞",
-        "meaning_zh": "說話者；演講者",
-        "example": "The guest speaker was very engaging."
+        "meaning_zh": "說話者；揚聲器",
+        "example": "The main speaker was impressive."
       },
       {
         "word": "speech",
         "pos": "名詞",
-        "meaning_zh": "演講；說話",
-        "example": "He gave a great speech."
+        "meaning_zh": "演講；言語",
+        "example": "She gave a great speech."
       }
     ]
   },
   "say": {
     "word": "say",
-    "meaning_zh": "說",
-    "kk": "[seɪ]",
+    "meaning_zh": "說；講",
+    "kk": "[se]",
     "phonics": "SAY",
-    "homophone": "塞",
-    "image": "塞！他什麼都沒說。",
+    "homophone": "誰",
+    "image": "『誰』說的？",
     "example_en": "What did he say?",
     "example_zh": "他說了什麼？",
-    "usage_zh": "指說出言語，常用於轉述或詢問內容。",
+    "usage_zh": "用於引述或表達某人說的話,如 'I have something to say.'。",
     "pos": "動詞",
     "other_forms": []
   },
   "tell": {
     "word": "tell",
-    "meaning_zh": "告知；告訴",
+    "meaning_zh": "告知；講述",
     "kk": "[tɛl]",
     "phonics": "TELL",
     "homophone": "特爾",
-    "image": "特爾！快把真相告訴我。",
-    "example_en": "Tell me the truth.",
-    "example_zh": "告訴我真相。",
-    "usage_zh": "指告知某人某事，常用於 giving information 或 instructions。",
+    "image": "『特爾』星球的人告知我們。",
+    "example_en": "Tell me a story.",
+    "example_zh": "講個故事給我聽。",
+    "usage_zh": "告知訊息或講述故事,通常後面有受詞,如 'Tell me the truth.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "teller",
         "pos": "名詞",
         "meaning_zh": "敘述者；銀行櫃員",
-        "example": "The bank teller was very helpful."
+        "example": "The bank teller counted the money."
       }
     ]
   },
   "show": {
     "word": "show",
-    "meaning_zh": "展示；顯示",
-    "kk": "[ʃoʊ]",
+    "meaning_zh": "展示；表演",
+    "kk": "[ʃo]",
     "phonics": "SHOW",
     "homophone": "修",
-    "image": "修！他正在展示他的新車。",
-    "example_en": "Can you show me the way?",
-    "example_zh": "你可以指引我方向嗎？",
-    "usage_zh": "指展示、指示或播放，常用於引導、演示或娛樂。",
+    "image": "『修』車師傅展示技術。",
+    "example_en": "Can you show me how?",
+    "example_zh": "你能教我怎麼做嗎？",
+    "usage_zh": "要求展示或說明,如 'He showed me his new car.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "shower",
         "pos": "名詞 / 動詞",
         "meaning_zh": "淋浴；陣雨",
-        "example": "I need to take a shower."
+        "example": "Let's take a shower."
       }
     ]
   },
   "play": {
     "word": "play",
-    "meaning_zh": "玩；演奏",
-    "kk": "[pleɪ]",
+    "meaning_zh": "玩耍； игра",
+    "kk": "[ple]",
     "phonics": "PLAY",
     "homophone": "ㄆㄟ",
-    "image": "ㄆㄟˋ！大家一起玩遊戲。",
-    "example_en": "The children love to play outside.",
-    "example_zh": "孩子們喜歡在外面玩。",
-    "usage_zh": "指進行遊戲、運動或演奏樂器，常用於描述休閒或娛樂活動。",
+    "image": "『ㄆㄟ』小孩在玩耍。",
+    "example_en": "The children are playing outside.",
+    "example_zh": "孩子們在外面玩。",
+    "usage_zh": "描述遊戲、運動或戲劇表演,如 'Let's play a game.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "player",
         "pos": "名詞",
-        "meaning_zh": "玩家；運動員；演奏者",
-        "example": "He is a famous chess player."
+        "meaning_zh": "玩家；運動員",
+        "example": "He's a professional player."
       }
     ]
   },
@@ -1453,17 +1447,17 @@
     "kk": "[sɪŋ]",
     "phonics": "SING",
     "homophone": "新哥",
-    "image": "新哥唱得真好聽。",
-    "example_en": "She can sing beautifully.",
-    "example_zh": "她唱歌很好聽。",
-    "usage_zh": "指演唱歌曲，常用於音樂表演或個人興趣。",
+    "image": "『新哥』在唱歌。",
+    "example_en": "She likes to sing pop songs.",
+    "example_zh": "她喜歡唱流行歌。",
+    "usage_zh": "描述唱歌的行為或喜好,如 'Let's sing together.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "singer",
         "pos": "名詞",
         "meaning_zh": "歌手",
-        "example": "She wants to be a singer."
+        "example": "She's a famous singer."
       }
     ]
   },
@@ -1473,17 +1467,17 @@
     "kk": "[dæns]",
     "phonics": "DANCE",
     "homophone": "丹斯",
-    "image": "丹斯！一起跳舞吧。",
+    "image": "『丹斯』老師在跳舞。",
     "example_en": "They danced all night.",
-    "example_zh": "他們跳了一整夜。",
-    "usage_zh": "指進行舞蹈動作，常用於社交場合或表演。",
+    "example_zh": "他們跳了一整晚。",
+    "usage_zh": "描述跳舞的活動,如 'Let's dance!'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "dancer",
         "pos": "名詞",
         "meaning_zh": "舞者",
-        "example": "She is a professional dancer."
+        "example": "She's a talented dancer."
       }
     ]
   },
@@ -1492,24 +1486,24 @@
     "meaning_zh": "駕駛",
     "kk": "[draɪv]",
     "phonics": "DRIVE",
-    "homophone": "打矮",
-    "image": "打矮！他開車技術很差。",
-    "example_en": "Can you drive me home?",
-    "example_zh": "你可以開車送我回家嗎？",
-    "usage_zh": "指操作汽車或交通工具，常用於交通或出行。",
-    "pos": "動詞 / 名詞",
+    "homophone": "德萊",
+    "image": "『德萊』兄弟在開車。",
+    "example_en": "Can you drive?",
+    "example_zh": "你會開車嗎？",
+    "usage_zh": "詢問駕駛能力或表示開車去某處,如 'I'll drive.'。",
+    "pos": "動詞",
     "other_forms": [
       {
         "word": "driver",
         "pos": "名詞",
-        "meaning_zh": "司機；駕駛員",
-        "example": "He is a taxi driver."
+        "meaning_zh": "司機",
+        "example": "He's a taxi driver."
       },
       {
         "word": "driving",
         "pos": "名詞",
         "meaning_zh": "駕駛",
-        "example": "Driving requires concentration."
+        "example": "Driving is stressful."
       }
     ]
   },
@@ -1518,84 +1512,83 @@
     "meaning_zh": "建造",
     "kk": "[bɪld]",
     "phonics": "BUILD",
-    "homophone": "B. L. D.",
-    "image": "B.L.D. 公司在建造大樓。",
-    "example_en": "They plan to build a new house.",
-    "example_zh": "他們計劃蓋一棟新房子。",
-    "usage_zh": "指建造房屋、結構或系統，常用於工程、建築或計畫。",
+    "homophone": "比爾的",
+    "image": "『比爾的』房子正在建造。",
+    "example_en": "They build houses.",
+    "example_zh": "他們蓋房子。",
+    "usage_zh": "描述建造建築物或建立關係,如 'We need to build a team.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "builder",
         "pos": "名詞",
         "meaning_zh": "建築工人；建造者",
-        "example": "He works as a house builder."
+        "example": "He's a professional builder."
       },
       {
         "word": "building",
         "pos": "名詞",
-        "meaning_zh": "建築物；建築",
+        "meaning_zh": "建築物",
         "example": "That's a tall building."
       }
     ]
   },
   "draw": {
     "word": "draw",
-    "meaning_zh": "畫；吸引",
+    "meaning_zh": "繪畫；畫",
     "kk": "[drɔ]",
     "phonics": "DRAW",
-    "homophone": "捉",
-    "image": "捉！他正在畫一隻可愛的動物。",
-    "example_en": "She likes to draw pictures.",
-    "example_zh": "她喜歡畫畫。",
-    "usage_zh": "指繪製圖畫或吸引人，常用於藝術創作或人際互動。",
+    "homophone": "德勞",
+    "image": "『德勞』藝術家在畫畫。",
+    "example_en": "Can you draw a picture?",
+    "example_zh": "你能畫張圖嗎？",
+    "usage_zh": "描述繪畫的動作,如 'He likes to draw cartoons.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "drawer",
         "pos": "名詞",
-        "meaning_zh": "抽屜；畫家",
-        "example": "He pulled out the bottom drawer."
+        "meaning_zh": "抽屜",
+        "example": "The top drawer is locked."
+      },
+      {
+        "word": "drawing",
+        "pos": "名詞",
+        "meaning_zh": "繪畫；圖畫",
+        "example": "Her drawing is very realistic."
       }
     ]
   },
   "drop": {
     "word": "drop",
-    "meaning_zh": "掉落；ترك",
+    "meaning_zh": "掉落；丟下",
     "kk": "[drɑp]",
     "phonics": "DROP",
-    "homophone": "丟破",
-    "image": "丟破了！東西掉落了。",
-    "example_en": "Be careful not to drop it.",
-    "example_zh": "小心別弄掉了。",
-    "usage_zh": "指讓某物掉下或減少，常用於描述意外或措施。",
+    "homophone": "得肉",
+    "image": "『得肉』掉落了。",
+    "example_en": "Don't drop it!",
+    "example_zh": "別弄掉它！",
+    "usage_zh": "表示掉落、放棄或遞送,如 'I'll drop by later.'。",
     "pos": "動詞 / 名詞",
-    "other_forms": [
-      {
-        "word": "dropper",
-        "pos": "名詞",
-        "meaning_zh": "滴管",
-        "example": "Use the dropper to add the medicine."
-      }
-    ]
+    "other_forms": []
   },
   "enjoy": {
     "word": "enjoy",
     "meaning_zh": "享受",
     "kk": "[ɪnˈdʒɔɪ]",
     "phonics": "in-JOY",
-    "homophone": "硬嬌",
-    "image": "硬要把嬌小的她，帶去享受假期。",
-    "example_en": "I really enjoy this music.",
-    "example_zh": "我真的很喜歡這音樂。",
-    "usage_zh": "指從某事中獲得樂趣或滿足感，常用於休閒、食物或體驗。",
+    "homophone": "因JOY",
+    "image": "『因』為『JOY』，所以享受。",
+    "example_en": "I really enjoy this book.",
+    "example_zh": "我真的很喜歡這本書。",
+    "usage_zh": "表達享受某事或某個時刻,如 'Enjoy your meal!'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "enjoyment",
         "pos": "名詞",
         "meaning_zh": "享受；樂趣",
-        "example": "We had great enjoyment."
+        "example": "We had a lot of enjoyment."
       }
     ]
   },
@@ -1605,10 +1598,10 @@
     "kk": "[ˈɛntɚ]",
     "phonics": "ENTER",
     "homophone": "恩特",
-    "image": "恩！特地跑進來的。",
+    "image": "『恩特』請進入。",
     "example_en": "Please enter your password.",
-    "example_zh": "請輸入你的密碼。",
-    "usage_zh": "指進入某個地方、系統或狀態，常用於登錄、比賽或空間。",
+    "example_zh": "請輸入您的密碼。",
+    "usage_zh": "表示進入某個地方、系統或狀態,如 'Enter the room.'。",
     "pos": "動詞",
     "other_forms": []
   },
@@ -1618,37 +1611,37 @@
     "kk": "[fɔl]",
     "phonics": "FALL",
     "homophone": "佛偶",
-    "image": "佛祖的偶爾會跌倒。",
-    "example_en": "Be careful you don't fall.",
+    "image": "『佛』像『偶』然掉下來。",
+    "example_en": "Be careful not to fall.",
     "example_zh": "小心別跌倒。",
-    "usage_zh": "指從高處落下或發生意外跌倒，常用於安全提醒或描述事件。",
+    "usage_zh": "表示跌落、下降或季節的來臨,如 'The leaves fall in autumn.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "falling",
-        "pos": "形容詞",
-        "meaning_zh": "下落的；下跌的",
-        "example": "The falling leaves were beautiful."
+        "pos": "名詞",
+        "meaning_zh": "落下；下跌",
+        "example": "The falling stock price worried investors."
       }
     ]
   },
   "grow": {
     "word": "grow",
-    "meaning_zh": "成長；生長",
-    "kk": "[ɡroʊ]",
+    "meaning_zh": "生長；成長",
+    "kk": "[ɡro]",
     "phonics": "GROW",
-    "homophone": "勾摟",
-    "image": "勾摟！小樹苗正在成長。",
-    "example_en": "Children grow up so fast.",
-    "example_zh": "孩子們長得真快。",
-    "usage_zh": "指生物體的生長發育或事物的發展擴大，常用於植物、兒童或事業。",
+    "homophone": "格肉",
+    "image": "『格肉』類食物讓人成長。",
+    "example_en": "Children grow fast.",
+    "example_zh": "孩子們長得很快。",
+    "usage_zh": "表示成長、發展或種植,如 'Plants grow in sunlight.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "growth",
         "pos": "名詞",
-        "meaning_zh": "成長；生長；增長",
-        "example": "Economic growth is slowing down."
+        "meaning_zh": "生長；成長；增長",
+        "example": "Economic growth has slowed down."
       }
     ]
   },
@@ -1657,18 +1650,18 @@
     "meaning_zh": "猜測",
     "kk": "[ɡɛs]",
     "phonics": "GUESS",
-    "homophone": "蓋濕",
-    "image": "蓋了一間房子，結果裡面濕濕的，猜猜為什麼？",
-    "example_en": "I guess it will rain tomorrow.",
-    "example_zh": "我猜明天下雨。",
-    "usage_zh": "指憑藉有限資訊進行推測，常用於不確定或估計。",
+    "homophone": "蓋斯",
+    "image": "『蓋斯』牌猜中了。",
+    "example_en": "I guess so.",
+    "example_zh": "我猜也是。",
+    "usage_zh": "表達猜測或不確定,如 'Can you guess the answer?'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "guesswork",
         "pos": "名詞",
         "meaning_zh": "猜測；估計",
-        "example": "It's all guesswork at this point."
+        "example": "It's all guesswork."
       }
     ]
   },
@@ -1677,11 +1670,11 @@
     "meaning_zh": "憎恨；討厭",
     "kk": "[het]",
     "phonics": "HATE",
-    "homophone": "黑特",
-    "image": "黑特！我好討厭他。",
-    "example_en": "I hate waking up early.",
-    "example_zh": "我討厭早起。",
-    "usage_zh": "表示強烈的不喜歡或厭惡，常用於表達負面情緒。",
+    "homophone": "嘿特",
+    "image": "『嘿特』！我好討厭你。",
+    "example_en": "I hate waiting.",
+    "example_zh": "我討厭等待。",
+    "usage_zh": "表達強烈的厭惡或不喜歡,如 'She hates spiders.'。",
     "pos": "動詞 / 名詞",
     "other_forms": []
   },
@@ -1690,24 +1683,24 @@
     "meaning_zh": "加入；連接",
     "kk": "[dʒɔɪn]",
     "phonics": "JOIN",
-    "homophone": "九姨娘",
-    "image": "九姨娘加入這個幫派。",
-    "example_en": "Would you like to join us?",
+    "homophone": "九恩",
+    "image": "『九恩』師傅加入我們。",
+    "example_en": "Do you want to join us?",
     "example_zh": "你想加入我們嗎？",
-    "usage_zh": "指加入一個團體、組織或將事物連接起來，常用於邀請或說明關係。",
+    "usage_zh": "邀請或表示加入團體、活動或連接兩物,如 'Let's join the club.'。",
     "pos": "動詞",
     "other_forms": []
   },
   "laugh": {
     "word": "laugh",
-    "meaning_zh": "大笑",
+    "meaning_zh": "笑",
     "kk": "[læf]",
-    "phonics": "LAUGH",
+    "phonics": "LAFF",
     "homophone": "拉夫",
-    "image": "拉夫！他笑得很大聲。",
-    "example_en": "They laughed at his joke.",
-    "example_zh": "他們被他的笑話逗笑了。",
-    "usage_zh": "指因開心或有趣而發出笑聲，常用於描述情緒反應。",
+    "image": "『拉夫』先生笑得很大聲。",
+    "example_en": "He started to laugh.",
+    "example_zh": "他開始笑了。",
+    "usage_zh": "描述笑的動作或原因,如 'Don't laugh at me.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
@@ -1723,18 +1716,24 @@
     "meaning_zh": "結婚",
     "kk": "[ˈmæri]",
     "phonics": "MARRY",
-    "homophone": "媽哩",
-    "image": "媽哩！他們決定要結婚了。",
-    "example_en": "They decided to marry next year.",
-    "example_zh": "他們決定明年結婚。",
-    "usage_zh": "指締結婚姻關係，常用於談論戀愛或婚姻。",
+    "homophone": "馬瑞",
+    "image": "『馬瑞』決定結婚。",
+    "example_en": "They got married last year.",
+    "example_zh": "他們去年結婚了。",
+    "usage_zh": "描述結婚的行為,如 'He wants to marry her.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "marriage",
         "pos": "名詞",
-        "meaning_zh": "婚姻；結婚",
-        "example": "Their marriage lasted for fifty years."
+        "meaning_zh": "婚姻",
+        "example": "Their marriage lasted fifty years."
+      },
+      {
+        "word": "married",
+        "pos": "形容詞",
+        "meaning_zh": "已婚的",
+        "example": "Are you married?"
       }
     ]
   },
@@ -1744,17 +1743,17 @@
     "kk": "[mit]",
     "phonics": "MEET",
     "homophone": "米特",
-    "image": "米特！我們約在那裡見面。",
-    "example_en": "Let's meet at the cafe.",
-    "example_zh": "我們在咖啡廳見面吧。",
-    "usage_zh": "指與人相遇或約定見面，常用於社交或安排。",
+    "image": "『米特』先生遇見了老朋友。",
+    "example_en": "Nice to meet you.",
+    "example_zh": "很高興認識你。",
+    "usage_zh": "表示初次見面、約見面或遇到某人,如 'Let's meet at noon.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "meeting",
         "pos": "名詞",
         "meaning_zh": "會議；見面",
-        "example": "The meeting started on time."
+        "example": "We have a meeting at 3 PM."
       }
     ]
   },
@@ -1763,38 +1762,38 @@
     "meaning_zh": "移動；搬家",
     "kk": "[muv]",
     "phonics": "MOVE",
-    "homophone": "木府",
-    "image": "木府有好多人在搬家。",
+    "homophone": "姆夫",
+    "image": "『姆夫』人移動了。",
     "example_en": "Can you move this chair?",
-    "example_zh": "你可以移動這張椅子嗎？",
-    "usage_zh": "指改變位置、進展或搬遷，常用於描述動作、進度或生活變動。",
+    "example_zh": "你能移動這張椅子嗎？",
+    "usage_zh": "表示移動位置、搬家或改變狀態,如 'Let's move on.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "movement",
         "pos": "名詞",
-        "meaning_zh": "移動；運動；活動",
-        "example": "The movement of the planets is complex."
+        "meaning_zh": "移動；運動",
+        "example": "The sudden movement startled him."
       }
     ]
   },
   "open": {
     "word": "open",
-    "meaning_zh": "打開；公開",
-    "kk": "[ˈoʊpən]",
+    "meaning_zh": "打開",
+    "kk": "[ˈopən]",
     "phonics": "OPEN",
     "homophone": "歐噴",
-    "image": "歐！噴水池打開了，好多人圍觀。",
+    "image": "『歐噴』醬打開了。",
     "example_en": "Please open the door.",
     "example_zh": "請打開門。",
-    "usage_zh": "指打開物品、場所或揭露資訊，常用於指示或描述狀態。",
+    "usage_zh": "打開門、窗、盒子等,或開始營業,如 'The shop opens at 9 AM.'。",
     "pos": "動詞 / 形容詞 / 名詞",
     "other_forms": [
       {
-        "word": "opening",
+        "word": "opener",
         "pos": "名詞",
-        "meaning_zh": "開口；空缺；開幕",
-        "example": "There is an opening for a new manager."
+        "meaning_zh": "開罐器；開瓶器",
+        "example": "Where is the can opener?"
       }
     ]
   },
@@ -1803,11 +1802,11 @@
     "meaning_zh": "推",
     "kk": "[pʊʃ]",
     "phonics": "PUSH",
-    "homophone": "噗斯",
-    "image": "噗！他用力推，結果東西壞了。",
-    "example_en": "Don't push the button.",
-    "example_zh": "不要按那個按鈕。",
-    "usage_zh": "指施力向前推，常用於操作機器或移動物品。",
+    "homophone": "普修",
+    "image": "『普修』師傅用力推。",
+    "example_en": "Don't push me.",
+    "example_zh": "別推我。",
+    "usage_zh": "表示推的動作,與 pull 相反,如 'Push the button.'。",
     "pos": "動詞 / 名詞",
     "other_forms": []
   },
@@ -1816,18 +1815,18 @@
     "meaning_zh": "收到",
     "kk": "[rɪˈsiv]",
     "phonics": "ree-SEEV",
-    "homophone": "哩西欸",
-    "image": "哩西欸！我收到包裹了。",
+    "homophone": "瑞西弗",
+    "image": "『瑞西弗』收到了一封信。",
     "example_en": "Did you receive my email?",
-    "example_zh": "你有收到我的 email 嗎？",
-    "usage_zh": "指接收到物品、訊息或通知，常用於確認收件。",
+    "example_zh": "你收到我的郵件了嗎？",
+    "usage_zh": "表示收到物品、訊息或款項,如 'I received a gift.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "receiver",
         "pos": "名詞",
         "meaning_zh": "接收者；聽筒",
-        "example": "The receiver was off the hook."
+        "example": "The receiver is off the hook."
       }
     ]
   },
@@ -1836,18 +1835,18 @@
     "meaning_zh": "記得",
     "kk": "[rɪˈmɛmbɚ]",
     "phonics": "ree-MEM-ber",
-    "homophone": "哩沒被",
-    "image": "哩沒被發現，偷偷記得。",
-    "example_en": "I can't remember his name.",
-    "example_zh": "我想不起來他的名字。",
-    "usage_zh": "指記住某事或某人，常用於回憶或提示。",
+    "homophone": "瑞 member",
+    "image": "『瑞』巴『member』，我記得。",
+    "example_en": "Do you remember me?",
+    "example_zh": "你記得我嗎？",
+    "usage_zh": "表示記住某事或某人,如 'I can't remember his name.'。",
     "pos": "動詞",
     "other_forms": [
       {
         "word": "remembrance",
         "pos": "名詞",
         "meaning_zh": "記憶；紀念",
-        "example": "This is a token of remembrance."
+        "example": "In remembrance of him."
       }
     ]
   },
@@ -1856,18 +1855,18 @@
     "meaning_zh": "報告；報導",
     "kk": "[rɪˈpɔrt]",
     "phonics": "ree-PORT",
-    "homophone": "哩 pobre",
-    "image": "哩 pobre！快把情況報告上來。",
-    "example_en": "Please report any issues.",
-    "example_zh": "請回報任何問題。",
-    "usage_zh": "指向上級或大眾呈報資訊，常用於工作、新聞或事件。",
+    "homophone": "瑞坡特",
+    "image": "『瑞坡特』記者在報導。",
+    "example_en": "He made a detailed report.",
+    "example_zh": "他做了一份詳細的報告。",
+    "usage_zh": "提交報告、新聞報導或口頭匯報,如 'The news report was shocking.'。",
     "pos": "動詞 / 名詞",
     "other_forms": [
       {
         "word": "reporter",
         "pos": "名詞",
-        "meaning_zh": "記者；報導者",
-        "example": "She works as a news reporter."
+        "meaning_zh": "記者",
+        "example": "She's a TV reporter."
       }
     ]
   },
@@ -1876,19 +1875,12 @@
     "meaning_zh": "休息",
     "kk": "[rɛst]",
     "phonics": "REST",
-    "homophone": "惹死",
-    "image": "惹死！我需要好好休息一下。",
-    "example_en": "I need to rest for a while.",
-    "example_zh": "我需要休息一下。",
-    "usage_zh": "指停止活動以恢復體力，常用於建議或描述狀態。",
+    "homophone": "瑞斯特",
+    "image": "『瑞斯特』很累，需要休息。",
+    "example_en": "I need to rest.",
+    "example_zh": "我需要休息。",
+    "usage_zh": "表示休息、放鬆或剩餘的部分,如 'Take a rest.' 或 'The rest is up to you.'。",
     "pos": "動詞 / 名詞",
-    "other_forms": [
-      {
-        "word": "resting",
-        "pos": "形容詞",
-        "meaning_zh": "休息中的",
-        "example": "The players are resting."
-      }
-    ]
+    "other_forms": []
   }
 }
