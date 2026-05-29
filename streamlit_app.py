@@ -2050,14 +2050,15 @@ def view_vocab_bank() -> None:
                 st.markdown(
                     "**對症修法**(以實際 HTTP code + GitHub 回應的 `message` 為準):\n"
                     "- `401 Bad credentials` → token 過期或寫錯,重生 PAT\n"
-                    "- `403 Resource not accessible by personal access token` → "
-                    "PAT 缺 `Contents: Read+Write` 權限(diagnostics 已通過代表是 PUT 特殊權限),"
-                    "或 main 有 **branch protection** 擋直接 push\n"
+                    "- `403 Resource not accessible by personal access token` (常見!) → "
+                    "**Fine-grained PAT 陷阱**:你看到 Contents: Read+Write 但實際沒生效。"
+                    "**最快解法:改用 Classic PAT**(https://github.com/settings/tokens → "
+                    "Generate new token (classic) → 勾 `repo` scope),貼到 Cloud Secrets 的 `GITHUB_TOKEN`。\n"
                     "- `404 Not Found` → repo 名稱大小寫錯,或 token 對該 repo 沒讀取權限\n"
-                    "- `409 Conflict` 或 `422 Unprocessable` → sha 衝突,**按下方「🔄 強制重新推回」自動重抓 sha 重試**\n"
+                    "- `409 Conflict` 或 `422 Unprocessable` → sha 衝突,**按下方「🔄 強制重新推回」**\n"
                     "- `405 Method Not Allowed` → branch protection 禁直接 push,需經 PR\n\n"
                     "**Branch protection 檢查**:到 https://github.com/linchen-20200325/my-English-learn/settings/branches "
-                    "看 main 是否有 protection rules。若有「Require a pull request before merging」就會擋。"
+                    "看 main 是否有 protection rules。"
                 )
         # 警告:有未保存的字 → 緊急下載提醒(無論有沒有 token)
         if live_bank:
@@ -2289,28 +2290,67 @@ def main() -> None:
                     perms = repo_info.get("permissions", {})
                     full = repo_info.get("full_name", repo)
                     if perms.get("push"):
-                        results.append(("✅", f"Repo `{full}` 寫入權限 OK (push={perms.get('push')})"))
+                        results.append(("ℹ️", f"Repo `{full}` 帳號層級 push={perms.get('push')} "
+                                              "(**fine-grained PAT 不一定真的能寫,以下方真實 PUT 為準**)"))
                     else:
-                        results.append(("⚠️", f"Repo `{full}` 有讀**沒寫權限** "
-                                              f"({perms})。PAT 缺 Contents: Read+Write。"))
+                        results.append(("⚠️", f"Repo `{full}` 帳號層級沒寫權限 ({perms})"))
                 except urllib.error.HTTPError as e:
                     body = e.read().decode('utf-8', 'replace')[:200]
                     results.append(("❌", f"Repo `{repo}` 找不到 (HTTP {e.code}):{body}\n\n"
                                           "**對症**:404 = token Repository access 沒包含此 repo,"
-                                          "或 repo 名稱大小寫錯。到 PAT 設定 Repository access → "
-                                          "Only select repositories → 勾選 my-English-learn。"))
+                                          "或 repo 名稱大小寫錯。"))
                 # 3) 抓 vocab_bank.json 看 path 是否對
+                current_sha = None
+                current_content = None
                 try:
                     api = f"https://api.github.com/repos/{repo}/contents/vocab_bank.json?ref={branch}"
                     req = urllib.request.Request(api, headers=headers)
                     with urllib.request.urlopen(req, timeout=10) as r:
                         d = json.loads(r.read())
-                    results.append(("✅", f"vocab_bank.json @ `{branch}` sha=`{d.get('sha','')[:7]}` size={d.get('size','?')}B"))
+                    current_sha = d.get('sha', '')
+                    current_content = d.get('content', '')
+                    results.append(("✅", f"vocab_bank.json @ `{branch}` sha=`{current_sha[:7]}` size={d.get('size','?')}B"))
                 except urllib.error.HTTPError as e:
                     body = e.read().decode('utf-8', 'replace')[:200]
                     results.append(("❌", f"抓不到 vocab_bank.json @ {branch} (HTTP {e.code}):{body}"))
                 except Exception as e:
                     results.append(("❌", f"{type(e).__name__}: {e}"))
+                # 4) 真實 PUT 測試:用既有 sha+content 做 no-op 寫入,確認 PAT 真的能寫
+                if current_sha and current_content:
+                    try:
+                        put_api = f"https://api.github.com/repos/{repo}/contents/vocab_bank.json"
+                        put_body = json.dumps({
+                            "message": "diagnostic: no-op write test (verifying PAT write permission)",
+                            "content": current_content.replace("\n", ""),  # GitHub 不接受換行
+                            "sha": current_sha,
+                            "branch": branch,
+                        }).encode("utf-8")
+                        req = urllib.request.Request(
+                            put_api, data=put_body, method="PUT",
+                            headers={**headers, "Content-Type": "application/json"})
+                        with urllib.request.urlopen(req, timeout=15) as r:
+                            put_result = json.loads(r.read())
+                        commit_sha = put_result.get("commit", {}).get("sha", "")[:7]
+                        results.append(("✅", f"**真實 PUT 寫入測試 OK** commit `{commit_sha}` — "
+                                              "PAT 真的可以寫,推回應該會成功。"))
+                    except urllib.error.HTTPError as e:
+                        body = e.read().decode('utf-8', 'replace')[:400]
+                        results.append((
+                            "❌",
+                            f"**真實 PUT 寫入測試失敗 (HTTP {e.code})**:{body}\n\n"
+                            "**這代表你的 fine-grained PAT 沒真正獲得 Contents: Write 權限**\n"
+                            "(即使上方 step 2 顯示 push=true 也不算,因為那是帳號層級不是 PAT 層級)。\n\n"
+                            "**最快解法:改用 Classic PAT(更簡單,不會踩這種坑)**:\n"
+                            "1. 到 https://github.com/settings/tokens(注意不是 fine-grained)\n"
+                            "2. 點 `Generate new token (classic)`\n"
+                            "3. Note 填任意,Expiration 選 No expiration 或 90 天\n"
+                            "4. **Scopes 只勾 `repo`** (整個區塊),這會自動包含 contents write\n"
+                            "5. 按 Generate token,複製 `ghp_xxxxx`\n"
+                            "6. 回 Streamlit Cloud Secrets,把 `GITHUB_TOKEN` 換成這把新 ghp_,save\n"
+                            "7. 重新測試"
+                        ))
+                    except Exception as e:
+                        results.append(("❌", f"PUT 測試錯誤:{type(e).__name__}: {e}"))
                 st.session_state["_gh_test"] = results
             for tag, msg in st.session_state.get("_gh_test", []):
                 st.markdown(f"{tag} {msg}")
