@@ -26,6 +26,8 @@ from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
 VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab_bank.json")
+# AI 生成的閱讀永久庫（推回 GitHub 後會越長越多，重整不消失）
+READINGS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "readings_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # GEN_MODEL_TIERS 在下方 dispatcher 區段定義（依供應商映射到實際模型 ID）。
@@ -1427,6 +1429,98 @@ def load_vocab_bank() -> dict:
     return _load_vocab_bank_cached(mtime)
 
 
+# ---------------------------------------------------------------------------
+# 閱讀永久庫（AI 生成 → 寫本機 + 推回 GitHub，資料庫越長越大）
+# ---------------------------------------------------------------------------
+@st.cache_data
+def _load_readings_bank_cached(_mtime: float) -> list:
+    try:
+        with open(READINGS_BANK_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+    return data if isinstance(data, list) else []
+
+
+def load_readings_bank() -> list:
+    """讀取 readings_bank.json（AI 生成且已永久保存的閱讀清單）。"""
+    try:
+        mtime = os.path.getmtime(READINGS_BANK_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_readings_bank_cached(mtime)
+
+
+def _github_put_file(path: str, payload_json: str, commit_msg: str) -> tuple:
+    """通用 GitHub Contents API 寫檔：檔案不存在則建立、存在則更新。回傳 (ok, info)。"""
+    import base64
+    import urllib.error
+    import urllib.request
+
+    token = get_github_token()
+    if not token:
+        return False, "未設定 GITHUB_TOKEN"
+    repo = _read_secret("GITHUB_REPO") or "linchen-20200325/my-English-learn"
+    branch = _read_secret("GITHUB_BRANCH") or "main"
+    api = f"https://api.github.com/repos/{repo}/contents/{path}"
+    headers = {"Authorization": f"Bearer {token}",
+               "Accept": "application/vnd.github+json",
+               "User-Agent": "english-learn-cloud",
+               "X-GitHub-Api-Version": "2022-11-28"}
+    # 取現有 sha（不存在則建立新檔，無需 sha）
+    sha = None
+    try:
+        req = urllib.request.Request(f"{api}?ref={branch}", headers=headers)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            sha = json.loads(r.read()).get("sha")
+    except Exception:  # noqa: BLE001 - 404 = 檔案不存在，首次建立
+        sha = None
+    body = {"message": commit_msg,
+            "content": base64.b64encode(payload_json.encode("utf-8")).decode("ascii"),
+            "branch": branch}
+    if sha:
+        body["sha"] = sha
+    try:
+        req2 = urllib.request.Request(api, data=json.dumps(body).encode("utf-8"),
+                                      method="PUT",
+                                      headers={**headers, "Content-Type": "application/json"})
+        with urllib.request.urlopen(req2, timeout=20) as r:
+            json.loads(r.read())
+        return True, "ok"
+    except urllib.error.HTTPError as e:
+        return False, f"HTTP {e.code}: {e.read().decode('utf-8','replace')[:200]}"
+    except Exception as e:  # noqa: BLE001
+        return False, f"{type(e).__name__}: {e}"
+
+
+def _persist_reading(reading: dict) -> tuple:
+    """把一篇生成的閱讀加入永久庫：寫回本機 + 推回 GitHub。回傳 (ok, info)。
+
+    讓資料庫越長越大：每生成一篇就 append、去重（以 id）、寫檔、push。
+    無 GitHub Token 時仍寫本機（雲端重整會掉，但有 token 就永久）。
+    """
+    bank = list(load_readings_bank())
+    ids = {r.get("id") for r in bank}
+    rid = reading.get("id") or reading.get("title", "")
+    reading["id"] = rid
+    if rid in ids:  # 同 id 已存在就換成唯一 id，避免覆蓋
+        reading["id"] = f"{rid}-{len(bank)}"
+    bank.append(reading)
+    payload = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
+    # 先寫本機（即時生效），再推回 GitHub（永久保存）
+    try:
+        with open(READINGS_BANK_FILE, "w", encoding="utf-8") as f:
+            f.write(payload)
+    except OSError:
+        pass
+    if hasattr(load_readings_bank, "clear"):
+        load_readings_bank.clear()
+    ok, info = _github_put_file(
+        "readings_bank.json", payload,
+        f"readings_bank: AI 生成新增「{reading.get('title','')}」（共 {len(bank)} 篇）")
+    return ok, info
+
+
 def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
     """雲端內用 Gemini 生成 N 字資料,寫進 st.session_state.live_bank。
     嚴格三重去重(同 key 大小寫 / 已在檔案 / 已在 session)。
@@ -1981,12 +2075,22 @@ _READING_TOPICS = [
 
 
 def _generate_reading_into_session(topic: str, level: str) -> None:
-    """用 Gemini 生成一篇閱讀並插到 live_readings 最前面（最新的排最上面）。"""
+    """用 Gemini 生成一篇閱讀 → 存進永久庫(寫本機+推回GitHub) → 顯示在最上面。
+
+    有 GitHub Token 時，生成的閱讀會永久累積到 readings_bank.json，資料庫越長越大、
+    重整也不消失；沒 token 則僅留在本 session。
+    """
     with st.spinner(f"Gemini 生成「{topic}」({level})…"):
         new_reading = _gen_reading(topic, level, next(iter(_MODEL_MAP.keys())))
-    live = st.session_state.setdefault("live_readings", [])
-    live.insert(0, new_reading)  # 新的排最前
-    st.session_state["_reading_toast"] = new_reading.get("title", "(無標題)")
+    ok, info = _persist_reading(new_reading)  # 寫本機 + 推回 GitHub
+    title = new_reading.get("title", "(無標題)")
+    if ok:
+        st.session_state["_reading_toast"] = f"{title}（已永久存入資料庫）"
+    else:
+        # 推回失敗仍放進 session，至少本次看得到
+        live = st.session_state.setdefault("live_readings", [])
+        live.insert(0, new_reading)
+        st.session_state["_reading_toast"] = f"{title}（暫存本 session；永久保存失敗：{info}）"
 
 
 def view_reading() -> None:
@@ -2046,15 +2150,24 @@ def view_reading() -> None:
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
-        st.caption("💡 提示：AI 生成的閱讀重新整理會消失；想永久保留，按文章內「加入複習」把句子存進 SRS。")
+        st.caption("💡 有設定 GITHUB_TOKEN 時，生成的閱讀會永久存進資料庫並越累積越多；"
+                   "沒設定則僅留在本次瀏覽。")
 
-    # 渲染順序：先「本 session 生成的新閱讀」（最新在最上），再「離線範例範本」
+    # 渲染順序：先「AI 生成的閱讀」（永久庫 + 本 session，最新在上、去重），再「離線範例範本」
+    persisted = list(reversed(load_readings_bank()))   # 檔案後面 append 的較新 → 反轉讓新的在上
     live_readings = st.session_state.get("live_readings", [])
-    if live_readings:
-        st.markdown("### 🌱 你的新生成閱讀")
-    all_passages = list(live_readings) + list(READINGS)
+    generated, seen = [], set()
+    for p in list(live_readings) + persisted:
+        pid = p.get("id") or p.get("title")
+        if pid in seen:
+            continue
+        seen.add(pid)
+        generated.append(p)
+    if generated:
+        st.markdown(f"### 🌱 AI 生成的閱讀（已累積 **{len(generated)}** 篇，會持續長大）")
+    all_passages = generated + list(READINGS)
     for idx, passage in enumerate(all_passages):
-        if idx == len(live_readings):
+        if idx == len(generated):
             st.markdown("### 📚 範例閱讀（離線範本，固定不變）")
         with st.expander(
             f"**{passage['title']}**　·　{passage.get('title_zh','')}　·　"
