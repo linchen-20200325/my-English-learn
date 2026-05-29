@@ -1400,7 +1400,7 @@ def _push_bank_to_github(silent: bool = False) -> bool:
                      "請至 Cloud Secrets 加入 `GITHUB_TOKEN = \"github_pat_...\"`。")
         return False
 
-    repo = _read_secret("GITHUB_REPO") or "linchen-20200325/my-english-learn"
+    repo = _read_secret("GITHUB_REPO") or "linchen-20200325/my-English-learn"
     branch = _read_secret("GITHUB_BRANCH") or "main"
     path = "vocab_bank.json"
 
@@ -1412,12 +1412,48 @@ def _push_bank_to_github(silent: bool = False) -> bool:
     api = f"https://api.github.com/repos/{repo}/contents/{path}"
     headers = {"Authorization": f"Bearer {token}",
                "Accept": "application/vnd.github+json",
-               "User-Agent": "english-learn-cloud"}
+               "User-Agent": "english-learn-cloud",
+               "X-GitHub-Api-Version": "2022-11-28"}
+
+    def _save_err(stage, code, body_text):
+        """把錯誤詳情存進 session,顯示時讓使用者看清楚到底哪裡卡住。"""
+        st.session_state["_push_error"] = {
+            "stage": stage, "code": code, "body": body_text[:600],
+            "repo": repo, "branch": branch, "path": path,
+            "token_prefix": (token[:12] + "…") if token else "",
+        }
+
     try:
+        # 1) GET current sha
         req = urllib.request.Request(f"{api}?ref={branch}", headers=headers)
         with urllib.request.urlopen(req, timeout=15) as r:
             current = json.loads(r.read())
         sha = current["sha"]
+    except urllib.error.HTTPError as e:
+        body_text = e.read().decode("utf-8", "replace")
+        _save_err("GET sha", e.code, body_text)
+        if not silent:
+            st.error(
+                f"❌ 推回第一步失敗:抓取現存檔案 sha (HTTP {e.code})\n\n"
+                f"**Repo**: `{repo}@{branch}`\n"
+                f"**API**: `{api}`\n\n"
+                f"**Google 回應**: {body_text[:400]}\n\n"
+                f"**最可能原因**:\n"
+                f"- 404 → repo 名稱錯/branch 名稱錯,或 token 對該 repo 沒讀取權限\n"
+                f"- 401/403 → token 無效、過期、或沒給 `Contents: Read+Write` 權限\n"
+                f"**請到** https://github.com/settings/personal-access-tokens **重新生 PAT**,"
+                f"Repository access 選 `Only this repo`(my-English-learn),"
+                f"Permissions → Contents: Read and write。"
+            )
+        return False
+    except Exception as e:  # noqa: BLE001
+        _save_err("GET sha", 0, f"{type(e).__name__}: {e}")
+        if not silent:
+            st.error(f"❌ 推回失敗(GET sha 階段):{type(e).__name__}: {e}")
+        return False
+
+    try:
+        # 2) PUT new content
         body = json.dumps({
             "message": f"vocab_bank: cloud append (+{len(live)} 字, 共 {len(merged)} 字)",
             "content": base64.b64encode(payload_json.encode("utf-8")).decode("ascii"),
@@ -1431,19 +1467,27 @@ def _push_bank_to_github(silent: bool = False) -> bool:
             result = json.loads(r.read())
         commit_sha = result.get("commit", {}).get("sha", "")[:7]
         if not silent:
-            st.success(f"✅ 已推回 GitHub commit `{commit_sha}` 到 `{repo}@{branch}`。"
-                       "Cloud 將自動重新部署後永久保存。")
-        # 清掉 live(已落地)與檔案快取
+            st.success(f"✅ 已推回 GitHub commit `{commit_sha}` 到 `{repo}@{branch}`("
+                       f"+{len(live)} 字)。Cloud 自動重新部署後永久保存。")
+        st.session_state.pop("_push_error", None)  # 成功就清掉錯誤紀錄
         st.session_state["live_bank"] = {}
         load_vocab_bank.clear() if hasattr(load_vocab_bank, "clear") else None
         return True
     except urllib.error.HTTPError as e:
+        body_text = e.read().decode("utf-8", "replace")
+        _save_err("PUT", e.code, body_text)
         if not silent:
-            st.error(f"推回失敗（HTTP {e.code}）：{e.read().decode('utf-8', 'replace')[:300]}")
+            st.error(
+                f"❌ 推回第二步失敗:寫入 commit (HTTP {e.code})\n\n"
+                f"**Google 回應**: {body_text[:400]}\n\n"
+                f"**常見原因**:403 = 沒寫權限(token Permissions 沒給 Contents: Write);"
+                f"422 = sha 對不上(他人剛剛改過,重試一次)。"
+            )
         return False
     except Exception as e:  # noqa: BLE001
+        _save_err("PUT", 0, f"{type(e).__name__}: {e}")
         if not silent:
-            st.error(f"推回失敗：{type(e).__name__}: {e}")
+            st.error(f"❌ 推回失敗(PUT 階段):{type(e).__name__}: {e}")
         return False
 
 
@@ -1976,14 +2020,38 @@ def view_vocab_bank() -> None:
                 st.success(f"📤 最後一次推回:{last_push['ts']} 成功 (+{last_push['added']} 字)")
             else:
                 st.error(f"📤 最後一次推回:{last_push['ts']} **失敗** — 請手動下載 JSON 保存!")
-        if live_bank and not get_github_token():
+        # 推回失敗時,把 GitHub API 真實錯誤詳情顯示出來
+        err = st.session_state.get("_push_error")
+        if err:
+            with st.expander("🩺 上次推回失敗的詳細原因(點開看 GitHub 真實回應)",
+                             expanded=True):
+                st.markdown(
+                    f"- **階段**: `{err['stage']}`\n"
+                    f"- **HTTP code**: `{err['code']}`\n"
+                    f"- **Repo**: `{err['repo']}@{err['branch']}` / `{err['path']}`\n"
+                    f"- **Token 開頭**: `{err.get('token_prefix','?')}`"
+                )
+                st.markdown("**GitHub 完整回應**:")
+                st.code(err["body"], language="json")
+                st.markdown(
+                    "**對症修法**:\n"
+                    "- `401 / Bad credentials` → token 過期或寫錯,重生 PAT\n"
+                    "- `403 / Resource not accessible by personal access token` → "
+                    "PAT 缺 `Contents: Read and write` 權限,到 "
+                    "https://github.com/settings/personal-access-tokens 重新編輯\n"
+                    "- `404 Not Found` → repo 名稱大小寫錯,或 token 對該 repo 沒讀取權限。"
+                    "請在 sidebar 按「🔍 測試 GitHub 連線」逐步診斷\n"
+                    "- `422` → sha 衝突,本 app 自動下次重試會解決"
+                )
+        # 警告:有未保存的字 → 緊急下載提醒(無論有沒有 token)
+        if live_bank:
             st.error(
-                f"🚨 警告:目前 session 有 **{len(live_bank)} 個新生成的字未推回 repo**!\n\n"
-                "重整或重新部署就會消失。**請立刻**:\n"
-                "1. 按下方「⬇️ 下載合併後 vocab_bank.json」\n"
-                "2. 把下載的檔案覆蓋 repo 內 `vocab_bank.json`\n"
-                "3. `git push` → Cloud 重新部署 → 永久保存\n\n"
-                "或設定 `GITHUB_TOKEN` 之後自動推回。"
+                f"🚨 **session 有 {len(live_bank)} 個新生成的字尚未真正進 repo!**\n\n"
+                "重整瀏覽器或 Cloud 重啟就會消失。立刻按下方「⬇️ 下載合併後 vocab_bank.json」"
+                "**先存到本機**,再:\n"
+                "1. 把下載的檔覆蓋 repo 內 `vocab_bank.json`\n"
+                "2. `git push` → Cloud 重新部署\n\n"
+                "或修好 GitHub Token 權限後按「🚀 立即推回」自動推回。"
             )
 
     if bank:
@@ -2149,9 +2217,62 @@ def main() -> None:
             st.session_state.pop("_key_test", None)
             st.rerun()
 
-        # GitHub Token
-        if get_github_token():
-            st.caption("🟢 GitHub Token 已設定（可自動推回 repo）")
+        # GitHub Token + 診斷
+        ghk = get_github_token()
+        if ghk:
+            st.caption(f"🟢 GitHub Token `{ghk[:12]}…`")
+            if st.button("🔍 測試 GitHub 連線", use_container_width=True,
+                         help="逐步測試:讀 token、抓 repo、抓 vocab_bank.json,"
+                              "確認真的能寫回。"):
+                import urllib.request, urllib.error
+                repo = _read_secret("GITHUB_REPO") or "linchen-20200325/my-English-learn"
+                branch = _read_secret("GITHUB_BRANCH") or "main"
+                results = []
+                headers = {"Authorization": f"Bearer {ghk}",
+                           "Accept": "application/vnd.github+json",
+                           "User-Agent": "english-learn-cloud",
+                           "X-GitHub-Api-Version": "2022-11-28"}
+                # 1) /user 看 token 是否有效
+                try:
+                    req = urllib.request.Request("https://api.github.com/user", headers=headers)
+                    with urllib.request.urlopen(req, timeout=10) as r:
+                        user = json.loads(r.read())
+                    results.append(("✅", f"Token 有效,登入者 = {user.get('login')}"))
+                except Exception as e:
+                    body = getattr(e, 'read', lambda: b'')().decode('utf-8','replace') if hasattr(e,'code') else ''
+                    code = getattr(e, 'code', '?')
+                    results.append(("❌", f"Token 無效或過期 (HTTP {code}) {body[:100]}"))
+                # 2) /repos/<repo> 看 repo 與權限
+                try:
+                    req = urllib.request.Request(f"https://api.github.com/repos/{repo}", headers=headers)
+                    with urllib.request.urlopen(req, timeout=10) as r:
+                        repo_info = json.loads(r.read())
+                    perms = repo_info.get("permissions", {})
+                    if perms.get("push"):
+                        results.append(("✅", f"Repo `{repo}` 寫入權限 OK"))
+                    else:
+                        results.append(("⚠️", f"Repo `{repo}` 有讀但**沒寫權限** "
+                                              f"({perms})。請給 PAT 加 Contents: Write。"))
+                except urllib.error.HTTPError as e:
+                    body = e.read().decode('utf-8','replace')
+                    results.append(("❌", f"Repo `{repo}` 找不到或無權 (HTTP {e.code}) "
+                                          f"{body[:150]}。**請檢查 repo 大小寫拼字**。"))
+                # 3) 抓 vocab_bank.json 看 path 是否對
+                try:
+                    api = f"https://api.github.com/repos/{repo}/contents/vocab_bank.json?ref={branch}"
+                    req = urllib.request.Request(api, headers=headers)
+                    with urllib.request.urlopen(req, timeout=10) as r:
+                        d = json.loads(r.read())
+                    results.append(("✅", f"vocab_bank.json @ `{branch}` sha={d.get('sha','')[:7]}"))
+                except urllib.error.HTTPError as e:
+                    body = e.read().decode('utf-8','replace')
+                    results.append(("❌", f"抓不到 vocab_bank.json @ {branch} "
+                                          f"(HTTP {e.code}) {body[:100]}"))
+                except Exception as e:
+                    results.append(("❌", f"{type(e).__name__}: {e}"))
+                st.session_state["_gh_test"] = results
+            for tag, msg in st.session_state.get("_gh_test", []):
+                st.caption(f"{tag} {msg}")
         else:
             st.caption("⚪ GitHub Token 未設（無法自動推回）")
 
