@@ -1932,18 +1932,22 @@ def _gen_reading(topic: str, level: str, tier: str) -> dict:
     return json.loads(m.group(0))
 
 
-def _render_reading_quiz(passage: dict) -> None:
-    """閱讀理解測驗：讀完文章後作答並即時批改（主動回憶）。"""
+def _render_reading_quiz(passage: dict, uid: str) -> None:
+    """閱讀理解測驗：讀完文章後作答並即時批改（主動回憶）。
+
+    uid 為呼叫端傳入的唯一前綴（用迴圈索引），避免不同文章（含 AI 生成、
+    可能 id 重複或缺漏）造成 widget key 衝突。
+    """
     questions = get_questions(passage.get("id", ""))
     if not questions:
         return
     st.divider()
     st.markdown("##### 🧩 閱讀理解測驗（先別看翻譯，挑戰讀懂了沒）")
-    with st.form(key=f"reading_quiz_{passage['id']}"):
+    with st.form(key=f"reading_quiz_{uid}"):
         answers = []
         for i, q in enumerate(questions):
             pick = st.radio(f"Q{i + 1}. {q['q']}", q["options"],
-                            key=f"rq_{passage['id']}_{i}", index=None)
+                            key=f"rq_{uid}_{i}", index=None)
             answers.append(pick)
         submitted = st.form_submit_button("送出作答")
     if submitted:
@@ -2012,7 +2016,7 @@ def view_reading() -> None:
 
     # 渲染 READINGS(靜態) + live_readings(本 session AI 生成)
     all_passages = list(READINGS) + st.session_state.get("live_readings", [])
-    for passage in all_passages:
+    for idx, passage in enumerate(all_passages):
         with st.expander(
             f"**{passage['title']}**　·　{passage.get('title_zh','')}　·　"
             f"程度 {passage['level']}　·　{passage['summary']}"
@@ -2033,11 +2037,11 @@ def view_reading() -> None:
             st.divider()
             _render_grammar(passage["grammar"])
 
-            _render_reading_quiz(passage)
+            _render_reading_quiz(passage, uid=str(idx))
 
             if st.button(
                 f"➕ 加入 {len(passage['sentences'])} 句到「🔁 複習」",
-                key=f"add_reading_{passage['id']}",
+                key=f"add_reading_{idx}",
                 use_container_width=True,
             ):
                 cards = [
