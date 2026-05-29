@@ -1568,6 +1568,14 @@ def _push_bank_to_github(silent: bool = False) -> bool:
             st.success(f"✅ 已推回 GitHub commit `{commit_sha}` 到 `{repo}@{branch}`("
                        f"+{len(live)} 字)。Cloud 自動重新部署後永久保存。")
         st.session_state.pop("_push_error", None)  # 成功就清掉錯誤紀錄
+        # 同步寫回「本機」vocab_bank.json：否則本機檔仍是部署當下的舊版，
+        # 清掉 live_bank 後畫面會誤顯示舊字數（使用者回報的「資料庫不會更新」）。
+        # 寫本機後 load_vocab_bank 立刻讀到合併結果，數字即時更新；遠端也已是同一份。
+        try:
+            with open(VOCAB_BANK_FILE, "w", encoding="utf-8") as f:
+                f.write(payload_json)
+        except OSError:
+            pass
         st.session_state["live_bank"] = {}
         load_vocab_bank.clear() if hasattr(load_vocab_bank, "clear") else None
         return True
