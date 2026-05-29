@@ -1360,5 +1360,445 @@
     "usage_zh": "= hard;反義 easy。It's difficult to V。",
     "pos": "形容詞",
     "other_forms": []
+  },
+  "place": {
+    "word": "place",
+    "meaning_zh": "地方、放置",
+    "kk": "[ples]",
+    "phonics": "PLACE",
+    "homophone": "普雷斯",
+    "image": "『普雷斯』頓把書放好的 place。",
+    "example_en": "This is a nice place to relax.",
+    "example_zh": "這是個放鬆的好地方。",
+    "usage_zh": "take place 發生;place an order 下訂單。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "places",
+      "placed"
+    ]
+  },
+  "hand": {
+    "word": "hand",
+    "meaning_zh": "手;遞交",
+    "kk": "[hænd]",
+    "phonics": "HAND",
+    "homophone": "漢德",
+    "image": "『漢』堡用『德』國手 hand。",
+    "example_en": "Give me a hand, please.",
+    "example_zh": "請幫我一下。",
+    "usage_zh": "give sb. a hand 幫忙;hand in 繳交;on the other hand 另一方面。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "hands",
+      "handed"
+    ]
+  },
+  "eye": {
+    "word": "eye",
+    "meaning_zh": "眼睛",
+    "kk": "[aɪ]",
+    "phonics": "EYE",
+    "homophone": "愛",
+    "image": "用『愛』的眼神 eye 著你。",
+    "example_en": "Keep an eye on the kids.",
+    "example_zh": "看著孩子們。",
+    "usage_zh": "keep an eye on 留意;與 I 同音。",
+    "pos": "名詞",
+    "other_forms": [
+      "eyes"
+    ]
+  },
+  "face": {
+    "word": "face",
+    "meaning_zh": "臉;面對",
+    "kk": "[fes]",
+    "phonics": "FACE",
+    "homophone": "費斯",
+    "image": "『費』心的『斯』文人 face。",
+    "example_en": "We must face the truth.",
+    "example_zh": "我們必須面對真相。",
+    "usage_zh": "face to face 面對面;face a problem 面對問題。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "faces",
+      "faced"
+    ]
+  },
+  "city": {
+    "word": "city",
+    "meaning_zh": "城市",
+    "kk": "[ˈsɪti]",
+    "phonics": "CI-ty",
+    "homophone": "系踢",
+    "image": "『系』隊『踢』球的大 city。",
+    "example_en": "Tokyo is a huge city.",
+    "example_zh": "東京是座大城市。",
+    "usage_zh": "city center 市中心;複數 cities。",
+    "pos": "名詞",
+    "other_forms": [
+      "cities"
+    ]
+  },
+  "country": {
+    "word": "country",
+    "meaning_zh": "國家;鄉村",
+    "kk": "[ˈkʌntri]",
+    "phonics": "COUN-try",
+    "homophone": "康吹",
+    "image": "『康』樂『吹』風的 country。",
+    "example_en": "Which country are you from?",
+    "example_zh": "你來自哪個國家?",
+    "usage_zh": "複數 countries;the countryside 鄉間。",
+    "pos": "名詞",
+    "other_forms": [
+      "countries"
+    ]
+  },
+  "word": {
+    "word": "word",
+    "meaning_zh": "字、詞;話",
+    "kk": "[wɝd]",
+    "phonics": "WORD",
+    "homophone": "沃德",
+    "image": "『沃』土上『德』高望重的人說的 word。",
+    "example_en": "What does this word mean?",
+    "example_zh": "這個字是什麼意思?",
+    "usage_zh": "in other words 換句話說;keep one's word 守信。",
+    "pos": "名詞",
+    "other_forms": [
+      "words"
+    ]
+  },
+  "question": {
+    "word": "question",
+    "meaning_zh": "問題;質疑",
+    "kk": "[ˈkwɛstʃən]",
+    "phonics": "QUES-tion",
+    "homophone": "虧斯遜",
+    "image": "被『虧』的『斯』文人很謙『遜』地提 question。",
+    "example_en": "Can I ask you a question?",
+    "example_zh": "我可以問你一個問題嗎?",
+    "usage_zh": "answer a question 回答問題;out of the question 不可能。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "questions"
+    ]
+  },
+  "answer": {
+    "word": "answer",
+    "meaning_zh": "答案;回答",
+    "kk": "[ˈænsɚ]",
+    "phonics": "AN-swer (w不發音)",
+    "homophone": "安色",
+    "image": "『安』靜地說出『色』彩般的 answer。",
+    "example_en": "I don't know the answer.",
+    "example_zh": "我不知道答案。",
+    "usage_zh": "answer the phone 接電話;answer to sb. 對某人負責。",
+    "pos": "名詞/動詞",
+    "other_forms": [
+      "answers",
+      "answered"
+    ]
+  },
+  "story": {
+    "word": "story",
+    "meaning_zh": "故事;樓層",
+    "kk": "[ˈstɔri]",
+    "phonics": "STO-ry",
+    "homophone": "斯多瑞",
+    "image": "『斯』文人『多』講『瑞』雪的 story。",
+    "example_en": "Tell me a story.",
+    "example_zh": "講個故事給我聽。",
+    "usage_zh": "a short story 短篇故事;美式 story 也指樓層。",
+    "pos": "名詞",
+    "other_forms": [
+      "stories"
+    ]
+  },
+  "morning": {
+    "word": "morning",
+    "meaning_zh": "早上",
+    "kk": "[ˈmɔrnɪŋ]",
+    "phonics": "MORN-ing",
+    "homophone": "摸寧",
+    "image": "早上『摸』黑求『寧』靜 = morning。",
+    "example_en": "Good morning!",
+    "example_zh": "早安!",
+    "usage_zh": "in the morning 在早上;this morning 今早。",
+    "pos": "名詞",
+    "other_forms": [
+      "mornings"
+    ]
+  },
+  "night": {
+    "word": "night",
+    "meaning_zh": "夜晚",
+    "kk": "[naɪt]",
+    "phonics": "NIGHT (gh不發音)",
+    "homophone": "耐特",
+    "image": "『耐』得住的騎士(knight)在 night 巡邏。",
+    "example_en": "I'll see you tonight.",
+    "example_zh": "今晚見。",
+    "usage_zh": "at night 在晚上;與 knight 同音。",
+    "pos": "名詞",
+    "other_forms": [
+      "nights"
+    ]
+  },
+  "hour": {
+    "word": "hour",
+    "meaning_zh": "小時",
+    "kk": "[aʊr]",
+    "phonics": "HOUR (h不發音)",
+    "homophone": "奧爾",
+    "image": "『奧』運每『爾』(每一)個 hour 都精彩。",
+    "example_en": "I'll be back in an hour.",
+    "example_zh": "我一小時後回來。",
+    "usage_zh": "h 不發音,故用 an hour;rush hour 尖峰時刻。",
+    "pos": "名詞",
+    "other_forms": [
+      "hours"
+    ]
+  },
+  "hope": {
+    "word": "hope",
+    "meaning_zh": "希望",
+    "kk": "[hop]",
+    "phonics": "HOPE",
+    "homophone": "厚普",
+    "image": "『厚』臉皮『普』通人也有 hope。",
+    "example_en": "I hope you feel better soon.",
+    "example_zh": "希望你早日康復。",
+    "usage_zh": "hope to V / hope that 子句;反義 despair。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "hopes",
+      "hoped"
+    ]
+  },
+  "believe": {
+    "word": "believe",
+    "meaning_zh": "相信",
+    "kk": "[bɪˈliv]",
+    "phonics": "be-LIEVE",
+    "homophone": "必力夫",
+    "image": "『必』定有『力』的『夫』妻互相 believe。",
+    "example_en": "I believe in you.",
+    "example_zh": "我相信你。",
+    "usage_zh": "believe in 信任/信仰;believe that 子句。",
+    "pos": "動詞",
+    "other_forms": [
+      "believes",
+      "believed"
+    ]
+  },
+  "decide": {
+    "word": "decide",
+    "meaning_zh": "決定",
+    "kk": "[dɪˈsaɪd]",
+    "phonics": "de-CIDE",
+    "homophone": "地賽的",
+    "image": "在『地』方『賽』跑前『的』決心 = decide。",
+    "example_en": "I decided to quit my job.",
+    "example_zh": "我決定辭職。",
+    "usage_zh": "decide to V;名詞 decision,make a decision。",
+    "pos": "動詞",
+    "other_forms": [
+      "decides",
+      "decided"
+    ]
+  },
+  "happen": {
+    "word": "happen",
+    "meaning_zh": "發生",
+    "kk": "[ˈhæpən]",
+    "phonics": "HAP-pen",
+    "homophone": "哈盆",
+    "image": "『哈』哈打翻『盆』栽,事情 happen 了。",
+    "example_en": "What happened to you?",
+    "example_zh": "你發生什麼事了?",
+    "usage_zh": "happen to V 碰巧;沒有被動式。",
+    "pos": "動詞",
+    "other_forms": [
+      "happens",
+      "happened"
+    ]
+  },
+  "follow": {
+    "word": "follow",
+    "meaning_zh": "跟隨;聽從",
+    "kk": "[ˈfɑlo]",
+    "phonics": "FOL-low",
+    "homophone": "發露",
+    "image": "『發』現『露』水就一路 follow。",
+    "example_en": "Follow me, please.",
+    "example_zh": "請跟我來。",
+    "usage_zh": "follow the rules 遵守規則;as follows 如下。",
+    "pos": "動詞",
+    "other_forms": [
+      "follows",
+      "followed"
+    ]
+  },
+  "bring": {
+    "word": "bring",
+    "meaning_zh": "帶來",
+    "kk": "[brɪŋ]",
+    "phonics": "BRING",
+    "homophone": "布林",
+    "image": "『布』丁『林』立,記得 bring 來。",
+    "example_en": "Bring your umbrella.",
+    "example_zh": "帶上你的雨傘。",
+    "usage_zh": "bring 帶來(往說話者);take 帶走;bring up 養育/提起。",
+    "pos": "動詞",
+    "other_forms": [
+      "brings",
+      "brought"
+    ]
+  },
+  "build": {
+    "word": "build",
+    "meaning_zh": "建造、建立",
+    "kk": "[bɪld]",
+    "phonics": "BUILD",
+    "homophone": "比歐德",
+    "image": "用比例(build)蓋房子。",
+    "example_en": "They build houses.",
+    "example_zh": "他們蓋房子。",
+    "usage_zh": "build up 累積;build a habit 養成習慣。",
+    "pos": "動詞",
+    "other_forms": [
+      "builds",
+      "built"
+    ]
+  },
+  "spend": {
+    "word": "spend",
+    "meaning_zh": "花費(時間/錢)",
+    "kk": "[spɛnd]",
+    "phonics": "SPEND",
+    "homophone": "斯本德",
+    "image": "『斯』文『本』『德』把錢 spend 光。",
+    "example_en": "I spend too much time online.",
+    "example_zh": "我花太多時間上網。",
+    "usage_zh": "spend 時間/錢 on N / (in) Ving。",
+    "pos": "動詞",
+    "other_forms": [
+      "spends",
+      "spent"
+    ]
+  },
+  "lose": {
+    "word": "lose",
+    "meaning_zh": "失去、輸",
+    "kk": "[luz]",
+    "phonics": "LOSE",
+    "homophone": "路斯",
+    "image": "在『路』上『斯』掉東西 = lose。",
+    "example_en": "Don't lose your keys.",
+    "example_zh": "別弄丟鑰匙。",
+    "usage_zh": "lose vs loose(鬆的);lose weight 減重。",
+    "pos": "動詞",
+    "other_forms": [
+      "loses",
+      "lost"
+    ]
+  },
+  "win": {
+    "word": "win",
+    "meaning_zh": "贏、獲勝",
+    "kk": "[wɪn]",
+    "phonics": "WIN",
+    "homophone": "溫",
+    "image": "『溫』暖的笑容贏(win)得人心。",
+    "example_en": "We won the game!",
+    "example_zh": "我們贏了比賽!",
+    "usage_zh": "win a prize 得獎;反義 lose。",
+    "pos": "動詞",
+    "other_forms": [
+      "wins",
+      "won"
+    ]
+  },
+  "grow": {
+    "word": "grow",
+    "meaning_zh": "成長、種植",
+    "kk": "[ɡro]",
+    "phonics": "GROW",
+    "homophone": "狗肉",
+    "image": "別吃『狗肉』,讓牠 grow。",
+    "example_en": "Children grow up so fast.",
+    "example_zh": "孩子長得好快。",
+    "usage_zh": "grow up 長大;grow vegetables 種菜。",
+    "pos": "動詞",
+    "other_forms": [
+      "grows",
+      "grew",
+      "grown"
+    ]
+  },
+  "teach": {
+    "word": "teach",
+    "meaning_zh": "教導",
+    "kk": "[titʃ]",
+    "phonics": "TEACH",
+    "homophone": "踢取",
+    "image": "『踢』球『取』勝的方法用 teach。",
+    "example_en": "She teaches math.",
+    "example_zh": "她教數學。",
+    "usage_zh": "teach sb. to V / teach sb. sth.;名詞 teacher。",
+    "pos": "動詞",
+    "other_forms": [
+      "teaches",
+      "taught"
+    ]
+  },
+  "wait": {
+    "word": "wait",
+    "meaning_zh": "等待",
+    "kk": "[wet]",
+    "phonics": "WAIT",
+    "homophone": "位特",
+    "image": "在『位』子『特』別久地 wait。",
+    "example_en": "Wait for me!",
+    "example_zh": "等等我!",
+    "usage_zh": "wait for sb./sth.;can't wait to V 等不及。",
+    "pos": "動詞",
+    "other_forms": [
+      "waits",
+      "waited"
+    ]
+  },
+  "hold": {
+    "word": "hold",
+    "meaning_zh": "握住、舉行",
+    "kk": "[hold]",
+    "phonics": "HOLD",
+    "homophone": "猴的",
+    "image": "『猴』子『的』手緊緊 hold。",
+    "example_en": "Hold my hand.",
+    "example_zh": "握住我的手。",
+    "usage_zh": "hold on 稍等/堅持;hold a meeting 開會。",
+    "pos": "動詞",
+    "other_forms": [
+      "holds",
+      "held"
+    ]
+  },
+  "turn": {
+    "word": "turn",
+    "meaning_zh": "轉動;輪流",
+    "kk": "[tɝn]",
+    "phonics": "TURN",
+    "homophone": "疼",
+    "image": "轉(turn)太快脖子會『疼』。",
+    "example_en": "Turn left at the corner.",
+    "example_zh": "在轉角左轉。",
+    "usage_zh": "turn on/off 開關;turn out 結果是;take turns 輪流。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "turns",
+      "turned"
+    ]
   }
 }

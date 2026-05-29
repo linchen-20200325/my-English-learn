@@ -687,6 +687,23 @@ def add_cards_to_review(cards: list) -> int:
     return added
 
 
+def vocab_to_card(word: str, entry: dict) -> dict:
+    """把單字庫的一筆單字轉成可進 SRS 的句卡（正面=單字，背面=意思/KK/諧音/例句）。"""
+    ex_en = entry.get("example_en", "")
+    ex_zh = entry.get("example_zh", "")
+    context = f"{ex_en} — {ex_zh}".strip(" —") if (ex_en or ex_zh) else ""
+    return {
+        "sentence": word,                       # 複習正面顯示單字本身
+        "chinese": entry.get("meaning_zh", ""),
+        "target_word": word,
+        "kk": entry.get("kk", ""),
+        "phonics": entry.get("phonics", ""),
+        "mnemonic": entry.get("image") or entry.get("homophone", ""),
+        "context": context,
+        "card_type": "vocab",
+    }
+
+
 def schedule_card(card: dict, grade: str) -> None:
     """SM-2 簡化版：grade 為 again / good / easy，就地更新排程。"""
     ease = card.get("ease", 2.5)
@@ -1294,7 +1311,8 @@ def view_review() -> None:
     deck = data.setdefault("review_cards", [])
 
     if not deck:
-        st.info("複習清單是空的。到「🤖 情境生成」把句卡加入複習。")
+        st.info("複習清單是空的。可從「📖 單字庫」把單字、或「📚 互動閱讀」「🤖 情境生成」"
+                "把句卡加入複習，系統會用間隔重複（SRS）幫你科學排程。")
         return
 
     today = today_str()
@@ -2246,11 +2264,26 @@ def view_vocab_bank() -> None:
     page = st.number_input("頁", min_value=1, max_value=total_pages, value=1, step=1) - 1
     st.caption(f"庫存 {len(bank)} 字　|　符合 {len(filtered)} 字　|　頁 {page + 1}/{total_pages}")
 
+    # 批次把搜尋結果的單字一次納入 SRS 複習（科學記憶排程）
+    if filtered and st.button(
+        f"🧠 把符合的 {len(filtered)} 字全部加入「🔁 複習」（SRS 排程）",
+        use_container_width=True,
+    ):
+        cards = [vocab_to_card(w, bank[w]) for w in filtered]
+        n = add_cards_to_review(cards)
+        save_data()
+        st.success(f"已加入 {n} 字到複習清單（其餘已在清單中）。到「🔁 複習」開始今日複習。"
+                   if n else "這些字已全部在複習清單中。")
+
     for word in filtered[page * per_page:(page + 1) * per_page]:
         e = bank[word]
         with st.container(border=True):
             c1, c2 = st.columns([2, 5])
             c1.markdown(f"### {word}")
+            if c1.button("➕ 加入複習", key=f"bank_rev_{word}", use_container_width=True):
+                n = add_cards_to_review([vocab_to_card(word, e)])
+                save_data()
+                c1.success("已加入！" if n else "已在清單中")
             if e.get("meaning_zh"):
                 c1.markdown(f"**{e['meaning_zh']}**")
             if e.get("kk"):
