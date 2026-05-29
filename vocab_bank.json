@@ -925,5 +925,440 @@
     "example_zh": "一定有辦法的。",
     "pos": "名詞",
     "other_forms": []
+  },
+  "people": {
+    "word": "people",
+    "meaning_zh": "人們、人民",
+    "kk": "[ˈpipl̩]",
+    "phonics": "PEO-ple",
+    "homophone": "批剖",
+    "image": "一群人被『批』評後『剖』析想法——那就是 people。",
+    "example_en": "Many people work from home now.",
+    "example_zh": "現在很多人在家工作。",
+    "usage_zh": "person 的複數常用 people；「the people」也指人民。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "learn": {
+    "word": "learn",
+    "meaning_zh": "學習、學會",
+    "kk": "[lɝn]",
+    "phonics": "LEARN",
+    "homophone": "冷",
+    "image": "天氣再『冷』也要去 learn 新東西。",
+    "example_en": "I want to learn English well.",
+    "example_zh": "我想把英文學好。",
+    "usage_zh": "learn to V 學會做某事；learn about 了解某主題。",
+    "pos": "動詞",
+    "other_forms": [
+      "learned/learnt (過去式)"
+    ]
+  },
+  "study": {
+    "word": "study",
+    "meaning_zh": "讀書、研究",
+    "kk": "[ˈstʌdi]",
+    "phonics": "STU-dy",
+    "homophone": "史塔迪",
+    "image": "歷史『史』學家在『塔』裡『迪』士尼般地 study。",
+    "example_en": "She studies hard every night.",
+    "example_zh": "她每晚都很用功讀書。",
+    "usage_zh": "study 強調用功鑽研；learn 強調學會結果。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "studies",
+      "studied"
+    ]
+  },
+  "read": {
+    "word": "read",
+    "meaning_zh": "閱讀、唸",
+    "kk": "[rid]",
+    "phonics": "READ",
+    "homophone": "瑞德",
+    "image": "『瑞』士『德』國人都愛 read 書。",
+    "example_en": "I read a book before bed.",
+    "example_zh": "我睡前讀一本書。",
+    "usage_zh": "過去式拼字相同但唸 [rɛd]。read up on 深入閱讀。",
+    "pos": "動詞",
+    "other_forms": [
+      "read (過去式,唸 rɛd)"
+    ]
+  },
+  "write": {
+    "word": "write",
+    "meaning_zh": "寫、書寫",
+    "kk": "[raɪt]",
+    "phonics": "WRITE (w不發音)",
+    "homophone": "瑞特",
+    "image": "右手(right)拿筆 write,但拼成 w 開頭。",
+    "example_en": "Please write your name here.",
+    "example_zh": "請在這裡寫上名字。",
+    "usage_zh": "write down 寫下;write to sb. 寫信給某人。",
+    "pos": "動詞",
+    "other_forms": [
+      "wrote",
+      "written"
+    ]
+  },
+  "love": {
+    "word": "love",
+    "meaning_zh": "愛、喜愛",
+    "kk": "[lʌv]",
+    "phonics": "LOVE",
+    "homophone": "辣夫",
+    "image": "為心愛的『辣』妹當『夫』——那是 love。",
+    "example_en": "I love spending time with my family.",
+    "example_zh": "我喜歡和家人相處。",
+    "usage_zh": "love V-ing/to V 都可;比 like 程度更深。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "loves",
+      "loved"
+    ]
+  },
+  "happy": {
+    "word": "happy",
+    "meaning_zh": "快樂的、高興的",
+    "kk": "[ˈhæpi]",
+    "phonics": "HAP-py",
+    "homophone": "哈皮",
+    "image": "開心到『哈』哈大笑很頑『皮』=happy。",
+    "example_en": "I'm so happy to see you.",
+    "example_zh": "見到你我好開心。",
+    "usage_zh": "be happy with 對…滿意;be happy to V 樂意做。",
+    "pos": "形容詞",
+    "other_forms": [
+      "happier",
+      "happiest"
+    ]
+  },
+  "good": {
+    "word": "good",
+    "meaning_zh": "好的、優秀的",
+    "kk": "[ɡʊd]",
+    "phonics": "GOOD",
+    "homophone": "姑的",
+    "image": "『姑』姑做『的』菜超棒 = good。",
+    "example_en": "That's a good idea.",
+    "example_zh": "那是個好主意。",
+    "usage_zh": "比較級 better、最高級 best;be good at 擅長。",
+    "pos": "形容詞",
+    "other_forms": [
+      "better",
+      "best"
+    ]
+  },
+  "bad": {
+    "word": "bad",
+    "meaning_zh": "壞的、糟的",
+    "kk": "[bæd]",
+    "phonics": "BAD",
+    "homophone": "白的",
+    "image": "心『白』的(空白)做壞事 = bad。",
+    "example_en": "I had a bad day.",
+    "example_zh": "我今天過得很糟。",
+    "usage_zh": "比較級 worse、最高級 worst;not bad 還不錯。",
+    "pos": "形容詞",
+    "other_forms": [
+      "worse",
+      "worst"
+    ]
+  },
+  "big": {
+    "word": "big",
+    "meaning_zh": "大的",
+    "kk": "[bɪɡ]",
+    "phonics": "BIG",
+    "homophone": "逼哥",
+    "image": "『逼』『哥』長得超 big。",
+    "example_en": "They live in a big house.",
+    "example_zh": "他們住在一間大房子。",
+    "usage_zh": "big 偏體積/重要性;large 偏面積數量。",
+    "pos": "形容詞",
+    "other_forms": [
+      "bigger",
+      "biggest"
+    ]
+  },
+  "small": {
+    "word": "small",
+    "meaning_zh": "小的",
+    "kk": "[smɔl]",
+    "phonics": "SMALL",
+    "homophone": "司摩",
+    "image": "『司』機『摩』托車很 small。",
+    "example_en": "It's a small but cozy room.",
+    "example_zh": "這是個小而溫馨的房間。",
+    "usage_zh": "反義 big/large;a small amount 少量。",
+    "pos": "形容詞",
+    "other_forms": [
+      "smaller",
+      "smallest"
+    ]
+  },
+  "new": {
+    "word": "new",
+    "meaning_zh": "新的",
+    "kk": "[nju]",
+    "phonics": "NEW",
+    "homophone": "紐",
+    "image": "『紐』約啥都是 new 的。",
+    "example_en": "I bought a new phone.",
+    "example_zh": "我買了支新手機。",
+    "usage_zh": "反義 old;What's new? 有什麼新鮮事?",
+    "pos": "形容詞",
+    "other_forms": [
+      "newer",
+      "newest"
+    ]
+  },
+  "old": {
+    "word": "old",
+    "meaning_zh": "舊的、年老的",
+    "kk": "[old]",
+    "phonics": "OLD",
+    "homophone": "歐的",
+    "image": "『歐』洲『的』城堡很 old。",
+    "example_en": "This is my old school.",
+    "example_zh": "這是我的母校(舊學校)。",
+    "usage_zh": "問年齡 How old are you?;反義 new/young。",
+    "pos": "形容詞",
+    "other_forms": [
+      "older",
+      "oldest"
+    ]
+  },
+  "use": {
+    "word": "use",
+    "meaning_zh": "使用",
+    "kk": "[juz]",
+    "phonics": "USE",
+    "homophone": "又司",
+    "image": "『又』讓『司』機 use 一次車。",
+    "example_en": "Can I use your pen?",
+    "example_zh": "我可以用你的筆嗎?",
+    "usage_zh": "動詞唸 [juz]、名詞唸 [jus];used to V 過去習慣。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "uses",
+      "used"
+    ]
+  },
+  "change": {
+    "word": "change",
+    "meaning_zh": "改變、零錢",
+    "kk": "[tʃendʒ]",
+    "phonics": "CHANGE",
+    "homophone": "勸居",
+    "image": "『勸』你搬『居』=做出 change。",
+    "example_en": "I want to change my life.",
+    "example_zh": "我想改變我的人生。",
+    "usage_zh": "change one's mind 改變心意;change 也指找零。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "changes",
+      "changed"
+    ]
+  },
+  "play": {
+    "word": "play",
+    "meaning_zh": "玩、演奏、比賽",
+    "kk": "[ple]",
+    "phonics": "PLAY",
+    "homophone": "普雷",
+    "image": "『普』通的『雷』射槍拿來 play。",
+    "example_en": "The kids are playing outside.",
+    "example_zh": "孩子們在外面玩。",
+    "usage_zh": "play + 樂器要加 the;play + 球類不加。",
+    "pos": "動詞/名詞",
+    "other_forms": [
+      "plays",
+      "played"
+    ]
+  },
+  "open": {
+    "word": "open",
+    "meaning_zh": "打開、開放的",
+    "kk": "[ˈopən]",
+    "phonics": "O-pen",
+    "homophone": "歐盆",
+    "image": "『歐』洲的『盆』栽蓋子 open。",
+    "example_en": "Please open the window.",
+    "example_zh": "請打開窗戶。",
+    "usage_zh": "反義 close/closed;open up 敞開心房。",
+    "pos": "動詞/形容詞",
+    "other_forms": [
+      "opens",
+      "opened"
+    ]
+  },
+  "close": {
+    "word": "close",
+    "meaning_zh": "關閉;親近的",
+    "kk": "[kloz]/[klos]",
+    "phonics": "CLOSE",
+    "homophone": "扣漏私",
+    "image": "把『扣』子『漏』掉的『私』物 close 起來。",
+    "example_en": "Close the door, please.",
+    "example_zh": "請把門關上。",
+    "usage_zh": "動詞唸 [kloz];形容詞『親近』唸 [klos],be close to。",
+    "pos": "動詞/形容詞",
+    "other_forms": [
+      "closes",
+      "closed"
+    ]
+  },
+  "buy": {
+    "word": "buy",
+    "meaning_zh": "買、購買",
+    "kk": "[baɪ]",
+    "phonics": "BUY",
+    "homophone": "拜",
+    "image": "『拜』託店員,我要 buy。",
+    "example_en": "I need to buy some milk.",
+    "example_zh": "我需要買一些牛奶。",
+    "usage_zh": "buy sb. sth. 買東西給某人;反義 sell。",
+    "pos": "動詞",
+    "other_forms": [
+      "buys",
+      "bought"
+    ]
+  },
+  "pay": {
+    "word": "pay",
+    "meaning_zh": "付款、支付",
+    "kk": "[pe]",
+    "phonics": "PAY",
+    "homophone": "配",
+    "image": "『配』合店員 pay 錢。",
+    "example_en": "I'll pay by card.",
+    "example_zh": "我要刷卡付款。",
+    "usage_zh": "pay for X 付 X 的錢;pay attention 注意。",
+    "pos": "動詞",
+    "other_forms": [
+      "pays",
+      "paid"
+    ]
+  },
+  "meet": {
+    "word": "meet",
+    "meaning_zh": "見面、認識",
+    "kk": "[mit]",
+    "phonics": "MEET",
+    "homophone": "密特",
+    "image": "在『密』室『特』地 meet。",
+    "example_en": "Nice to meet you.",
+    "example_zh": "很高興認識你。",
+    "usage_zh": "meet 初次認識也用;meet up 相約碰面。",
+    "pos": "動詞",
+    "other_forms": [
+      "meets",
+      "met"
+    ]
+  },
+  "live": {
+    "word": "live",
+    "meaning_zh": "居住、生活",
+    "kk": "[lɪv]",
+    "phonics": "LIVE",
+    "homophone": "力夫",
+    "image": "用『力』的『夫』妻一起 live。",
+    "example_en": "I live in Taipei.",
+    "example_zh": "我住在台北。",
+    "usage_zh": "動詞唸 [lɪv];形容詞『現場的』唸 [laɪv]。",
+    "pos": "動詞",
+    "other_forms": [
+      "lives",
+      "lived"
+    ]
+  },
+  "speak": {
+    "word": "speak",
+    "meaning_zh": "說（語言）",
+    "kk": "[spik]",
+    "phonics": "SPEAK",
+    "homophone": "斯批克",
+    "image": "『斯』文地『批』評『克』服害羞去 speak。",
+    "example_en": "Do you speak English?",
+    "example_zh": "你會說英文嗎?",
+    "usage_zh": "speak 強調說的能力/語言;speak to/with 與人交談。",
+    "pos": "動詞",
+    "other_forms": [
+      "speaks",
+      "spoke",
+      "spoken"
+    ]
+  },
+  "understand": {
+    "word": "understand",
+    "meaning_zh": "理解、明白",
+    "kk": "[ˌʌndɚˈstænd]",
+    "phonics": "un-der-STAND",
+    "homophone": "安得史丹",
+    "image": "站(stand)在下面(under)才能 understand。",
+    "example_en": "I don't understand this word.",
+    "example_zh": "我不懂這個字。",
+    "usage_zh": "常用 I see / Got it 表懂了。",
+    "pos": "動詞",
+    "other_forms": [
+      "understands",
+      "understood"
+    ]
+  },
+  "remember": {
+    "word": "remember",
+    "meaning_zh": "記得",
+    "kk": "[rɪˈmɛmbɚ]",
+    "phonics": "re-MEM-ber",
+    "homophone": "瑞門波",
+    "image": "成員(member)重(re)新想起=remember。",
+    "example_en": "Remember to lock the door.",
+    "example_zh": "記得鎖門。",
+    "usage_zh": "remember to V 記得去做;remember V-ing 記得做過。",
+    "pos": "動詞",
+    "other_forms": [
+      "remembers",
+      "remembered"
+    ]
+  },
+  "important": {
+    "word": "important",
+    "meaning_zh": "重要的",
+    "kk": "[ɪmˈpɔrtn̩t]",
+    "phonics": "im-POR-tant",
+    "homophone": "硬剖疼",
+    "image": "『硬』要『剖』開很『疼』,因為很 important。",
+    "example_en": "This is an important meeting.",
+    "example_zh": "這是場重要的會議。",
+    "usage_zh": "It's important to V / that 子句。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "beautiful": {
+    "word": "beautiful",
+    "meaning_zh": "美麗的",
+    "kk": "[ˈbjutəfl̩]",
+    "phonics": "BEAU-ti-ful",
+    "homophone": "逼優提佛",
+    "image": "『逼』近『優』雅,『提』升『佛』系美=beautiful。",
+    "example_en": "What a beautiful view!",
+    "example_zh": "多美的景色啊!",
+    "usage_zh": "形容人事物皆可;形容男性多用 handsome。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "difficult": {
+    "word": "difficult",
+    "meaning_zh": "困難的",
+    "kk": "[ˈdɪfɪkəlt]",
+    "phonics": "DIF-fi-cult",
+    "homophone": "地非扣",
+    "image": "『地』勢『非』常難『扣』分=difficult。",
+    "example_en": "Learning a language is difficult but fun.",
+    "example_zh": "學語言很難但很有趣。",
+    "usage_zh": "= hard;反義 easy。It's difficult to V。",
+    "pos": "形容詞",
+    "other_forms": []
   }
 }

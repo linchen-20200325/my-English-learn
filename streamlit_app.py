@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SEED_WORDS, DAILY_PHRASES, DEFAULT_WEEKLY_PLAN
 from dialogues import CONVERSATIONS, STORIES
 from readings import READINGS
+from comprehension import get_questions
 from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
                         decompose_word, build_word_mindmap)
 
@@ -719,6 +720,44 @@ def due_count() -> int:
                if c.get("due", today) <= today)
 
 
+def card_mastery(card: dict) -> str:
+    """依間隔/複習次數判斷記憶強度：new / learning / young / mature。"""
+    if card.get("reps", 0) == 0:
+        return "new"
+    interval = card.get("interval", 0)
+    if interval >= 21:
+        return "mature"
+    if interval >= 7:
+        return "young"
+    return "learning"
+
+
+def mastery_distribution() -> dict:
+    """統計複習牌組各記憶強度的卡片數。"""
+    dist = {"new": 0, "learning": 0, "young": 0, "mature": 0}
+    for c in st.session_state.data.get("review_cards", []):
+        dist[card_mastery(c)] = dist.get(card_mastery(c), 0) + 1
+    return dist
+
+
+def review_forecast(days: int = 7) -> dict:
+    """回傳未來 days 天每天到期的卡片數（逾期算今天），供複習負擔預測。"""
+    today = date.today()
+    counts = {(today + timedelta(days=i)).strftime("%m/%d"): 0 for i in range(days)}
+    keys = list(counts.keys())
+    for c in st.session_state.data.get("review_cards", []):
+        try:
+            due = date.fromisoformat(c.get("due", today_str()))
+        except ValueError:
+            continue
+        delta = (due - today).days
+        if delta < 0:
+            counts[keys[0]] += 1
+        elif delta < days:
+            counts[keys[delta]] += 1
+    return counts
+
+
 # ----------------------------- 樣式 -----------------------------
 def inject_css() -> None:
     st.markdown(
@@ -1049,6 +1088,35 @@ def view_progress() -> None:
     learned = sum(1 for w in data["words"] if w["learned"])
     pct = learned / len(data["words"]) if data["words"] else 0
     st.progress(pct, text=f"{learned} / {len(data['words'])} 已掌握（{int(pct*100)}%）")
+
+    # ---------------- 🧠 記憶科學監督（SRS 分析）----------------
+    st.divider()
+    st.markdown("#### 🧠 記憶科學監督（間隔重複 SRS）")
+    cards = data.get("review_cards", [])
+    if not cards:
+        st.info("複習牌組是空的。到「📚 互動閱讀」或「🤖 情境生成」把句卡加入複習，"
+                "系統就會用間隔重複幫你科學排程、追蹤記憶強度。")
+        return
+
+    dist = mastery_distribution()
+    total = len(cards)
+    mature_pct = (dist["young"] + dist["mature"]) / total if total else 0
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("🃏 複習卡總數", total)
+    c2.metric("📅 今日待複習", due_count())
+    c3.metric("🌳 已熟（young+mature）", dist["young"] + dist["mature"])
+    c4.metric("💪 熟練比例", f"{int(mature_pct * 100)}%")
+
+    st.markdown("##### 🎯 記憶強度分布")
+    labels = {"new": "🆕 新卡", "learning": "📖 學習中（<7天）",
+              "young": "🌱 漸熟（7–20天）", "mature": "🌳 已掌握（≥21天）"}
+    mc = st.columns(4)
+    for col, k in zip(mc, ["new", "learning", "young", "mature"]):
+        col.metric(labels[k], dist.get(k, 0))
+
+    st.markdown("##### 📈 未來 7 天複習負擔預測")
+    st.caption("提早知道哪天卡片會堆積，方便調配每天學習時間。")
+    st.bar_chart(review_forecast(7), height=240, color="#10b981")
 
 
 def view_plan() -> None:
@@ -1824,6 +1892,37 @@ def _gen_reading(topic: str, level: str, tier: str) -> dict:
     return json.loads(m.group(0))
 
 
+def _render_reading_quiz(passage: dict) -> None:
+    """閱讀理解測驗：讀完文章後作答並即時批改（主動回憶）。"""
+    questions = get_questions(passage.get("id", ""))
+    if not questions:
+        return
+    st.divider()
+    st.markdown("##### 🧩 閱讀理解測驗（先別看翻譯，挑戰讀懂了沒）")
+    with st.form(key=f"reading_quiz_{passage['id']}"):
+        answers = []
+        for i, q in enumerate(questions):
+            pick = st.radio(f"Q{i + 1}. {q['q']}", q["options"],
+                            key=f"rq_{passage['id']}_{i}", index=None)
+            answers.append(pick)
+        submitted = st.form_submit_button("送出作答")
+    if submitted:
+        correct = 0
+        for i, q in enumerate(questions):
+            if answers[i] == q["answer"]:
+                correct += 1
+                st.success(f"Q{i + 1} ✅ 正解：{q['answer']}")
+            else:
+                st.error(f"Q{i + 1} ❌ 正確答案：{q['answer']}")
+            if q.get("explain"):
+                st.caption(f"💡 {q['explain']}")
+        score = round(correct / len(questions) * 100)
+        st.info(f"得分：{correct} / {len(questions)}（{score}%）")
+        # 把閱讀理解分數記進今日統計，供「學習進度」追蹤
+        today_entry()["quiz_scores"].append(score)
+        save_data()
+
+
 def view_reading() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -1893,6 +1992,8 @@ def view_reading() -> None:
 
             st.divider()
             _render_grammar(passage["grammar"])
+
+            _render_reading_quiz(passage)
 
             if st.button(
                 f"➕ 加入 {len(passage['sentences'])} 句到「🔁 複習」",
