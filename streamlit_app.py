@@ -26,6 +26,7 @@ from morphology import (PREFIXES, ROOTS, SUFFIXES, MNEMONICS, build_mindmap,
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
 VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab_bank.json")
+MORPH_EXAMPLES_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "morph_examples_bank.json")
 # AI 生成的閱讀永久庫（推回 GitHub 後會越長越多，重整不消失）
 READINGS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "readings_bank.json")
 # AI 生成的文法永久庫（依程度累積，越長越多）
@@ -1573,8 +1574,21 @@ def view_morphology() -> None:
         )
     st.caption("離線字根字首字尾樹狀圖 + SEED 單字台味諧音速記，完全不需 API。")
 
-    # session 累積的 AI 額外例字: live_morph_ex[category_key][morpheme_m] = [ex1, ex2, ...]
-    live = st.session_state.setdefault("live_morph_ex", {"pre": {}, "root": {}, "suf": {}})
+    # AI 額外例字:每次 render 從檔案 + session 合併,生成後寫檔(永久保存)
+    file_morph = load_morph_examples()
+    sess = st.session_state.setdefault("live_morph_ex",
+                                        {"pre": {}, "root": {}, "suf": {}})
+    # 合併(檔案+session 同 key 取集合並集,保持順序)
+    live = {}
+    for k in ("pre", "root", "suf"):
+        merged_k = {}
+        for src in (file_morph.get(k, {}), sess.get(k, {})):
+            for m_key, words in src.items():
+                bucket = merged_k.setdefault(m_key, [])
+                for w in words:
+                    if w not in bucket:
+                        bucket.append(w)
+        live[k] = merged_k
 
     tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
     for tab, title, items, key, cat_zh in (
@@ -1612,6 +1626,7 @@ def view_morphology() -> None:
                     if st.button(f"🚀 開始生成（不重複現有）",
                                  key=f"morph_gen_{key}", type="primary"):
                         try:
+                            total_added = 0
                             with st.spinner("Gemini 生成中..."):
                                 for it in shown_base:
                                     existing = (list(it["ex"]) +
@@ -1620,8 +1635,20 @@ def view_morphology() -> None:
                                         cat_zh, it["m"], it["zh"],
                                         existing, int(n_per))
                                     if fresh:
+                                        sess[key].setdefault(it["m"], []).extend(fresh)
                                         live[key].setdefault(it["m"], []).extend(fresh)
-                            st.success("✅ 新例字已加入心智圖。")
+                                        total_added += len(fresh)
+                            # 寫本機檔(下次重新整理仍在)
+                            saved = save_morph_examples(live)
+                            msg = f"✅ 新例字 +{total_added} 已加入心智圖"
+                            msg += "(已寫入 morph_examples_bank.json)" if saved else "(本機寫檔失敗,僅在 session)"
+                            st.success(msg)
+                            # 有 GITHUB_TOKEN 自動推回 repo,永久保存
+                            if get_github_token():
+                                _push_file_to_github(
+                                    MORPH_EXAMPLES_FILE, "morph_examples_bank.json",
+                                    f"morph_examples: +{total_added} via 字根速記 AI",
+                                )
                             st.rerun()
                         except Exception as e:  # noqa: BLE001
                             st.error(f"生成失敗:{type(e).__name__}: {str(e)[:200]}")
@@ -1665,6 +1692,43 @@ def load_vocab_bank() -> dict:
     except OSError:
         mtime = 0.0
     return _load_vocab_bank_cached(mtime)
+
+
+# ---------------------------------------------------------------------------
+# 字根速記 AI 補的例字永久庫(寫本機 + 可選自動推 GitHub)
+# 結構:{"pre": {"un-": ["unread", ...]}, "root": {"spect": [...]}, "suf": {"-ly": [...]}}
+# ---------------------------------------------------------------------------
+@st.cache_data
+def _load_morph_examples_cached(_mtime: float) -> dict:
+    try:
+        with open(MORPH_EXAMPLES_FILE, "r", encoding="utf-8") as f:
+            d = json.load(f)
+        return {k: dict(v) for k, v in d.items() if k in ("pre", "root", "suf")} \
+               if isinstance(d, dict) else {"pre": {}, "root": {}, "suf": {}}
+    except (OSError, json.JSONDecodeError):
+        return {"pre": {}, "root": {}, "suf": {}}
+
+
+def load_morph_examples() -> dict:
+    try:
+        mtime = os.path.getmtime(MORPH_EXAMPLES_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_morph_examples_cached(mtime)
+
+
+def save_morph_examples(d: dict) -> bool:
+    try:
+        with open(MORPH_EXAMPLES_FILE, "w", encoding="utf-8") as f:
+            json.dump({"pre": d.get("pre", {}),
+                       "root": d.get("root", {}),
+                       "suf": d.get("suf", {})},
+                      f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        load_morph_examples.clear() if hasattr(load_morph_examples, "clear") else None
+        return True
+    except OSError:
+        return False
 
 
 # ---------------------------------------------------------------------------
@@ -1979,6 +2043,71 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
                      "請手動按下方「⬇️ 下載合併後 vocab_bank.json」存檔。"
                      .format(added=added))
     return added
+
+
+def _push_file_to_github(local_path: str, repo_path: str,
+                         message: str, silent: bool = False) -> bool:
+    """通用:把本機檔推回 repo(GitHub Contents API GET sha → PUT base64)。
+    需 GITHUB_TOKEN。失敗時 silent=False 顯示 st.toast 提示。"""
+    import base64
+    import urllib.error
+    import urllib.request
+
+    token = get_github_token()
+    if not token:
+        return False
+    try:
+        with open(local_path, "rb") as f:
+            content_bytes = f.read()
+    except OSError:
+        return False
+    repo = _read_secret("GITHUB_REPO") or "linchen-20200325/my-English-learn"
+    branch = _read_secret("GITHUB_BRANCH") or "main"
+    api = f"https://api.github.com/repos/{repo}/contents/{repo_path}"
+    headers = {"Authorization": f"Bearer {token}",
+               "Accept": "application/vnd.github+json",
+               "User-Agent": "english-learn-cloud",
+               "X-GitHub-Api-Version": "2022-11-28"}
+    sha = None
+    try:
+        req = urllib.request.Request(f"{api}?ref={branch}", headers=headers)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            current = json.loads(r.read())
+        sha = current.get("sha")
+    except urllib.error.HTTPError as e:
+        if e.code != 404:  # 404 = 檔案不存在(首次 commit),可繼續 PUT
+            if not silent:
+                st.toast(f"推 {repo_path} 失敗(GET sha {e.code})", icon="⚠️")
+            return False
+    except Exception:  # noqa: BLE001
+        if not silent:
+            st.toast(f"推 {repo_path} 失敗(GET)", icon="⚠️")
+        return False
+    try:
+        body_obj = {"message": message,
+                    "content": base64.b64encode(content_bytes).decode("ascii"),
+                    "branch": branch}
+        if sha:
+            body_obj["sha"] = sha
+        body = json.dumps(body_obj).encode("utf-8")
+        req2 = urllib.request.Request(api, data=body, method="PUT",
+                                       headers={**headers,
+                                                "Content-Type": "application/json"})
+        with urllib.request.urlopen(req2, timeout=20) as r:
+            result = json.loads(r.read())
+        if not silent:
+            st.toast(f"✅ 推回 `{repo_path}` (commit {result.get('commit',{}).get('sha','')[:7]})",
+                     icon="📤")
+        return True
+    except urllib.error.HTTPError as e:
+        if not silent:
+            body_text = e.read().decode("utf-8", "replace")[:120]
+            st.toast(f"推 {repo_path} 失敗 {e.code}: {body_text}", icon="⚠️")
+        return False
+    except Exception as e:  # noqa: BLE001
+        if not silent:
+            st.toast(f"推 {repo_path} 失敗: {type(e).__name__}", icon="⚠️")
+        return False
 
 
 def _push_bank_to_github(silent: bool = False) -> bool:
