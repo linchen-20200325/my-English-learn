@@ -99,18 +99,46 @@ def chunked(seq: list, n: int):
 
 
 def extract_json_array(text: str):
-    """從模型回應抽出 JSON array,容忍偶發的程式碼圍欄或前後雜訊。"""
-    text = text.strip()
+    """從模型回應抽出 JSON array,容忍偶發的程式碼圍欄或前後雜訊。
+
+    若整段 JSON 被 max_output_tokens 截斷而無法直接解析(常見錯誤
+    'Unterminated string'),則退而逐一搶救陣列中「已完整」的物件,
+    避免整批作廢。"""
+    raw = (text or "").strip()
+    body = raw
     # 去掉 ```json ... ``` 圍欄(若有)
-    m = re.search(r"```(?:json)?\s*(\[.*?\])\s*```", text, re.DOTALL)
+    m = re.search(r"```(?:json)?\s*(\[.*?\])\s*```", raw, re.DOTALL)
     if m:
-        text = m.group(1)
+        body = m.group(1)
     else:
-        # 取第一個 [ 到最後一個 ] 之間
-        s, e = text.find("["), text.rfind("]")
+        # 取第一個 [ 到最後一個 ] 之間(注意:KK 音標含 [],不能單純 rfind)
+        s, e = raw.find("["), raw.rfind("]")
         if s != -1 and e != -1 and e > s:
-            text = text[s:e + 1]
-    return json.loads(text)
+            body = raw[s:e + 1]
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError:
+        # 被截斷或 [] 裁切失準:直接從原文逐一搶救完整物件,避免整批作廢
+        return _salvage_objects(raw)
+
+
+def _salvage_objects(text: str) -> list:
+    """從(可能被截斷的)JSON 字串中,用 raw_decode 逐一解析頂層物件,
+    回傳所有能成功解析的完整物件;截斷處後面的殘片自動丟棄。"""
+    decoder = json.JSONDecoder()
+    out = []
+    i = text.find("{")
+    n = len(text)
+    while i != -1 and i < n:
+        try:
+            obj, end = decoder.raw_decode(text, i)
+        except json.JSONDecodeError:
+            break  # 剩下的是被截斷的殘片,停止
+        if isinstance(obj, dict):
+            out.append(obj)
+        # 跳到下一個 '{'
+        i = text.find("{", end)
+    return out
 
 
 def generate_batch(client, model: str, words: list[str]):

@@ -1692,10 +1692,12 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
     if not todo:
         st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
         return
+    # 每字完整 8 欄約需 ~320 token,預留充裕上限避免 JSON 被截斷(上限 32k)
+    max_tok = min(32000, 1200 + 360 * len(todo))
     with st.spinner(f"用 Gemini ({tier}) 生成 {len(todo)} 字…"):
         text = _llm_generate(SYSTEM_PROMPT,
                              "請為以下單字生成資料: " + ", ".join(todo),
-                             tier, max_tokens=8000)
+                             tier, max_tokens=max_tok)
         entries = extract_json_array(text)
     added, skipped = 0, 0
     new_words = []
