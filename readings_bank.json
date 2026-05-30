@@ -290,5 +290,260 @@
         ]
       }
     ]
+  },
+  {
+    "id": "neighbor-stories-c1",
+    "title": "The Unforeseen Symphony of Neighborly Relations",
+    "title_zh": "鄰里關係中意想不到的交響曲",
+    "level": "C1",
+    "summary": "本文透過描寫一對新舊鄰居間的互動，探討文化差異、個人空間界線以及如何透過理解與妥協建立和諧關係，並運用了進階句型、學術詞彙及象徵手法。",
+    "sentences": [
+      {
+        "en": "Moving into a new neighborhood often entails navigating a delicate dance of cultural nuances and unspoken social contracts.",
+        "zh": "搬進一個新社區，經常需要應對一場微妙的文化差異與潛規則的舞蹈。",
+        "vocab": {
+          "entails": "包含；需要",
+          "navigating": "導航；處理",
+          "nuances": "細微差別",
+          "unspoken": "未說出口的",
+          "contracts": "合約；協議"
+        },
+        "phrases": [
+          {
+            "en": "delicate dance",
+            "zh": "微妙的舞蹈（比喻需要小心處理的互動）"
+          },
+          {
+            "en": "social contracts",
+            "zh": "社會契約（指不成文的行為準則）"
+          }
+        ]
+      },
+      {
+        "en": "Ms. Anya Petrova, an émigré from Eastern Europe, cherished her meticulously cultivated privacy, a stark contrast to the boisterous camaraderie of her new surroundings.",
+        "zh": "來自東歐的移民 Anya Petrova 女士，非常珍視她一絲不苟培養起來的個人隱私，這與她新環境裡喧鬧的友善氣氛形成了鮮明對比。",
+        "vocab": {
+          "émigré": "移民（移出國者）",
+          "cherished": "珍愛",
+          "meticulously": "一絲不苟地",
+          "cultivated": "培養；耕耘",
+          "stark": "鮮明的；嚴酷的",
+          "boisterous": "喧鬧的",
+          "camaraderie": "友誼；同志情誼"
+        },
+        "phrases": [
+          {
+            "en": "stark contrast",
+            "zh": "鮮明對比"
+          },
+          {
+            "en": "new surroundings",
+            "zh": "新的周遭環境"
+          }
+        ]
+      },
+      {
+        "en": "Her neighbor, Mr. David Chen, a second-generation Chinese-American, operated under a more collectivist paradigm, where shared spaces and spontaneous interactions were the norm.",
+        "zh": "她的鄰居 David Chen 先生，一位第二代華裔美國人，則遵循一種更集體的模式，共享空間和自發的互動是常態。",
+        "vocab": {
+          "second-generation": "第二代",
+          "operated under": "在...之下運作",
+          "collectivist": "集體的；集體主義的",
+          "paradigm": "範式；模式",
+          "spontaneous": "自發的",
+          "interactions": "互動",
+          "norm": "常態；規範"
+        },
+        "phrases": [
+          {
+            "en": "Chinese-American",
+            "zh": "華裔美國人"
+          },
+          {
+            "en": "were the norm",
+            "zh": "是常態"
+          }
+        ]
+      },
+      {
+        "en": "Initially, their differing perspectives manifested as subtle tensions, like Anya's aversion to David's frequent backyard barbecues that often spilled over into communal areas.",
+        "zh": "起初，他們不同的觀點表現為微妙的緊張關係，例如 Anya 厭惡 David 頻繁舉辦的後院烤肉，這些烤肉活動常常會延伸到公共區域。",
+        "vocab": {
+          "initially": "起初",
+          "differing": "不同的",
+          "perspectives": "觀點；看法",
+          "manifested": "顯示；表明",
+          "subtle": "微妙的",
+          "tensions": "緊張關係",
+          "aversion": "厭惡",
+          "frequent": "頻繁的",
+          "barbecues": "烤肉",
+          "spilled over into": "溢出到；延伸到"
+        },
+        "phrases": [
+          {
+            "en": "differing perspectives",
+            "zh": "不同的觀點"
+          },
+          {
+            "en": "subtle tensions",
+            "zh": "微妙的緊張關係"
+          },
+          {
+            "en": "spilled over into",
+            "zh": "溢出到；延伸到（比喻影響範圍擴大）"
+          }
+        ]
+      },
+      {
+        "en": "However, a shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding.",
+        "zh": "然而，一個共同的困境——一場突如其來的傾盆大雨，威脅要淹沒他們相鄰的地下室——卻成了促成相互理解的、意想不到的催化劑。",
+        "vocab": {
+          "predicament": "困境",
+          "torrential": "傾瀉的；洶湧的",
+          "downpour": "傾盆大雨",
+          "threatened": "威脅",
+          "flood": "淹沒",
+          "adjacent": "相鄰的",
+          "basements": "地下室",
+          "unlikely": "不太可能的",
+          "catalyst": "催化劑",
+          "mutual": "相互的"
+        },
+        "phrases": [
+          {
+            "en": "shared predicament",
+            "zh": "共同的困境"
+          },
+          {
+            "en": "torrential downpour",
+            "zh": "傾盆大雨"
+          },
+          {
+            "en": "became the unlikely catalyst",
+            "zh": "成為意想不到的催化劑"
+          }
+        ]
+      },
+      {
+        "en": "Working side-by-side, shoveling mud and reinforcing sandbags, they transcended their initial reservations and began to appreciate each other's inherent strengths.",
+        "zh": "他們並肩工作，鏟泥、加固沙袋，超越了最初的顧慮，開始欣賞彼此固有的優點。",
+        "vocab": {
+          "side-by-side": "並肩地",
+          "shoveling": "鏟",
+          "reinforcing": "加固",
+          "sandbags": "沙袋",
+          "transcended": "超越",
+          "reservations": "顧慮；保留",
+          "appreciate": "欣賞；感激",
+          "inherent": "固有的",
+          "strengths": "優點；長處"
+        },
+        "phrases": [
+          {
+            "en": "Working side-by-side",
+            "zh": "並肩工作"
+          },
+          {
+            "en": "began to appreciate",
+            "zh": "開始欣賞"
+          }
+        ]
+      },
+      {
+        "en": "Anya discovered David's pragmatic resourcefulness, while David recognized Anya's quiet resilience and meticulous planning capabilities.",
+        "zh": "Anya 發現了 David 務實的應變能力，而 David 則認識到 Anya 安靜的韌性以及一絲不苟的規劃能力。",
+        "vocab": {
+          "pragmatic": "務實的",
+          "resourcefulness": "足智多謀；應變能力",
+          "recognized": "認識到；承認",
+          "quiet": "安靜的",
+          "resilience": "韌性；恢復力",
+          "meticulous": "一絲不苟的",
+          "planning": "規劃",
+          "capabilities": "能力"
+        },
+        "phrases": [
+          {
+            "en": "pragmatic resourcefulness",
+            "zh": "務實的應變能力"
+          },
+          {
+            "en": "quiet resilience",
+            "zh": "安靜的韌性"
+          }
+        ]
+      },
+      {
+        "en": "Ultimately, their relationship evolved from a hesitant coexistence into a genuine, albeit unconventional, neighborhood symbiosis, proving that understanding often blossoms in the soil of shared adversity.",
+        "zh": "最終，他們的關係從一種猶豫的共存演變成一種真誠的、儘管不同尋常的鄰里共生關係，證明了理解常常在共同逆境的土壤中綻放。",
+        "vocab": {
+          "ultimately": "最終",
+          "evolved": "演變",
+          "hesitant": "猶豫的",
+          "coexistence": "共存",
+          "genuine": "真誠的",
+          "albeit": "儘管",
+          "unconventional": "不同尋常的",
+          "symbiosis": "共生關係",
+          "proving": "證明",
+          "blossoms": "綻放",
+          "soil": "土壤",
+          "adversity": "逆境"
+        },
+        "phrases": [
+          {
+            "en": "hesitant coexistence",
+            "zh": "猶豫的共存"
+          },
+          {
+            "en": "neighborhood symbiosis",
+            "zh": "鄰里共生關係"
+          },
+          {
+            "en": "shared adversity",
+            "zh": "共同的逆境"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "過去分詞作為形容詞 (Past Participles as Adjectives)",
+        "explain": "過去分詞（如 'cultivated', 'unspoken', 'broken'）可以用來修飾名詞，描述名詞的狀態或被動的動作。",
+        "examples": [
+          "Ms. Anya Petrova, an émigré from Eastern Europe, cherished her meticulously cultivated privacy.",
+          "Moving into a new neighborhood often entails navigating a delicate dance of cultural nuances and unspoken social contracts.",
+          "A shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding."
+        ]
+      },
+      {
+        "point": "分詞構句 (Participle Clauses)",
+        "explain": "分詞構句是用來簡化句子，表達原因、時間、結果或補充說明。常見的有現在分詞構句和過去分詞構句。",
+        "examples": [
+          "Working side-by-side, shoveling mud and reinforcing sandbags, they transcended their initial reservations.",
+          "Moving into a new neighborhood often entails navigating a delicate dance of cultural nuances and unspoken social contracts.",
+          "A shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding."
+        ]
+      },
+      {
+        "point": "對比連接詞 (Contrast Conjunctions)",
+        "explain": "使用 'however', 'while', 'albeit' 等連接詞來表達對比或轉折，使論述更具層次感。",
+        "examples": [
+          "Initially, their differing perspectives manifested as subtle tensions, like Anya's aversion to David's frequent backyard barbecues that often spilled over into communal areas.",
+          "Anya discovered David's pragmatic resourcefulness, while David recognized Anya's quiet resilience and meticulous planning capabilities.",
+          "Ultimately, their relationship evolved from a hesitant coexistence into a genuine, albeit unconventional, neighborhood symbiosis..."
+        ]
+      },
+      {
+        "point": "比喻與象徵手法 (Metaphor and Symbolism)",
+        "explain": "文章運用了比喻（如 'delicate dance', 'soil of shared adversity'）和象徵（如傾盆大雨象徵共同的挑戰）來豐富文章的意涵。",
+        "examples": [
+          "Ms. Anya Petrova, an émigré from Eastern Europe, cherished her meticulously cultivated privacy, a stark contrast to the boisterous camaraderie of her new surroundings.",
+          "However, a shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding.",
+          "Ultimately, their relationship evolved from a hesitant coexistence into a genuine, albeit unconventional, neighborhood symbiosis, proving that understanding often blossoms in the soil of shared adversity."
+        ]
+      }
+    ]
   }
 ]
