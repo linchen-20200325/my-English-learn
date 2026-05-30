@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "id": "morning-meeting-hosting-a2",
+    "title": "Hosting a Morning Meeting",
+    "title_zh": "主持晨會",
+    "level": "A2",
+    "summary": "學習主持簡單晨會所需的常用詞彙和基本句型，包含問候、報告事項和結束。",
+    "sentences": [
+      {
+        "en": "Good morning, everyone. Let's start our meeting.",
+        "zh": "大家早安。我們開始開會吧。",
+        "vocab": {
+          "good morning": "早安",
+          "start": "開始"
+        },
+        "phrases": [
+          {
+            "en": "Let's start",
+            "zh": "讓我們開始 (用於提議或啟動某事)"
+          }
+        ]
+      },
+      {
+        "en": "First, let's review yesterday's tasks.",
+        "zh": "首先，我們來複習昨天的任務。",
+        "vocab": {
+          "review": "複習",
+          "yesterday": "昨天",
+          "tasks": "任務"
+        },
+        "phrases": [
+          {
+            "en": "let's review",
+            "zh": "讓我們複習 (用於提議回顧)"
+          }
+        ]
+      },
+      {
+        "en": "John, please update us on the project.",
+        "zh": "John，請向我們報告一下專案的進度。",
+        "vocab": {
+          "update": "更新",
+          "project": "專案"
+        },
+        "phrases": [
+          {
+            "en": "update us on",
+            "zh": "向某人報告關於某事"
+          }
+        ]
+      },
+      {
+        "en": "Thanks, John. Now, let's talk about today's goals.",
+        "zh": "謝謝 John。現在，我們來談談今天的目標。",
+        "vocab": {
+          "thanks": "謝謝",
+          "talk about": "談論",
+          "today": "今天",
+          "goals": "目標"
+        },
+        "phrases": [
+          {
+            "en": "talk about",
+            "zh": "談論 (討論某個話題)"
+          }
+        ]
+      },
+      {
+        "en": "Does anyone have any questions or suggestions?",
+        "zh": "有人有任何問題或建議嗎？",
+        "vocab": {
+          "anyone": "任何人",
+          "questions": "問題",
+          "suggestions": "建議"
+        },
+        "phrases": [
+          {
+            "en": "any questions",
+            "zh": "任何問題 (詢問是否有人有疑問)"
+          },
+          {
+            "en": "any suggestions",
+            "zh": "任何建議 (詢問是否有人想提出想法)"
+          }
+        ]
+      },
+      {
+        "en": "Okay, if there are no more points, we can finish here.",
+        "zh": "好的，如果沒有其他事項了，我們就可以在這裡結束。",
+        "vocab": {
+          "okay": "好的",
+          "more": "更多",
+          "points": "事項",
+          "finish": "結束"
+        },
+        "phrases": [
+          {
+            "en": "no more points",
+            "zh": "沒有其他事項 (表示討論已完結)"
+          }
+        ]
+      },
+      {
+        "en": "Thank you all for your time. Have a great day!",
+        "zh": "感謝大家的參與。祝你有美好的一天！",
+        "vocab": {
+          "thank you": "謝謝你",
+          "time": "時間",
+          "great": "美好的",
+          "day": "一天"
+        },
+        "phrases": [
+          {
+            "en": "Thank you all",
+            "zh": "感謝大家 (向一群人表達感謝)"
+          },
+          {
+            "en": "Have a great day",
+            "zh": "祝你有美好的一天 (常用的道別語)"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Simple Present Tense (簡單現在式)",
+        "explain": "用於描述日常習慣、事實或一般性陳述。在主持晨會時，常用於陳述會議目的或安排。",
+        "examples": [
+          "We start the meeting.",
+          "John updates us on the project.",
+          "We talk about goals."
+        ]
+      },
+      {
+        "point": "'Let's' + Verb (Let's + 動詞)",
+        "explain": "用於提議或邀請他人一起做某事，是主持會議時常用的句型。",
+        "examples": [
+          "Let's start our meeting.",
+          "Let's review yesterday's tasks.",
+          "Let's talk about today's goals."
+        ]
+      },
+      {
+        "point": "Asking for Information (詢問資訊)",
+        "explain": "使用疑問詞 (如 what, who) 或 'Do/Does' 開頭的問句來獲取資訊或確認情況。",
+        "examples": [
+          "Does anyone have any questions?",
+          "What is the status of the project?"
+        ]
+      },
+      {
+        "point": "Common Meeting Phrases (常用會議片語)",
+        "explain": "學習並使用標準的會議用語，能讓溝通更順暢。",
+        "examples": [
+          "Good morning, everyone.",
+          "Update us on...",
+          "Thank you for your time."
+        ]
+      }
+    ]
+  }
+]
