@@ -32,6 +32,8 @@ READINGS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "r
 GRAMMAR_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grammar_bank.json")
 # AI 生成的情境課程永久庫（對話/句卡，累積長大）
 LESSONS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lessons_bank.json")
+# AI 生成的情境對話永久庫（加進口說範本、累積長大）
+DIALOGUES_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dialogues_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # GEN_MODEL_TIERS 在下方 dispatcher 區段定義（依供應商映射到實際模型 ID）。
@@ -1514,6 +1516,42 @@ def load_lessons_bank() -> list:
     return _load_lessons_bank_cached(mtime)
 
 
+@st.cache_data
+def _load_dialogues_bank_cached(_mtime: float) -> list:
+    try:
+        with open(DIALOGUES_BANK_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+    return data if isinstance(data, list) else []
+
+
+def load_dialogues_bank() -> list:
+    """讀取 dialogues_bank.json（AI 生成的情境對話，加進口說範本、永久累積）。"""
+    try:
+        mtime = os.path.getmtime(DIALOGUES_BANK_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_dialogues_bank_cached(mtime)
+
+
+def _persist_dialogue_en(conv: dict) -> None:
+    """把生成的情境對話加入：session 疊加層（立即可見）+ 永久庫推 GitHub。"""
+    st.session_state.setdefault("_sess_dialogues", []).insert(0, conv)  # 立即可見、最新在前
+    bank = list(load_dialogues_bank())
+    bank.append(conv)
+    payload = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
+    try:
+        with open(DIALOGUES_BANK_FILE, "w", encoding="utf-8") as f:
+            f.write(payload)
+    except OSError:
+        pass
+    if hasattr(_load_dialogues_bank_cached, "clear"):
+        _load_dialogues_bank_cached.clear()
+    _github_put_file("dialogues_bank.json", payload,
+                     f"dialogues_bank: AI 生成「{conv.get('title','')}」（共 {len(bank)} 段）")
+
+
 def _persist_lesson(lesson: dict) -> bool:
     """把情境課程加入永久庫：寫本機 + 推回 GitHub（只增不減）。"""
     bank = list(load_lessons_bank())
@@ -2145,24 +2183,57 @@ def view_speak_story() -> None:
             "5. 喜歡的對話可「加入複習」，SRS 排程之後回頭練\n\n"
             "**程度**：A2 = 基礎對話、B1 = 中級流暢、B2 = 進階表達。從低到高循序漸進。"
         )
-    tab1, tab2 = st.tabs([f"🗣️ 情境對話（{len(CONVERSATIONS)} 個）",
+    # 累積對話（session 疊加層 + 永久庫，去重）＋ 內建範本
+    gen_dialogues, dseen = [], set()
+    for d in list(st.session_state.get("_sess_dialogues", [])) + list(load_dialogues_bank()):
+        k = d.get("id") or d.get("title")
+        if k in dseen:
+            continue
+        dseen.add(k)
+        gen_dialogues.append(d)
+    all_convs = gen_dialogues + list(CONVERSATIONS)
+
+    tab1, tab2 = st.tabs([f"🗣️ 情境對話（{len(all_convs)} 個）",
                           f"📖 短篇故事（{len(STORIES)} 篇）"])
 
     with tab1:
-        for conv in CONVERSATIONS:
+        # 🎲 隨機生成情境對話 → 加進範本、永久累積
+        api_key = get_api_key()
+        lvl = st.session_state.get("en_level", "B1")
+        if st.session_state.pop("_dlg_toast", None):
+            st.success("已生成新情境對話，已加進範本最上面（並永久存入資料庫）。")
+        rc1, rc2 = st.columns([3, 2])
+        if rc1.button(f"🎲 隨機生成情境對話（{lvl}）", type="primary",
+                      use_container_width=True, disabled=not api_key):
+            used = {d.get("title") for d in gen_dialogues}
+            pool = [t for t in _DIALOGUE_TOPICS if t not in used] or _DIALOGUE_TOPICS
+            try:
+                with st.spinner("Gemini 生成情境對話中…"):
+                    conv = _gen_dialogue_en(random.choice(pool), lvl)
+                _persist_dialogue_en(conv)
+                st.session_state["_dlg_toast"] = True
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
+        rc2.caption(f"🌱 已累積 **{len(gen_dialogues)}** 段 AI 對話")
+
+        for ci, conv in enumerate(all_convs):
+            if not isinstance(conv.get("lines"), list) or not conv["lines"]:
+                continue
+            tag = "🌱 " if ci < len(gen_dialogues) else ""
             with st.expander(
-                f"**{conv['title']}**　·　程度 {conv['level']}　·　{conv['scene']}",
+                f"{tag}**{conv.get('title','')}**　·　程度 {conv.get('level','')}　·　{conv.get('scene','')}",
             ):
                 _embed_html(_build_dialogue_html(conv["lines"]),
                             height=120 + 78 * len(conv["lines"]))
                 st.divider()
-                _render_grammar(conv["grammar"])
+                _render_grammar(conv.get("grammar", []))
                 if st.button(f"➕ 加入 {len(conv['lines'])} 句到「🔁 複習」",
-                             key=f"add_conv_{conv['id']}", use_container_width=True):
+                             key=f"add_conv_{ci}", use_container_width=True):
                     cards = [
-                        {"sentence": L["en"], "chinese": L["zh"],
-                         "chunk": L["en"][:40], "context": f"情境：{conv['title']}"}
-                        for L in conv["lines"]
+                        {"sentence": L.get("en", ""), "chinese": L.get("zh", ""),
+                         "chunk": L.get("en", "")[:40], "context": f"情境：{conv.get('title','')}"}
+                        for L in conv["lines"] if L.get("en")
                     ]
                     n = add_cards_to_review(cards)
                     st.success(f"已加入 {n} 句到複習清單。")
@@ -2399,6 +2470,38 @@ def _gen_subtitle_lesson(raw_text: str, level: str, tier: str) -> dict:
     return json.loads(m.group(0))
 
 
+DIALOGUE_GEN_PROMPT = """你是英文會話教材編輯。使用者給「情境主題 + 程度」，產出一段自然的英文情境對話。
+
+# 嚴格輸出 JSON（只輸出 JSON，前後不得有任何文字、不得包 markdown code fence）
+{
+  "id": "短英文 id",
+  "title": "繁中情境標題（如：在咖啡廳點餐）",
+  "level": "A2 / B1 / B2 / C1 擇一",
+  "scene": "繁中一句話描述對話場景",
+  "lines": [
+    {"speaker": "A 或 角色名", "en": "自然口語英文，≤ 18 字/句", "zh": "繁中翻譯"}
+  ],
+  "grammar": [
+    {"point": "口語/文法重點", "explain": "繁中解說", "examples": ["English example 1", "English example 2"]}
+  ]
+}
+
+# 規範
+- lines: 6-10 句（兩人來回對話），口語自然、貼合程度。
+- grammar: 2-4 條，點出對話中的實用句型/口語。
+"""
+
+
+def _gen_dialogue_en(topic: str, level: str) -> dict:
+    """呼叫 Gemini 產出一段情境對話（結構同 CONVERSATIONS 條目）。"""
+    text = _llm_generate(DIALOGUE_GEN_PROMPT, f"情境主題：{topic}\n程度：{level}",
+                         next(iter(_MODEL_MAP.keys())), max_tokens=4000)
+    m = re.search(r"\{[\s\S]*\}", text)
+    if not m:
+        raise RuntimeError(f"Gemini 回應內無 JSON：{text[:200]}")
+    return json.loads(m.group(0))
+
+
 def _gen_reading(topic: str, level: str, tier: str) -> dict:
     """呼叫 Gemini 產出一篇可互動閱讀(結構同 readings.py 條目)。"""
     text = _llm_generate(READING_GEN_PROMPT,
@@ -2446,6 +2549,16 @@ def _render_reading_quiz(passage: dict, uid: str) -> None:
 
 
 # 隨機生成用的多元主題池（涵蓋日常／職場／旅行／科技／情感／社會等，讓每次都不同）
+_DIALOGUE_TOPICS = [
+    "在咖啡廳點餐", "跟同事閒聊週末", "退換貨遇到問題", "跟朋友抱怨工作",
+    "看房子跟房東談條件", "面試自我介紹", "看醫生描述症狀", "跟朋友約週末出遊",
+    "在餐廳訂位", "問路與指路", "機場辦理登機", "飯店入住與客訴",
+    "點外送電話溝通", "跟鄰居打招呼閒聊", "健身房諮詢方案", "銀行開戶詢問",
+    "二手物品議價", "跟老師請假", "電話客服處理帳單", "超市結帳對話",
+    "計程車上閒聊", "向同事求助", "拒絕推銷", "安慰難過的朋友",
+    "第一次約會聊天", "跟室友協調家務", "報名課程詢問", "歸還借的東西",
+]
+
 _READING_TOPICS = [
     "搬到新城市的第一週", "第一次養寵物的趣事", "和老朋友久別重逢", "學一項新技能的過程",
     "一次難忘的旅行", "在咖啡廳觀察到的人們", "週末的市場採買", "面試當天的緊張",
