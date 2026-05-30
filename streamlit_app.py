@@ -190,6 +190,91 @@ def last_7_days_df() -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("日期")
 
 
+def _render_activity_heatmap(weeks: int = 12) -> None:
+    """GitHub 風格學習熱力圖(近 N 週 × 7 天)。
+    每格代表一天,顏色深淺對應「分鐘 + 學會單字數 + 測驗次數」綜合活動量。"""
+    daily = st.session_state.data.get("daily", {})
+    today = date.today()
+    # 以本週(週日結尾)當最右行
+    end = today + timedelta(days=(6 - today.weekday()))
+    start = end - timedelta(days=weeks * 7 - 1)
+
+    def _intensity(d):
+        e = daily.get(d.isoformat())
+        if not e:
+            return 0
+        score = (e.get("minutes", 0)
+                 + e.get("words_learned", 0) * 3
+                 + len(e.get("quiz_scores", [])) * 5)
+        return score
+
+    # 收集所有強度找最大值,定 5 級
+    scores = []
+    cur = start
+    while cur <= end:
+        scores.append(_intensity(cur))
+        cur += timedelta(days=1)
+    mx = max(scores) if scores else 0
+
+    def _color(score):
+        if score == 0:
+            return "#ebedf0"
+        if mx == 0:
+            return "#ebedf0"
+        ratio = score / mx
+        if ratio < 0.25:
+            return "#9be9a8"
+        if ratio < 0.5:
+            return "#40c463"
+        if ratio < 0.75:
+            return "#30a14e"
+        return "#216e39"
+
+    # 渲染:7 行(週一→週日) × N 行(週)
+    cells = []
+    weekday_labels = ["一", "二", "三", "四", "五", "六", "日"]
+    cells.append('<div style="display:flex; gap:3px; padding:8px 4px;">')
+    cells.append('<div style="display:flex; flex-direction:column; gap:3px; '
+                 'font-size:10px; color:#64748b; margin-right:4px; justify-content:space-around;">')
+    for wl in weekday_labels:
+        cells.append(f'<div style="height:14px;">{wl}</div>')
+    cells.append('</div>')
+
+    for wi in range(weeks):
+        cells.append('<div style="display:flex; flex-direction:column; gap:3px;">')
+        for di in range(7):
+            day = start + timedelta(days=wi * 7 + di)
+            if day > today:
+                cells.append('<div style="width:14px; height:14px;"></div>')
+                continue
+            score = _intensity(day)
+            color = _color(score)
+            tip = f"{day.isoformat()}: {score} 點" if score else f"{day.isoformat()}: 無紀錄"
+            cells.append(
+                f'<div title="{tip}" style="width:14px; height:14px; '
+                f'background:{color}; border-radius:3px;"></div>'
+            )
+        cells.append('</div>')
+    cells.append('</div>')
+
+    # 圖例
+    legend = (
+        '<div style="display:flex; align-items:center; gap:6px; font-size:11px; '
+        'color:#64748b; margin-top:6px; padding-left:24px;">'
+        '<span>少</span>'
+        '<div style="width:12px; height:12px; background:#ebedf0; border-radius:2px;"></div>'
+        '<div style="width:12px; height:12px; background:#9be9a8; border-radius:2px;"></div>'
+        '<div style="width:12px; height:12px; background:#40c463; border-radius:2px;"></div>'
+        '<div style="width:12px; height:12px; background:#30a14e; border-radius:2px;"></div>'
+        '<div style="width:12px; height:12px; background:#216e39; border-radius:2px;"></div>'
+        '<span>多</span></div>'
+    )
+    total_days = sum(1 for s in scores if s > 0)
+    st.markdown("".join(cells) + legend, unsafe_allow_html=True)
+    st.caption(f"近 {weeks} 週 = {weeks * 7} 天　·　**有紀錄 {total_days} 天**　·　"
+               f"強度 = 分鐘 + 學會字×3 + 測驗次×5")
+
+
 # ----------------------------- Gemini LLM dispatcher -----------------------------
 # 免費 tier 每日請求數(GenerateRequestsPerDayPerProjectPerModel-FreeTier):
 # - gemini-2.5-pro        ≈ 5  RPD  最強但極少
@@ -762,6 +847,7 @@ def schedule_card(card: dict, grade: str) -> None:
         interval=interval,
         due=(date.today() + timedelta(days=interval)).isoformat(),
         last=today_str(),
+        last_reviewed=today_str(),
     )
 
 
@@ -890,6 +976,10 @@ def view_overview() -> None:
                 st.write(f"• {t['text']}")
         else:
             st.caption("沒有待辦任務 🎉")
+
+    st.divider()
+    st.markdown("#### 🔥 學習熱力圖（近 12 週）")
+    _render_activity_heatmap()
 
 
 def view_vocab() -> None:
@@ -1128,6 +1218,10 @@ def view_progress() -> None:
     st.markdown("#### 📈 近 7 天學習時間")
     st.bar_chart(last_7_days_df(), height=260, color="#6366f1")
 
+    st.divider()
+    st.markdown("#### 🔥 學習熱力圖（近 12 週）")
+    _render_activity_heatmap()
+
     with st.expander("⏱️ 記錄今日學習時間"):
         mins = st.number_input("學習時間（分鐘）", min_value=1, max_value=600, value=15, step=5)
         if st.button("儲存時間", type="primary"):
@@ -1355,6 +1449,8 @@ def view_generate() -> None:
 def view_review() -> None:
     data = st.session_state.data
     deck = data.setdefault("review_cards", [])
+    # 每日複習上限(避免一次過量導致疲乏);可在下方 expander 調整,持久化到 data
+    data.setdefault("review_daily_cap", 20)
 
     if not deck:
         st.info("複習清單是空的。可從「📖 單字庫」把單字、或「📚 互動閱讀」「🤖 情境生成」"
@@ -1363,16 +1459,39 @@ def view_review() -> None:
 
     today = today_str()
     due = [c for c in deck if c.get("due", today) <= today]
-    st.caption(f"清單共 {len(deck)} 張，今天到期 {len(due)} 張。")
+
+    # 計算今日已複習張數(用 last_reviewed == today 判斷)
+    reviewed_today = sum(1 for c in deck if c.get("last_reviewed") == today)
+    cap = int(data.get("review_daily_cap", 20))
+    remaining = max(0, cap - reviewed_today)
+
+    st.caption(
+        f"清單共 {len(deck)} 張　·　今日到期 {len(due)} 張　·　"
+        f"今日已複習 {reviewed_today}/{cap} 張(剩 {remaining})"
+    )
+
+    with st.expander("⚙️ 每日複習上限"):
+        new_cap = st.slider("每日上限(超過會顯示「今日達標」)",
+                            min_value=5, max_value=200,
+                            value=cap, step=5, key="review_cap_slider")
+        if new_cap != cap:
+            data["review_daily_cap"] = int(new_cap)
+            save_data()
+            st.rerun()
 
     if not due:
         nxt = min((c.get("due", today) for c in deck), default=today)
-        st.success(f"今天沒有要複習的卡 🎉 下次到期：{nxt}")
+        st.success(f"今天沒有要複習的卡 🎉 下次到期:{nxt}")
         with st.expander("清空複習清單"):
             if st.button("確認清空", type="primary"):
                 data["review_cards"] = []
                 save_data()
                 st.rerun()
+        return
+
+    if remaining <= 0:
+        st.success(f"🎯 今日已達 {cap} 張上限,別累壞了!"
+                   f"還有 {len(due)} 張到期卡,明天繼續。")
         return
 
     card = due[0]
@@ -1438,7 +1557,6 @@ def view_morphology() -> None:
             with st.expander("檢視清單"):
                 for it in items:
                     st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
-
 
 
 @st.cache_data
