@@ -1888,13 +1888,18 @@ def _build_story_html(paragraphs: list) -> str:
 
 
 def _render_grammar(items: list) -> None:
-    """渲染文法重點區塊。"""
+    """渲染文法重點區塊（對 AI 生成缺欄位防呆）。"""
+    if not items:
+        return
     st.markdown("##### 📚 文法重點")
     for g in items:
+        if not isinstance(g, dict):
+            continue
         with st.container(border=True):
-            st.markdown(f"**🎯 {g['point']}**")
-            st.caption(g["explain"])
-            for ex in g["examples"]:
+            st.markdown(f"**🎯 {g.get('point', '')}**")
+            if g.get("explain"):
+                st.caption(g["explain"])
+            for ex in g.get("examples", []):
                 st.markdown(f"　- `{ex}`")
 
 
@@ -2207,14 +2212,15 @@ def _build_reading_html(passage: dict) -> str:
     """把整篇閱讀渲染成單一 HTML(含 JS):點字看翻譯、點句子高亮+全句翻譯+朗讀。"""
     sentence_blocks = []
     for i, s in enumerate(passage["sentences"]):
-        body = _annotate_sentence_html(s["en"], s.get("vocab", {}))
-        zh_full = _html.escape(s["zh"])
-        en_js = _esc_js(s["en"])
+        en = s.get("en", "")
+        body = _annotate_sentence_html(en, s.get("vocab", {}))
+        zh_full = _html.escape(s.get("zh", ""))
+        en_js = _esc_js(en)
         sentence_blocks.append(
             f'<span class="sentence" data-id="{i}" data-zh="{zh_full}" '
-            f'data-en="{_html.escape(s["en"])}" data-enjs="{en_js}">{body}</span> '
+            f'data-en="{_html.escape(en)}" data-enjs="{en_js}">{body}</span> '
         )
-    full_text_js = _esc_js(" ".join(s["en"] for s in passage["sentences"]))
+    full_text_js = _esc_js(" ".join(s.get("en", "") for s in passage["sentences"]))
 
     css = """
     .reading {
@@ -2623,12 +2629,15 @@ def view_reading() -> None:
                 if not phrases:
                     continue
                 with st.container(border=True):
-                    st.caption(f"句 {i}：{s['en']}")
+                    st.caption(f"句 {i}：{s.get('en', '')}")
                     for p in phrases:
-                        st.markdown(f"　- `{p['en']}` — {p['zh']}")
+                        if isinstance(p, dict):
+                            st.markdown(f"　- `{p.get('en', '')}` — {p.get('zh', '')}")
+                        else:
+                            st.markdown(f"　- {p}")
 
             st.divider()
-            _render_grammar(passage["grammar"])
+            _render_grammar(passage.get("grammar", []))
 
             _render_reading_quiz(passage, uid=str(idx))
 
@@ -2638,9 +2647,9 @@ def view_reading() -> None:
                 use_container_width=True,
             ):
                 cards = [
-                    {"sentence": s["en"], "chinese": s["zh"],
-                     "chunk": s["en"][:40], "context": f"閱讀：{passage['title']}"}
-                    for s in passage["sentences"]
+                    {"sentence": s.get("en", ""), "chinese": s.get("zh", ""),
+                     "chunk": s.get("en", "")[:40], "context": f"閱讀：{passage.get('title','')}"}
+                    for s in passage["sentences"] if s.get("en")
                 ]
                 n = add_cards_to_review(cards)
                 st.success(f"已加入 {n} 句到複習清單。")
