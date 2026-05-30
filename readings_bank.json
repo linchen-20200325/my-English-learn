@@ -860,5 +860,207 @@
         ]
       }
     ]
+  },
+  {
+    "id": "growth-from-failure-b1",
+    "title": "Learning from a Mistake",
+    "title_zh": "從錯誤中學習",
+    "level": "B1",
+    "summary": "透過一個關於嘗試新事物卻失敗的個人經歷，學習如何處理挫折並從中成長，並介紹過去式、完成式及常用片語。",
+    "sentences": [
+      {
+        "en": "Last year, I decided to try baking a cake for my friend's birthday party.",
+        "zh": "去年，我決定嘗試為朋友的生日派對烤一個蛋糕。",
+        "vocab": {
+          "decided": "決定",
+          "baking": "烘焙",
+          "birthday party": "生日派對"
+        },
+        "phrases": [
+          {
+            "en": "try baking",
+            "zh": "嘗試烘焙"
+          },
+          {
+            "en": "for my friend's birthday party",
+            "zh": "為了我朋友的生日派對"
+          }
+        ]
+      },
+      {
+        "en": "I had never baked anything complex before, so I was a little nervous.",
+        "zh": "我以前從未烤過任何複雜的東西，所以我有點緊張。",
+        "vocab": {
+          "never": "從未",
+          "complex": "複雜的",
+          "nervous": "緊張的"
+        },
+        "phrases": [
+          {
+            "en": "baked anything complex",
+            "zh": "烤過任何複雜的東西"
+          },
+          {
+            "en": "a little nervous",
+            "zh": "有點緊張"
+          }
+        ]
+      },
+      {
+        "en": "I followed the recipe carefully, but I made a mistake with the oven temperature.",
+        "zh": "我仔細地按照食譜操作，但我卻在烤箱溫度上犯了一個錯誤。",
+        "vocab": {
+          "followed": "跟隨、遵循",
+          "recipe": "食譜",
+          "carefully": "仔細地",
+          "mistake": "錯誤"
+        },
+        "phrases": [
+          {
+            "en": "followed the recipe",
+            "zh": "按照食譜操作"
+          },
+          {
+            "en": "oven temperature",
+            "zh": "烤箱溫度"
+          }
+        ]
+      },
+      {
+        "en": "When I took the cake out, it was burnt on the outside and raw inside.",
+        "zh": "當我把蛋糕拿出來時，外面燒焦了，裡面卻是生的。",
+        "vocab": {
+          "took out": "拿出來",
+          "burnt": "燒焦的",
+          "raw": "生的"
+        },
+        "phrases": [
+          {
+            "en": "took the cake out",
+            "zh": "把蛋糕拿出來"
+          },
+          {
+            "en": "burnt on the outside",
+            "zh": "外面燒焦的"
+          },
+          {
+            "en": "raw inside",
+            "zh": "裡面是生的"
+          }
+        ]
+      },
+      {
+        "en": "I felt very disappointed because I had worked hard on it.",
+        "zh": "我感到非常失望，因為我為此付出了很多努力。",
+        "vocab": {
+          "disappointed": "失望的",
+          "worked hard": "努力工作"
+        },
+        "phrases": [
+          {
+            "en": "felt very disappointed",
+            "zh": "感到非常失望"
+          },
+          {
+            "en": "worked hard on it",
+            "zh": "為此付出了努力"
+          }
+        ]
+      },
+      {
+        "en": "However, I realized that failure is a part of learning new skills.",
+        "zh": "然而，我意識到失敗是學習新技能的一部分。",
+        "vocab": {
+          "realized": "意識到",
+          "failure": "失敗",
+          "skills": "技能"
+        },
+        "phrases": [
+          {
+            "en": "part of learning",
+            "zh": "學習的一部分"
+          },
+          {
+            "en": "new skills",
+            "zh": "新技能"
+          }
+        ]
+      },
+      {
+        "en": "The next time I tried baking, I paid more attention to the details.",
+        "zh": "下次我再嘗試烘焙時，我更加注意細節了。",
+        "vocab": {
+          "paid attention": "注意",
+          "details": "細節"
+        },
+        "phrases": [
+          {
+            "en": "paid more attention to",
+            "zh": "更加注意"
+          },
+          {
+            "en": "the details",
+            "zh": "細節"
+          }
+        ]
+      },
+      {
+        "en": "Although the first cake wasn't perfect, the experience taught me valuable lessons.",
+        "zh": "雖然第一個蛋糕並不完美，但這次經歷教會了我寶貴的一課。",
+        "vocab": {
+          "perfect": "完美的",
+          "experience": "經驗",
+          "valuable": "寶貴的",
+          "lessons": "教訓"
+        },
+        "phrases": [
+          {
+            "en": "wasn't perfect",
+            "zh": "並不完美"
+          },
+          {
+            "en": "taught me valuable lessons",
+            "zh": "教會了我寶貴的教訓"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple (過去簡單式)",
+        "explain": "用來描述過去發生的單一事件或一系列事件，句中常有表示過去的時間詞，如 'last year', 'yesterday'。",
+        "examples": [
+          "I decided to try baking.",
+          "I followed the recipe.",
+          "I made a mistake."
+        ]
+      },
+      {
+        "point": "Past Perfect Simple (過去完成式)",
+        "explain": "用來描述在過去某個時間點之前已經完成的動作，強調動作的先後順序。常與過去簡單式連用，表示先發生的動作。",
+        "examples": [
+          "I had never baked anything complex before.",
+          "I had worked hard on it."
+        ]
+      },
+      {
+        "point": "Common Phrases (常用片語)",
+        "explain": "學習並掌握一些常用的多字片語，能讓表達更自然、更貼近母語人士的用法。",
+        "examples": [
+          "try baking (嘗試烘焙)",
+          "paid attention to (注意)",
+          "part of learning (學習的一部分)"
+        ]
+      },
+      {
+        "point": "Vocabulary for Emotions and Experiences (情感與經歷詞彙)",
+        "explain": "學習描述個人感受和經驗的詞彙，如 'nervous', 'disappointed', 'failure', 'experience'。",
+        "examples": [
+          "I was a little nervous.",
+          "I felt very disappointed.",
+          "Failure is a part of learning."
+        ]
+      }
+    ]
   }
 ]
