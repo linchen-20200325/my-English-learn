@@ -545,5 +545,171 @@
         ]
       }
     ]
+  },
+  {
+    "id": "first-time-volunteer-a2",
+    "title": "My First Day as a Volunteer",
+    "title_zh": "我的第一次志工經驗",
+    "level": "A2",
+    "summary": "這篇文章使用簡單的現在式和過去式，描述第一次擔任志工的經驗，適合初學者練習基本動詞和生活詞彙。",
+    "sentences": [
+      {
+        "en": "Last Saturday, I decided to volunteer at the animal shelter.",
+        "zh": "上週六，我決定去動物收容所當志工。",
+        "vocab": {
+          "decided": "決定",
+          "volunteer": "當志工",
+          "animal shelter": "動物收容所"
+        },
+        "phrases": [
+          {
+            "en": "Last Saturday",
+            "zh": "上週六 (時間指示)"
+          }
+        ]
+      },
+      {
+        "en": "I felt a little nervous before I went.",
+        "zh": "去之前我有點緊張。",
+        "vocab": {
+          "nervous": "緊張的",
+          "before": "在...之前"
+        },
+        "phrases": [
+          {
+            "en": "a little nervous",
+            "zh": "有點緊張 (程度副詞)"
+          }
+        ]
+      },
+      {
+        "en": "But the people there were very friendly.",
+        "zh": "但那裡的人們非常友善。",
+        "vocab": {
+          "friendly": "友善的",
+          "there": "在那裡"
+        },
+        "phrases": [
+          {
+            "en": "people there",
+            "zh": "那裡的人們 (指代)"
+          }
+        ]
+      },
+      {
+        "en": "My job was to clean the dog cages.",
+        "zh": "我的工作是清理狗籠。",
+        "vocab": {
+          "job": "工作",
+          "clean": "清理",
+          "dog cages": "狗籠"
+        },
+        "phrases": [
+          {
+            "en": "My job was to",
+            "zh": "我的工作是 (介紹任務)"
+          }
+        ]
+      },
+      {
+        "en": "I also helped feed the cats.",
+        "zh": "我也幫忙餵貓咪。",
+        "vocab": {
+          "helped": "幫忙",
+          "feed": "餵食",
+          "cats": "貓咪"
+        },
+        "phrases": [
+          {
+            "en": "helped feed",
+            "zh": "幫忙餵食 (動詞搭配)"
+          }
+        ]
+      },
+      {
+        "en": "It was hard work, but it was fun.",
+        "zh": "這是一份辛苦的工作，但很有趣。",
+        "vocab": {
+          "hard work": "辛苦的工作",
+          "fun": "有趣的"
+        },
+        "phrases": [
+          {
+            "en": "It was hard work",
+            "zh": "這是一份辛苦的工作 (描述工作性質)"
+          }
+        ]
+      },
+      {
+        "en": "I learned a lot and met new friends.",
+        "zh": "我學到很多，也認識了新朋友。",
+        "vocab": {
+          "learned": "學到",
+          "met": "認識",
+          "new friends": "新朋友"
+        },
+        "phrases": [
+          {
+            "en": "learned a lot",
+            "zh": "學到很多 (程度副詞)"
+          },
+          {
+            "en": "met new friends",
+            "zh": "認識新朋友 (社交互動)"
+          }
+        ]
+      },
+      {
+        "en": "I want to volunteer again next month.",
+        "zh": "我想下個月再去當志工。",
+        "vocab": {
+          "want to": "想要",
+          "again": "再一次",
+          "next month": "下個月"
+        },
+        "phrases": [
+          {
+            "en": "want to volunteer",
+            "zh": "想要當志工 (表達意願)"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Simple Past Tense (簡單過去式)",
+        "explain": "用來描述過去發生的動作或事件，例如 'decided', 'felt', 'was', 'helped', 'learned', 'met'。",
+        "examples": [
+          "I decided to volunteer.",
+          "It was fun.",
+          "I learned a lot."
+        ]
+      },
+      {
+        "point": "Simple Present Tense (簡單現在式)",
+        "explain": "用來描述習慣性動作、事實或狀態，例如 'people are friendly' (雖然本文多用過去式，但此處為例)。",
+        "examples": [
+          "Animals need care.",
+          "Volunteers help."
+        ]
+      },
+      {
+        "point": "Subject + Verb + Object (主詞 + 動詞 + 受詞)",
+        "explain": "最基本的句子結構，說明誰做了什麼，例如 'I cleaned the cages.'",
+        "examples": [
+          "I cleaned the dog cages.",
+          "I fed the cats."
+        ]
+      },
+      {
+        "point": "Vocabulary for Feelings and Activities (表示情感與活動的詞彙)",
+        "explain": "學習描述情感 (nervous, friendly, fun) 和活動 (volunteer, clean, feed) 的單字。",
+        "examples": [
+          "I felt nervous.",
+          "It was fun.",
+          "I helped feed the cats."
+        ]
+      }
+    ]
   }
 ]
