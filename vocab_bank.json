@@ -5096,5 +5096,885 @@
         "example": "Safety first!"
       }
     ]
+  },
+  "sorry": {
+    "word": "sorry",
+    "meaning_zh": "抱歉",
+    "kk": "[ˈsɔri]",
+    "phonics": "SAWR-ee",
+    "homophone": "搜哩",
+    "image": "對不起！我『搜哩』，害你東西掉了。",
+    "example_en": "I'm so sorry about that.",
+    "example_zh": "我為那件事感到非常抱歉。",
+    "usage_zh": "表達歉意最直接的說法,日常生活中頻繁使用。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "stupid": {
+    "word": "stupid",
+    "meaning_zh": "愚蠢的",
+    "kk": "[ˈstjudpɪd]",
+    "phonics": "STYOO-pid",
+    "homophone": "死屁股",
+    "image": "你這個『死屁股』，怎麼做這麼『愚蠢』的事！",
+    "example_en": "That was a stupid mistake.",
+    "example_zh": "那真是個愚蠢的錯誤。",
+    "usage_zh": "用來形容人或行為很笨、不明智,有時帶有輕蔑意味。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "stupidity",
+        "pos": "名詞",
+        "meaning_zh": "愚蠢",
+        "example": "His stupidity was astonishing."
+      }
+    ]
+  },
+  "white": {
+    "word": "white",
+    "meaning_zh": "白色",
+    "kk": "[waɪt]",
+    "phonics": "WHITE",
+    "homophone": "white",
+    "image": "這件『白色』衣服，快用『white』牙膏把它洗乾淨。",
+    "example_en": "She wore a white dress.",
+    "example_zh": "她穿了一件白色洋裝。",
+    "usage_zh": "形容顏色,常見於描述衣物、牆壁、天空等。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "black": {
+    "word": "black",
+    "meaning_zh": "黑色",
+    "kk": "[blæk]",
+    "phonics": "BLACK",
+    "homophone": "black",
+    "image": "『黑色』的車子，『black』色的皮革，看起來好帥。",
+    "example_en": "He has black hair.",
+    "example_zh": "他有黑色的頭髮。",
+    "usage_zh": "形容顏色,常用來描述頭髮、眼睛、衣服、夜晚等。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "green": {
+    "word": "green",
+    "meaning_zh": "綠色",
+    "kk": "[ɡrin]",
+    "phonics": "GREEN",
+    "homophone": "green",
+    "image": "『綠色』的草地，『green』色的葉子，充滿生機。",
+    "example_en": "The leaves are green.",
+    "example_zh": "葉子是綠色的。",
+    "usage_zh": "形容顏色,常與植物、環保議題連結。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "blue": {
+    "word": "blue",
+    "meaning_zh": "藍色",
+    "kk": "[blu]",
+    "phonics": "BLUE",
+    "homophone": "blue",
+    "image": "『藍色』的天空，『blue』色的海洋，讓人心情平靜。",
+    "example_en": "The sky is blue.",
+    "example_zh": "天空是藍色的。",
+    "usage_zh": "形容顏色,常用來描述天空、海洋、憂鬱的情緒。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "red": {
+    "word": "red",
+    "meaning_zh": "紅色",
+    "kk": "[rɛd]",
+    "phonics": "RED",
+    "homophone": "red",
+    "image": "『紅色』的蘋果，『red』色的嘴唇，看起來很誘人。",
+    "example_en": "She has red lips.",
+    "example_zh": "她有紅色的嘴唇。",
+    "usage_zh": "形容顏色,常與熱情、危險、愛連結。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "yellow": {
+    "word": "yellow",
+    "meaning_zh": "黃色",
+    "kk": "[ˈjɛlo]",
+    "phonics": "YEL-oh",
+    "homophone": "yellow",
+    "image": "『黃色』的香蕉，『yellow』色的太陽，充滿陽光。",
+    "example_en": "The banana is yellow.",
+    "example_zh": "香蕉是黃色的。",
+    "usage_zh": "形容顏色,常與陽光、溫暖、警告連結。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "always": {
+    "word": "always",
+    "meaning_zh": "總是",
+    "kk": "[ˈɔlwez]",
+    "phonics": "AWL-wayz",
+    "homophone": "all ways",
+    "image": "我『總是』有『all ways』（所有方法）能見到你。",
+    "example_en": "He always arrives on time.",
+    "example_zh": "他總是準時到達。",
+    "usage_zh": "表示頻率最高,百分之百,用於肯定句。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "never": {
+    "word": "never",
+    "meaning_zh": "從不",
+    "kk": "[ˈnɛvɚ]",
+    "phonics": "NEV-er",
+    "homophone": "nev-er",
+    "image": "我『從不』做這種事，『nev-er』！",
+    "example_en": "I have never seen such a thing.",
+    "example_zh": "我從未見過這樣的事。",
+    "usage_zh": "表示頻率最低,零次,用於肯定句結構但意思是否定。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "often": {
+    "word": "often",
+    "meaning_zh": "經常",
+    "kk": "[ˈɔfən]",
+    "phonics": "AWF-en",
+    "homophone": "off-en",
+    "image": "我『經常』去『off-en』（關閉）那個地方，因為很無聊。",
+    "example_en": "We often go out for dinner.",
+    "example_zh": "我們經常出去吃晚餐。",
+    "usage_zh": "表示頻率高,但非百分之百,比 'always' 頻率低。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "sometimes": {
+    "word": "sometimes",
+    "meaning_zh": "有時候",
+    "kk": "[ˈsʌmˌtaɪmz]",
+    "phonics": "SUM-times",
+    "homophone": "some times",
+    "image": "『有時候』，『some times』，我會去旅行。",
+    "example_en": "Sometimes I feel tired.",
+    "example_zh": "有時候我覺得很累。",
+    "usage_zh": "表示頻率不高也不低,隨機發生,可放句首、句中或句尾。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "today": {
+    "word": "today",
+    "meaning_zh": "今天",
+    "kk": "[təˈde]",
+    "phonics": "tuh-DAY",
+    "homophone": "to-day",
+    "image": "『今天』，『to-day』，我要去拜訪你。",
+    "example_en": "What are you doing today?",
+    "example_zh": "你今天要做什麼？",
+    "usage_zh": "指當天,是時間副詞,常用於句首或句尾。",
+    "pos": "名詞 / 副詞",
+    "other_forms": []
+  },
+  "tomorrow": {
+    "word": "tomorrow",
+    "meaning_zh": "明天",
+    "kk": "[təˈmɔro]",
+    "phonics": "tuh-MAW-row",
+    "homophone": "to-morrow",
+    "image": "『明天』，『to-morrow』，我們去爬山。",
+    "example_en": "I'll see you tomorrow.",
+    "example_zh": "明天見。",
+    "usage_zh": "指隔天,是時間副詞,常用於句首或句尾。",
+    "pos": "名詞 / 副詞",
+    "other_forms": []
+  },
+  "yesterday": {
+    "word": "yesterday",
+    "meaning_zh": "昨天",
+    "kk": "[ˈjɛstɚˌde]",
+    "phonics": "YES-ter-day",
+    "homophone": "yes-ter-day",
+    "image": "『昨天』，『yes-ter-day』，我說『yes』，要去開會。",
+    "example_en": "He left yesterday.",
+    "example_zh": "他昨天離開了。",
+    "usage_zh": "指前一天,是時間副詞,常用於句首或句尾。",
+    "pos": "名詞 / 副詞",
+    "other_forms": []
+  },
+  "soon": {
+    "word": "soon",
+    "meaning_zh": "很快",
+    "kk": "[sun]",
+    "phonics": "SOON",
+    "homophone": "soon",
+    "image": "『很快』，『soon』，你就會看到結果。",
+    "example_en": "I'll be back soon.",
+    "example_zh": "我很快回來。",
+    "usage_zh": "表示時間的短暫間隔,常用於 'in a...' 結構。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "together": {
+    "word": "together",
+    "meaning_zh": "一起",
+    "kk": "[təˈɡɛðɚ]",
+    "phonics": "tuh-GETH-er",
+    "homophone": "to-get-her",
+    "image": "我們『一起』、『to-get-her』，努力達成目標。",
+    "example_en": "Let's go together.",
+    "example_zh": "我們一起去吧。",
+    "usage_zh": "表示共同行動或狀態,常與動詞搭配。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "alone": {
+    "word": "alone",
+    "meaning_zh": "獨自",
+    "kk": "[əˈlon]",
+    "phonics": "uh-LONE",
+    "homophone": "a lone",
+    "image": "他『獨自』、『a lone』，站在那裡。",
+    "example_en": "She prefers to be alone.",
+    "example_zh": "她寧願獨處。",
+    "usage_zh": "表示沒有他人陪伴,強調孤獨感。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": []
+  },
+  "first": {
+    "word": "first",
+    "meaning_zh": "第一",
+    "kk": "[fɝst]",
+    "phonics": "FIRST",
+    "homophone": "first",
+    "image": "『第一』個『first』，他是贏家。",
+    "example_en": "This is the first time.",
+    "example_zh": "這是第一次。",
+    "usage_zh": "表示順序或次數,常用於 'the first...' 或 'at first'。",
+    "pos": "形容詞 / 副詞 / 名詞",
+    "other_forms": []
+  },
+  "last": {
+    "word": "last",
+    "meaning_zh": "最後",
+    "kk": "[læst]",
+    "phonics": "LAST",
+    "homophone": "last",
+    "image": "『最後』一個『last』，他被淘汰了。",
+    "example_en": "This is the last chance.",
+    "example_zh": "這是最後的機會。",
+    "usage_zh": "表示順序或時間上的終結,常用於 'the last...' 或 'at last'。",
+    "pos": "形容詞 / 名詞 / 動詞 / 副詞",
+    "other_forms": []
+  },
+  "next": {
+    "word": "next",
+    "meaning_zh": "下一個",
+    "kk": "[nɛkst]",
+    "phonics": "NEXT",
+    "homophone": "next",
+    "image": "『下一個』『next』，輪到你了。",
+    "example_en": "Who is next?",
+    "example_zh": "下一個是誰？",
+    "usage_zh": "表示順序上的緊接,常用於 'the next...' 或 'next time'。",
+    "pos": "形容詞 / 名詞 / 副詞",
+    "other_forms": []
+  },
+  "less": {
+    "word": "less",
+    "meaning_zh": "較少",
+    "kk": "[lɛs]",
+    "phonics": "LESS",
+    "homophone": "less",
+    "image": "『較少』的『less』，錢包裡還有一些。",
+    "example_en": "I have less money than him.",
+    "example_zh": "我的錢比他少。",
+    "usage_zh": "比較級,用於不可數名詞,表示數量或程度的減少。",
+    "pos": "形容詞 / 副詞 / 代名詞 / 介系詞",
+    "other_forms": []
+  },
+  "few": {
+    "word": "few",
+    "meaning_zh": "少數",
+    "kk": "[fju]",
+    "phonics": "FEW",
+    "homophone": "few",
+    "image": "『少數』『few』人，能看到這景象。",
+    "example_en": "Few people understand this.",
+    "example_zh": "很少有人理解這個。",
+    "usage_zh": "用於可數名詞,表示數量很少,帶有否定意味。",
+    "pos": "形容詞 / 代名詞",
+    "other_forms": []
+  },
+  "nothing": {
+    "word": "nothing",
+    "meaning_zh": "沒有東西",
+    "kk": "[ˈnʌθɪŋ]",
+    "phonics": "NUTH-ing",
+    "homophone": "nuth-ing",
+    "image": "『沒有東西』、『nuth-ing』，別擔心。",
+    "example_en": "There is nothing here.",
+    "example_zh": "這裡什麼都沒有。",
+    "usage_zh": "表示零,完全沒有,常用於 'There is...' 或 'do nothing'。",
+    "pos": "代名詞",
+    "other_forms": []
+  },
+  "yes": {
+    "word": "yes",
+    "meaning_zh": "是",
+    "kk": "[jɛs]",
+    "phonics": "YES",
+    "homophone": "yes",
+    "image": "『是』、『yes』，我同意。",
+    "example_en": "Yes, I will.",
+    "example_zh": "是的，我願意。",
+    "usage_zh": "表示肯定、同意,常用於回答問題或表達贊同。",
+    "pos": "副詞 / 助動詞 / 名詞 / 感嘆詞",
+    "other_forms": []
+  },
+  "thank": {
+    "word": "thank",
+    "meaning_zh": "謝謝",
+    "kk": "[θæŋk]",
+    "phonics": "THANK",
+    "homophone": "thank",
+    "image": "『謝謝』、『thank』，我會記住的。",
+    "example_en": "Thank you very much.",
+    "example_zh": "非常感謝你。",
+    "usage_zh": "表達感謝,常用於 'Thank you' 或 'Thanks'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "thanks",
+        "pos": "名詞",
+        "meaning_zh": "謝謝",
+        "example": "Thanks for your help."
+      },
+      {
+        "word": "thankful",
+        "pos": "形容詞",
+        "meaning_zh": "感激的",
+        "example": "I'm thankful for your kindness."
+      },
+      {
+        "word": "thank you",
+        "pos": "片語",
+        "meaning_zh": "謝謝",
+        "example": "Thank you for coming."
+      }
+    ]
+  },
+  "explain": {
+    "word": "explain",
+    "meaning_zh": "解釋",
+    "kk": "[ɪkˈspleɪn]",
+    "phonics": "ik-SPLAYN",
+    "homophone": "ick-splain",
+    "image": "『解釋』『ick-splain』，這個問題很複雜。",
+    "example_en": "Can you explain this?",
+    "example_zh": "你能解釋一下這個嗎？",
+    "usage_zh": "用於說明原因、理由或使人理解某事。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "explanation",
+        "pos": "名詞",
+        "meaning_zh": "解釋",
+        "example": "I need a clear explanation."
+      }
+    ]
+  },
+  "describe": {
+    "word": "describe",
+    "meaning_zh": "描述",
+    "kk": "[dɪˈskraɪb]",
+    "phonics": "dis-SCRIBE",
+    "homophone": "dis-cribe",
+    "image": "請『描述』、『dis-cribe』，你看到的景象。",
+    "example_en": "Describe your new car.",
+    "example_zh": "描述一下你的新車。",
+    "usage_zh": "用於詳細說明事物的特徵、外觀或情況。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "description",
+        "pos": "名詞",
+        "meaning_zh": "描述",
+        "example": "Give me a description."
+      }
+    ]
+  },
+  "suggest": {
+    "word": "suggest",
+    "meaning_zh": "建議",
+    "kk": "[səɡˈdʒɛst]",
+    "phonics": "suh-GEST",
+    "homophone": "suggest",
+    "image": "我『建議』、『suggest』，你休息一下。",
+    "example_en": "I suggest we go home.",
+    "example_zh": "我建議我們回家。",
+    "usage_zh": "提出想法或意見,常用於 'suggest that...' 或 'suggest doing sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "suggestion",
+        "pos": "名詞",
+        "meaning_zh": "建議",
+        "example": "What's your suggestion?"
+      }
+    ]
+  },
+  "prepare": {
+    "word": "prepare",
+    "meaning_zh": "準備",
+    "kk": "[prɪˈpɛr]",
+    "phonics": "pri-PAIR",
+    "homophone": "pre-pair",
+    "image": "『準備』、『pre-pair』（預先配對）好所有東西。",
+    "example_en": "Are you prepared for the test?",
+    "example_zh": "你準備好考試了嗎？",
+    "usage_zh": "為某事做好計劃或安排,常與 'for' 搭配。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "preparation",
+        "pos": "名詞",
+        "meaning_zh": "準備",
+        "example": "The preparation took hours."
+      }
+    ]
+  },
+  "improve": {
+    "word": "improve",
+    "meaning_zh": "改善",
+    "kk": "[ɪmˈpruv]",
+    "phonics": "im-PROOV",
+    "homophone": "in-prove",
+    "image": "『改善』、『in-prove』（在裡面進步），你的能力。",
+    "example_en": "He wants to improve his English.",
+    "example_zh": "他想提高他的英文。",
+    "usage_zh": "使事物變得更好,常用於 'improve sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "improvement",
+        "pos": "名詞",
+        "meaning_zh": "改善",
+        "example": "There's been a big improvement."
+      }
+    ]
+  },
+  "increase": {
+    "word": "increase",
+    "meaning_zh": "增加",
+    "kk": "[ɪnˈkris]",
+    "phonics": "in-CREASE",
+    "homophone": "in-crease",
+    "image": "『增加』、『in-crease』（在裡面增加），你的收入。",
+    "example_en": "Sales increased last year.",
+    "example_zh": "去年的銷售額增加了。",
+    "usage_zh": "使數量或程度變大,常用於 'increase sth.'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "increasing",
+        "pos": "形容詞",
+        "meaning_zh": "增加的",
+        "example": "An increasing number of people."
+      }
+    ]
+  },
+  "reduce": {
+    "word": "reduce",
+    "meaning_zh": "減少",
+    "kk": "[rɪˈdus]",
+    "phonics": "ri-DOOS",
+    "homophone": "re-duce",
+    "image": "『減少』、『re-duce』（再減少），這個價格。",
+    "example_en": "We need to reduce costs.",
+    "example_zh": "我們需要降低成本。",
+    "usage_zh": "使數量或程度變小,常用於 'reduce sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "reduction",
+        "pos": "名詞",
+        "meaning_zh": "減少",
+        "example": "A significant reduction."
+      }
+    ]
+  },
+  "develop": {
+    "word": "develop",
+    "meaning_zh": "發展",
+    "kk": "[dɪˈvɛləp]",
+    "phonics": "di-VEL-up",
+    "homophone": "the-vel-up",
+    "image": "『發展』、『the-vel-up』（那個絨毛玩具），讓他成長。",
+    "example_en": "The town is developing rapidly.",
+    "example_zh": "這個鎮正在快速發展。",
+    "usage_zh": "使事物成長、進步或變得更複雜,常用於 'develop sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "development",
+        "pos": "名詞",
+        "meaning_zh": "發展",
+        "example": "Economic development."
+      },
+      {
+        "word": "developer",
+        "pos": "名詞",
+        "meaning_zh": "開發者",
+        "example": "A software developer."
+      }
+    ]
+  },
+  "create": {
+    "word": "create",
+    "meaning_zh": "創造",
+    "kk": "[kriˈeɪt]",
+    "phonics": "kree-AYT",
+    "homophone": "cree-ate",
+    "image": "『創造』、『cree-ate』（創造縫隙），新的世界。",
+    "example_en": "She created a beautiful painting.",
+    "example_zh": "她創造了一幅美麗的畫。",
+    "usage_zh": "使某物從無到有地產生,常用於 'create sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "creation",
+        "pos": "名詞",
+        "meaning_zh": "創造；創作",
+        "example": "The creation of the universe."
+      },
+      {
+        "word": "creative",
+        "pos": "形容詞",
+        "meaning_zh": "有創造力的",
+        "example": "A creative idea."
+      }
+    ]
+  },
+  "manage": {
+    "word": "manage",
+    "meaning_zh": "管理；設法",
+    "kk": "[ˈmænɪdʒ]",
+    "phonics": "MAN-ij",
+    "homophone": "man-age",
+    "image": "『管理』、『man-age』（男人年齡），讓他負責。",
+    "example_en": "Can you manage the team?",
+    "example_zh": "你能管理這個團隊嗎？",
+    "usage_zh": "控制、指導或負責某事；成功做到某事。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "management",
+        "pos": "名詞",
+        "meaning_zh": "管理",
+        "example": "Good management is key."
+      },
+      {
+        "word": "manager",
+        "pos": "名詞",
+        "meaning_zh": "經理",
+        "example": "The sales manager."
+      }
+    ]
+  },
+  "provide": {
+    "word": "provide",
+    "meaning_zh": "提供",
+    "kk": "[prəˈvaɪd]",
+    "phonics": "pruh-VYE-d",
+    "homophone": "pro-vied",
+    "image": "『提供』、『pro-vied』（專業提供），幫助。",
+    "example_en": "They provide food and shelter.",
+    "example_zh": "他們提供食物和住所。",
+    "usage_zh": "給予或供應某物,常用於 'provide sth. for sb.' 或 'provide sb. with sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "provision",
+        "pos": "名詞",
+        "meaning_zh": "供應；條款",
+        "example": "Make provisions for the future."
+      }
+    ]
+  },
+  "offer": {
+    "word": "offer",
+    "meaning_zh": "提供；提議",
+    "kk": "[ˈɔfɚ]",
+    "phonics": "AWF-er",
+    "homophone": "off-er",
+    "image": "『提供』、『off-er』（關閉者），他給了個機會。",
+    "example_en": "He offered me a job.",
+    "example_zh": "他給我提供了一個工作。",
+    "usage_zh": "主動給予或提出某物,常用於 'offer sth.' 或 'offer to do sth.'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "offering",
+        "pos": "名詞",
+        "meaning_zh": "獻禮；提供物",
+        "example": "A generous offering."
+      }
+    ]
+  },
+  "accept": {
+    "word": "accept",
+    "meaning_zh": "接受",
+    "kk": "[əkˈsɛpt]",
+    "phonics": "uk-SEPT",
+    "homophone": "ack-sept",
+    "image": "『接受』、『ack-sept』（承認接受），他的道歉。",
+    "example_en": "Did you accept the offer?",
+    "example_zh": "你接受那個提議了嗎？",
+    "usage_zh": "同意收下或接受某事物,常用於 'accept sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "acceptance",
+        "pos": "名詞",
+        "meaning_zh": "接受",
+        "example": "His acceptance was surprising."
+      }
+    ]
+  },
+  "refuse": {
+    "word": "refuse",
+    "meaning_zh": "拒絕",
+    "kk": "[rɪˈfjuz]",
+    "phonics": "ri-FYOOZ",
+    "homophone": "re-fuse",
+    "image": "『拒絕』、『re-fuse』（再熔化），他的請求。",
+    "example_en": "She refused to help.",
+    "example_zh": "她拒絕幫忙。",
+    "usage_zh": "不願意接受或同意某事,常用於 'refuse sth.' 或 'refuse to do sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "refusal",
+        "pos": "名詞",
+        "meaning_zh": "拒絕",
+        "example": "His refusal was firm."
+      }
+    ]
+  },
+  "expect": {
+    "word": "expect",
+    "meaning_zh": "預期；期望",
+    "kk": "[ɪkˈspɛkt]",
+    "phonics": "ik-SPEKT",
+    "homophone": "ick-spect",
+    "image": "『預期』、『ick-spect』（期望看），他會來。",
+    "example_en": "We expect good results.",
+    "example_zh": "我們預期會有好結果。",
+    "usage_zh": "認為某事將會發生或發生,常用於 'expect sth.' 或 'expect that...'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "expectation",
+        "pos": "名詞",
+        "meaning_zh": "期望",
+        "example": "High expectations."
+      }
+    ]
+  },
+  "prefer": {
+    "word": "prefer",
+    "meaning_zh": "偏好",
+    "kk": "[prɪˈfɝ]",
+    "phonics": "pri-FER",
+    "homophone": "pre-fer",
+    "image": "『偏好』、『pre-fer』（預先喜歡），這個。",
+    "example_en": "I prefer tea to coffee.",
+    "example_zh": "我比較喜歡茶，不喜歡咖啡。",
+    "usage_zh": "更喜歡某人或某物,常用於 'prefer sth. to sth.' 或 'prefer doing sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "preference",
+        "pos": "名詞",
+        "meaning_zh": "偏好",
+        "example": "His preference is clear."
+      }
+    ]
+  },
+  "realize": {
+    "word": "realize",
+    "meaning_zh": "意識到",
+    "kk": "[ˈriəlˌaɪz]",
+    "phonics": "REE-uh-lize",
+    "homophone": "real-eyes",
+    "image": "『意識到』、『real-eyes』（真實的眼睛），真相。",
+    "example_en": "I didn't realize you were here.",
+    "example_zh": "我沒意識到你來了。",
+    "usage_zh": "開始明白或認識到某事,常用於 'realize that...'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "realization",
+        "pos": "名詞",
+        "meaning_zh": "意識到；實現",
+        "example": "The realization of his dream."
+      }
+    ]
+  },
+  "recognize": {
+    "word": "recognize",
+    "meaning_zh": "認出",
+    "kk": "[ˈrɛkəɡˌnaɪz]",
+    "phonics": "REK-uhg-nize",
+    "homophone": "wreck-a-nize",
+    "image": "『認出』、『wreck-a-nize』（毀壞辨識），那是他。",
+    "example_en": "I recognized her immediately.",
+    "example_zh": "我立刻認出了她。",
+    "usage_zh": "辨識出某人或某事物,常用於 'recognize sb./sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "recognition",
+        "pos": "名詞",
+        "meaning_zh": "認可；辨識",
+        "example": "The recognition of his talent."
+      }
+    ]
+  },
+  "discuss": {
+    "word": "discuss",
+    "meaning_zh": "討論",
+    "kk": "[dɪˈskʌs]",
+    "phonics": "dis-CUSS",
+    "homophone": "dis-cuss",
+    "image": "『討論』、『dis-cuss』（分開討論），這個問題。",
+    "example_en": "Let's discuss the plan.",
+    "example_zh": "我們來討論一下這個計畫。",
+    "usage_zh": "就某個話題交換意見,常用於 'discuss sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "discussion",
+        "pos": "名詞",
+        "meaning_zh": "討論",
+        "example": "A lively discussion."
+      }
+    ]
+  },
+  "compare": {
+    "word": "compare",
+    "meaning_zh": "比較",
+    "kk": "[kəmˈpɛr]",
+    "phonics": "kum-PAIR",
+    "homophone": "come-pair",
+    "image": "『比較』、『come-pair』（來配對），兩者。",
+    "example_en": "Compare these two options.",
+    "example_zh": "比較一下這兩個選項。",
+    "usage_zh": "找出兩者或多者之間的相似或不同之處,常用於 'compare A to B' 或 'compare A with B'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "comparison",
+        "pos": "名詞",
+        "meaning_zh": "比較",
+        "example": "A detailed comparison."
+      }
+    ]
+  },
+  "contain": {
+    "word": "contain",
+    "meaning_zh": "包含",
+    "kk": "[kənˈteɪn]",
+    "phonics": "kun-TAYN",
+    "homophone": "con-tain",
+    "image": "『包含』、『con-tain』（含住），所有東西。",
+    "example_en": "This box contains books.",
+    "example_zh": "這個盒子裡裝著書。",
+    "usage_zh": "裡面有；包括,常用於 'contain sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "container",
+        "pos": "名詞",
+        "meaning_zh": "容器",
+        "example": "A storage container."
+      }
+    ]
+  },
+  "consider": {
+    "word": "consider",
+    "meaning_zh": "考慮；視為",
+    "kk": "[kənˈsɪdɚ]",
+    "phonics": "kun-SIH-der",
+    "homophone": "肯洗熱",
+    "image": "你『肯』不『肯』『洗熱』水？讓你考慮一下。",
+    "example_en": "Have you considered taking the train?",
+    "example_zh": "你考慮過改搭火車嗎?",
+    "usage_zh": "提建議用 'Have you considered ...?' 比直接 'You should' 更委婉,日常對話常見。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "consideration",
+        "pos": "名詞",
+        "meaning_zh": "考慮；體貼",
+        "example": "Please take my advice into consideration."
+      },
+      {
+        "word": "considerable",
+        "pos": "形容詞",
+        "meaning_zh": "相當大的",
+        "example": "It took considerable effort to finish."
+      },
+      {
+        "word": "considerate",
+        "pos": "形容詞",
+        "meaning_zh": "體貼的",
+        "example": "He's always considerate of others' feelings."
+      }
+    ]
+  },
+  "continue": {
+    "word": "continue",
+    "meaning_zh": "繼續",
+    "kk": "[kənˈtɪnju]",
+    "phonics": "kun-TIN-yoo",
+    "homophone": "con-tin-you",
+    "image": "『繼續』、『con-tin-you』（和你們繼續），下去。",
+    "example_en": "Please continue your story.",
+    "example_zh": "請繼續你的故事。",
+    "usage_zh": "不停止地進行某事,常用於 'continue sth.' 或 'continue to do sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "continuation",
+        "pos": "名詞",
+        "meaning_zh": "繼續",
+        "example": "The continuation of the project."
+      },
+      {
+        "word": "continuous",
+        "pos": "形容詞",
+        "meaning_zh": "連續的",
+        "example": "Continuous improvement."
+      }
+    ]
+  },
+  "prevent": {
+    "word": "prevent",
+    "meaning_zh": "預防；阻止",
+    "kk": "[prɪˈvɛnt]",
+    "phonics": "pri-VENT",
+    "homophone": "pre-vent",
+    "image": "『預防』、『pre-vent』（預防壞事），發生。",
+    "example_en": "This will prevent accidents.",
+    "example_zh": "這將預防事故發生。",
+    "usage_zh": "採取措施使某事不會發生,常用於 'prevent sb./sth. from doing sth.'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "prevention",
+        "pos": "名詞",
+        "meaning_zh": "預防",
+        "example": "Crime prevention."
+      }
+    ]
   }
 }
