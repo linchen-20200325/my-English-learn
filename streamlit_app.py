@@ -1696,7 +1696,7 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
             "note": "詞表已全數完成,沒有待補單字。如需更多請編輯 "
                     "`scripts/vocab_wordlist.txt`。",
         }
-        return
+        return 0
     # 每字完整 8 欄約需 ~320 token,預留充裕上限避免 JSON 被截斷(上限 32k)
     max_tok = min(32000, 1200 + 360 * len(todo))
     with st.spinner(f"用 Gemini ({tier}) 生成 {len(todo)} 字…"):
@@ -1745,6 +1745,7 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
             st.error("⚠️ **重要**:這批 {added} 字推回失敗,只留在 session,**重整就消失**!\n"
                      "請手動按下方「⬇️ 下載合併後 vocab_bank.json」存檔。"
                      .format(added=added))
+    return added
 
 
 def _push_bank_to_github(silent: bool = False) -> bool:
@@ -2863,7 +2864,7 @@ def view_vocab_bank() -> None:
                 "若想永久保存,請至 Cloud Secrets 加 `GITHUB_TOKEN = \"github_pat_...\"`,"
                 "或每次生成後手動按下方「⬇️ 下載」覆蓋 repo 的 vocab_bank.json 再 push。"
             )
-        if col3.button("🚀 開始生成", disabled=not api_key,
+        if col3.button("🚀 生成這批", disabled=not api_key,
                        use_container_width=True, type="primary"):
             try:
                 _run_inapp_generation(int(n), tier, auto_push=auto_push)
@@ -2924,11 +2925,75 @@ def view_vocab_bank() -> None:
                     )
                 else:
                     st.error(f"生成失敗：{e}")
+
+        # ── 連續生成到目標字數（按一次自動跑多批，撞額度或達標才停）──
+        st.divider()
+        running = st.session_state.get("_autogen_active", False)
+        ac1, ac2 = st.columns([2, 2])
+        target = ac1.number_input("🎯 連續生成到（總庫存字數）", min_value=len(bank),
+                                  max_value=10000, value=min(10000, len(bank) + 1000),
+                                  step=500, disabled=running or not api_key)
+        if not running:
+            if ac2.button("🔁 連續生成到目標", disabled=not api_key,
+                          use_container_width=True, type="primary"):
+                st.session_state["_autogen_active"] = True
+                st.session_state["_autogen_target"] = int(target)
+                st.session_state["_autogen_batch"] = int(n)
+                st.session_state["_autogen_tier"] = tier
+                st.session_state["_autogen_stall"] = 0
+                st.rerun()
+        else:
+            if ac2.button("⏹ 停止連續生成", use_container_width=True):
+                for k in ("_autogen_active", "_autogen_target", "_autogen_batch",
+                          "_autogen_tier", "_autogen_stall"):
+                    st.session_state.pop(k, None)
+                if auto_push:
+                    _push_bank_to_github(silent=True)
+                st.rerun()
+
         st.caption(
             f"詞表 {len(__import__('scripts.generate_vocab', fromlist=['load_wordlist']).load_wordlist())} 字"
             f"　·　已完成 **{len(bank)}** 字"
             f"　·　📁 部署檔 {len(file_bank)} / ☁️ 已推 GitHub {len(synced)} / 🌱 待推 {len(live_bank)}"
         )
+
+        # 連續生成驅動：每次 render 跑一批,未達標就自動 rerun 接著跑
+        if st.session_state.get("_autogen_active"):
+            tgt = st.session_state.get("_autogen_target", 0)
+            batch = st.session_state.get("_autogen_batch", 20)
+            atier = st.session_state.get("_autogen_tier", tier)
+            st.info(f"🔁 連續生成中… 目前 **{len(bank)}** / 目標 **{tgt}** 字。"
+                    "可按「⏹ 停止連續生成」中斷;撞額度會自動停。")
+            if len(bank) >= tgt:
+                st.success(f"🎉 已達標!庫存 {len(bank)} 字。")
+                st.session_state["_autogen_active"] = False
+                if auto_push:
+                    _push_bank_to_github(silent=True)
+                st.rerun()
+            else:
+                try:
+                    # 連續模式下單批不每次推 GitHub(太慢/太多 commit),達標或停止時才推
+                    added = _run_inapp_generation(int(batch), atier, auto_push=False)
+                except Exception as e:  # noqa: BLE001
+                    st.session_state["_autogen_active"] = False
+                    if auto_push:
+                        _push_bank_to_github(silent=True)
+                    st.warning(f"連續生成已停止：{_friendly_gen_error(str(e))}")
+                    added = None
+                if added is not None:
+                    stall = st.session_state.get("_autogen_stall", 0)
+                    stall = 0 if added else stall + 1
+                    st.session_state["_autogen_stall"] = stall
+                    # 連續 2 批沒新增(詞表用罄或全部 key 撞額度)→ 停
+                    if stall >= 2:
+                        st.session_state["_autogen_active"] = False
+                        if auto_push:
+                            _push_bank_to_github(silent=True)
+                        st.warning("連續生成已停止：連續多批沒有新增字"
+                                   "(詞表已生完或今日額度用罄)。已推回目前進度。")
+                    import time as _t
+                    _t.sleep(0.5)
+                    st.rerun()
         if synced:
             st.caption("💡 ☁️ 已推 GitHub 的字本次就看得到；Cloud 下次重新部署後會併入部署檔。")
         last_push = st.session_state.get("_last_push")
