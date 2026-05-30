@@ -1994,6 +1994,85 @@ def _grammar_for_level(level: str) -> list:
     return out
 
 
+def view_library() -> None:
+    """📚 我的資料庫：所有 AI 生成並累積的內容（單字/文法/閱讀/情境）集中瀏覽。"""
+    st.caption("所有 AI 生成、累積的內容都在這裡瀏覽——這些都會推到 GitHub 永久保存、持續長大。")
+
+    vocab = {**load_vocab_bank(),
+             **st.session_state.get("synced_bank", {}),
+             **st.session_state.get("live_bank", {})}
+    # 文法（合併部署檔 + session 生成，去重）
+    gseen, grammar = set(), []
+    for g in list(load_grammar_bank()) + list(st.session_state.get("_sess_grammar", [])):
+        k = (g.get("level"), g.get("point"))
+        if k in gseen:
+            continue
+        gseen.add(k)
+        grammar.append(g)
+    # 閱讀（含字幕，合併永久庫 + 本 session）
+    rseen, reading = set(), []
+    for r in list(st.session_state.get("live_readings", [])) + list(load_readings_bank()):
+        k = r.get("id") or r.get("title")
+        if k in rseen:
+            continue
+        rseen.add(k)
+        reading.append(r)
+    # 情境課程（本機 + 永久庫，去重）
+    data = st.session_state.data
+    lseen, lessons = set(), []
+    for l in list(data.get("lessons", [])) + list(load_lessons_bank()):
+        k = (l.get("scenario"), l.get("created"))
+        if k in lseen:
+            continue
+        lseen.add(k)
+        lessons.append(l)
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("📗 單字", len(vocab))
+    m2.metric("📐 文法", len(grammar))
+    m3.metric("📚 閱讀／字幕", len(reading))
+    m4.metric("🗣️ 情境課程", len(lessons))
+
+    t_v, t_g, t_r, t_l = st.tabs(["📗 單字", "📐 文法", "📚 閱讀／字幕", "🗣️ 情境課程"])
+    with t_v:
+        if not vocab:
+            st.info("還沒有單字。到「📖 單字庫」按生成。")
+        else:
+            q = st.text_input("搜尋（英文／中文／諧音）", key="lib_vq").strip().lower()
+            words = sorted(vocab)
+            if q:
+                words = [w for w in words if q in w.lower()
+                         or q in (vocab[w].get("meaning_zh") or "").lower()
+                         or q in (vocab[w].get("homophone") or "").lower()]
+            st.caption(f"共 {len(vocab)} 字　·　符合 {len(words)} 字（最多顯示 80）")
+            for w in words[:80]:
+                e = vocab[w]
+                st.markdown(f"**{w}**　{e.get('kk','')}　— {e.get('meaning_zh','')}"
+                            + (f"　🔊 {e['homophone']}" if e.get("homophone") else ""))
+    with t_g:
+        if not grammar:
+            st.info("還沒有文法。到「📐 文法生成」用 AI 生成。")
+        for g in grammar:
+            with st.expander(f"[{g.get('level','')}] {g.get('point','')}"):
+                st.caption(g.get("explain", ""))
+                for ex in g.get("examples", []):
+                    st.markdown(f"- {ex}")
+    with t_r:
+        if not reading:
+            st.info("還沒有閱讀。到「📚 互動閱讀」或「🎬 影視字幕」生成。")
+        for r in reading:
+            with st.expander(f"{r.get('title','')}　{r.get('title_zh','')}"):
+                for s in r.get("sentences", []):
+                    st.markdown(f"- {s.get('en','')}（{s.get('zh','')}）")
+    with t_l:
+        if not lessons:
+            st.info("還沒有情境課程。到「💬 情境會話 → AI 情境生成」按「儲存這課」。")
+        for l in lessons:
+            with st.expander(f"📍 {l.get('scenario','')}（{l.get('created','')}）"):
+                for c in l.get("flashcards", []):
+                    st.markdown(f"- **{c.get('sentence','')}**（{c.get('chinese','')}）")
+
+
 def view_grammar() -> None:
     """📐 文法生成：AI 依程度生成不重複文法，存進資料庫持續長大。"""
     st.caption("英文沒有內建文法庫——這裡用 AI 依程度生成核心文法/句型，"
@@ -2862,7 +2941,7 @@ def main() -> None:
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
              "💬 情境會話", "📚 互動閱讀", "🎬 影視字幕", "📐 文法生成",
-             "📖 單字庫", "🔁 複習", "✅ 學習計畫"],
+             "📖 單字庫", "📚 我的資料庫", "🔁 複習", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -3056,6 +3135,8 @@ def main() -> None:
         view_vocab_bank()
     elif view.endswith("複習"):
         view_review()
+    elif view.endswith("我的資料庫"):
+        view_library()
     elif view.endswith("學習計畫"):
         view_plan()
 
