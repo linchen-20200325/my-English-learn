@@ -1661,6 +1661,69 @@ def view_morphology() -> None:
                 for it in items:
                     st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
 
+    # 🔀 一鍵把累積的 AI 例字回流進 morphology.py 預設清單(永久內建)
+    file_morph = load_morph_examples()
+    pending_count = sum(len(v) for cat in file_morph.values() for v in cat.values())
+    if pending_count > 0:
+        st.divider()
+        st.markdown(f"#### 🔀 把累積的 **{pending_count}** 個 AI 例字回流進 morphology.py 預設清單")
+        st.caption("把 morph_examples_bank.json 內所有字合進 PREFIXES/ROOTS/SUFFIXES 的 `ex` 預設,"
+                   "完成後 bank 清空。有 GITHUB_TOKEN 會自動推 morphology.py + 清空後的 bank 到 repo,永久內建。")
+        col_dry, col_go = st.columns([1, 1])
+        if col_dry.button("👀 預覽(不寫檔)", use_container_width=True,
+                          key="morph_merge_dry"):
+            res = _merge_morph_examples(dry_run=True)
+            st.code("\n".join(res["report"]), language="text")
+        if col_go.button("🚀 執行合併(寫檔 + 自動推回)",
+                         type="primary", use_container_width=True,
+                         key="morph_merge_go"):
+            try:
+                res = _merge_morph_examples(dry_run=False, clear_bank=True)
+                st.success(f"✅ 合併完成,共加 {res['total']} 字到 morphology.py。"
+                           "請強制重新整理瀏覽器,新例字就會出現在預設清單。")
+                # 自動推 morphology.py + 清空後的 morph_examples_bank.json
+                if get_github_token():
+                    _push_file_to_github(
+                        os.path.join(os.path.dirname(os.path.abspath(__file__)), "morphology.py"),
+                        "morphology.py",
+                        f"morphology: 回流 +{res['total']} AI 例字到預設清單",
+                    )
+                    _push_file_to_github(
+                        MORPH_EXAMPLES_FILE, "morph_examples_bank.json",
+                        "morph_examples_bank: 回流後清空",
+                    )
+                if res["unmatched"]:
+                    st.warning(f"以下 morpheme 在 morphology.py 內找不到對應,未合(已留在 bank):"
+                               f"\n```\n{res['unmatched']}\n```")
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"合併失敗:{type(e).__name__}: {str(e)[:300]}")
+
+
+def _merge_morph_examples(dry_run: bool = False, clear_bank: bool = False) -> dict:
+    """從 morph_examples_bank.json 回流字到 morphology.py。
+    dry_run=True 不寫檔,只回報告。回 {total, report, unmatched}。"""
+    import subprocess
+    morph_py = os.path.join(os.path.dirname(os.path.abspath(__file__)), "morphology.py")
+    bank_path = MORPH_EXAMPLES_FILE
+    script = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "scripts", "merge_morph_examples.py")
+    cmd = [sys.executable, script]
+    if dry_run:
+        cmd.append("--dry-run")
+    if clear_bank:
+        cmd.append("--clear-bank")
+    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    out = proc.stdout + proc.stderr
+    # 從輸出抽 "合計新增:N 字" 與 "未匹配 m:[...]"
+    m_total = re.search(r"合計新增:\s*(\d+)", out)
+    total = int(m_total.group(1)) if m_total else 0
+    unmatched = re.findall(r"未匹配 m: \[([^\]]+)\]", out)
+    # 清掉 morphology cache(本 process 內後續 import 才看得到新版)
+    if not dry_run:
+        load_morph_examples.clear() if hasattr(load_morph_examples, "clear") else None
+    return {"total": total, "report": out.splitlines(), "unmatched": ", ".join(unmatched)}
+
 
 @st.cache_data
 def _load_vocab_bank_cached(_mtime: float) -> dict:
