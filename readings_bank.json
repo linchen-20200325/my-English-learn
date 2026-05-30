@@ -711,5 +711,154 @@
         ]
       }
     ]
+  },
+  {
+    "id": "sudden-downpour-b1",
+    "title": "Caught in a Sudden Downpour",
+    "title_zh": "突如其來的傾盆大雨",
+    "level": "B1",
+    "summary": "這篇文章描述了突如其來的傾盆大雨，以及主角如何應對，練習了過去式、過去進行式和一些常用片語。",
+    "sentences": [
+      {
+        "en": "Yesterday afternoon, the sky turned dark very quickly.",
+        "zh": "昨天下午，天空很快就變黑了。",
+        "vocab": {
+          "turned": "變成了",
+          "quickly": "快速地"
+        },
+        "phrases": [
+          {
+            "very quickly": "非常快地"
+          }
+        ]
+      },
+      {
+        "en": "I was walking home from the library when the rain started.",
+        "zh": "當大雨開始時，我正從圖書館走回家。",
+        "vocab": {
+          "walking": "走著",
+          "started": "開始了"
+        },
+        "phrases": [
+          {
+            "walking home": "走回家"
+          },
+          {
+            "started to rain": "開始下雨"
+          }
+        ]
+      },
+      {
+        "en": "It wasn't just a little rain; it was a heavy downpour!",
+        "zh": "這不是一點小雨，而是傾盆大雨！",
+        "vocab": {
+          "heavy": "大(雨)",
+          "downpour": "傾盆大雨"
+        },
+        "phrases": [
+          {
+            "heavy downpour": "傾盆大雨"
+          }
+        ]
+      },
+      {
+        "en": "Everyone around me was running for cover.",
+        "zh": "我身邊的每個人都在奔跑尋找遮蔽處。",
+        "vocab": {
+          "everyone": "每個人",
+          "running": "跑著",
+          "cover": "遮蔽處"
+        },
+        "phrases": [
+          {
+            "running for cover": "奔跑尋找遮蔽處"
+          }
+        ]
+      },
+      {
+        "en": "I quickly found an awning to shelter under.",
+        "zh": "我很快找到了一個遮雨篷躲避。",
+        "vocab": {
+          "found": "找到",
+          "awning": "遮雨篷",
+          "shelter": "躲避"
+        },
+        "phrases": [
+          {
+            "found an awning": "找到一個遮雨篷"
+          },
+          {
+            "shelter under": "在...下躲避"
+          }
+        ]
+      },
+      {
+        "en": "The rain was so loud on the roof above me.",
+        "zh": "雨點打在上面的屋頂上非常響。",
+        "vocab": {
+          "loud": "響亮的",
+          "roof": "屋頂"
+        },
+        "phrases": [
+          {
+            "on the roof": "在屋頂上"
+          }
+        ]
+      },
+      {
+        "en": "After about twenty minutes, the rain stopped as suddenly as it had begun.",
+        "zh": "大約二十分鐘後，雨就像開始時一樣突然地停了。",
+        "vocab": {
+          "about": "大約",
+          "twenty": "二十",
+          "minutes": "分鐘",
+          "stopped": "停止了",
+          "suddenly": "突然地",
+          "begun": "開始了"
+        },
+        "phrases": [
+          {
+            "as suddenly as": "和...一樣突然地",
+            "as it had begun": "就像它開始時一樣"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple (過去簡單式)",
+        "explain": "用來描述過去發生的單一事件或一系列事件，例如 'turned', 'started', 'found', 'stopped'。",
+        "examples": [
+          "The sky turned dark.",
+          "The rain started.",
+          "I found an awning."
+        ]
+      },
+      {
+        "point": "Past Continuous (過去進行式)",
+        "explain": "用來描述過去某個時間點正在進行的動作，通常與過去簡單式一起使用，例如 'I was walking home'。",
+        "examples": [
+          "I was walking home when it rained.",
+          "They were talking when the storm hit."
+        ]
+      },
+      {
+        "point": "Past Perfect (過去完成式)",
+        "explain": "用來描述在過去某個時間點之前已經完成的動作，例如 'as it had begun'。",
+        "examples": [
+          "The rain had stopped by the time we left.",
+          "She had already eaten when I arrived."
+        ]
+      },
+      {
+        "point": "Common Phrases (常用片語)",
+        "explain": "學習日常對話中常用的片語，例如 'walking home', 'running for cover', 'heavy downpour'。",
+        "examples": [
+          "He is running for cover from the rain.",
+          "We experienced a heavy downpour.",
+          "She is walking home now."
+        ]
+      }
+    ]
   }
 ]
