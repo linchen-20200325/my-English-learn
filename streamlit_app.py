@@ -578,12 +578,19 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
             f'gap:18px; flex-wrap:wrap; font-size:14px; opacity:.92;">'
             f'{kk_block}{ph_block}</div>' if (kk or phonics) else ""
         )
-        # 諧音縮小放最下方
-        homophone_block = (
-            f'<div style="margin-top:14px; padding-top:10px; '
-            f'border-top:1px solid rgba(255,255,255,.25); font-size:13px; opacity:.78;">'
-            f'📣 諧音 {homophone}</div>' if homophone else ""
-        )
+        # 📣 諧音 + 🖼️ 聯想：醒目顯示（記憶法是學習重點，不該縮小灰化）
+        image = _html.escape(mn.get("image", ""))
+        if homophone or image:
+            hp = (f'<div style="font-size:20px; font-weight:800; '
+                  f'color:#fde047;">📣 諧音 {homophone}</div>') if homophone else ""
+            img = (f'<div style="margin-top:6px; font-size:14px; line-height:1.6; '
+                   f'color:#f8fafc;">🖼️ {image}</div>') if image else ""
+            homophone_block = (
+                f'<div style="margin-top:16px; padding:12px 16px; '
+                f'background:rgba(0,0,0,.18); border-radius:12px;">{hp}{img}</div>'
+            )
+        else:
+            homophone_block = ""
         html = f"""
         <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff;
                     border-radius:16px; padding:26px 24px; text-align:center;
@@ -603,7 +610,8 @@ def render_flashcard(word: dict, mn: dict | None, flipped: bool) -> None:
         if pos: h += 30
         if forms_html: h += 30 + 28 * min(len(other_forms), 4)
         if pronunciation_block: h += 40
-        if homophone: h += 40
+        if homophone: h += 56
+        if image: h += 30 + 22 * (len(image) // 22)
         _embed_html(html, h)
         return
 
