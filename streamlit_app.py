@@ -30,6 +30,8 @@ VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "voca
 READINGS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "readings_bank.json")
 # AI 生成的文法永久庫（依程度累積，越長越多）
 GRAMMAR_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grammar_bank.json")
+# AI 生成的情境課程永久庫（對話/句卡，累積長大）
+LESSONS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lessons_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # GEN_MODEL_TIERS 在下方 dispatcher 區段定義（依供應商映射到實際模型 ID）。
@@ -1283,16 +1285,21 @@ def view_generate() -> None:
         c1, c2, c3 = st.columns(3)
         if c1.button("💾 儲存這課", type="primary", use_container_width=True):
             new_id = max((l["id"] for l in data["lessons"]), default=0) + 1
-            data["lessons"].append({
+            lesson = {
                 "id": new_id,
                 "scenario": result["scenario"],
                 "mermaid": result["mermaid"],
                 "flashcards": result["flashcards"],
                 "created": today_str(),
-            })
+            }
+            data["lessons"].append(lesson)
             save_data()
+            try:
+                _persist_lesson(lesson)  # 推進永久庫，跨裝置/重整都在、持續長大
+            except Exception:  # noqa: BLE001
+                pass
             st.session_state.gen_result = None
-            st.success("已儲存到下方的課程清單。")
+            st.success("已儲存（並存進永久課程庫）。")
             st.rerun()
         if c2.button("➕ 加入複習", use_container_width=True,
                      disabled=not result["flashcards"]):
@@ -1303,27 +1310,26 @@ def view_generate() -> None:
             st.session_state.gen_result = None
             st.rerun()
 
-    if data["lessons"]:
+    # 顯示：本機課程 + 永久庫課程（去重，永久庫累積長大）
+    seen_keys = {(l.get("scenario"), l.get("created")) for l in data["lessons"]}
+    all_lessons = list(data["lessons"]) + [
+        l for l in load_lessons_bank()
+        if (l.get("scenario"), l.get("created")) not in seen_keys]
+    if all_lessons:
         st.divider()
-        st.markdown("### 📂 已儲存的情境課程")
-        for lesson in reversed(data["lessons"]):
+        st.markdown(f"### 📂 已儲存的情境課程（共 {len(all_lessons)} 課，永久累積）")
+        for li, lesson in enumerate(reversed(all_lessons)):
             with st.expander(f"📍 {lesson['scenario']}（{lesson.get('created', '')}）"):
                 if lesson.get("mermaid"):
                     render_mermaid(lesson["mermaid"])
                 if lesson.get("flashcards"):
                     render_flashcards(lesson["flashcards"])
-                lc1, lc2 = st.columns(2)
-                if lc1.button("➕ 加入複習", key=f"lesson_rev_{lesson['id']}",
-                              use_container_width=True,
-                              disabled=not lesson.get("flashcards")):
+                if st.button("➕ 加入複習", key=f"lesson_rev_{li}",
+                             use_container_width=True,
+                             disabled=not lesson.get("flashcards")):
                     n = add_cards_to_review(lesson["flashcards"])
                     save_data()
                     st.success(f"已加入 {n} 張。" if n else "已在複習清單中。")
-                if lc2.button("🗑️ 刪除這課", key=f"lesson_del_{lesson['id']}",
-                              use_container_width=True):
-                    data["lessons"] = [l for l in data["lessons"] if l["id"] != lesson["id"]]
-                    save_data()
-                    st.rerun()
 
 
 def view_review() -> None:
@@ -1486,6 +1492,46 @@ def load_grammar_bank() -> list:
     except OSError:
         mtime = 0.0
     return _load_grammar_bank_cached(mtime)
+
+
+@st.cache_data
+def _load_lessons_bank_cached(_mtime: float) -> list:
+    try:
+        with open(LESSONS_BANK_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+    return data if isinstance(data, list) else []
+
+
+def load_lessons_bank() -> list:
+    """讀取 lessons_bank.json（AI 生成的情境課程，永久累積）。"""
+    try:
+        mtime = os.path.getmtime(LESSONS_BANK_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_lessons_bank_cached(mtime)
+
+
+def _persist_lesson(lesson: dict) -> bool:
+    """把情境課程加入永久庫：寫本機 + 推回 GitHub（只增不減）。"""
+    bank = list(load_lessons_bank())
+    key = (lesson.get("scenario"), lesson.get("created"))
+    if key in {(l.get("scenario"), l.get("created")) for l in bank}:
+        return True
+    bank.append(lesson)
+    payload = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
+    try:
+        with open(LESSONS_BANK_FILE, "w", encoding="utf-8") as f:
+            f.write(payload)
+    except OSError:
+        pass
+    if hasattr(_load_lessons_bank_cached, "clear"):
+        _load_lessons_bank_cached.clear()
+    ok, _info = _github_put_file(
+        "lessons_bank.json", payload,
+        f"lessons_bank: 新增情境課程「{lesson.get('scenario','')}」（共 {len(bank)} 課）")
+    return ok
 
 
 def _github_put_file(path: str, payload_json: str, commit_msg: str) -> tuple:
