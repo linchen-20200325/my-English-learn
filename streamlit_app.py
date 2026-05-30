@@ -34,6 +34,8 @@ GRAMMAR_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gr
 LESSONS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lessons_bank.json")
 # AI 生成的情境對話永久庫（加進口說範本、累積長大）
 DIALOGUES_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dialogues_bank.json")
+# AI 生成的短篇故事永久庫（加進口說範本的短篇故事分頁、累積長大）
+STORIES_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "stories_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # GEN_MODEL_TIERS 在下方 dispatcher 區段定義（依供應商映射到實際模型 ID）。
@@ -1567,6 +1569,42 @@ def _persist_dialogue_en(conv: dict) -> None:
                      f"dialogues_bank: AI 生成「{conv.get('title','')}」（共 {len(bank)} 段）")
 
 
+@st.cache_data(show_spinner=False)
+def _load_stories_bank_cached(_mtime: float) -> list:
+    try:
+        with open(STORIES_BANK_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+    return data if isinstance(data, list) else []
+
+
+def load_stories_bank() -> list:
+    """讀取 stories_bank.json（AI 生成的短篇故事，加進口說範本、永久累積）。"""
+    try:
+        mtime = os.path.getmtime(STORIES_BANK_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_stories_bank_cached(mtime)
+
+
+def _persist_story_en(story: dict) -> None:
+    """把生成的短篇故事加入：session 疊加層（立即可見）+ 永久庫推 GitHub。"""
+    st.session_state.setdefault("_sess_stories", []).insert(0, story)
+    bank = list(load_stories_bank())
+    bank.append(story)
+    payload = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
+    try:
+        with open(STORIES_BANK_FILE, "w", encoding="utf-8") as f:
+            f.write(payload)
+    except OSError:
+        pass
+    if hasattr(_load_stories_bank_cached, "clear"):
+        _load_stories_bank_cached.clear()
+    _github_put_file("stories_bank.json", payload,
+                     f"stories_bank: AI 生成「{story.get('title','')}」（共 {len(bank)} 篇）")
+
+
 def _persist_lesson(lesson: dict) -> bool:
     """把情境課程加入永久庫：寫本機 + 推回 GitHub（只增不減）。"""
     bank = list(load_lessons_bank())
@@ -1689,20 +1727,21 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
     wordlist = load_wordlist()
     todo = [w for w in wordlist if w.lower() not in have_lower][:n]
     todo_set = {w.lower() for w in todo}
-    if not todo:
-        st.session_state["_just_generated"] = True
-        st.session_state["_gen_result_banner"] = {
-            "added": 0, "preview": "", "total": len(file_bank) + len(live),
-            "note": "詞表已全數完成,沒有待補單字。如需更多請編輯 "
-                    "`scripts/vocab_wordlist.txt`。",
-        }
-        return 0
+    invent_mode = not todo
+    if invent_mode:
+        # 詞表用罄 → 改請 AI「自己想」尚未收錄的實用新字,達成「無上限」持續生成
+        avoid = ", ".join(list(have_lower)[-120:])  # 給最近的字當避免清單
+        user_msg = (
+            f"請自行挑選 {n} 個「實用、常見、值得學」且**不在以下清單**的英文單字"
+            f"（可含片語動詞、慣用搭配；避免重複、避免冷僻專有名詞），"
+            f"並依系統格式輸出。已收錄(請避免):{avoid}")
+    else:
+        user_msg = "請為以下單字生成資料: " + ", ".join(todo)
     # 每字完整 8 欄約需 ~320 token,預留充裕上限避免 JSON 被截斷(上限 32k)
-    max_tok = min(32000, 1200 + 360 * len(todo))
-    with st.spinner(f"用 Gemini ({tier}) 生成 {len(todo)} 字…"):
-        text = _llm_generate(SYSTEM_PROMPT,
-                             "請為以下單字生成資料: " + ", ".join(todo),
-                             tier, max_tokens=max_tok)
+    max_tok = min(32000, 1200 + 360 * (len(todo) or n))
+    with st.spinner(f"用 Gemini ({tier}) {'自動發想' if invent_mode else '生成'} "
+                    f"{len(todo) or n} 字…"):
+        text = _llm_generate(SYSTEM_PROMPT, user_msg, tier, max_tokens=max_tok)
         entries = extract_json_array(text)
     added, skipped = 0, 0
     new_words = []
@@ -1710,8 +1749,8 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
         ww = (e.get("word") or "").strip().lower()
         if not ww:
             continue
-        # 嚴格去重:必須是我們點名的字、未在檔案/session、且 entry 完整
-        if (ww in todo_set and ww not in have_lower
+        # 去重:詞表模式須是點名的字;發想模式接受任何未收錄的新字;且 entry 完整
+        if ((invent_mode or ww in todo_set) and ww not in have_lower
                 and e.get("meaning_zh") and e.get("kk")):
             live[ww] = e
             have_lower.add(ww)
@@ -2271,18 +2310,52 @@ def view_speak_story() -> None:
                     st.success(f"已加入 {n} 句到複習清單。")
 
     with tab2:
-        for story in STORIES:
-            with st.expander(f"**{story['title']}**　·　程度 {story['level']}　·　{story['scene']}"):
+        # 累積故事（session 疊加層 + 永久庫，去重）＋ 內建範本
+        gen_stories, sseen = [], set()
+        for s in list(st.session_state.get("_sess_stories", [])) + list(load_stories_bank()):
+            k = s.get("id") or s.get("title")
+            if k in sseen:
+                continue
+            sseen.add(k)
+            gen_stories.append(s)
+        all_stories = gen_stories + list(STORIES)
+
+        # 🎲 隨機生成短篇故事 → 加進範本、永久累積
+        api_key = get_api_key()
+        lvl = st.session_state.get("en_level", "B1")
+        if st.session_state.pop("_story_toast", None):
+            st.success("已生成新短篇故事，已加進範本最上面（並永久存入資料庫）。")
+        sc1, sc2 = st.columns([3, 2])
+        if sc1.button(f"🎲 隨機生成短篇故事（{lvl}）", type="primary",
+                      use_container_width=True, disabled=not api_key, key="story_rand_gen"):
+            used = {s.get("title") for s in gen_stories}
+            pool = [t for t in _STORY_TOPICS if t not in used] or _STORY_TOPICS
+            try:
+                with st.spinner("Gemini 生成短篇故事中…"):
+                    story = _gen_story_en(random.choice(pool), lvl)
+                _persist_story_en(story)
+                st.session_state["_story_toast"] = True
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
+        sc2.caption(f"🌱 已累積 **{len(gen_stories)}** 篇 AI 故事")
+
+        for si, story in enumerate(all_stories):
+            if not isinstance(story.get("paragraphs"), list) or not story["paragraphs"]:
+                continue
+            tag = "🌱 " if si < len(gen_stories) else ""
+            with st.expander(f"{tag}**{story.get('title','')}**　·　程度 "
+                             f"{story.get('level','')}　·　{story.get('scene','')}"):
                 _embed_html(_build_story_html(story["paragraphs"]),
                             height=120 + 130 * len(story["paragraphs"]))
                 st.divider()
-                _render_grammar(story["grammar"])
+                _render_grammar(story.get("grammar", []))
                 if st.button(f"➕ 加入 {len(story['paragraphs'])} 段到「🔁 複習」",
-                             key=f"add_story_{story['id']}", use_container_width=True):
+                             key=f"add_story_{si}", use_container_width=True):
                     cards = [
-                        {"sentence": p["en"], "chinese": p["zh"],
-                         "chunk": p["en"][:40], "context": f"故事：{story['title']}"}
-                        for p in story["paragraphs"]
+                        {"sentence": p.get("en", ""), "chinese": p.get("zh", ""),
+                         "chunk": p.get("en", "")[:40], "context": f"故事：{story.get('title','')}"}
+                        for p in story["paragraphs"] if p.get("en")
                     ]
                     n = add_cards_to_review(cards)
                     st.success(f"已加入 {n} 段到複習清單。")
@@ -2534,6 +2607,39 @@ def _gen_dialogue_en(topic: str, level: str) -> dict:
     return json.loads(m.group(0))
 
 
+STORY_GEN_PROMPT = """你是英文短文教材編輯。使用者給「主題 + 程度」，產出一篇自然的英文短篇故事（第一人稱、生活感）。
+
+# 嚴格輸出 JSON（只輸出 JSON，前後不得有任何文字、不得包 markdown code fence）
+{
+  "id": "短英文 id",
+  "title": "English title（4-8 字）",
+  "level": "A2 / B1 / B2 / C1 擇一",
+  "scene": "繁中一句話描述主題與練到的文法",
+  "paragraphs": [
+    {"en": "自然英文段落，2-4 句", "zh": "繁中翻譯"}
+  ],
+  "grammar": [
+    {"point": "文法/句型重點", "explain": "繁中解說", "examples": ["English example 1", "English example 2"]}
+  ]
+}
+
+# 規範
+- paragraphs: 3-5 段，依程度遞增句子複雜度（A2 簡單現在式 → C1 進階句型）。
+- grammar: 2-4 條，點出文中實用句型。
+- 故事要連貫、有畫面、像真實生活。
+"""
+
+
+def _gen_story_en(topic: str, level: str) -> dict:
+    """呼叫 Gemini 產出一篇短篇故事（結構同 STORIES 條目）。"""
+    text = _llm_generate(STORY_GEN_PROMPT, f"主題：{topic}\n程度：{level}",
+                         next(iter(_MODEL_MAP.keys())), max_tokens=4000)
+    m = re.search(r"\{[\s\S]*\}", text)
+    if not m:
+        raise RuntimeError(f"Gemini 回應內無 JSON：{text[:200]}")
+    return json.loads(m.group(0))
+
+
 def _gen_reading(topic: str, level: str, tier: str) -> dict:
     """呼叫 Gemini 產出一篇可互動閱讀(結構同 readings.py 條目)。"""
     text = _llm_generate(READING_GEN_PROMPT,
@@ -2600,6 +2706,15 @@ _READING_TOPICS = [
     "手機壞掉的一天", "鄰居之間的小故事", "學外語的挫折與突破", "一個關於夢想的對話",
     "退休後的生活", "城市與鄉村的對比", "科技如何改變購物", "一次失敗帶來的成長",
     "陌生人的善意", "重新拾起的興趣",
+]
+
+_STORY_TOPICS = [
+    "我的早晨習慣", "一趟難忘的旅行", "我為什麼開始學英文", "我最喜歡的週末",
+    "一次搬家的回憶", "養寵物的日子", "和好友的重逢", "學會一道新料理",
+    "雨天的小故事", "我的第一份工作", "一個改變我的決定", "深夜的散步",
+    "假期計畫", "一封寫給未來的信", "我最珍惜的物品", "克服恐懼的那天",
+    "通勤路上的觀察", "和家人的晚餐", "一次志工經驗", "重新整理房間",
+    "陌生人的幫助", "迷路的意外收穫", "戒掉壞習慣", "追逐夢想的開始",
 ]
 
 
@@ -2930,9 +3045,10 @@ def view_vocab_bank() -> None:
         st.divider()
         running = st.session_state.get("_autogen_active", False)
         ac1, ac2 = st.columns([2, 2])
-        target = ac1.number_input("🎯 連續生成到（總庫存字數）", min_value=len(bank),
-                                  max_value=10000, value=min(10000, len(bank) + 1000),
-                                  step=500, disabled=running or not api_key)
+        target = ac1.number_input("🎯 連續生成到（總庫存字數，無上限）",
+                                  min_value=len(bank) + 1, max_value=1_000_000,
+                                  value=len(bank) + 1000, step=500,
+                                  disabled=running or not api_key)
         if not running:
             if ac2.button("🔁 連續生成到目標", disabled=not api_key,
                           use_container_width=True, type="primary"):
