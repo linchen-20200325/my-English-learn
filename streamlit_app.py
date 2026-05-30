@@ -28,6 +28,8 @@ DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_
 VOCAB_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab_bank.json")
 # AI 生成的閱讀永久庫（推回 GitHub 後會越長越多，重整不消失）
 READINGS_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "readings_bank.json")
+# AI 生成的文法永久庫（依程度累積，越長越多）
+GRAMMAR_BANK_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "grammar_bank.json")
 WEEKDAY_ZH = ["一", "二", "三", "四", "五", "六", "日"]  # Monday=0
 
 # GEN_MODEL_TIERS 在下方 dispatcher 區段定義（依供應商映射到實際模型 ID）。
@@ -1467,6 +1469,25 @@ def load_readings_bank() -> list:
     return _load_readings_bank_cached(mtime)
 
 
+@st.cache_data
+def _load_grammar_bank_cached(_mtime: float) -> list:
+    try:
+        with open(GRAMMAR_BANK_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+    return data if isinstance(data, list) else []
+
+
+def load_grammar_bank() -> list:
+    """讀取 grammar_bank.json（AI 生成的文法清單，含 level 欄位）。"""
+    try:
+        mtime = os.path.getmtime(GRAMMAR_BANK_FILE)
+    except OSError:
+        mtime = 0.0
+    return _load_grammar_bank_cached(mtime)
+
+
 def _github_put_file(path: str, payload_json: str, commit_msg: str) -> tuple:
     """通用 GitHub Contents API 寫檔：檔案不存在則建立、存在則更新。回傳 (ok, info)。"""
     import base64
@@ -1826,6 +1847,121 @@ def _render_grammar(items: list) -> None:
             st.caption(g["explain"])
             for ex in g["examples"]:
                 st.markdown(f"　- `{ex}`")
+
+
+GRAMMAR_GEN_PROMPT = """你是英文文法教材編輯。使用者給「程度」與「已存在的文法（不可重複）」，
+請產出該程度**新的、不重複**的核心文法/句型重點。
+
+# 嚴格輸出 JSON（只輸出 JSON array，前後不得有任何文字、不得包 markdown code fence）
+[
+  {
+    "point": "文法/句型名稱（英文＋中文，如 Present Perfect 現在完成式）",
+    "explain": "繁中解說：意義、何時用、結構",
+    "examples": ["English example 1", "English example 2", "English example 3"]
+  }
+]
+
+# 規範
+- 嚴禁與「已存在文法」清單重複。
+- 每個文法 3 個英文例句。
+- 難度貼合程度：A2 基礎、B1 中級、B2 中高級、C1 高級。
+"""
+
+
+def _extract_json_array(text: str):
+    """從模型回應穩健抽出 JSON array（容忍 code fence 與前後雜訊）。"""
+    text = (text or "").strip()
+    m = re.search(r"```(?:json)?\s*(\[[\s\S]*?\])\s*```", text)
+    if m:
+        text = m.group(1)
+    else:
+        s, e = text.find("["), text.rfind("]")
+        if s != -1 and e != -1 and e > s:
+            text = text[s:e + 1]
+    return json.loads(text)
+
+
+def _gen_grammar_batch(level: str, existing: list, n: int) -> list:
+    """為指定程度生成 n 個不重複的新文法點。回傳 list（每筆含 level）。"""
+    ex = "、".join(existing) if existing else "（無）"
+    text = _llm_generate(GRAMMAR_GEN_PROMPT,
+                         f"程度：{level}\n數量：{n}\n已存在文法（不可重複）：{ex}",
+                         next(iter(_MODEL_MAP.keys())), max_tokens=6000)
+    items = _extract_json_array(text)
+    out, have = [], set(existing)
+    for it in items:
+        if not isinstance(it, dict):
+            continue
+        point = (it.get("point") or "").strip()
+        if not point or point in have or not it.get("explain"):
+            continue
+        it["level"] = level
+        it.setdefault("examples", [])
+        out.append(it)
+        have.add(point)
+    return out
+
+
+def _persist_grammar(items: list, level: str) -> tuple:
+    """把 AI 生成的文法加入永久庫：寫本機 + 推回 GitHub。回傳 (added, ok)。"""
+    bank = list(load_grammar_bank())
+    have = {(g.get("level"), g.get("point")) for g in bank}
+    added = 0
+    for it in items:
+        it.setdefault("level", level)
+        if (it.get("level"), it.get("point")) in have:
+            continue
+        bank.append(it)
+        have.add((it.get("level"), it.get("point")))
+        added += 1
+    payload = json.dumps(bank, ensure_ascii=False, indent=2) + "\n"
+    try:
+        with open(GRAMMAR_BANK_FILE, "w", encoding="utf-8") as f:
+            f.write(payload)
+    except OSError:
+        pass
+    if hasattr(_load_grammar_bank_cached, "clear"):
+        _load_grammar_bank_cached.clear()
+    ok, _info = _github_put_file(
+        "grammar_bank.json", payload,
+        f"grammar_bank: AI 生成 {level} 文法 +{added}（共 {len(bank)} 條）")
+    return added, ok
+
+
+def view_grammar() -> None:
+    """📐 文法生成：AI 依程度生成不重複文法，存進資料庫持續長大。"""
+    st.caption("英文沒有內建文法庫——這裡用 AI 依程度生成核心文法/句型，"
+               "每次都不重複，並永久存進資料庫越累積越多。")
+    level = st.radio("程度", ["A2", "B1", "B2", "C1"], horizontal=True, key="gram_level")
+    bank = [g for g in load_grammar_bank() if g.get("level") == level]
+
+    if st.session_state.pop("_gram_saved", None) is not None:
+        st.success(f"已生成並存進文法資料庫！{level} 現有 {len(bank)} 條。")
+
+    api_key = get_api_key()
+    if not api_key:
+        st.warning("需要 Gemini 金鑰才能生成（下方已生成的文法仍可閱讀）。請至 sidebar 確認金鑰。")
+    else:
+        c1, c2 = st.columns([2, 3])
+        n = c1.number_input("一次生成幾條", 1, 10, 3, key="gramn")
+        if c2.button("🤖 生成新文法", type="primary", use_container_width=True):
+            try:
+                with st.spinner("AI 生成中…"):
+                    items = _gen_grammar_batch(level, [g["point"] for g in bank], int(n))
+                if items:
+                    added, _ok = _persist_grammar(items, level)
+                    st.session_state["_gram_saved"] = added
+                    st.rerun()
+                else:
+                    st.warning("這次沒有產生新的（可能與既有重複），請再試一次。")
+            except Exception as e:  # noqa: BLE001
+                st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
+
+    if bank:
+        st.markdown(f"#### 📐 {level} 文法（已累積 {len(bank)} 條）")
+        _render_grammar(list(reversed(bank)))
+    else:
+        st.info("此程度尚無文法。按上方「🤖 生成新文法」開始建立你的文法資料庫。")
 
 
 def view_scenario() -> None:
@@ -2651,8 +2787,8 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "💬 情境會話", "📚 互動閱讀", "🎬 影視字幕", "📖 單字庫",
-             "🔁 複習", "📊 學習儀表板", "✅ 學習計畫"],
+             "💬 情境會話", "📚 互動閱讀", "🎬 影視字幕", "📐 文法生成",
+             "📖 單字庫", "🔁 複習", "📊 學習儀表板", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -2840,6 +2976,8 @@ def main() -> None:
         view_reading()
     elif view.endswith("影視字幕"):
         view_subtitles()
+    elif view.endswith("文法生成"):
+        view_grammar()
     elif view.endswith("單字庫"):
         view_vocab_bank()
     elif view.endswith("複習"):
