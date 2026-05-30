@@ -2956,27 +2956,27 @@
   },
   "point": {
     "word": "point",
-    "meaning_zh": "點、指",
+    "meaning_zh": "點、尖端；要點",
     "kk": "[pɔɪnt]",
     "phonics": "POINT",
     "homophone": "胖",
-    "image": "那隻『胖』的狗，手指著一個點。",
+    "image": "那個『胖』子拿著筆，在紙上畫了個『點』。",
     "example_en": "What's your point?",
     "example_zh": "你的重點是什麼？",
-    "usage_zh": "詢問對方說話的意圖或論點時使用。",
+    "usage_zh": "詢問對方說話的意圖或論點時使用，非常口語。",
     "pos": "名詞 / 動詞",
     "other_forms": []
   },
   "end": {
     "word": "end",
-    "meaning_zh": "結束、末端",
+    "meaning_zh": "結束；終點",
     "kk": "[ɛnd]",
     "phonics": "END",
-    "homophone": "安的",
-    "image": "『安的』摩天輪到『末端』就停了。",
-    "example_en": "Let's meet at the end of the street.",
-    "example_zh": "我們在街的盡頭見。",
-    "usage_zh": "表示地點的終點或時間的結束。",
+    "homophone": "欸，嗯",
+    "image": "『欸』，『嗯』，終於到了旅程的『終點』。",
+    "example_en": "Let's call it a day.",
+    "example_zh": "我們今天就到這裡吧。",
+    "usage_zh": "表示事情告一段落，常用於工作或一天結束時。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
@@ -2989,34 +2989,40 @@
   },
   "moment": {
     "word": "moment",
-    "meaning_zh": "時刻、瞬間",
+    "meaning_zh": "時刻；瞬間",
     "kk": "[ˈmoʊmənt]",
     "phonics": "MOH-ment",
-    "homophone": "毛的",
-    "image": "『毛的』錶，顯示著『瞬間』的時間。",
-    "example_en": "I'll be there in a moment.",
-    "example_zh": "我馬上就到。",
-    "usage_zh": "表示非常短暫的時間。",
+    "homophone": "摸門特",
+    "image": "你『摸』了『門』一下，就是那『特』定的『瞬間』。",
+    "example_en": "Just a moment, please.",
+    "example_zh": "請稍等一下。",
+    "usage_zh": "請求對方等待，表示時間很短暫，非常常用。",
     "pos": "名詞",
     "other_forms": []
   },
   "age": {
     "word": "age",
-    "meaning_zh": "年齡、時代",
+    "meaning_zh": "年齡；時代",
     "kk": "[eɪdʒ]",
     "phonics": "AYJ",
-    "homophone": "欸",
-    "image": "『欸』！你這『時代』的『年齡』有點大喔。",
-    "example_en": "How old are you? I mean, what's your age?",
-    "example_zh": "你幾歲了？我是說，你多大年紀？",
-    "usage_zh": "詢問年紀或指稱某個時期。",
+    "homophone": "欸，欸",
+    "image": "『欸』！『欸』！你的『年齡』暴露了！",
+    "example_en": "How old are you?",
+    "example_zh": "你幾歲了？",
+    "usage_zh": "詢問年齡，非常直接的問法。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "aged",
         "pos": "形容詞",
-        "meaning_zh": "有...歲的；陳年的",
-        "example": "an aged cheese"
+        "meaning_zh": "有…歲的；陳年的",
+        "example": "He is aged 30."
+      },
+      {
+        "word": "aging",
+        "pos": "形容詞 / 名詞",
+        "meaning_zh": "變老的；老化",
+        "example": "The aging process is natural."
       }
     ]
   },
@@ -3026,57 +3032,57 @@
     "kk": "[neɪm]",
     "phonics": "NAYM",
     "homophone": "餒",
-    "image": "『餒』什麼？快說出你的『名字』。",
+    "image": "『餒』什麼？快說出你的『名字』！",
     "example_en": "What's your name?",
     "example_zh": "你叫什麼名字？",
-    "usage_zh": "用於詢問或稱呼對方的名字。",
+    "usage_zh": "最基本的自我介紹或詢問他人姓名。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "named",
         "pos": "形容詞",
-        "meaning_zh": "名叫...的",
-        "example": "a girl named Mary"
+        "meaning_zh": "名叫…的",
+        "example": "A boy named Tom."
       }
     ]
   },
   "body": {
     "word": "body",
-    "meaning_zh": "身體",
+    "meaning_zh": "身體；軀體",
     "kk": "[ˈbɑdi]",
     "phonics": "BAH-dee",
-    "homophone": "飽的",
-    "image": "『飽的』時候，感覺身體好沉重。",
-    "example_en": "He has a strong body.",
-    "example_zh": "他身體很強壯。",
-    "usage_zh": "指人的整體軀幹或屍體。",
+    "homophone": "爸的",
+    "image": "『爸的』『身體』好壯，練出了一身肌肉。",
+    "example_en": "My body aches all over.",
+    "example_zh": "我全身痠痛。",
+    "usage_zh": "描述身體的感受或狀況。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "bodily",
         "pos": "形容詞 / 副詞",
         "meaning_zh": "身體的；親身地",
-        "example": "bodily harm"
+        "example": "Bodily harm is not allowed."
       }
     ]
   },
   "face": {
     "word": "face",
-    "meaning_zh": "臉、面對",
+    "meaning_zh": "臉；面孔",
     "kk": "[feɪs]",
-    "phonics": "FAYSS",
-    "homophone": "廢死",
-    "image": "『廢死』的臉，讓人不敢『面對』。",
-    "example_en": "She has a beautiful face.",
-    "example_zh": "她有一張漂亮的臉。",
-    "usage_zh": "指人的臉部；或動詞表示面對、對抗。",
+    "phonics": "FAYS",
+    "homophone": "費死",
+    "image": "『費死』了！這個人怎麼鼻孔長在『臉』上？",
+    "example_en": "You have a beautiful face.",
+    "example_zh": "你的臉很漂亮。",
+    "usage_zh": "形容外貌，常用於稱讚。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "facial",
         "pos": "形容詞",
         "meaning_zh": "臉部的",
-        "example": "facial expression"
+        "example": "Facial expression is important."
       }
     ]
   },
@@ -3086,116 +3092,116 @@
     "kk": "[aɪ]",
     "phonics": "EYE",
     "homophone": "愛",
-    "image": "我『愛』你，看我的『眼睛』。",
-    "example_en": "Close your eyes.",
-    "example_zh": "閉上你的眼睛。",
-    "usage_zh": "指人的眼睛；常用於片語，如 'see eye to eye' (意見一致)。",
+    "image": "我『愛』看著你，特別是你的『眼睛』。",
+    "example_en": "Keep an eye on the kids.",
+    "example_zh": "看著點孩子們。",
+    "usage_zh": "表示「留意」或「看護」某人事物。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "eyeball",
         "pos": "名詞",
         "meaning_zh": "眼球",
-        "example": "His eyeballs rolled back."
+        "example": "His eyeballs were wide with fear."
       },
       {
         "word": "eyelid",
         "pos": "名詞",
         "meaning_zh": "眼皮",
-        "example": "She blinked her eyelids."
+        "example": "Her eyelids were heavy with sleep."
       }
     ]
   },
   "mind": {
     "word": "mind",
-    "meaning_zh": "心智、頭腦、介意",
+    "meaning_zh": "心智；頭腦；介意",
     "kk": "[maɪnd]",
     "phonics": "MYND",
     "homophone": "瞞",
-    "image": "『瞞』著我，你在想什麼？別『介意』。",
+    "image": "你『瞞』著我，我猜不透你的『心』。",
     "example_en": "Do you mind if I open the window?",
     "example_zh": "我打開窗戶你介意嗎？",
-    "usage_zh": "指思想、意念、理智；動詞表示介意、反對。",
+    "usage_zh": "詢問對方是否會不高興，表示禮貌。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "mindful",
         "pos": "形容詞",
-        "meaning_zh": "留意的；注意到的",
-        "example": "Be mindful of the traffic."
+        "meaning_zh": "留意的；注意的",
+        "example": "Be mindful of the signs."
       }
     ]
   },
   "heart": {
     "word": "heart",
-    "meaning_zh": "心臟、心",
+    "meaning_zh": "心臟；心；中心",
     "kk": "[hɑrt]",
     "phonics": "HART",
     "homophone": "哈特",
-    "image": "『哈特』的歌聲，觸動我『心』。",
-    "example_en": "He has a kind heart.",
-    "example_zh": "他心地善良。",
-    "usage_zh": "指心臟；或比喻情感、中心。",
+    "image": "『哈特』收到一封情書，『心』都快跳出來了。",
+    "example_en": "She has a kind heart.",
+    "example_zh": "她心地善良。",
+    "usage_zh": "形容一個人的品格或個性。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "heartbeat",
-        "pos": "名詞",
-        "meaning_zh": "心跳",
-        "example": "I could hear my heartbeat."
+        "word": "hearty",
+        "pos": "形容詞",
+        "meaning_zh": "衷心的；豐盛的",
+        "example": "He gave a hearty laugh."
       }
     ]
   },
   "hand": {
     "word": "hand",
-    "meaning_zh": "手、遞交",
+    "meaning_zh": "手；遞給",
     "kk": "[hænd]",
     "phonics": "HAND",
     "homophone": "漢",
-    "image": "『漢』子伸出『手』，遞給我東西。",
+    "image": "那個『漢』子伸出『手』，遞給我一杯水。",
     "example_en": "Can you lend me a hand?",
     "example_zh": "你能幫我一下嗎？",
-    "usage_zh": "指人的手；動詞表示遞交、傳遞。",
+    "usage_zh": "請求幫助，非常口語化的表達。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "handy",
         "pos": "形容詞",
-        "meaning_zh": "方便的；靈巧的",
+        "meaning_zh": "方便的；在手的",
         "example": "This tool is very handy."
       }
     ]
   },
   "foot": {
     "word": "foot",
-    "meaning_zh": "腳、腳步",
+    "meaning_zh": "腳；足",
     "kk": "[fʊt]",
     "phonics": "FOOT",
     "homophone": "福特",
-    "image": "『福特』汽車開過，我看到他的『腳』。",
-    "example_en": "My foot hurts.",
-    "example_zh": "我的腳很痛。",
-    "usage_zh": "指人的腳；也指底部、基礎。",
+    "image": "『福特』汽車的輪子，就是裝在『腳』上的。",
+    "example_en": "My feet are killing me.",
+    "example_zh": "我的腳痛死了。",
+    "usage_zh": "表達腳部疼痛，尤其是在走很多路之後。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "footage",
+        "word": "football",
         "pos": "名詞",
-        "meaning_zh": "片段；鏡頭",
-        "example": "We shot some footage."
+        "meaning_zh": "足球",
+        "example": "He plays football every weekend."
       }
     ]
   },
   "head": {
     "word": "head",
-    "meaning_zh": "頭、領導",
+    "meaning_zh": "頭；領導",
     "kk": "[hɛd]",
     "phonics": "HED",
-    "homophone": "黑的",
-    "image": "『黑的』帽子戴在『頭』上，他是領導。",
-    "example_en": "He hit his head on the door.",
-    "example_zh": "他頭撞到門上了。",
-    "usage_zh": "指頭部；也表示領導者、開頭。",
+    "homophone": "欸，的",
+    "image": "『欸』，『的』確是他『頭』先撞到的。",
+    "example_en": "My head hurts.",
+    "example_zh": "我頭痛。",
+    "usage_zh": "描述頭部的不適。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
@@ -3208,21 +3214,21 @@
   },
   "voice": {
     "word": "voice",
-    "meaning_zh": "聲音",
+    "meaning_zh": "聲音；嗓音",
     "kk": "[vɔɪs]",
-    "phonics": "VOYSS",
-    "homophone": "佛醫死",
-    "image": "『佛醫死』了，牠發出微弱的『聲音』。",
-    "example_en": "Her voice is very soft.",
-    "example_zh": "她的聲音很輕柔。",
-    "usage_zh": "指人說話或歌唱的聲音。",
+    "phonics": "VOYS",
+    "homophone": "喂死",
+    "image": "『喂』！『死』了！怎麼變這麼難聽的『聲音』？",
+    "example_en": "She has a beautiful voice.",
+    "example_zh": "她的聲音很美。",
+    "usage_zh": "形容歌唱或說話的聲音特質。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "vocal",
-        "pos": "形容詞 / 名詞",
-        "meaning_zh": "聲音的；聲樂",
-        "example": "vocal cords"
+        "pos": "形容詞",
+        "meaning_zh": "聲音的；歌唱的",
+        "example": "His vocal cords are sore."
       }
     ]
   },
@@ -3231,51 +3237,58 @@
     "meaning_zh": "頭髮",
     "kk": "[hɛr]",
     "phonics": "HAIR",
-    "homophone": "黑兒",
-    "image": "『黑兒』小孩的『頭髮』好長。",
-    "example_en": "She has long hair.",
-    "example_zh": "她有長頭髮。",
-    "usage_zh": "指頭髮。",
+    "homophone": "海爾",
+    "image": "『海爾』兄弟的『頭髮』有點亂。",
+    "example_en": "Her hair is long and black.",
+    "example_zh": "她的頭髮又長又黑。",
+    "usage_zh": "描述頭髮的長度、顏色或狀態。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "hairy",
         "pos": "形容詞",
-        "meaning_zh": "多毛的",
-        "example": "a hairy spider"
+        "meaning_zh": "多毛的；毛茸茸的",
+        "example": "The caterpillar is hairy."
       }
     ]
   },
   "mouth": {
     "word": "mouth",
-    "meaning_zh": "嘴巴",
+    "meaning_zh": "嘴巴；口",
     "kk": "[maʊθ]",
     "phonics": "MOWTH",
     "homophone": "毛死",
-    "image": "『毛死』了，嘴巴張得好大。",
+    "image": "『毛』都快『死』了，嘴巴乾得不行。",
     "example_en": "Don't talk with your mouth full.",
     "example_zh": "嘴裡有東西時不要說話。",
-    "usage_zh": "指嘴巴；也指入口、河口。",
+    "usage_zh": "提醒用餐禮儀。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "mouthful",
+        "pos": "名詞",
+        "meaning_zh": "滿口",
+        "example": "He took a large mouthful."
+      }
+    ]
   },
   "nose": {
     "word": "nose",
     "meaning_zh": "鼻子",
     "kk": "[noʊz]",
-    "phonics": "NOHZ",
-    "homophone": "餒死",
-    "image": "『餒死』了，鼻子都聞不到味道。",
-    "example_en": "My nose is running.",
-    "example_zh": "我流鼻水。",
-    "usage_zh": "指鼻子；動詞表示嗅、探究。",
-    "pos": "名詞 / 動詞",
+    "phonics": "NOZ",
+    "homophone": "腦子",
+    "image": "『腦子』轉不過來，鼻子卻聞到一股怪味。",
+    "example_en": "My nose is stuffy.",
+    "example_zh": "我鼻子塞住了。",
+    "usage_zh": "描述鼻子的不適，例如感冒時。",
+    "pos": "名詞",
     "other_forms": [
       {
         "word": "nostril",
         "pos": "名詞",
         "meaning_zh": "鼻孔",
-        "example": "He flared his nostrils."
+        "example": "He sniffed through his nostrils."
       }
     ]
   },
@@ -3285,50 +3298,50 @@
     "kk": "[ˈfɪŋɡɚ]",
     "phonics": "FING-ger",
     "homophone": "芬吉兒",
-    "image": "『芬吉兒』的手指，正在數數。",
-    "example_en": "Point your finger at the map.",
-    "example_zh": "用你的手指指著地圖。",
-    "usage_zh": "指手指；動詞表示指點。",
-    "pos": "名詞 / 動詞",
+    "image": "『芬吉兒』的手指好細長，像根根『手指』。",
+    "example_en": "Point your finger at the picture.",
+    "example_zh": "把手指指向圖片。",
+    "usage_zh": "指示動作，常用於教學或說明。",
+    "pos": "名詞",
     "other_forms": [
       {
         "word": "fingernail",
         "pos": "名詞",
         "meaning_zh": "指甲",
-        "example": "My fingernail broke."
+        "example": "Her fingernails were painted red."
       }
     ]
   },
   "light": {
     "word": "light",
-    "meaning_zh": "光、燈",
+    "meaning_zh": "光；燈；點亮",
     "kk": "[laɪt]",
-    "phonics": "LYTE",
+    "phonics": "LYT",
     "homophone": "賴特",
-    "image": "『賴特』的燈，照亮了整個房間。",
+    "image": "『賴特』兄弟發明了飛機，帶來了『光』明。",
     "example_en": "Turn on the light.",
-    "example_zh": "打開燈。",
-    "usage_zh": "指光線、照明；名詞或動詞。",
+    "example_zh": "開燈。",
+    "usage_zh": "請求開燈，非常日常。",
     "pos": "名詞 / 動詞 / 形容詞",
     "other_forms": [
       {
         "word": "lighting",
         "pos": "名詞",
-        "meaning_zh": "燈光；照明",
-        "example": "The lighting in the room is good."
+        "meaning_zh": "照明",
+        "example": "The lighting in the room is dim."
       }
     ]
   },
   "fire": {
     "word": "fire",
-    "meaning_zh": "火、開火",
+    "meaning_zh": "火；火災；開火",
     "kk": "[ˈfaɪɚ]",
-    "phonics": "FY-er",
-    "homophone": "飛兒",
-    "image": "『飛兒』樂團在舞台上放『火』。",
-    "example_en": "Be careful of the fire.",
-    "example_zh": "小心火燭。",
-    "usage_zh": "指火、火焰；動詞表示開火、解僱。",
+    "phonics": "FAY-er",
+    "homophone": "發兒",
+    "image": "『發兒』！趕快滅『火』！",
+    "example_en": "Be careful not to start a fire.",
+    "example_zh": "小心別引起火災。",
+    "usage_zh": "警告或提醒注意防火安全。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
@@ -3341,36 +3354,43 @@
   },
   "ground": {
     "word": "ground",
-    "meaning_zh": "地面、理由",
+    "meaning_zh": "地面；土地；理由",
     "kk": "[ɡraʊnd]",
     "phonics": "GROUND",
-    "homophone": "乖孫",
-    "image": "『乖孫』，請你站在『地面』上。",
-    "example_en": "Don't walk on the grass. Stay on the ground.",
-    "example_zh": "不要走在草地上，走在地面上。",
-    "usage_zh": "指地面、土地；也指基礎、理由。",
+    "homophone": "乖，嗯的",
+    "image": "『乖，嗯的』確是『地面』上最穩固的。",
+    "example_en": "The plane landed on the ground.",
+    "example_zh": "飛機降落在地面上。",
+    "usage_zh": "描述飛機起降的動作。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "grounding",
         "pos": "名詞",
         "meaning_zh": "接地；管教",
-        "example": "The grounding of the plane was smooth."
+        "example": "The grounding wire is essential."
       }
     ]
   },
   "floor": {
     "word": "floor",
-    "meaning_zh": "地板、樓層",
+    "meaning_zh": "地板；樓層",
     "kk": "[flɔr]",
     "phonics": "FLOR",
     "homophone": "佛羅",
-    "image": "『佛羅』倫斯大教堂有很高的『樓層』。",
+    "image": "『佛羅』里達州的房子，每個『樓層』都有陽台。",
     "example_en": "The floor is wet.",
-    "example_zh": "地板濕了。",
-    "usage_zh": "指建築物的地板或樓層。",
+    "example_zh": "地板是濕的。",
+    "usage_zh": "提醒他人注意地板狀況，避免滑倒。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "flooring",
+        "pos": "名詞",
+        "meaning_zh": "地板材料",
+        "example": "We need new flooring."
+      }
+    ]
   },
   "door": {
     "word": "door",
@@ -3378,89 +3398,117 @@
     "kk": "[dɔr]",
     "phonics": "DOR",
     "homophone": "躲",
-    "image": "快『躲』到門後面。",
-    "example_en": "Please close the door.",
+    "image": "快『躲』到『門』後面！",
+    "example_en": "Close the door, please.",
     "example_zh": "請關門。",
-    "usage_zh": "指門。",
+    "usage_zh": "要求關門的簡單指令。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "doorway",
+        "pos": "名詞",
+        "meaning_zh": "門口；門道",
+        "example": "He stood in the doorway."
+      }
+    ]
   },
   "window": {
     "word": "window",
     "meaning_zh": "窗戶",
     "kk": "[ˈwɪndoʊ]",
     "phonics": "WIN-doh",
-    "homophone": "溫的",
-    "image": "『溫的』風吹進『窗戶』。",
-    "example_en": "Open the window, please.",
-    "example_zh": "請打開窗戶。",
-    "usage_zh": "指窗戶。",
+    "homophone": "溫柔",
+    "image": "『溫柔』地擦拭『窗戶』，讓陽光灑進來。",
+    "example_en": "Open the window.",
+    "example_zh": "打開窗戶。",
+    "usage_zh": "簡單的請求或指令。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "windowpane",
+        "pos": "名詞",
+        "meaning_zh": "窗玻璃",
+        "example": "The windowpane was broken."
+      }
+    ]
   },
   "table": {
     "word": "table",
-    "meaning_zh": "桌子、表格",
+    "meaning_zh": "桌子；表格",
     "kk": "[ˈteɪbəl]",
     "phonics": "TAY-bull",
     "homophone": "太飽",
-    "image": "『太飽』了，不想再坐『桌』邊。",
-    "example_en": "Put the book on the table.",
-    "example_zh": "把書放在桌上。",
-    "usage_zh": "指桌子；也指表格。",
+    "image": "『太飽』了！連『桌子』都想搬回家。",
+    "example_en": "Put it on the table.",
+    "example_zh": "把它放在桌上。",
+    "usage_zh": "指示放置物品的位置。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "timetable",
+        "pos": "名詞",
+        "meaning_zh": "時間表",
+        "example": "Check the train timetable."
+      }
+    ]
   },
   "chair": {
     "word": "chair",
-    "meaning_zh": "椅子",
+    "meaning_zh": "椅子；主席",
     "kk": "[tʃɛr]",
     "phonics": "CHAIR",
-    "homophone": "chair",
-    "image": "請坐『chair』，這是一張舒適的椅子。",
-    "example_en": "Take a chair.",
-    "example_zh": "請坐。",
-    "usage_zh": "指椅子。",
+    "homophone": "切爾",
+    "image": "『切爾』西球隊，每個人都有專屬的『椅子』。",
+    "example_en": "Pull up a chair.",
+    "example_zh": "拉張椅子過來。",
+    "usage_zh": "邀請對方坐下，非常友善的說法。",
     "pos": "名詞",
-    "other_forms": []
+    "other_forms": [
+      {
+        "word": "chairman",
+        "pos": "名詞",
+        "meaning_zh": "主席（男）",
+        "example": "The chairman called the meeting to order."
+      }
+    ]
   },
   "phone": {
     "word": "phone",
-    "meaning_zh": "電話",
+    "meaning_zh": "電話；手機",
     "kk": "[foʊn]",
     "phonics": "FOHN",
-    "homophone": "fōn",
-    "image": "你『fōn』了嗎？快接『電話』。",
+    "homophone": "封",
+    "image": "『封』了你的『手機』，不讓你亂打。",
     "example_en": "Can I use your phone?",
-    "example_zh": "我能用你的電話嗎？",
-    "usage_zh": "指電話。",
+    "example_zh": "我能用你的手機嗎？",
+    "usage_zh": "詢問是否能借用電話，很常見。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
-        "word": "telephone",
-        "pos": "名詞 / 動詞",
-        "meaning_zh": "電話；打電話",
-        "example": "He telephoned me yesterday."
+        "word": "phonetic",
+        "pos": "形容詞",
+        "meaning_zh": "語音的",
+        "example": "Phonetic spelling is difficult."
       }
     ]
   },
   "computer": {
     "word": "computer",
     "meaning_zh": "電腦",
-    "kk": "[kəmˈpjutɚ]",
+    "kk": "[kəmˈpjuːtɚ]",
     "phonics": "kum-PYOO-ter",
-    "homophone": "看噗噗特",
-    "image": "『看噗噗特』的電腦，畫面好清晰。",
-    "example_en": "I need a new computer.",
-    "example_zh": "我需要一台新電腦。",
-    "usage_zh": "指電腦。",
+    "homophone": "康普特",
+    "image": "『康普特』公司生產的『電腦』，速度超快。",
+    "example_en": "My computer is slow.",
+    "example_zh": "我的電腦很慢。",
+    "usage_zh": "抱怨電腦效能問題，很普遍。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "computing",
         "pos": "名詞",
-        "meaning_zh": "計算；電腦科學",
-        "example": "He is studying computing."
+        "meaning_zh": "計算",
+        "example": "Computing power is increasing."
       }
     ]
   },
@@ -3468,119 +3516,119 @@
     "word": "language",
     "meaning_zh": "語言",
     "kk": "[ˈlæŋɡwɪdʒ]",
-    "phonics": "LANG-gwij",
-    "homophone": "朗句",
-    "image": "『朗句』的『語言』，聽起來很有趣。",
+    "phonics": "LANG-gwidge",
+    "homophone": "浪貴姊",
+    "image": "『浪貴姊』的『語言』能力真強，什麼都會說。",
     "example_en": "English is a global language.",
-    "example_zh": "英語是一門世界語言。",
-    "usage_zh": "指語言。",
+    "example_zh": "英語是世界語言。",
+    "usage_zh": "陳述語言的地位或特性。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "linguistic",
         "pos": "形容詞",
         "meaning_zh": "語言學的",
-        "example": "linguistic analysis"
+        "example": "Linguistic diversity is fascinating."
       }
     ]
   },
   "picture": {
     "word": "picture",
-    "meaning_zh": "圖片、畫",
+    "meaning_zh": "圖片；照片；描繪",
     "kk": "[ˈpɪktʃɚ]",
     "phonics": "PIK-cher",
     "homophone": "劈客車",
-    "image": "『劈客車』停在路邊，旁邊有一張『圖片』。",
-    "example_en": "Look at this picture.",
-    "example_zh": "看看這張圖片。",
-    "usage_zh": "指圖片、照片、畫。",
+    "image": "『劈客車』司機，拍了張『照片』。",
+    "example_en": "Take a picture of me.",
+    "example_zh": "幫我拍張照。",
+    "usage_zh": "請人幫忙拍照，非常口語。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "pictorial",
         "pos": "形容詞",
-        "meaning_zh": "圖畫的；生動的",
-        "example": "a pictorial description"
+        "meaning_zh": "繪畫的；圖解的",
+        "example": "The book has pictorial explanations."
       }
     ]
   },
   "gift": {
     "word": "gift",
-    "meaning_zh": "禮物",
+    "meaning_zh": "禮物；天賦",
     "kk": "[ɡɪft]",
     "phonics": "GIFT",
-    "homophone": "gift",
-    "image": "這是給你的『gift』，一份特別的禮物。",
-    "example_en": "Thank you for the gift.",
-    "example_zh": "謝謝你的禮物。",
-    "usage_zh": "指禮物。",
+    "homophone": "吉福",
+    "image": "『吉福』收到一份『禮物』，他非常開心。",
+    "example_en": "This is a gift for you.",
+    "example_zh": "這是給你的禮物。",
+    "usage_zh": "贈送禮物時的常用語。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "gifted",
         "pos": "形容詞",
         "meaning_zh": "有天賦的",
-        "example": "a gifted musician"
+        "example": "She is a gifted musician."
       }
     ]
   },
   "dream": {
     "word": "dream",
-    "meaning_zh": "夢、夢想",
+    "meaning_zh": "夢；夢想",
     "kk": "[drim]",
     "phonics": "DREEM",
-    "homophone": "DREAM",
-    "image": "我在『DREAM』裡，做了一個很棒的『夢』。",
-    "example_en": "I had a strange dream last night.",
-    "example_zh": "我昨晚做了一個奇怪的夢。",
-    "usage_zh": "指夢境；也可指抱負、理想。",
+    "homophone": "迪瑞姆",
+    "image": "『迪瑞姆』酒讓我在夢中飛翔，實現了『夢想』。",
+    "example_en": "I had a strange dream.",
+    "example_zh": "我做了一個奇怪的夢。",
+    "usage_zh": "描述夢境內容，很日常。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "dreamy",
         "pos": "形容詞",
         "meaning_zh": "夢幻的；昏昏欲睡的",
-        "example": "a dreamy landscape"
+        "example": "The music is dreamy and relaxing."
       }
     ]
   },
   "hope": {
     "word": "hope",
-    "meaning_zh": "希望",
+    "meaning_zh": "希望；盼望",
     "kk": "[hoʊp]",
     "phonics": "HOHP",
-    "homophone": "HOHP",
-    "image": "『HOHP』，這是我們唯一的希望。",
-    "example_en": "I hope you are well.",
-    "example_zh": "希望你一切安好。",
-    "usage_zh": "指希望、盼望。",
+    "homophone": "齁，噗",
+    "image": "『齁』！『噗』！我『希望』這不是真的。",
+    "example_en": "I hope you feel better soon.",
+    "example_zh": "希望你快點好起來。",
+    "usage_zh": "表達對他人康復的祝願。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "hopeful",
         "pos": "形容詞",
-        "meaning_zh": "有希望的",
-        "example": "I'm hopeful about the future."
+        "meaning_zh": "有希望的；期待的",
+        "example": "He is hopeful about the future."
       }
     ]
   },
   "peace": {
     "word": "peace",
-    "meaning_zh": "和平",
+    "meaning_zh": "和平；安寧",
     "kk": "[pis]",
-    "phonics": "PEECE",
+    "phonics": "PEES",
     "homophone": "皮斯",
-    "image": "『皮斯』的貓咪，在享受『和平』。",
+    "image": "『皮斯』！大家停止爭吵，追求『和平』。",
     "example_en": "We want peace, not war.",
     "example_zh": "我們要和平，不要戰爭。",
-    "usage_zh": "指和平、平靜。",
+    "usage_zh": "表達對和平的渴望，常用於政治或社會議題。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "peaceful",
         "pos": "形容詞",
-        "meaning_zh": "和平的；平靜的",
-        "example": "a peaceful country"
+        "meaning_zh": "和平的；寧靜的",
+        "example": "It's a peaceful village."
       }
     ]
   },
@@ -3589,38 +3637,38 @@
     "meaning_zh": "戰爭",
     "kk": "[wɔr]",
     "phonics": "WOR",
-    "homophone": "WOR",
-    "image": "『WOR』！這是一場殘酷的『戰爭』。",
+    "homophone": "窩",
+    "image": "『窩』在角落裡，害怕『戰爭』的來臨。",
     "example_en": "The war lasted for years.",
     "example_zh": "戰爭持續了好幾年。",
-    "usage_zh": "指戰爭。",
-    "pos": "名詞",
+    "usage_zh": "描述戰爭的持續時間。",
+    "pos": "名詞 / 動詞",
     "other_forms": [
       {
-        "word": "wartime",
+        "word": "warrior",
         "pos": "名詞",
-        "meaning_zh": "戰時",
-        "example": "during wartime"
+        "meaning_zh": "戰士",
+        "example": "He was a brave warrior."
       }
     ]
   },
   "death": {
     "word": "death",
-    "meaning_zh": "死亡",
+    "meaning_zh": "死亡；死",
     "kk": "[dɛθ]",
     "phonics": "DETH",
-    "homophone": "德斯",
-    "image": "『德斯』是生命的終點，是『死亡』。",
-    "example_en": "Death is a natural part of life.",
-    "example_zh": "死亡是生命的一部分。",
-    "usage_zh": "指死亡、終結。",
+    "homophone": "的士",
+    "image": "『的士』司機，在趕往『死亡』現場。",
+    "example_en": "He died a peaceful death.",
+    "example_zh": "他安詳地死去了。",
+    "usage_zh": "描述死亡的方式，比較正式。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "deathly",
         "pos": "形容詞 / 副詞",
-        "meaning_zh": "致命的；像死一樣的",
-        "example": "a deathly pale face"
+        "meaning_zh": "致命的；死氣沉沉的",
+        "example": "He looked deathly pale."
       }
     ]
   },
@@ -3629,18 +3677,24 @@
     "meaning_zh": "動物",
     "kk": "[ˈænəməl]",
     "phonics": "AN-uh-mul",
-    "homophone": "安餒謀",
-    "image": "『安餒謀』？這隻『動物』好奇怪。",
-    "example_en": "A dog is an animal.",
-    "example_zh": "狗是一種動物。",
-    "usage_zh": "指動物。",
+    "homophone": "安那摸",
+    "image": "『安那摸』？這隻『動物』長得好奇怪。",
+    "example_en": "The zoo has many animals.",
+    "example_zh": "動物園有很多動物。",
+    "usage_zh": "描述動物園的內容。",
     "pos": "名詞",
     "other_forms": [
       {
-        "word": "animalistic",
+        "word": "animate",
+        "pos": "動詞",
+        "meaning_zh": "使...活起來；鼓勵",
+        "example": "His words animated the crowd."
+      },
+      {
+        "word": "animated",
         "pos": "形容詞",
-        "meaning_zh": "動物的；野蠻的",
-        "example": "animalistic behavior"
+        "meaning_zh": "生氣勃勃的；動畫的",
+        "example": "An animated discussion."
       }
     ]
   },
@@ -3649,18 +3703,18 @@
     "meaning_zh": "狗",
     "kk": "[dɔɡ]",
     "phonics": "DAWG",
-    "homophone": "Dog",
-    "image": "這隻『Dog』，是我的寵物狗。",
+    "homophone": "打喔",
+    "image": "『打喔』！這隻『狗』太吵了。",
     "example_en": "My dog is friendly.",
-    "example_zh": "我的狗很友善。",
-    "usage_zh": "指狗。",
+    "example_zh": "我的狗很友好。",
+    "usage_zh": "描述寵物的個性。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "doggy",
         "pos": "名詞",
-        "meaning_zh": "小狗（暱稱）",
-        "example": "Come here, doggy!"
+        "meaning_zh": "小狗（用於小孩或暱稱）",
+        "example": "Good doggy!"
       }
     ]
   },
@@ -3669,38 +3723,238 @@
     "meaning_zh": "魚",
     "kk": "[fɪʃ]",
     "phonics": "FISH",
-    "homophone": "FISH",
-    "image": "『FISH』！這是一條美味的魚。",
+    "homophone": "fishes",
+    "image": "『fishes』的『魚』，在水裡游來游去。",
     "example_en": "I like to eat fish.",
     "example_zh": "我喜歡吃魚。",
-    "usage_zh": "指魚。",
-    "pos": "名詞",
+    "usage_zh": "表達飲食偏好。",
+    "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "fisher",
         "pos": "名詞",
         "meaning_zh": "漁夫",
-        "example": "He is a fisher."
+        "example": "The fisher caught a big fish."
       }
     ]
   },
   "land": {
     "word": "land",
-    "meaning_zh": "土地、陸地",
+    "meaning_zh": "陸地；土地；降落",
     "kk": "[lænd]",
     "phonics": "LAND",
-    "homophone": "Land",
-    "image": "『Land』！我們終於到達了陸地。",
-    "example_en": "We own some land.",
-    "example_zh": "我們擁有一些土地。",
-    "usage_zh": "指土地、陸地；動詞表示降落、登陸。",
+    "homophone": "懶得",
+    "image": "『懶得』走，飛機直接『降落』在『陸地』上。",
+    "example_en": "The plane will land soon.",
+    "example_zh": "飛機很快就會降落。",
+    "usage_zh": "告知飛機即將降落。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "landing",
         "pos": "名詞",
-        "meaning_zh": "著陸；樓梯平台",
-        "example": "The plane made a smooth landing."
+        "meaning_zh": "降落",
+        "example": "The landing was smooth."
+      }
+    ]
+  },
+  "sea": {
+    "word": "sea",
+    "meaning_zh": "海；海洋",
+    "kk": "[si]",
+    "phonics": "SEE",
+    "homophone": "西",
+    "image": "『西』邊的『海』，夕陽無限好。",
+    "example_en": "The sea is beautiful today.",
+    "example_zh": "今天海很美。",
+    "usage_zh": "描述天氣或海景。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "seaside",
+        "pos": "名詞",
+        "meaning_zh": "海濱",
+        "example": "We went to the seaside."
+      }
+    ]
+  },
+  "rain": {
+    "word": "rain",
+    "meaning_zh": "雨；下雨",
+    "kk": "[reɪn]",
+    "phonics": "RAYN",
+    "homophone": "欸，嗯",
+    "image": "『欸』，『嗯』，又在『下雨』了。",
+    "example_en": "It's raining cats and dogs.",
+    "example_zh": "傾盆大雨。",
+    "usage_zh": "形容雨勢非常大，口語常用。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "rainy",
+        "pos": "形容詞",
+        "meaning_zh": "下雨的；雨季的",
+        "example": "It's a rainy day."
+      }
+    ]
+  },
+  "snow": {
+    "word": "snow",
+    "meaning_zh": "雪；下雪",
+    "kk": "[snoʊ]",
+    "phonics": "SNOH",
+    "homophone": "斯諾",
+    "image": "『斯諾』克選手，在『下雪』天比賽。",
+    "example_en": "It snowed all night.",
+    "example_zh": "整晚都在下雪。",
+    "usage_zh": "描述下雪的情況。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "snowy",
+        "pos": "形容詞",
+        "meaning_zh": "下雪的；白雪皚皚的",
+        "example": "The mountains are snowy."
+      }
+    ]
+  },
+  "sun": {
+    "word": "sun",
+    "meaning_zh": "太陽",
+    "kk": "[sʌn]",
+    "phonics": "SUN",
+    "homophone": "桑",
+    "image": "『桑』樹下的『太陽』，讓人昏昏欲睡。",
+    "example_en": "The sun is shining.",
+    "example_zh": "太陽正在照耀。",
+    "usage_zh": "描述天氣晴朗。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "sunny",
+        "pos": "形容詞",
+        "meaning_zh": "晴朗的",
+        "example": "It's a sunny day."
+      }
+    ]
+  },
+  "summer": {
+    "word": "summer",
+    "meaning_zh": "夏天",
+    "kk": "[ˈsʌmɚ]",
+    "phonics": "SUM-mer",
+    "homophone": "薩姆額",
+    "image": "『薩姆額』頭上冒汗，因為是『夏天』。",
+    "example_en": "Summer is my favorite season.",
+    "example_zh": "夏天是我最喜歡的季節。",
+    "usage_zh": "表達對季節的喜好。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "summery",
+        "pos": "形容詞",
+        "meaning_zh": "夏天的；適合夏天的",
+        "example": "The dress has a summery feel."
+      }
+    ]
+  },
+  "winter": {
+    "word": "winter",
+    "meaning_zh": "冬天",
+    "kk": "[ˈwɪntɚ]",
+    "phonics": "WIN-ter",
+    "homophone": "溫特",
+    "image": "『溫特』先生，喜歡在『冬天』窩在暖爐旁。",
+    "example_en": "Winter can be very cold.",
+    "example_zh": "冬天可能非常冷。",
+    "usage_zh": "描述季節的特徵。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "wintry",
+        "pos": "形容詞",
+        "meaning_zh": "冬天的；寒冷的",
+        "example": "The weather is wintry."
+      }
+    ]
+  },
+  "morning": {
+    "word": "morning",
+    "meaning_zh": "早上；上午",
+    "kk": "[ˈmɔrnɪŋ]",
+    "phonics": "MOR-ning",
+    "homophone": "摸寧",
+    "image": "『摸寧』！早安！『早上』好！",
+    "example_en": "Good morning!",
+    "example_zh": "早安！",
+    "usage_zh": "早晨的問候語，非常常用。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "morning-time",
+        "pos": "名詞",
+        "meaning_zh": "上午時間",
+        "example": "Morning-time is for work."
+      }
+    ]
+  },
+  "night": {
+    "word": "night",
+    "meaning_zh": "夜晚；晚上",
+    "kk": "[naɪt]",
+    "phonics": "NYT",
+    "homophone": "耐特",
+    "image": "『耐特』先生，喜歡在『夜晚』散步。",
+    "example_en": "Good night!",
+    "example_zh": "晚安！",
+    "usage_zh": "晚上的告別語。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "nightly",
+        "pos": "形容詞 / 副詞",
+        "meaning_zh": "每晚的；夜晚的",
+        "example": "He goes for a nightly walk."
+      }
+    ]
+  },
+  "future": {
+    "word": "future",
+    "meaning_zh": "未來",
+    "kk": "[ˈfjuːtʃɚ]",
+    "phonics": "FYOO-cher",
+    "homophone": "福atcher",
+    "image": "『福atcher』！你的『未來』一片光明！",
+    "example_en": "What are your plans for the future?",
+    "example_zh": "你對未來有什麼計畫？",
+    "usage_zh": "詢問長遠的規劃或目標。",
+    "pos": "名詞 / 形容詞",
+    "other_forms": [
+      {
+        "word": "futuristic",
+        "pos": "形容詞",
+        "meaning_zh": "未來主義的；超現代的",
+        "example": "The building has a futuristic design."
+      }
+    ]
+  },
+  "order": {
+    "word": "order",
+    "meaning_zh": "命令；訂購；順序",
+    "kk": "[ˈɔrdɚ]",
+    "phonics": "OR-der",
+    "homophone": "奧德",
+    "image": "『奧德』隊長下達『命令』，大家照『順序』行動。",
+    "example_en": "Can I order a pizza?",
+    "example_zh": "我可以點個披薩嗎？",
+    "usage_zh": "在餐廳點餐時常用。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "orderly",
+        "pos": "形容詞 / 副詞",
+        "meaning_zh": "整齊的；按順序的",
+        "example": "Keep the room orderly."
       }
     ]
   }
