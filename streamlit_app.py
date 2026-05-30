@@ -2075,9 +2075,9 @@ def view_library() -> None:
 
 def view_grammar() -> None:
     """📐 文法生成：AI 依程度生成不重複文法，存進資料庫持續長大。"""
-    st.caption("英文沒有內建文法庫——這裡用 AI 依程度生成核心文法/句型，"
-               "每次都不重複，並永久存進資料庫越累積越多。")
-    level = st.radio("程度", ["A2", "B1", "B2", "C1"], horizontal=True, key="gram_level")
+    level = st.session_state.get("en_level", "B1")
+    st.caption(f"AI 依**目前程度 {level}**（左側 sidebar 可改）生成核心文法/句型，"
+               "每次不重複，永久存進資料庫越累積越多。")
     bank = _grammar_for_level(level)
 
     if st.session_state.pop("_gram_saved", None) is not None:
@@ -2495,8 +2495,9 @@ def view_subtitles() -> None:
         raw = st.text_area("貼上英文台詞 / 字幕（.srt 也可）", height=200,
                            placeholder="例：\nI'm gonna make him an offer he can't refuse.\nYou talking to me?\n\n（可直接貼字幕檔內容，序號與時間軸會自動忽略）",
                            key="sub_raw")
+        level = st.session_state.get("en_level", "B1")
         col1, col2 = st.columns([2, 3])
-        level = col1.selectbox("程度參考", ["A2", "B1", "B2", "C1"], index=1, key="sub_lvl")
+        col1.caption(f"程度參考：**{level}**（左側可改）")
         if col2.button("🎬 生成字幕課程", type="primary", use_container_width=True,
                        disabled=not (raw and raw.strip())):
             try:
@@ -2560,7 +2561,7 @@ def view_reading() -> None:
         used = {r.get("title") for r in st.session_state.get("live_readings", [])}
         pool = [t for t in _READING_TOPICS if t not in used] or _READING_TOPICS
         topic = random.choice(pool)
-        level = random.choice(["A2", "B1", "B2", "C1"])
+        level = st.session_state.get("en_level", "B1")
         try:
             _generate_reading_into_session(topic, level)
             st.rerun()
@@ -2573,14 +2574,14 @@ def view_reading() -> None:
     with st.expander("✍️ 想指定主題自己生成？", expanded=False):
         if not api_key:
             st.warning("尚未設定 Gemini API 金鑰。請至 sidebar 確認金鑰狀態。")
-        col1, col2, col3 = st.columns([4, 2, 2])
+        col1, col3 = st.columns([5, 2])
         topic = col1.text_input(
             "主題",
             placeholder="例如：搬到新城市的第一週 / 創業失敗的教訓 / 養貓日常",
             key="rd_topic",
         )
-        level = col2.selectbox("程度", ["A2", "B1", "B2", "C1"], index=1, key="rd_lvl")
-        if col3.button("🚀 生成", disabled=not api_key, use_container_width=True):
+        level = st.session_state.get("en_level", "B1")
+        if col3.button(f"🚀 生成（{level}）", disabled=not api_key, use_container_width=True):
             try:
                 _generate_reading_into_session(topic.strip() or "Daily life", level)
                 st.rerun()
@@ -2944,6 +2945,11 @@ def main() -> None:
              "📖 單字庫", "📚 我的資料庫", "🔁 複習", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
+        st.divider()
+        # 🎯 程度：驅動所有 AI 生成（閱讀／字幕／文法／情境）使用此程度
+        st.selectbox("🎯 學習程度（AI 生成依此）",
+                     ["A2", "B1", "B2", "C1"], index=1, key="en_level",
+                     help="A2 基礎 / B1 中級 / B2 中高級 / C1 高級。各頁 AI 生成都會用這個程度。")
         st.divider()
         m1, m2 = st.columns(2)
         m1.metric("🔥 連續天數", compute_streak())
