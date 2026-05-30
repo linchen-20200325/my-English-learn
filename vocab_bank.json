@@ -7714,5 +7714,1108 @@
     "usage_zh": "指長途旅行或人生中的一段過程。",
     "pos": "名詞",
     "other_forms": []
+  },
+  "distance": {
+    "word": "distance",
+    "meaning_zh": "距離",
+    "kk": "[ˈdɪstəns]",
+    "phonics": "DIS-tuns",
+    "homophone": "弟死吞",
+    "image": "『弟』『死』了，吞下這『距離』的悲痛。",
+    "example_en": "What's the distance to the station?",
+    "example_zh": "到車站的距離有多遠？",
+    "usage_zh": "詢問或描述空間上的距離,常用 'distance between A and B'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "difficult": {
+    "word": "difficult",
+    "meaning_zh": "困難的",
+    "kk": "[ˈdɪfɪkəlt]",
+    "phonics": "DIF-uh-kult",
+    "homophone": "低飛扣",
+    "image": "飛機『低』『飛』，『扣』下引擎，這任務很『困難』。",
+    "example_en": "This is a difficult problem.",
+    "example_zh": "這是個難題。",
+    "usage_zh": "形容事情不容易達成,常與 'to V' 或 'for someone' 搭配。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "difficulty",
+        "pos": "名詞",
+        "meaning_zh": "困難；難事",
+        "example": "He had some difficulty with the test."
+      }
+    ]
+  },
+  "possible": {
+    "word": "possible",
+    "meaning_zh": "可能的",
+    "kk": "[ˈpɑsəbəl]",
+    "phonics": "POS-uh-bull",
+    "homophone": "婆死寶",
+    "image": "『婆』『死』了，『寶』貝，一切都『可能』發生。",
+    "example_en": "Is it possible to finish today?",
+    "example_zh": "今天有可能完成嗎？",
+    "usage_zh": "表示某事有機會發生或可以做到,常用 'It's possible that...' 或 'It's possible to V'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "possibility",
+        "pos": "名詞",
+        "meaning_zh": "可能性",
+        "example": "There's a possibility of rain."
+      },
+      {
+        "word": "possibly",
+        "pos": "副詞",
+        "meaning_zh": "可能地；或許",
+        "example": "Could you possibly help me?"
+      }
+    ]
+  },
+  "impossible": {
+    "word": "impossible",
+    "meaning_zh": "不可能的",
+    "kk": "[ɪmˈpɑsəbəl]",
+    "phonics": "im-POS-uh-bull",
+    "homophone": "硬婆死寶",
+    "image": "『硬』是『婆』『死』了『寶』貝，這根本『不可能』。",
+    "example_en": "It's impossible to get there on time.",
+    "example_zh": "準時到那裡是不可能的。",
+    "usage_zh": "表示某事絕對無法發生或達成,語氣強烈。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "necessary": {
+    "word": "necessary",
+    "meaning_zh": "必要的",
+    "kk": "[ˈnɛsəˌsɛri]",
+    "phonics": "NESS-uh-sair-ee",
+    "homophone": "內死澀梨",
+    "image": "『內』褲『死』了『澀』得像『梨』子,這很『必要』換。",
+    "example_en": "Is it necessary to book in advance?",
+    "example_zh": "需要預先訂位嗎？",
+    "usage_zh": "表示某事是必須的、不可或缺的,常用 'It's necessary to V' 或 'necessary for someone'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "necessity",
+        "pos": "名詞",
+        "meaning_zh": "必需品；必要性",
+        "example": "Water is a necessity."
+      }
+    ]
+  },
+  "available": {
+    "word": "available",
+    "meaning_zh": "可獲得的；有空的",
+    "kk": "[əˈveɪləbəl]",
+    "phonics": "uh-VAY-luh-bull",
+    "homophone": "阿姨了不的",
+    "image": "『阿姨』『了』不起，她『有空』幫你，東西『可買』。",
+    "example_en": "Is this seat available?",
+    "example_zh": "這個位子有人嗎？",
+    "usage_zh": "指物品可取得、服務可使用或人有空,常用 'available for...' 或 'available to someone'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "availability",
+        "pos": "名詞",
+        "meaning_zh": "可得性；可得時間",
+        "example": "Check the availability of the room."
+      }
+    ]
+  },
+  "common": {
+    "word": "common",
+    "meaning_zh": "共同的；常見的",
+    "kk": "[ˈkɑmən]",
+    "phonics": "KOM-un",
+    "homophone": "公門",
+    "image": "『公』務員走『門』，這是『常見』的，也是『共同』的。",
+    "example_en": "It's common to see birds here.",
+    "example_zh": "在這裡看到鳥很常見。",
+    "usage_zh": "表示事物普遍存在或人事物之間有聯繫,常用 'common ground' 或 'common sense'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "commonly",
+        "pos": "副詞",
+        "meaning_zh": "通常；普遍地",
+        "example": "This is commonly known."
+      }
+    ]
+  },
+  "similar": {
+    "word": "similar",
+    "meaning_zh": "相似的",
+    "kk": "[ˈsɪməlɚ]",
+    "phonics": "SIM-uh-ler",
+    "homophone": "喜馬拉雅",
+    "image": "喜馬拉雅山脈和這座山『相似』。",
+    "example_en": "These two colors are very similar.",
+    "example_zh": "這兩種顏色很像。",
+    "usage_zh": "形容兩者之間有相似之處,常用 'similar to something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "similarity",
+        "pos": "名詞",
+        "meaning_zh": "相似之處",
+        "example": "What's the similarity between them?"
+      }
+    ]
+  },
+  "various": {
+    "word": "various",
+    "meaning_zh": "各種的；不同的",
+    "kk": "[ˈvɛriəs]",
+    "phonics": "VAIR-ee-us",
+    "homophone": "發乳液死",
+    "image": "『發』了『乳液』，『死』了好多『各種』牌子。",
+    "example_en": "We offer various colors.",
+    "example_zh": "我們提供各種顏色。",
+    "usage_zh": "表示有多種不同的選擇或類型,常用 'various kinds of...'。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "certain": {
+    "word": "certain",
+    "meaning_zh": "確定的；某個",
+    "kk": "[ˈsɝtən]",
+    "phonics": "SUR-tun",
+    "homophone": "সুতরাং",
+    "image": "『সুতরাং』，我『確定』這是『某個』答案。",
+    "example_en": "I'm certain he'll come.",
+    "example_zh": "我很確定他會來。",
+    "usage_zh": "表示有十足把握或指代不明確的某人事物,常用 'certainly' 或 'for certain'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "certainly",
+        "pos": "副詞",
+        "meaning_zh": " निश्चित रूप से；當然",
+        "example": "She will certainly help."
+      }
+    ]
+  },
+  "clear": {
+    "word": "clear",
+    "meaning_zh": "清晰的；清楚的",
+    "kk": "[klɪr]",
+    "phonics": "KLEER",
+    "homophone": "ㄎㄧㄚˋ",
+    "image": "『ㄎㄧㄚˋ』！聲音好『清楚』，畫面好『清晰』。",
+    "example_en": "The water is very clear.",
+    "example_zh": "水很清澈。",
+    "usage_zh": "形容事物易於理解、看見或聽見,常用 'make it clear' 或 'clear the way'。",
+    "pos": "形容詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "clearly",
+        "pos": "副詞",
+        "meaning_zh": "清楚地",
+        "example": "Speak clearly."
+      },
+      {
+        "word": "clarity",
+        "pos": "名詞",
+        "meaning_zh": "清晰度",
+        "example": "The clarity of the image is amazing."
+      }
+    ]
+  },
+  "simple": {
+    "word": "simple",
+    "meaning_zh": "簡單的；樸素的",
+    "kk": "[ˈsɪmpəl]",
+    "phonics": "SIM-pull",
+    "homophone": "心破了",
+    "image": "『心』『破』了，但他依然『簡單』樸實。",
+    "example_en": "It's a simple task.",
+    "example_zh": "這是個簡單的任務。",
+    "usage_zh": "形容事物不複雜、容易理解,常用 'keep it simple' 或 'simple to do'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "simply",
+        "pos": "副詞",
+        "meaning_zh": "簡單地；僅僅",
+        "example": "It's simply a matter of time."
+      },
+      {
+        "word": "simplicity",
+        "pos": "名詞",
+        "meaning_zh": "簡單；簡樸",
+        "example": "The beauty of simplicity."
+      }
+    ]
+  },
+  "complex": {
+    "word": "complex",
+    "meaning_zh": "複雜的",
+    "kk": "[kəmˈplɛks]",
+    "phonics": "kum-PLEKS",
+    "homophone": "康普雷",
+    "image": "『康普雷』茶很『複雜』，不好喝。",
+    "example_en": "This is a complex issue.",
+    "example_zh": "這是個複雜的問題。",
+    "usage_zh": "形容事物包含許多部分且難以理解,常用 'complex system' 或 'complex relationship'。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "complexity",
+        "pos": "名詞",
+        "meaning_zh": "複雜性",
+        "example": "The complexity of the situation."
+      }
+    ]
+  },
+  "modern": {
+    "word": "modern",
+    "meaning_zh": "現代的",
+    "kk": "[ˈmɑdərn]",
+    "phonics": "MOD-urn",
+    "homophone": "摸的忍",
+    "image": "『摸』『的』『忍』著點，這是『現代』的潮流。",
+    "example_en": "This is a modern building.",
+    "example_zh": "這是棟現代建築。",
+    "usage_zh": "指當前時代的、新式的,常用 'modern technology' 或 'modern lifestyle'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "modernize",
+        "pos": "動詞",
+        "meaning_zh": "使現代化",
+        "example": "They plan to modernize the factory."
+      }
+    ]
+  },
+  "popular": {
+    "word": "popular",
+    "meaning_zh": "受歡迎的；流行的",
+    "kk": "[ˈpɑpjəlɚ]",
+    "phonics": "POP-yuh-ler",
+    "homophone": "跑跑樂",
+    "image": "『跑跑』車遊戲很『受歡迎』，是『流行』的。",
+    "example_en": "This song is very popular.",
+    "example_zh": "這首歌很受歡迎。",
+    "usage_zh": "表示事物受多人喜愛或廣泛流行,常用 'popular with someone' 或 'popular culture'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "popularity",
+        "pos": "名詞",
+        "meaning_zh": "受歡迎程度",
+        "example": "His popularity grew quickly."
+      }
+    ]
+  },
+  "famous": {
+    "word": "famous",
+    "meaning_zh": "著名的",
+    "kk": "[ˈfeɪməs]",
+    "phonics": "FAY-mus",
+    "homophone": "費媽死",
+    "image": "『費』盡心機，『媽』媽『死』了，才變『著名』。",
+    "example_en": "He is a famous actor.",
+    "example_zh": "他是位著名演員。",
+    "usage_zh": "指廣為人知、有聲望的,常用 'famous for something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "famously",
+        "pos": "副詞",
+        "meaning_zh": "著名地；出名地",
+        "example": "He famously won the race."
+      }
+    ]
+  },
+  "serious": {
+    "word": "serious",
+    "meaning_zh": "嚴肅的；嚴重的",
+    "kk": "[ˈsɪriəs]",
+    "phonics": "SEER-ee-us",
+    "homophone": "撕瑞鵝",
+    "image": "『撕』『瑞』『鵝』，這件事很『嚴重』，請『嚴肅』對待。",
+    "example_en": "This is a serious accident.",
+    "example_zh": "這是起嚴重事故。",
+    "usage_zh": "形容情況危急、問題重大或態度認真,常用 'serious illness' 或 'serious talk'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "seriously",
+        "pos": "副詞",
+        "meaning_zh": "嚴重地；認真地",
+        "example": "He was seriously injured."
+      }
+    ]
+  },
+  "dangerous": {
+    "word": "dangerous",
+    "meaning_zh": "危險的",
+    "kk": "[ˈdeɪndʒərəs]",
+    "phonics": "DAYN-juh-rus",
+    "homophone": "等著 რუს",
+    "image": "『等著』，你這個『危險』的傢伙！",
+    "example_en": "This road is dangerous.",
+    "example_zh": "這條路很危險。",
+    "usage_zh": "表示可能造成傷害或風險,常用 'dangerous situation' 或 'dangerous to do'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "danger",
+        "pos": "名詞",
+        "meaning_zh": "危險",
+        "example": "Avoid danger."
+      }
+    ]
+  },
+  "careful": {
+    "word": "careful",
+    "meaning_zh": "小心的；謹慎的",
+    "kk": "[ˈkɛrfəl]",
+    "phonics": "KAIR-full",
+    "homophone": "凱爾富",
+    "image": "『凱爾』『富』了，做事要『小心』，別亂花。",
+    "example_en": "Be careful crossing the street.",
+    "example_zh": "過馬路要小心。",
+    "usage_zh": "提醒或形容做事謹慎、注意安全,常用 'careful with something' 或 'careful about something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "carefully",
+        "pos": "副詞",
+        "meaning_zh": "小心地；仔細地",
+        "example": "He drove carefully."
+      },
+      {
+        "word": "carelessness",
+        "pos": "名詞",
+        "meaning_zh": "粗心；疏忽",
+        "example": "His carelessness caused the accident."
+      }
+    ]
+  },
+  "comfortable": {
+    "word": "comfortable",
+    "meaning_zh": "舒適的；自在的",
+    "kk": "[ˈkʌmftəbəl]",
+    "phonics": "KUM-fer-tuh-bull",
+    "homophone": "看佛脫褲",
+    "image": "『看』，『佛』祖『脫』下『褲』子，好『舒適』。",
+    "example_en": "This chair is very comfortable.",
+    "example_zh": "這椅子很舒服。",
+    "usage_zh": "形容身體或心理上的舒適感,常用 'make yourself comfortable' 或 'comfortable shoes'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "comfortably",
+        "pos": "副詞",
+        "meaning_zh": "舒適地",
+        "example": "He slept comfortably."
+      },
+      {
+        "word": "comfort",
+        "pos": "名詞 / 動詞",
+        "meaning_zh": "舒適；安慰",
+        "example": "She found comfort in music."
+      }
+    ]
+  },
+  "expensive": {
+    "word": "expensive",
+    "meaning_zh": "昂貴的",
+    "kk": "[ɪkˈspɛnsɪv]",
+    "phonics": "ik-SPEN-siv",
+    "homophone": "醫克斯噴死",
+    "image": "『醫』生『克斯』『噴』了『死』了，藥好『貴』。",
+    "example_en": "This car is too expensive.",
+    "example_zh": "這輛車太貴了。",
+    "usage_zh": "表示價格很高,常用 'too expensive' 或 'expensive for someone'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "expensively",
+        "pos": "副詞",
+        "meaning_zh": "昂貴地",
+        "example": "She was expensively dressed."
+      }
+    ]
+  },
+  "cheap": {
+    "word": "cheap",
+    "meaning_zh": "便宜的；廉價的",
+    "kk": "[ˈtʃip]",
+    "phonics": "CHEEP",
+    "homophone": "奇葩",
+    "image": "這『奇葩』玩意兒真『便宜』，買來玩玩。",
+    "example_en": "This T-shirt is quite cheap.",
+    "example_zh": "這件 T 恤挺便宜的。",
+    "usage_zh": "表示價格不高,有時帶有貶義,常用 'cheap and cheerful'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "cheaply",
+        "pos": "副詞",
+        "meaning_zh": "便宜地",
+        "example": "He bought it cheaply."
+      }
+    ]
+  },
+  "fresh": {
+    "word": "fresh",
+    "meaning_zh": "新鮮的；清新的",
+    "kk": "[frɛʃ]",
+    "phonics": "FRESH",
+    "homophone": "福瑞絲",
+    "image": "『福』神『瑞』氣『絲』絲縷縷，空氣好『清新』，食物『新鮮』。",
+    "example_en": "The bread is fresh.",
+    "example_zh": "麵包很新鮮。",
+    "usage_zh": "形容食物剛製成、空氣乾淨或狀態新穎,常用 'fresh air' 或 'fresh start'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "freshly",
+        "pos": "副詞",
+        "meaning_zh": "新鮮地；剛才",
+        "example": "The room was freshly painted."
+      }
+    ]
+  },
+  "healthy": {
+    "word": "healthy",
+    "meaning_zh": "健康的",
+    "kk": "[ˈhɛlθi]",
+    "phonics": "HELL-thee",
+    "homophone": "喝死的",
+    "image": "『喝』了這杯，『死』了，以後要『健康』飲食。",
+    "example_en": "Eating vegetables is healthy.",
+    "example_zh": "吃蔬菜有益健康。",
+    "usage_zh": "表示身體狀況良好或對健康有益,常用 'stay healthy' 或 'healthy lifestyle'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "health",
+        "pos": "名詞",
+        "meaning_zh": "健康",
+        "example": "Good health is important."
+      },
+      {
+        "word": "healthily",
+        "pos": "副詞",
+        "meaning_zh": "健康地",
+        "example": "He lives healthily."
+      }
+    ]
+  },
+  "delicious": {
+    "word": "delicious",
+    "meaning_zh": "美味的",
+    "kk": "[dɪˈlɪʃəs]",
+    "phonics": "dih-LISH-us",
+    "homophone": "迪力蝦叔",
+    "image": "『迪』『力』『蝦』『叔』做的菜真『美味』。",
+    "example_en": "The meal was delicious.",
+    "example_zh": "這餐飯很美味。",
+    "usage_zh": "形容食物味道極佳,常用 'absolutely delicious'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "deliciously",
+        "pos": "副詞",
+        "meaning_zh": "美味地",
+        "example": "The cake tasted deliciously."
+      }
+    ]
+  },
+  "polite": {
+    "word": "polite",
+    "meaning_zh": "有禮貌的",
+    "kk": "[pəˈlaɪt]",
+    "phonics": "puh-LIGHT",
+    "homophone": "撲來特",
+    "image": "『撲』上來『特』意表現『有禮貌』。",
+    "example_en": "He was very polite to me.",
+    "example_zh": "他對我很有禮貌。",
+    "usage_zh": "形容言行舉止合乎禮儀,常用 'be polite to someone'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "politely",
+        "pos": "副詞",
+        "meaning_zh": "有禮貌地",
+        "example": "She smiled politely."
+      },
+      {
+        "word": "politeness",
+        "pos": "名詞",
+        "meaning_zh": "禮貌",
+        "example": "His politeness was appreciated."
+      }
+    ]
+  },
+  "honest": {
+    "word": "honest",
+    "meaning_zh": "誠實的",
+    "kk": "[ˈɑnɪst]",
+    "phonics": "ON-ist",
+    "homophone": "肛門濕",
+    "image": "『肛門』『濕』了，他『誠實』地說了出來。",
+    "example_en": "She is an honest person.",
+    "example_zh": "她是個誠實的人。",
+    "usage_zh": "表示說真話、不欺騙,常用 'be honest with someone' 或 'honestly'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "honesty",
+        "pos": "名詞",
+        "meaning_zh": "誠實",
+        "example": "Honesty is the best policy."
+      },
+      {
+        "word": "honestly",
+        "pos": "副詞",
+        "meaning_zh": "誠實地；老實說",
+        "example": "Honestly, I don't know."
+      }
+    ]
+  },
+  "friendly": {
+    "word": "friendly",
+    "meaning_zh": "友善的",
+    "kk": "[ˈfrɛndli]",
+    "phonics": "Frend-lee",
+    "homophone": "分得利",
+    "image": "大家『分得利』益，所以很『友善』。",
+    "example_en": "They are very friendly neighbors.",
+    "example_zh": "他們是非常友善的鄰居。",
+    "usage_zh": "形容待人親切、和善,常用 'friendly to someone' 或 'friendly atmosphere'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "friendliness",
+        "pos": "名詞",
+        "meaning_zh": "友善",
+        "example": "Her friendliness made me feel welcome."
+      }
+    ]
+  },
+  "nervous": {
+    "word": "nervous",
+    "meaning_zh": "緊張的",
+    "kk": "[ˈnɝvəs]",
+    "phonics": "NER-vus",
+    "homophone": "腦噗死了",
+    "image": "『腦』袋『噗』『死』了，我好『緊張』。",
+    "example_en": "I felt nervous before the exam.",
+    "example_zh": "考試前我感到緊張。",
+    "usage_zh": "形容因擔心或害怕而感到不安,常用 'get nervous' 或 'nervous about something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "nervously",
+        "pos": "副詞",
+        "meaning_zh": "緊張地",
+        "example": "He spoke nervously."
+      },
+      {
+        "word": "nervousness",
+        "pos": "名詞",
+        "meaning_zh": "緊張",
+        "example": "Her nervousness was obvious."
+      }
+    ]
+  },
+  "excited": {
+    "word": "excited",
+    "meaning_zh": "興奮的",
+    "kk": "[ɪkˈsaɪtɪd]",
+    "phonics": "ik-SY-tid",
+    "homophone": "愛客死踢的",
+    "image": "『愛』『客』戶『死』『踢』了，大家都很『興奮』。",
+    "example_en": "The children were excited about the party.",
+    "example_zh": "孩子們對派對感到興奮。",
+    "usage_zh": "形容因期待或喜悅而感到情緒激動,常用 'get excited' 或 'excited by something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "excite",
+        "pos": "動詞",
+        "meaning_zh": "使興奮；使激動",
+        "example": "The news excited everyone."
+      },
+      {
+        "word": "excitement",
+        "pos": "名詞",
+        "meaning_zh": "興奮；激動",
+        "example": "The excitement was building."
+      }
+    ]
+  },
+  "bored": {
+    "word": "bored",
+    "meaning_zh": "厭煩的；無聊的",
+    "kk": "[bɔrd]",
+    "phonics": "BORD",
+    "homophone": "飽的",
+    "image": "肚子『飽』了，沒事做，感到『無聊』。",
+    "example_en": "I'm bored with this game.",
+    "example_zh": "我對這個遊戲感到厭煩。",
+    "usage_zh": "形容因缺乏興趣或活動而感到無聊,常用 'get bored' 或 'bored with something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "bore",
+        "pos": "動詞",
+        "meaning_zh": "使厭煩；使無聊",
+        "example": "The movie bored me."
+      },
+      {
+        "word": "boring",
+        "pos": "形容詞",
+        "meaning_zh": "令人厭煩的；無聊的",
+        "example": "It was a boring lecture."
+      }
+    ]
+  },
+  "surprised": {
+    "word": "surprised",
+    "meaning_zh": "驚訝的",
+    "kk": "[sərˈpraɪzd]",
+    "phonics": "ser-PRYZD",
+    "homophone": "塞瑞斯",
+    "image": "『塞』『瑞』『斯』，這個結果真讓人『驚訝』！",
+    "example_en": "She looked surprised at the news.",
+    "example_zh": "她聽到這消息時顯得很驚訝。",
+    "usage_zh": "形容因意料之外的事而感到驚奇,常用 'be surprised by/at something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "surprise",
+        "pos": "名詞 / 動詞",
+        "meaning_zh": "驚訝；驚喜",
+        "example": "What a surprise!"
+      },
+      {
+        "word": "surprisingly",
+        "pos": "副詞",
+        "meaning_zh": "驚訝地；出乎意料地",
+        "example": "Surprisingly, he agreed."
+      }
+    ]
+  },
+  "confused": {
+    "word": "confused",
+    "meaning_zh": "困惑的；糊塗的",
+    "kk": "[kənˈfjudzd]",
+    "phonics": "kun-FYOOZD",
+    "homophone": "肯婦子",
+    "image": "『肯』定『婦』『子』們都『困惑』了。",
+    "example_en": "I'm confused about the instructions.",
+    "example_zh": "我對這些指示感到困惑。",
+    "usage_zh": "形容因不理解而感到迷惘,常用 'get confused' 或 'confused about something'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "confuse",
+        "pos": "動詞",
+        "meaning_zh": "使困惑；使糊塗",
+        "example": "The question confused me."
+      },
+      {
+        "word": "confusion",
+        "pos": "名詞",
+        "meaning_zh": "困惑；混亂",
+        "example": "There was great confusion."
+      }
+    ]
+  },
+  "afraid": {
+    "word": "afraid",
+    "meaning_zh": "害怕的；恐怕",
+    "kk": "[əˈfreɪd]",
+    "phonics": "uh-FRAYD",
+    "homophone": "阿飛的",
+    "image": "『阿飛』『的』樣子好『害怕』，我『恐怕』不行。",
+    "example_en": "I'm afraid of the dark.",
+    "example_zh": "我怕黑。",
+    "usage_zh": "表示恐懼或委婉地表達不同意見,常用 'be afraid of something' 或 'I'm afraid...'。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "lucky": {
+    "word": "lucky",
+    "meaning_zh": "幸運的",
+    "kk": "[ˈlʌki]",
+    "phonics": "LUK-ee",
+    "homophone": "鹿騎",
+    "image": "『鹿』『騎』著我，今天真是『幸運』。",
+    "example_en": "That was a lucky escape.",
+    "example_zh": "那是一次幸運的脫險。",
+    "usage_zh": "形容運氣好,常用 'get lucky' 或 'lucky to do'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "luck",
+        "pos": "名詞",
+        "meaning_zh": "運氣",
+        "example": "Good luck!"
+      },
+      {
+        "word": "luckily",
+        "pos": "副詞",
+        "meaning_zh": "幸運地",
+        "example": "Luckily, it didn't rain."
+      }
+    ]
+  },
+  "perfect": {
+    "word": "perfect",
+    "meaning_zh": "完美的",
+    "kk": "[ˈpɝfɪkt]",
+    "phonics": "PER-fikt",
+    "homophone": "噴屁克",
+    "image": "『噴』『屁』『克』氣了，這結果太『完美』。",
+    "example_en": "This is the perfect solution.",
+    "example_zh": "這是完美的解決方案。",
+    "usage_zh": "形容事物毫無瑕疵、極佳,常用 'perfect match' 或 'perfect timing'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "perfectly",
+        "pos": "副詞",
+        "meaning_zh": "完美地",
+        "example": "She sings perfectly."
+      },
+      {
+        "word": "perfection",
+        "pos": "名詞",
+        "meaning_zh": "完美",
+        "example": "He strives for perfection."
+      }
+    ]
+  },
+  "terrible": {
+    "word": "terrible",
+    "meaning_zh": "可怕的；糟糕的",
+    "kk": "[ˈtɛrəbəl]",
+    "phonics": "TAIR-uh-bull",
+    "homophone": "特惹不的",
+    "image": "『特』別『惹』人『不』高興，這太『糟糕』了，真『可怕』。",
+    "example_en": "The weather is terrible today.",
+    "example_zh": "今天天氣糟透了。",
+    "usage_zh": "形容情況極壞、程度嚴重,常用 'terrible news' 或 'terribly sorry'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "terribly",
+        "pos": "副詞",
+        "meaning_zh": "非常；極其",
+        "example": "He was terribly ill."
+      }
+    ]
+  },
+  "wonderful": {
+    "word": "wonderful",
+    "meaning_zh": "極好的；精彩的",
+    "kk": "[ˈwʌndərfəl]",
+    "phonics": "WUN-der-full",
+    "homophone": "彎的佛",
+    "image": "『彎』了個『佛』，真是『精彩』，太『棒』了！",
+    "example_en": "That sounds wonderful!",
+    "example_zh": "聽起來太棒了！",
+    "usage_zh": "形容事物非常好、令人愉悅,常用 'wonderful time' 或 'wonderful idea'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "wonderfully",
+        "pos": "副詞",
+        "meaning_zh": "極好地；精彩地",
+        "example": "She performed wonderfully."
+      }
+    ]
+  },
+  "amazing": {
+    "word": "amazing",
+    "meaning_zh": "驚人的；極好的",
+    "kk": "[əˈmeɪzɪŋ]",
+    "phonics": "uh-MAY-zing",
+    "homophone": "阿妹驚",
+    "image": "『阿妹』『驚』現舞台，真是『驚人』，太『棒』了！",
+    "example_en": "That's an amazing view.",
+    "example_zh": "那景色真棒。",
+    "usage_zh": "形容事物令人驚嘆、極其出色,常用 'amazing performance' 或 'amazing discovery'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "amaze",
+        "pos": "動詞",
+        "meaning_zh": "使驚奇；使驚嘆",
+        "example": "The result amazed everyone."
+      },
+      {
+        "word": "amazement",
+        "pos": "名詞",
+        "meaning_zh": "驚奇；驚嘆",
+        "example": "He looked on in amazement."
+      }
+    ]
+  },
+  "boring": {
+    "word": "boring",
+    "meaning_zh": "無聊的；乏味的",
+    "kk": "[ˈbɔrɪŋ]",
+    "phonics": "BOR-ing",
+    "homophone": "飽的硬",
+    "image": "肚子『飽』了，『硬』是沒事幹，好『無聊』。",
+    "example_en": "The lecture was boring.",
+    "example_zh": "那場演講很無聊。",
+    "usage_zh": "形容事物缺乏趣味、令人感到厭煩,常用 'a boring movie' 或 'get boring'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "bored",
+        "pos": "形容詞",
+        "meaning_zh": "厭煩的；無聊的",
+        "example": "I'm bored."
+      },
+      {
+        "word": "bore",
+        "pos": "動詞",
+        "meaning_zh": "使厭煩；使無聊",
+        "example": "This book bores me."
+      }
+    ]
+  },
+  "interesting": {
+    "word": "interesting",
+    "meaning_zh": "有趣的",
+    "kk": "[ˈɪntrɛstɪŋ]",
+    "phonics": "IN-tress-ting",
+    "homophone": "印特人停",
+    "image": "『印』度『特』產『人』『停』下來看，太『有趣』了。",
+    "example_en": "This book is very interesting.",
+    "example_zh": "這本書很有趣。",
+    "usage_zh": "形容事物能引起好奇心或提供樂趣,常用 'find something interesting' 或 'an interesting fact'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "interest",
+        "pos": "名詞 / 動詞",
+        "meaning_zh": "興趣；使感興趣",
+        "example": "It's of great interest to me."
+      }
+    ]
+  },
+  "useful": {
+    "word": "useful",
+    "meaning_zh": "有用的",
+    "kk": "[ˈjuzfəl]",
+    "phonics": "YOOS-full",
+    "homophone": "優死佛",
+    "image": "『優』『死』了，『佛』祖說這東西很『有用』。",
+    "example_en": "This tool is very useful.",
+    "example_zh": "這個工具很有用。",
+    "usage_zh": "形容事物能提供幫助或達到目的,常用 'be useful for something' 或 'useful information'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "usefulness",
+        "pos": "名詞",
+        "meaning_zh": "有用性",
+        "example": "The usefulness of the device."
+      },
+      {
+        "word": "useless",
+        "pos": "形容詞",
+        "meaning_zh": "無用的",
+        "example": "This is a useless attempt."
+      }
+    ]
+  },
+  "empty": {
+    "word": "empty",
+    "meaning_zh": "空的",
+    "kk": "[ˈɛmpti]",
+    "phonics": "EMP-tee",
+    "homophone": "摁屁屁",
+    "image": "『摁』了『屁屁』，什麼都沒了，杯子『空』了。",
+    "example_en": "The bottle is empty.",
+    "example_zh": "瓶子是空的。",
+    "usage_zh": "形容內部沒有東西、沒有內容,常用 'empty space' 或 'empty promise'。",
+    "pos": "形容詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "emptiness",
+        "pos": "名詞",
+        "meaning_zh": "空虛；空曠",
+        "example": "The emptiness of the room."
+      }
+    ]
+  },
+  "heavy": {
+    "word": "heavy",
+    "meaning_zh": "重的；沉重的",
+    "kk": "[ˈhɛvi]",
+    "phonics": "HEV-ee",
+    "homophone": "黑皮",
+    "image": "『黑』色的『皮』箱很『重』。",
+    "example_en": "This box is too heavy.",
+    "example_zh": "這個箱子太重了。",
+    "usage_zh": "形容重量大或程度深,常用 'heavy rain' 或 'heavy traffic'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "heavily",
+        "pos": "副詞",
+        "meaning_zh": "重重地；嚴重地",
+        "example": "It rained heavily."
+      }
+    ]
+  },
+  "wide": {
+    "word": "wide",
+    "meaning_zh": "寬的；廣泛的",
+    "kk": "[waɪd]",
+    "phonics": "WIDE",
+    "homophone": "歪的",
+    "image": "那條路『歪』的，很『寬』。",
+    "example_en": "The river is very wide.",
+    "example_zh": "這條河很寬。",
+    "usage_zh": "形容寬度大或範圍廣,常用 'wide range' 或 'wide open'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "widely",
+        "pos": "副詞",
+        "meaning_zh": "廣泛地；普遍地",
+        "example": "This theory is widely accepted."
+      },
+      {
+        "word": "widen",
+        "pos": "動詞",
+        "meaning_zh": "加寬；變寬",
+        "example": "They plan to widen the road."
+      },
+      {
+        "word": "width",
+        "pos": "名詞",
+        "meaning_zh": "寬度",
+        "example": "What is the width of the table?"
+      }
+    ]
+  },
+  "narrow": {
+    "word": "narrow",
+    "meaning_zh": "狹窄的；狹隘的",
+    "kk": "[ˈnɛroʊ]",
+    "phonics": "NAIR-oh",
+    "homophone": "那肉",
+    "image": "『那』塊『肉』太『窄』了，塞不進去。",
+    "example_en": "The alley is very narrow.",
+    "example_zh": "那條小巷很狹窄。",
+    "usage_zh": "形容寬度小或思想不開放,常用 'narrow-minded'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "narrowly",
+        "pos": "副詞",
+        "meaning_zh": "狹窄地；勉強地",
+        "example": "He narrowly escaped."
+      },
+      {
+        "word": "narrowness",
+        "pos": "名詞",
+        "meaning_zh": "狹窄；狹隘",
+        "example": "The narrowness of the path."
+      }
+    ]
+  },
+  "soft": {
+    "word": "soft",
+    "meaning_zh": "軟的；柔軟的",
+    "kk": "[sɔft]",
+    "phonics": "SOFT",
+    "homophone": "所富",
+    "image": "『所』有『富』人用的都是『軟』的沙發。",
+    "example_en": "The pillow is soft.",
+    "example_zh": "枕頭很軟。",
+    "usage_zh": "形容觸感柔軟、聲音輕柔或程度不強烈,常用 'soft music' 或 'soft landing'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "soften",
+        "pos": "動詞",
+        "meaning_zh": "弄軟；變軟",
+        "example": "The butter will soften."
+      },
+      {
+        "word": "softly",
+        "pos": "副詞",
+        "meaning_zh": "輕柔地",
+        "example": "She spoke softly."
+      }
+    ]
+  },
+  "sharp": {
+    "word": "sharp",
+    "meaning_zh": "銳利的；尖銳的",
+    "kk": "[ʃɑrp]",
+    "phonics": "SHARP",
+    "homophone": "瞎跑",
+    "image": "『瞎』『跑』，結果被東西『刺』到，好『銳利』。",
+    "example_en": "Be careful, the knife is sharp.",
+    "example_zh": "小心，刀很利。",
+    "usage_zh": "形容邊緣鋒利、聲音刺耳、變化劇烈或人聰明,常用 'sharp turn' 或 'sharp mind'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "sharply",
+        "pos": "副詞",
+        "meaning_zh": "尖銳地；劇烈地",
+        "example": "Prices rose sharply."
+      },
+      {
+        "word": "sharpen",
+        "pos": "動詞",
+        "meaning_zh": "削尖；使敏銳",
+        "example": "Sharpen your pencil."
+      }
+    ]
+  },
+  "bright": {
+    "word": "bright",
+    "meaning_zh": "明亮的；聰明的",
+    "kk": "[braɪt]",
+    "phonics": "BRIGHT",
+    "homophone": "掰特",
+    "image": "『掰』『特』！燈泡好『亮』，這孩子好『聰明』。",
+    "example_en": "The room is bright.",
+    "example_zh": "房間很明亮。",
+    "usage_zh": "形容光線充足、顏色鮮豔或人聰慧,常用 'bright idea' 或 'bright future'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "brighten",
+        "pos": "動詞",
+        "meaning_zh": "使明亮；使高興",
+        "example": "His smile brightened the room."
+      }
+    ]
+  },
+  "however": {
+    "word": "however",
+    "meaning_zh": "然而；但是",
+    "kk": "[haʊˈɛvɚ]",
+    "phonics": "how-EV-er",
+    "homophone": "好惡！惡！",
+    "image": "『好』『惡』！『惡』！這件事『然而』很難辦。",
+    "example_en": "He is rich; however, he is unhappy.",
+    "example_zh": "他很有錢；然而，他不快樂。",
+    "usage_zh": "連接兩個對比的句子或觀點,用於轉折,常用於句首或句中。",
+    "pos": "副詞 / 連接詞",
+    "other_forms": []
   }
 }
