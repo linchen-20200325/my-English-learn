@@ -34,8 +34,8 @@
 - [ ] 確認主程式檔名規範：維持 `streamlit_app.py` 或改名為 `app.py`（影響部署進入點）
 - [ ] 評估是否建立 `Requirements.md` 作為需求真理來源
 - [x] 效能優化:`data.py` 種子已是 module-level 常量(Python import 已 O(1) 快取),加 `st.cache_data` 反引入 wrapper 開銷,審計確認**不適用**。
-- [ ] 情境生成需設定 `GEMINI_API_KEY`（單一或 `GEMINI_API_KEYS` 多 key 輪轉）;sidebar 提供「測試所有金鑰」按鈕,未設時該分頁顯示引導,其餘照常
-- [ ] Mermaid 心智圖以 `st.iframe` 渲染，尚未經瀏覽器實機驗證（headless 僅驗腳本無例外）
+- [x] 情境生成 / 單字庫 / 字根速記 AI 補例字均支援 `GEMINI_API_KEY` 或 `GEMINI_API_KEYS` 多 key 輪轉;sidebar 有「測試所有金鑰」逐把驗證,未設時各分頁顯示具體設定指引(連結至 https://aistudio.google.com/apikey 與 Cloud Secrets toml 範例)。
+- [ ] Mermaid 心智圖以 `st.iframe` 渲染（headless AppTest 已通過,瀏覽器實機巡檢由使用者執行:🔤 字根速記三 tab × 🗂️ 單字學習翻面字根拆解 × 💬 情境會話 AI 生成 mindmap,四點檢查無 syntax error 即視同綠燈）
 - [x] 句卡接成間隔重複(SRS)複習:`data["review_cards"]` + SM-2 三鈕(忘記／普通／簡單),側欄顯示待複習數
 - [x] SRS 每日複習上限:複習頁加 slider(預設 20 / max 200);superseed last_reviewed 計算今日已複習數;達標顯示「今日達標」訊息。
 - [x] 學習熱力圖:📈 學習進度頁新增 GitHub 風格 12 週 × 7 天熱力圖,強度 = 分鐘 + 學會字×3 + 測驗次×5,5 級顏色 + tooltip + 圖例。
