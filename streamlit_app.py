@@ -493,6 +493,44 @@ def generate_material(scenario: str, tier: str) -> str:
     return _llm_generate(GEN_SYSTEM_PROMPT, f"Scenario: {scenario}", tier, max_tokens=2000)
 
 
+_MORPH_GEN_PROMPT = """你是英文構詞學專家。給定某個{cat}「{m}」(意思:{zh}),
+請列出 N 個含此{cat}、程度 B1-C1 常見實用的英文單字。
+
+# 嚴格規範
+- 必須真的含「{m}」的詞素(切空白用任一變體即可)
+- 不可使用清單內已有的字:{existing}
+- 全小寫(除非專有名詞)
+- 只輸出 JSON array,例如 ["word1","word2","word3"],前後無任何文字、無 markdown
+
+# 數量
+回 {n} 個。
+"""
+
+
+def _gen_morph_examples(cat_zh: str, m: str, zh: str,
+                        existing: list, n: int) -> list:
+    """請 Gemini 對某個字首/字根/字尾補 n 個不重複的新例字。回 list of words。"""
+    prompt = _MORPH_GEN_PROMPT.format(cat=cat_zh, m=m, zh=zh,
+                                       existing=existing, n=n)
+    text = _llm_generate(prompt, f"{cat_zh}「{m}」補 {n} 個例字",
+                         next(iter(_MODEL_MAP.keys())), max_tokens=400)
+    mm = re.search(r"\[[\s\S]*?\]", text)
+    if not mm:
+        return []
+    try:
+        words = json.loads(mm.group(0))
+    except json.JSONDecodeError:
+        return []
+    exist_lower = {w.lower() for w in existing}
+    out = []
+    for w in words:
+        ww = str(w).strip().lower()
+        if (ww and ww not in exist_lower and ww not in {x.lower() for x in out}
+                and re.match(r"^[a-z][a-z\-']*$", ww)):
+            out.append(ww)
+    return out[:n]
+
+
 def _sanitize_mermaid(text: str) -> str:
     """清潔 Gemini 產出的 mermaid 文字,避免常見解析失敗:
     - 移除節點標籤 `["..."]` 內部的半形括號(常被當形狀語法),改全形
@@ -1535,11 +1573,14 @@ def view_morphology() -> None:
         )
     st.caption("離線字根字首字尾樹狀圖 + SEED 單字台味諧音速記，完全不需 API。")
 
+    # session 累積的 AI 額外例字: live_morph_ex[category_key][morpheme_m] = [ex1, ex2, ...]
+    live = st.session_state.setdefault("live_morph_ex", {"pre": {}, "root": {}, "suf": {}})
+
     tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
-    for tab, title, items, key in (
-        (tab1, "字首 Prefix", PREFIXES, "pre"),
-        (tab2, "字中 Root", ROOTS, "root"),
-        (tab3, "字尾 Suffix", SUFFIXES, "suf"),
+    for tab, title, items, key, cat_zh in (
+        (tab1, "字首 Prefix", PREFIXES, "pre", "字首"),
+        (tab2, "字中 Root", ROOTS, "root", "字根"),
+        (tab3, "字尾 Suffix", SUFFIXES, "suf", "字尾"),
     ):
         with tab:
             options = [f"{it['m']} · {it['zh']}" for it in items]
@@ -1549,11 +1590,46 @@ def view_morphology() -> None:
                 key=f"morph_pick_{key}",
                 placeholder="例如：anti-, pre-, dis-",
             )
-            shown = ([it for it in items
-                     if f"{it['m']} · {it['zh']}" in set(picked)]
-                     if picked else items)
+            shown_base = ([it for it in items
+                          if f"{it['m']} · {it['zh']}" in set(picked)]
+                          if picked else items)
+            # 把 session 累積的 AI 額外例字併進顯示用 list (不動原 PREFIXES/ROOTS/SUFFIXES)
+            shown = []
+            for it in shown_base:
+                extra = live[key].get(it["m"], [])
+                merged_ex = list(it["ex"]) + [e for e in extra if e not in it["ex"]]
+                shown.append({**it, "ex": merged_ex})
             render_mermaid(build_mindmap(title, shown),
                            height=520 if len(shown) >= 5 else 360)
+
+            # 🎲 AI 隨機加例字(挑了 1-3 個目標才有意義,避免一次塞太多)
+            if picked and 1 <= len(picked) <= 3 and get_api_key():
+                with st.expander(f"🎲 用 AI 給已選 {len(picked)} 個{cat_zh}各補例字"):
+                    n_per = st.number_input(
+                        "每個額外補幾個字", min_value=1, max_value=8, value=3,
+                        step=1, key=f"morph_n_{key}",
+                    )
+                    if st.button(f"🚀 開始生成（不重複現有）",
+                                 key=f"morph_gen_{key}", type="primary"):
+                        try:
+                            with st.spinner("Gemini 生成中..."):
+                                for it in shown_base:
+                                    existing = (list(it["ex"]) +
+                                                live[key].get(it["m"], []))
+                                    fresh = _gen_morph_examples(
+                                        cat_zh, it["m"], it["zh"],
+                                        existing, int(n_per))
+                                    if fresh:
+                                        live[key].setdefault(it["m"], []).extend(fresh)
+                            st.success("✅ 新例字已加入心智圖。")
+                            st.rerun()
+                        except Exception as e:  # noqa: BLE001
+                            st.error(f"生成失敗:{type(e).__name__}: {str(e)[:200]}")
+            elif picked and len(picked) > 3:
+                st.caption("挑 1-3 個目標再用 AI 加例字（一次太多會稀釋學習）")
+            elif picked and not get_api_key():
+                st.caption("設好 Gemini key 後,選 1-3 個目標就可用 AI 補例字。")
+
             with st.expander("檢視清單"):
                 for it in items:
                     st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
