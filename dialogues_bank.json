@@ -229,5 +229,97 @@
         ]
       }
     ]
+  },
+  {
+    "id": "work_complaint_01",
+    "title": "跟朋友抱怨工作",
+    "level": "B1",
+    "scene": "在咖啡廳，你向朋友傾訴工作上的煩惱。",
+    "lines": [
+      {
+        "speaker": "You",
+        "en": "Hey, can I vent for a minute?",
+        "zh": "嘿，我能抱怨一下嗎？"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Of course! What's up?",
+        "zh": "當然！怎麼了？"
+      },
+      {
+        "speaker": "You",
+        "en": "My boss is driving me crazy lately.",
+        "zh": "我老闆最近快把我逼瘋了。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Oh no, what did he do?",
+        "zh": "哦不，他做了什麼？"
+      },
+      {
+        "speaker": "You",
+        "en": "He keeps piling on more work.",
+        "zh": "他一直給我增加更多的工作。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "That sounds really stressful.",
+        "zh": "聽起來壓力真的很大。"
+      },
+      {
+        "speaker": "You",
+        "en": "Yeah, I feel so overwhelmed.",
+        "zh": "對啊，我感覺壓力好大。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Have you tried talking to him?",
+        "zh": "你有試著跟他談談嗎？"
+      },
+      {
+        "speaker": "You",
+        "en": "Not yet, I'm not sure how.",
+        "zh": "還沒有，我不知道該怎麼開口。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Maybe we can brainstorm some ideas.",
+        "zh": "或許我們可以一起想些辦法。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "vent",
+        "explain": "發洩（情緒、不滿等）。",
+        "examples": [
+          "I need to vent about my day.",
+          "She likes to vent her frustrations."
+        ]
+      },
+      {
+        "point": "drive someone crazy",
+        "explain": "讓某人抓狂、非常惱火。",
+        "examples": [
+          "This traffic is driving me crazy.",
+          "His constant complaining drove her crazy."
+        ]
+      },
+      {
+        "point": "pile on",
+        "explain": "不斷增加（工作、壓力等）。",
+        "examples": [
+          "They keep piling on more tasks.",
+          "Don't pile on too much work at once."
+        ]
+      },
+      {
+        "point": "overwhelmed",
+        "explain": "不知所措的；應接不暇的。",
+        "examples": [
+          "I feel overwhelmed with all this work.",
+          "She was overwhelmed by the amount of information."
+        ]
+      }
+    ]
   }
 ]
