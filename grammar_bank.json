@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "point": "Simple Present Tense (現在簡單式)",
+    "explain": "用於描述習慣、事實、規律性事件。結構：主詞 + V(s/es) / 主詞 + be (am/is/are) + ...。疑問句和否定句通常使用 do/does。",
+    "examples": [
+      "She walks to school every day.",
+      "The sun rises in the east.",
+      "I am a student."
+    ],
+    "level": "A2"
+  }
+]
