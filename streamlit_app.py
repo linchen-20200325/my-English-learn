@@ -1690,7 +1690,12 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
     todo = [w for w in wordlist if w.lower() not in have_lower][:n]
     todo_set = {w.lower() for w in todo}
     if not todo:
-        st.success("詞表已全數完成,沒有待補單字。如需更多請編輯 `scripts/vocab_wordlist.txt`。")
+        st.session_state["_just_generated"] = True
+        st.session_state["_gen_result_banner"] = {
+            "added": 0, "preview": "", "total": len(file_bank) + len(live),
+            "note": "詞表已全數完成,沒有待補單字。如需更多請編輯 "
+                    "`scripts/vocab_wordlist.txt`。",
+        }
         return
     # 每字完整 8 欄約需 ~320 token,預留充裕上限避免 JSON 被截斷(上限 32k)
     max_tok = min(32000, 1200 + 360 * len(todo))
@@ -1718,6 +1723,15 @@ def _run_inapp_generation(n: int, tier: str, auto_push: bool = False) -> None:
     if skipped:
         msg += f"\n\n去重/欄位不全略過 {skipped} 字"
     st.success(msg)
+    # 持久橫幅：rerun 後仍能看到本次成果（避免使用者以為沒反應）
+    st.session_state["_just_generated"] = True
+    st.session_state["_gen_result_banner"] = {
+        "added": added,
+        "preview": (", ".join(new_words[:8]) + (" …" if len(new_words) > 8 else "")),
+        "total": len(file_bank) + len(live),
+        "note": (f"這批字經去重後沒有新增（略過 {skipped} 字）。"
+                 "再按一次會換下一批詞。" if added == 0 else ""),
+    }
     # 自動推回:把結果記在 session,讓使用者看到「上次推回成功/失敗」
     if auto_push:
         st.info("⏳ 自動推回 GitHub repo 中…")
@@ -2805,7 +2819,18 @@ def view_vocab_bank() -> None:
     bank = {**file_bank, **synced, **live_bank}
     api_key = get_api_key()
 
-    with st.expander("🤖 用 AI 在雲端即時生成（無需本機）", expanded=not bank):
+    # 生成後面板維持展開（剛生成完 _just_generated 為真），讓使用者看到結果橫幅
+    _open = (not bank) or st.session_state.get("_just_generated", False)
+    with st.expander("🤖 用 AI 在雲端即時生成（無需本機）", expanded=_open):
+        # 持久橫幅：上一輪生成結果（rerun 不會洗掉）
+        gr = st.session_state.pop("_gen_result_banner", None)
+        if gr:
+            if gr["added"]:
+                st.success(f"✅ 上次生成新增 **{gr['added']}** 字："
+                           f"{gr['preview']}　·　庫存現為 **{gr['total']}** 字")
+            else:
+                st.warning(gr.get("note") or "上次沒有新增字（可能詞表這批已生過或被去重）。")
+        st.session_state["_just_generated"] = False
         if not api_key:
             st.warning(
                 "尚未設定 Gemini API 金鑰。請至 Streamlit Cloud → **Manage app → "
