@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "point": "Present Simple vs. Present Continuous (基礎用法)",
+    "explain": "現在簡單式用於描述習慣、事實、以及週期性發生的動作；現在進行式則用於描述當下正在發生的動作或暫時性的情況。\n\n- 現在簡單式：主詞 + V(s/es) / be (am/is/are)\n- 現在進行式：主詞 + be (am/is/are) + V-ing",
+    "examples": [
+      "I wake up at 7 AM every day.",
+      "She is watching TV right now.",
+      "Birds fly in the sky."
+    ],
+    "level": "A2"
+  }
+]
