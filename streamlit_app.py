@@ -325,6 +325,22 @@ _QUOTA_HINTS = ("RESOURCE_EXHAUSTED", "429", "exceeded your current quota",
                 "Resource has been exhausted")
 
 
+def _friendly_gen_error(msg: str) -> str:
+    """把生成錯誤翻成可行動的中文提示（區分配額／伺服器忙／金鑰／其他）。"""
+    if any(h in msg for h in _QUOTA_HINTS):
+        return ("⏰ **Gemini 今日免費額度用完了**（Google 每日上限，非程式問題）。解法："
+                "①改用額度更多的模型（Flash-Lite／2.0 Flash）②等明天台灣 16:00 重置 "
+                "③到 https://aistudio.google.com/apikey 開新 project 多生一把 key 貼進 Secrets。")
+    if any(h in msg for h in _TRANSIENT_HINTS):
+        return "⏳ Google 伺服器當下忙碌（503）。等 30 秒～2 分鐘再按一次，或改用負載較輕的模型。"
+    if "API key not valid" in msg or "API_KEY_INVALID" in msg:
+        return ("❌ Gemini 金鑰被拒。到 https://aistudio.google.com/apikey 重新「Create API key "
+                "in new project」貼回 Cloud Secrets 的 `GEMINI_API_KEYS`。")
+    if "尚未設定" in msg or "GEMINI_API_KEY" in msg:
+        return "🔑 尚未偵測到 Gemini 金鑰。請至 Cloud Secrets 設定 `GEMINI_API_KEYS`。"
+    return f"生成失敗：{msg[:500]}"
+
+
 def _llm_generate(system_prompt: str, user_msg: str, tier: str,
                   max_tokens: int = 2000, retries: int = 3) -> str:
     """單次生成。支援多 key 輪轉:撞 429 RESOURCE_EXHAUSTED 自動換下一把 key,
@@ -1531,8 +1547,8 @@ def _persist_reading(reading: dict) -> tuple:
             f.write(payload)
     except OSError:
         pass
-    if hasattr(load_readings_bank, "clear"):
-        load_readings_bank.clear()
+    if hasattr(_load_readings_bank_cached, "clear"):
+        _load_readings_bank_cached.clear()
     ok, info = _github_put_file(
         "readings_bank.json", payload,
         f"readings_bank: AI 生成新增「{reading.get('title','')}」（共 {len(bank)} 篇）")
@@ -2158,15 +2174,18 @@ def _generate_reading_into_session(topic: str, level: str) -> None:
     """
     with st.spinner(f"Gemini 生成「{topic}」({level})…"):
         new_reading = _gen_reading(topic, level, next(iter(_MODEL_MAP.keys())))
-    ok, info = _persist_reading(new_reading)  # 寫本機 + 推回 GitHub
     title = new_reading.get("title", "(無標題)")
+    # 不論存檔/推回成敗，一律先把生成結果放進 session，確保使用者一定看得到。
+    live = st.session_state.setdefault("live_readings", [])
+    live.insert(0, new_reading)
+    try:
+        ok, info = _persist_reading(new_reading)  # 寫本機 + 推回 GitHub
+    except Exception as e:  # noqa: BLE001 - 存檔出錯絕不影響「已生成」
+        ok, info = False, f"{type(e).__name__}: {e}"
     if ok:
         st.session_state["_reading_toast"] = f"{title}（已永久存入資料庫）"
     else:
-        # 推回失敗仍放進 session，至少本次看得到
-        live = st.session_state.setdefault("live_readings", [])
-        live.insert(0, new_reading)
-        st.session_state["_reading_toast"] = f"{title}（暫存本 session；永久保存失敗：{info}）"
+        st.session_state["_reading_toast"] = f"{title}（已生成，但永久保存失敗：{info}）"
 
 
 def view_subtitles() -> None:
@@ -2202,7 +2221,7 @@ def view_subtitles() -> None:
                 st.session_state["_sub_saved"] = ok
                 st.rerun()
             except Exception as e:  # noqa: BLE001
-                st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
+                st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
 
     lesson = st.session_state.get("_sub_result")
     if lesson and lesson.get("sentences"):
@@ -2260,7 +2279,7 @@ def view_reading() -> None:
             _generate_reading_into_session(topic, level)
             st.rerun()
         except Exception as e:  # noqa: BLE001
-            st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
+            st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
     live_now = st.session_state.get("live_readings", [])
     rc2.caption(f"🌱 本 session 已生成 **{len(live_now)}** 篇"
                 + ("（新的排在最上面）" if live_now else ""))
@@ -2280,7 +2299,7 @@ def view_reading() -> None:
                 _generate_reading_into_session(topic.strip() or "Daily life", level)
                 st.rerun()
             except Exception as e:  # noqa: BLE001
-                st.error(f"生成失敗：{type(e).__name__}: {str(e)[:300]}")
+                st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
         st.caption("💡 有設定 GITHUB_TOKEN 時，生成的閱讀會永久存進資料庫並越累積越多；"
                    "沒設定則僅留在本次瀏覽。")
 
@@ -2300,9 +2319,13 @@ def view_reading() -> None:
     for idx, passage in enumerate(all_passages):
         if idx == len(generated):
             st.markdown("### 📚 範例閱讀（離線範本，固定不變）")
+        # 防呆：AI 生成結果若缺關鍵欄位就跳過，不讓整頁崩潰
+        if not (passage.get("title") and isinstance(passage.get("sentences"), list)
+                and passage["sentences"]):
+            continue
         with st.expander(
             f"**{passage['title']}**　·　{passage.get('title_zh','')}　·　"
-            f"程度 {passage['level']}　·　{passage['summary']}"
+            f"程度 {passage.get('level','?')}　·　{passage.get('summary','')}"
         ):
             _embed_html(_build_reading_html(passage),
                         height=140 + 80 * len(passage["sentences"]) + 200)
