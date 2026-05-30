@@ -6912,45 +6912,51 @@
     "meaning_zh": "帳戶；說明",
     "kk": "[əˈkaʊnt]",
     "phonics": "uh-COUNT",
-    "homophone": "阿共",
-    "image": "『阿共』的帳戶有問題，需要說明清楚。",
-    "example_en": "Can you give me an account of what happened?",
-    "example_zh": "你能給我一個事情經過的說明嗎？",
-    "usage_zh": "用於要求或提供事件的詳細說明，常用 'give an account of sth'。",
+    "homophone": "阿坤特",
+    "image": "阿坤特帳戶裡有多少錢？請說明一下。",
+    "example_en": "I need to check my bank account.",
+    "example_zh": "我需要查一下我的銀行帳戶。",
+    "usage_zh": "常用於金融、商業情境,例如 'bank account', 'online account'；也可用於解釋某事,如 'give an account of something'。",
     "pos": "名詞 / 動詞",
     "other_forms": [
       {
         "word": "accountant",
         "pos": "名詞",
         "meaning_zh": "會計師",
-        "example": "My accountant handles all my taxes."
+        "example": "My accountant handles my taxes."
+      },
+      {
+        "word": "accountable",
+        "pos": "形容詞",
+        "meaning_zh": "應負責的",
+        "example": "You are accountable for your actions."
       }
     ]
   },
   "ticket": {
     "word": "ticket",
-    "meaning_zh": "票；罰單",
+    "meaning_zh": "票",
     "kk": "[ˈtɪkɪt]",
     "phonics": "TIH-kit",
     "homophone": "踢 kit",
-    "image": "你『踢』了那個『kit』，收到一張罰單！",
-    "example_en": "I need to buy a ticket for the train.",
-    "example_zh": "我需要買一張火車票。",
-    "usage_zh": "指各種票券，如電影票、車票，或交通違規罰單。",
+    "image": "用腳『踢 kit』，拿到電影票。",
+    "example_en": "Can I buy a ticket for the bus?",
+    "example_zh": "我可以買一張巴士票嗎？",
+    "usage_zh": "用於交通、活動、娛樂等,如 'train ticket', 'movie ticket', 'concert ticket'。",
     "pos": "名詞",
     "other_forms": []
   },
   "station": {
     "word": "station",
-    "meaning_zh": "車站；站點",
+    "meaning_zh": "站；台",
     "kk": "[ˈsteɪʃən]",
     "phonics": "STAY-shun",
-    "homophone": "死貼神",
-    "image": "『死貼神』般的站務員，堅守在車站。",
-    "example_en": "We arrived at the train station on time.",
-    "example_zh": "我們準時到達火車站。",
-    "usage_zh": "泛指各種交通運輸的起訖點，如火車站、巴士站、捷運站。",
-    "pos": "名詞 / 動詞",
+    "homophone": "詩帖神",
+    "image": "這位『詩帖神』守護著火車『站』。",
+    "example_en": "We got off at the next station.",
+    "example_zh": "我們在下一站下車。",
+    "usage_zh": "常用於交通樞紐,如 'train station', 'bus station', 'subway station'；也可指廣播電視的 'station'。",
+    "pos": "名詞",
     "other_forms": []
   },
   "airport": {
@@ -6958,11 +6964,11 @@
     "meaning_zh": "機場",
     "kk": "[ˈɛrˌpɔrt]",
     "phonics": "AIR-port",
-    "homophone": "愛跑特",
-    "image": "『愛跑特』的旅客，急著在機場趕飛機。",
-    "example_en": "The airport was very crowded today.",
-    "example_zh": "機場今天非常擁擠。",
-    "usage_zh": "專指航空站，機場。",
+    "homophone": "愛破",
+    "image": "飛機『愛』在『破』舊的『機場』起飛。",
+    "example_en": "The airport is very busy today.",
+    "example_zh": "機場今天很忙。",
+    "usage_zh": "指飛機起降的場所,是旅行中重要的地點。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -6971,11 +6977,11 @@
     "meaning_zh": "醫院",
     "kk": "[ˈhɑspɪtl]",
     "phonics": "HOS-pih-tul",
-    "homophone": "好撕屁股",
-    "image": "『好撕屁股』的病人，被送進醫院治療。",
-    "example_en": "She is recovering well in the hospital.",
-    "example_zh": "她在醫院恢復得很好。",
-    "usage_zh": "用於指醫療機構，醫院。",
+    "homophone": "耗死屁股",
+    "image": "把『屁股』『耗死』在『醫院』讓人很不舒服。",
+    "example_en": "He was taken to the hospital.",
+    "example_zh": "他被送往醫院。",
+    "usage_zh": "用於醫療、病痛相關的場合。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -6984,11 +6990,11 @@
     "meaning_zh": "醫生",
     "kk": "[ˈdɑktɚ]",
     "phonics": "DOK-ter",
-    "homophone": "倒喀特",
-    "image": "這位『倒喀特』的醫生，醫術高明。",
-    "example_en": "I need to make an appointment with the doctor.",
-    "example_zh": "我需要預約看醫生。",
-    "usage_zh": "指醫護人員，醫生。",
+    "homophone": "豆客",
+    "image": "這位『豆客』醫生醫術高明。",
+    "example_en": "I need to see a doctor.",
+    "example_zh": "我需要看醫生。",
+    "usage_zh": "泛指醫療專業人士,也可指博士學位持有者。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -6997,31 +7003,24 @@
     "meaning_zh": "病人；有耐心的",
     "kk": "[ˈpeɪʃənt]",
     "phonics": "PAY-shunt",
-    "homophone": "佩服腎",
-    "image": "『佩服腎』的病人，很有耐心等待治療。",
-    "example_en": "The patient is responding well to treatment.",
-    "example_zh": "這位病患對治療反應良好。",
-    "usage_zh": "指接受醫療照護的人；也可作形容詞，表示有耐心的。",
+    "homophone": "配神",
+    "image": "這位『配神』病人很有『耐心』。",
+    "example_en": "The patient is recovering well.",
+    "example_zh": "這位病人恢復得很好。",
+    "usage_zh": "作為名詞指病患；作為形容詞指有耐心的。",
     "pos": "名詞 / 形容詞",
-    "other_forms": [
-      {
-        "word": "patience",
-        "pos": "名詞",
-        "meaning_zh": "耐心",
-        "example": "Patience is a virtue."
-      }
-    ]
+    "other_forms": []
   },
   "medicine": {
     "word": "medicine",
-    "meaning_zh": "藥；醫學",
-    "kk": "[ˈmɛdəsən]",
-    "phonics": "MED-uh-sin",
-    "homophone": "麥的腎",
-    "image": "『麥的腎』出了問題，需要吃這個藥。",
-    "example_en": "Take this medicine twice a day.",
-    "example_zh": "一天吃兩次這個藥。",
-    "usage_zh": "指藥物或醫學領域。",
+    "meaning_zh": "藥",
+    "kk": "[ˈmɛdɪsən]",
+    "phonics": "MED-ih-sin",
+    "homophone": "買的سين",
+    "image": "這罐『買的سين』牌『藥』很有效。",
+    "example_en": "Take your medicine after meals.",
+    "example_zh": "飯後吃藥。",
+    "usage_zh": "指用於治療疾病的藥物。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -7029,38 +7028,32 @@
     "word": "health",
     "meaning_zh": "健康",
     "kk": "[hɛlθ]",
-    "phonics": "HELTH",
+    "phonics": "helth",
     "homophone": "黑死",
-    "image": "為了『黑死』的健康，我們要多運動。",
-    "example_en": "Good health is important for everyone.",
-    "example_zh": "良好的健康對每個人都很重要。",
-    "usage_zh": "指身體或心理上的健康狀態。",
+    "image": "吃太多垃圾食物會『黑死』你的『健康』。",
+    "example_en": "Good health is important.",
+    "example_zh": "健康很重要。",
+    "usage_zh": "指身體或精神上的良好狀態。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "healthy",
         "pos": "形容詞",
-        "meaning_zh": "健康的；健康的",
-        "example": "He eats healthy food."
-      },
-      {
-        "word": "healthful",
-        "pos": "形容詞",
-        "meaning_zh": "有益健康的",
-        "example": "Exercise is healthful."
+        "meaning_zh": "健康的",
+        "example": "Eat more vegetables for a healthy lifestyle."
       }
     ]
   },
   "exercise": {
     "word": "exercise",
     "meaning_zh": "運動；練習",
-    "kk": "[ˈɛksɚˌsaɪz]",
+    "kk": "[ˈɛksərˌsaɪz]",
     "phonics": "EK-ser-size",
-    "homophone": "艾克斯賽斯",
-    "image": "『艾克斯賽斯』在做運動，練練身體。",
-    "example_en": "Regular exercise is good for you.",
-    "example_zh": "規律運動對你有好處。",
-    "usage_zh": "指身體活動以促進健康，或指練習、演習。",
+    "homophone": "惡色塞",
+    "image": "『惡色塞』這個『運動』很難。",
+    "example_en": "I do exercise every morning.",
+    "example_zh": "我每天早上做運動。",
+    "usage_zh": "指體育鍛鍊或技能練習。",
     "pos": "名詞 / 動詞",
     "other_forms": []
   },
@@ -7069,70 +7062,77 @@
     "meaning_zh": "廚房",
     "kk": "[ˈkɪtʃən]",
     "phonics": "KITCH-un",
-    "homophone": "起嗔",
-    "image": "他『起嗔』了，在廚房大聲斥責。",
-    "example_en": "She loves cooking in her new kitchen.",
-    "example_zh": "她喜歡在她新廚房裡做飯。",
-    "usage_zh": "指準備食物的地方，廚房。",
+    "homophone": "起辰",
+    "image": "『起辰』了，趕快到『廚房』做早餐。",
+    "example_en": "The kitchen is messy.",
+    "example_zh": "廚房很亂。",
+    "usage_zh": "指家中烹飪食物的房間。",
     "pos": "名詞",
     "other_forms": []
   },
   "garden": {
     "word": "garden",
-    "meaning_zh": "花園；庭院",
+    "meaning_zh": "花園",
     "kk": "[ˈɡɑrdn]",
     "phonics": "GAR-dun",
-    "homophone": "嘎登",
-    "image": "『嘎登』的花園很漂亮，讓人心情愉悅。",
-    "example_en": "The roses in the garden are blooming.",
-    "example_zh": "花園裡的玫瑰正在盛開。",
-    "usage_zh": "指種植花草樹木的戶外區域，花園。",
-    "pos": "名詞 / 動詞",
-    "other_forms": []
+    "homophone": "嘎頓",
+    "image": "這『嘎頓』牌的除草劑可以用在『花園』。",
+    "example_en": "My mom loves gardening in the garden.",
+    "example_zh": "我媽喜歡在花園裡種植。",
+    "usage_zh": "指種植花草樹木的戶外區域。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "gardener",
+        "pos": "名詞",
+        "meaning_zh": "園丁",
+        "example": "We hired a gardener to maintain the lawn."
+      }
+    ]
   },
   "street": {
     "word": "street",
-    "meaning_zh": "街道；街",
+    "meaning_zh": "街道",
     "kk": "[strit]",
-    "phonics": "STREET",
-    "homophone": "死捉泥",
-    "image": "那個人『死捉泥』在街上，引起大家注意。",
-    "example_en": "The children are playing in the street.",
-    "example_zh": "孩子們正在街上玩耍。",
-    "usage_zh": "指連接建築物的道路，街道。",
+    "phonics": "street",
+    "homophone": "死瑞特",
+    "image": "這條『死瑞特』路是單行『街』。",
+    "example_en": "The street is crowded.",
+    "example_zh": "街道很擁擠。",
+    "usage_zh": "指供車輛和行人通行的道路,尤指城市或鄉村中的。",
     "pos": "名詞",
     "other_forms": []
   },
   "building": {
     "word": "building",
-    "meaning_zh": "建築物；建造",
+    "meaning_zh": "建築物",
     "kk": "[ˈbɪldɪŋ]",
     "phonics": "BUILD-ing",
-    "homophone": "比爾丁",
-    "image": "『比爾丁』蓋了一棟新建築物。",
-    "example_en": "That's a very tall building.",
-    "example_zh": "那是一棟非常高的建築物。",
-    "usage_zh": "指有牆壁和屋頂的結構物，建築物；也可指建造的動作。",
-    "pos": "名詞 / 動詞",
+    "homophone": "比爾鼎",
+    "image": "『比爾』在『鼎』力相助下蓋了這棟『建築物』。",
+    "example_en": "That's a tall building.",
+    "example_zh": "那是一棟高樓。",
+    "usage_zh": "指有屋頂和牆壁的構造物,如房屋、學校、辦公室等。",
+    "pos": "名詞",
     "other_forms": [
       {
         "word": "build",
         "pos": "動詞",
-        "meaning_zh": "建造；建立",
-        "example": "They are building a new bridge."
+        "meaning_zh": "建造",
+        "example": "They plan to build a new bridge."
       }
     ]
   },
   "office": {
     "word": "office",
-    "meaning_zh": "辦公室；辦公",
+    "meaning_zh": "辦公室",
     "kk": "[ˈɔfɪs]",
-    "phonics": "OF-fis",
-    "homophone": "喔佛斯",
-    "image": "『喔佛斯』的員工們都在辦公室工作。",
-    "example_en": "He works in a large office downtown.",
-    "example_zh": "他在市中心一個大辦公室工作。",
-    "usage_zh": "指提供行政、專業或商業服務的場所，辦公室。",
+    "phonics": "OFF-iss",
+    "homophone": "偶 miss",
+    "image": "我『偶』爾會『miss』掉『辦公室』的同事。",
+    "example_en": "He works in an office.",
+    "example_zh": "他在辦公室工作。",
+    "usage_zh": "指提供行政、商業或專業服務的場所。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -7140,12 +7140,12 @@
     "word": "factory",
     "meaning_zh": "工廠",
     "kk": "[ˈfæktəri]",
-    "phonics": "FAK-tuh-ree",
-    "homophone": "發克特瑞",
-    "image": "『發克特瑞』的工廠生產很多產品。",
+    "phonics": "FAC-tuh-ree",
+    "homophone": "發克 tree",
+    "image": "這棵『發克 tree』旁邊是個『工廠』。",
     "example_en": "The factory produces cars.",
     "example_zh": "這家工廠生產汽車。",
-    "usage_zh": "指製造商品的工業場所，工廠。",
+    "usage_zh": "指製造商品的場所。",
     "pos": "名詞",
     "other_forms": []
   },
@@ -7154,57 +7154,564 @@
     "meaning_zh": "環境",
     "kk": "[ɪnˈvaɪrənmənt]",
     "phonics": "in-VY-run-ment",
-    "homophone": "因壞人門特",
-    "image": "『因壞人門特』聚集，破壞了我們的環境。",
+    "homophone": "贏掰潤mint",
+    "image": "『贏』得『掰』掰『潤』喉糖比賽,改善『環境』。",
     "example_en": "We need to protect the environment.",
     "example_zh": "我們需要保護環境。",
-    "usage_zh": "指周圍的自然或人為條件，環境。",
+    "usage_zh": "指周圍的自然或人為條件。",
     "pos": "名詞",
     "other_forms": [
       {
         "word": "environmental",
         "pos": "形容詞",
         "meaning_zh": "環境的",
-        "example": "Environmental pollution is a serious issue."
+        "example": "Environmental protection is crucial."
       }
     ]
   },
   "nature": {
     "word": "nature",
-    "meaning_zh": "自然；性質",
-    "kk": "[ˈneɪtʃɚ]",
+    "meaning_zh": "大自然；天性",
+    "kk": "[ˈneɪtʃər]",
     "phonics": "NAY-cher",
-    "homophone": "餒扯",
-    "image": "『餒扯』了，大家在自然風景區嬉鬧。",
+    "homophone": "內雀",
+    "image": "這隻『內雀』是『大自然』的傑作。",
     "example_en": "I love spending time in nature.",
     "example_zh": "我喜歡在大自然中度過時光。",
-    "usage_zh": "指自然界；或事物的本質、屬性。",
+    "usage_zh": "指地球上的動植物、風景等非人造事物；也可指人的本質或品格。",
     "pos": "名詞",
     "other_forms": []
   },
   "season": {
     "word": "season",
-    "meaning_zh": "季節；調味",
-    "kk": "[ˈsizn]",
+    "meaning_zh": "季節",
+    "kk": "[ˈsizən]",
     "phonics": "SEE-zun",
-    "homophone": "西生",
-    "image": "『西生』了，這是四季的變化。",
+    "homophone": "西 زن",
+    "image": "那位『西』裝『 زن』子喜歡在每個『季節』出遊。",
     "example_en": "Summer is my favorite season.",
     "example_zh": "夏天是我最喜歡的季節。",
-    "usage_zh": "指一年中的特定時期，季節；也可指調味。",
-    "pos": "名詞 / 動詞",
+    "usage_zh": "指一年中的特定時期,如春夏秋冬。",
+    "pos": "名詞",
     "other_forms": []
   },
   "temperature": {
     "word": "temperature",
-    "meaning_zh": "溫度；體溫",
-    "kk": "[ˈtɛmpərətʃɚ]",
-    "phonics": "TEM-puh-ruh-cher",
-    "homophone": "天 pobre氣扯",
-    "image": "『天 pobre氣扯』，高溫的溫度讓人受不了。",
+    "meaning_zh": "溫度",
+    "kk": "[ˈtɛmprəˌtʃʊr]",
+    "phonics": "TEM-pruh-chur",
+    "homophone": "疼不 चूक",
+    "image": "『疼不 चूक』的『溫度』讓人受不了。",
     "example_en": "The temperature dropped suddenly.",
-    "example_zh": "溫度驟降。",
-    "usage_zh": "指熱或冷的程度，溫度；也指人體體溫。",
+    "example_zh": "溫度突然下降了。",
+    "usage_zh": "衡量熱或冷的程度。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "energy": {
+    "word": "energy",
+    "meaning_zh": "能量；精力",
+    "kk": "[ˈɛnərdʒi]",
+    "phonics": "EN-er-jee",
+    "homophone": "安兒吉",
+    "image": "『安兒吉』牌飲料給你滿滿『能量』。",
+    "example_en": "He has a lot of energy.",
+    "example_zh": "他精力充沛。",
+    "usage_zh": "指物理上的能量或個人的活力。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "machine": {
+    "word": "machine",
+    "meaning_zh": "機器",
+    "kk": "[məˈʃin]",
+    "phonics": "muh-SHEEN",
+    "homophone": "馬神",
+    "image": "這台『馬神』牌『機器』很難操作。",
+    "example_en": "This machine is broken.",
+    "example_zh": "這台機器壞了。",
+    "usage_zh": "指用於執行特定任務的設備。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "tool": {
+    "word": "tool",
+    "meaning_zh": "工具",
+    "kk": "[tul]",
+    "phonics": "tool",
+    "homophone": "圖",
+    "image": "這是『圖』書館裡的『工具』書。",
+    "example_en": "A hammer is a useful tool.",
+    "example_zh": "錘子是個有用的工具。",
+    "usage_zh": "指用於完成工作的器具。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "material": {
+    "word": "material",
+    "meaning_zh": "材料；素材",
+    "kk": "[məˈtɪriəl]",
+    "phonics": "muh-TEER-ee-ul",
+    "homophone": "馬提肉",
+    "image": "用『馬提肉』做的『材料』很特別。",
+    "example_en": "What material is this made of?",
+    "example_zh": "這是什麼材料做的？",
+    "usage_zh": "指製造物品的物質；也可指資訊來源。",
+    "pos": "名詞 / 形容詞",
+    "other_forms": []
+  },
+  "knowledge": {
+    "word": "knowledge",
+    "meaning_zh": "知識",
+    "kk": "[ˈnɑlɪdʒ]",
+    "phonics": "NOL-ij",
+    "homophone": "腦力",
+    "image": "『腦力』是『知識』的來源。",
+    "example_en": "He has a lot of knowledge.",
+    "example_zh": "他知識淵博。",
+    "usage_zh": "指透過學習或經驗獲得的資訊和理解。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "experience": {
+    "word": "experience",
+    "meaning_zh": "經驗；經歷",
+    "kk": "[ɪkˈspɪriəns]",
+    "phonics": "ik-SPEER-ee-uns",
+    "homophone": "一克啤酒三",
+    "image": "喝『一克啤酒三』杯的『經驗』很豐富。",
+    "example_en": "I have no experience in this field.",
+    "example_zh": "我在這個領域沒有經驗。",
+    "usage_zh": "指親身參與或感受到的事物；也可指技能或知識。",
+    "pos": "名詞 / 動詞",
+    "other_forms": []
+  },
+  "opportunity": {
+    "word": "opportunity",
+    "meaning_zh": "機會",
+    "kk": "[ˌɑpərˈtunəti]",
+    "phonics": "op-er-TOO-nih-tee",
+    "homophone": "阿婆吞鵝屁",
+    "image": "『阿婆』『吞鵝屁』後得到了『機會』。",
+    "example_en": "This is a great opportunity.",
+    "example_zh": "這是一個絕佳的機會。",
+    "usage_zh": "指有利的時機或情況。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "decision": {
+    "word": "decision",
+    "meaning_zh": "決定",
+    "kk": "[dɪˈsɪʒən]",
+    "phonics": "dih-SIZH-un",
+    "homophone": "低西振",
+    "image": "『低西振』動了，做出了『決定』。",
+    "example_en": "It was a difficult decision.",
+    "example_zh": "這是一個艱難的決定。",
+    "usage_zh": "指經過思考後做出的選擇。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "decide",
+        "pos": "動詞",
+        "meaning_zh": "決定",
+        "example": "I can't decide what to wear."
+      }
+    ]
+  },
+  "reason": {
+    "word": "reason",
+    "meaning_zh": "原因；理由",
+    "kk": "[ˈrizən]",
+    "phonics": "REE-zun",
+    "homophone": "哩損",
+    "image": "『哩』『損』了多少錢？這是『原因』。",
+    "example_en": "What's the reason for this?",
+    "example_zh": "這是什麼原因？",
+    "usage_zh": "指導致某事發生或解釋某事的原因。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "result": {
+    "word": "result",
+    "meaning_zh": "結果",
+    "kk": "[rɪˈzʌlt]",
+    "phonics": "rih-ZULT",
+    "homophone": "蕊搜",
+    "image": "『蕊』開了，這是努力的『結果』。",
+    "example_en": "What was the result of the exam?",
+    "example_zh": "考試結果如何？",
+    "usage_zh": "指某行動或過程的結束狀態。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "resulting",
+        "pos": "形容詞",
+        "meaning_zh": "結果的",
+        "example": "The resulting chaos was unexpected."
+      }
+    ]
+  },
+  "effect": {
+    "word": "effect",
+    "meaning_zh": "效果；影響",
+    "kk": "[ɪˈfɛkt]",
+    "phonics": "ih-FECT",
+    "homophone": "一fack",
+    "image": "這『一fack』牌的藥有很好的『效果』。",
+    "example_en": "The drug had a positive effect.",
+    "example_zh": "這藥物產生了正面效果。",
+    "usage_zh": "指由某事引起或產生的變化；常與 'cause' 相對。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "affect",
+        "pos": "動詞",
+        "meaning_zh": "影響",
+        "example": "The weather will affect our plans."
+      }
+    ]
+  },
+  "purpose": {
+    "word": "purpose",
+    "meaning_zh": "目的；用途",
+    "kk": "[ˈpɜrpəs]",
+    "phonics": "PUR-pus",
+    "homophone": "噴屁死",
+    "image": "『噴』了『屁』，『死』了，這不是我的『目的』。",
+    "example_en": "What is the purpose of this meeting?",
+    "example_zh": "這次會議的目的是什麼？",
+    "usage_zh": "指想要達到的目標或事物的預期用途。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "goal": {
+    "word": "goal",
+    "meaning_zh": "目標；得分",
+    "kk": "[ɡol]",
+    "phonics": "gohl",
+    "homophone": "勾",
+    "image": "在足球賽中踢進『勾』，就是『得分』。",
+    "example_en": "My goal is to finish the marathon.",
+    "example_zh": "我的目標是完成馬拉松。",
+    "usage_zh": "指想要達成的成就；在體育比賽中指得分。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "success": {
+    "word": "success",
+    "meaning_zh": "成功",
+    "kk": "[səkˈsɛs]",
+    "phonics": "suk-CESS",
+    "homophone": " suck 塞死",
+    "image": "『 suck 塞死』了，但最終獲得了『成功』。",
+    "example_en": "Hard work leads to success.",
+    "example_zh": "努力工作帶來成功。",
+    "usage_zh": "指達成預期目標或取得良好成就。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "successful",
+        "pos": "形容詞",
+        "meaning_zh": "成功的",
+        "example": "It was a successful project."
+      },
+      {
+        "word": "succeed",
+        "pos": "動詞",
+        "meaning_zh": "成功；繼任",
+        "example": "I hope I succeed in my new venture."
+      }
+    ]
+  },
+  "failure": {
+    "word": "failure",
+    "meaning_zh": "失敗",
+    "kk": "[ˈfeɪljər]",
+    "phonics": "FAY-lyer",
+    "homophone": "廢了",
+    "image": "他『廢了』，這是個『失敗』的嘗試。",
+    "example_en": "Failure is the mother of success.",
+    "example_zh": "失敗是成功之母。",
+    "usage_zh": "指未能達成目標或期望。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "fail",
+        "pos": "動詞",
+        "meaning_zh": "失敗",
+        "example": "Don't fail to attend the meeting."
+      }
+    ]
+  },
+  "mistake": {
+    "word": "mistake",
+    "meaning_zh": "錯誤",
+    "kk": "[mɪˈsteɪk]",
+    "phonics": "mih-STAYK",
+    "homophone": "米斯特",
+    "image": "『米斯特』犯了個大『錯誤』。",
+    "example_en": "I made a mistake.",
+    "example_zh": "我犯了個錯誤。",
+    "usage_zh": "指不正確的行為、判斷或陳述。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "mistaken",
+        "pos": "形容詞",
+        "meaning_zh": "錯誤的",
+        "example": "He was mistaken about the time."
+      }
+    ]
+  },
+  "advice": {
+    "word": "advice",
+    "meaning_zh": "建議",
+    "kk": "[ədˈvaɪs]",
+    "phonics": "ad-VICE",
+    "homophone": "愛 advice",
+    "image": "我很『愛』聽你的『建議』。",
+    "example_en": "Can you give me some advice?",
+    "example_zh": "你能給我一些建議嗎？",
+    "usage_zh": "指為他人提供的指導或意見；通常是不可數名詞。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "advise",
+        "pos": "動詞",
+        "meaning_zh": "建議",
+        "example": "I advise you to study harder."
+      }
+    ]
+  },
+  "opinion": {
+    "word": "opinion",
+    "meaning_zh": "意見",
+    "kk": "[əˈpɪnjən]",
+    "phonics": "uh-PIN-yun",
+    "homophone": "惡屁眼",
+    "image": "『惡屁眼』的『意見』沒人想聽。",
+    "example_en": "What's your opinion on this?",
+    "example_zh": "你對這個有什麼意見？",
+    "usage_zh": "指個人對某事的看法或判斷。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "fact": {
+    "word": "fact",
+    "meaning_zh": "事實",
+    "kk": "[fækt]",
+    "phonics": "fact",
+    "homophone": "發克",
+    "image": "『發克』！這就是『事實』！",
+    "example_en": "That's a fact.",
+    "example_zh": "那是事實。",
+    "usage_zh": "指真實存在或發生過的事情。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "factual",
+        "pos": "形容詞",
+        "meaning_zh": "事實的",
+        "example": "The report was factual and accurate."
+      }
+    ]
+  },
+  "truth": {
+    "word": "truth",
+    "meaning_zh": "真相；真理",
+    "kk": "[truθ]",
+    "phonics": "truth",
+    "homophone": "truth",
+    "image": "說出『truth』，這就是『真相』。",
+    "example_en": "Tell me the truth.",
+    "example_zh": "告訴我真相。",
+    "usage_zh": "指符合現實或真實的事物。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "truthful",
+        "pos": "形容詞",
+        "meaning_zh": "誠實的",
+        "example": "He is always truthful."
+      }
+    ]
+  },
+  "culture": {
+    "word": "culture",
+    "meaning_zh": "文化",
+    "kk": "[ˈkʌltʃər]",
+    "phonics": "CUL-cher",
+    "homophone": "褲子",
+    "image": "穿著『褲子』跳舞是某種『文化』。",
+    "example_en": "Chinese culture is rich.",
+    "example_zh": "中華文化博大精深。",
+    "usage_zh": "指一個民族或社群的藝術、習俗、信仰等。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "cultural",
+        "pos": "形容詞",
+        "meaning_zh": "文化的",
+        "example": "We visited many cultural sites."
+      }
+    ]
+  },
+  "society": {
+    "word": "society",
+    "meaning_zh": "社會",
+    "kk": "[səˈsaɪəti]",
+    "phonics": "suh-SY-uh-tee",
+    "homophone": "殺衣踢",
+    "image": "『殺』了『衣』服，『踢』了鞋子，這就是『社會』?",
+    "example_en": "Society has changed a lot.",
+    "example_zh": "社會改變了很多。",
+    "usage_zh": "指一個國家或地區的總體人民及其組織。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "societal",
+        "pos": "形容詞",
+        "meaning_zh": "社會的",
+        "example": "Societal norms are evolving."
+      }
+    ]
+  },
+  "economy": {
+    "word": "economy",
+    "meaning_zh": "經濟",
+    "kk": "[ɪˈkɑnəmi]",
+    "phonics": "ih-KON-uh-mee",
+    "homophone": "一空泥",
+    "image": "『一空』房子『泥』房子，這是『經濟』衰退的象徵。",
+    "example_en": "The economy is growing.",
+    "example_zh": "經濟正在增長。",
+    "usage_zh": "指國家的財富生產、分配和消費。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "economic",
+        "pos": "形容詞",
+        "meaning_zh": "經濟的",
+        "example": "Economic growth is slowing down."
+      },
+      {
+        "word": "economist",
+        "pos": "名詞",
+        "meaning_zh": "經濟學家",
+        "example": "The economist predicted a recession."
+      }
+    ]
+  },
+  "technology": {
+    "word": "technology",
+    "meaning_zh": "科技；技術",
+    "kk": "[tɛkˈnɑlədʒi]",
+    "phonics": "tek-NOL-uh-jee",
+    "homophone": "特過你了雞",
+    "image": "『特過你了雞』，這就是『科技』的進步。",
+    "example_en": "Technology has changed our lives.",
+    "example_zh": "科技改變了我們的生活。",
+    "usage_zh": "指應用科學的知識來創造工具、系統和過程。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "technological",
+        "pos": "形容詞",
+        "meaning_zh": "科技的",
+        "example": "Technological advancements are rapid."
+      }
+    ]
+  },
+  "science": {
+    "word": "science",
+    "meaning_zh": "科學",
+    "kk": "[ˈsaɪəns]",
+    "phonics": "SY-uns",
+    "homophone": "塞恩斯",
+    "image": "『塞恩斯』博士是個『科學』家。",
+    "example_en": "Science helps us understand the world.",
+    "example_zh": "科學幫助我們理解世界。",
+    "usage_zh": "指對自然現象進行系統性研究的知識和方法。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "scientific",
+        "pos": "形容詞",
+        "meaning_zh": "科學的",
+        "example": "We need a scientific approach."
+      }
+    ]
+  },
+  "subject": {
+    "word": "subject",
+    "meaning_zh": "主題；科目；主詞",
+    "kk": "[ˈsʌbdʒɪkt]",
+    "phonics": "SUB-jekt",
+    "homophone": "撒不結克",
+    "image": "『撒不結克』服，這是今天演講的『主題』。",
+    "example_en": "Math is my favorite subject.",
+    "example_zh": "數學是我最喜歡的科目。",
+    "usage_zh": "指討論或研究的中心內容；學校的教學內容；語法中的主語。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "lesson": {
+    "word": "lesson",
+    "meaning_zh": "課程；教訓",
+    "kk": "[ˈlɛsən]",
+    "phonics": "LESS-un",
+    "homophone": "累損",
+    "image": "學費『累損』了，這是個昂貴的『課程』。",
+    "example_en": "This is my first piano lesson.",
+    "example_zh": "這是我的第一堂鋼琴課。",
+    "usage_zh": "指教學內容或透過經驗學到的事。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "exam": {
+    "word": "exam",
+    "meaning_zh": "考試",
+    "kk": "[ɪɡˈzæm]",
+    "phonics": "ig-ZAM",
+    "homophone": "一乾",
+    "image": "『一乾』杯，祝你『考試』順利！",
+    "example_en": "I have an exam tomorrow.",
+    "example_zh": "我明天有考試。",
+    "usage_zh": "指評估知識或技能的測試。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "examination",
+        "pos": "名詞",
+        "meaning_zh": "考試；檢查",
+        "example": "The doctor gave me a thorough examination."
+      }
+    ]
+  },
+  "traffic": {
+    "word": "traffic",
+    "meaning_zh": "交通；車流",
+    "kk": "[ˈtræfɪk]",
+    "phonics": "TRAFF-ick",
+    "homophone": "特辣fick",
+    "image": "『特辣fick』醬讓『交通』更塞了。",
+    "example_en": "There is heavy traffic.",
+    "example_zh": "交通很擁擠。",
+    "usage_zh": "指車輛、行人等的流動。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "journey": {
+    "word": "journey",
+    "meaning_zh": "旅程；過程",
+    "kk": "[ˈdʒɜrni]",
+    "phonics": "JER-nee",
+    "homophone": "節日",
+    "image": "每個『節日』都是一段特別的『旅程』。",
+    "example_en": "It was a long journey.",
+    "example_zh": "那是一段漫長的旅程。",
+    "usage_zh": "指長途旅行或人生中的一段過程。",
     "pos": "名詞",
     "other_forms": []
   }
