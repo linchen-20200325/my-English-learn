@@ -897,7 +897,8 @@ def view_vocab() -> None:
     # Deck = 使用者自管單字 ∪ vocab_bank.json 的字(以 bank 補上,使用者管理區仍在下方)
     file_bank = load_vocab_bank()
     live_bank = st.session_state.get("live_bank", {})
-    full_bank = {**file_bank, **live_bank}
+    synced = st.session_state.get("synced_bank", {})
+    full_bank = {**file_bank, **synced, **live_bank}
     user_keys = {w["word"].lower() for w in words}
     deck = list(words) + [
         {"id": f"bank:{k}", "word": k,
@@ -1697,7 +1698,8 @@ def _push_bank_to_github(silent: bool = False) -> bool:
 
     file_bank = load_vocab_bank()
     live = st.session_state.get("live_bank", {})
-    merged = {**file_bank, **live}
+    synced = st.session_state.get("synced_bank", {})
+    merged = {**file_bank, **synced, **live}
     payload_json = json.dumps(merged, ensure_ascii=False, indent=2) + "\n"
 
     api = f"https://api.github.com/repos/{repo}/contents/{path}"
@@ -1772,16 +1774,17 @@ def _push_bank_to_github(silent: bool = False) -> bool:
             st.success(f"✅ 已推回 GitHub commit `{commit_sha}` 到 `{repo}@{branch}`("
                        f"+{len(live)} 字)。Cloud 自動重新部署後永久保存。")
         st.session_state.pop("_push_error", None)  # 成功就清掉錯誤紀錄
-        # 同步寫回「本機」vocab_bank.json：否則本機檔仍是部署當下的舊版，
-        # 清掉 live_bank 後畫面會誤顯示舊字數（使用者回報的「資料庫不會更新」）。
-        # 寫本機後 load_vocab_bank 立刻讀到合併結果，數字即時更新；遠端也已是同一份。
+        # 嘗試寫本機（Streamlit Cloud 的 /mount/src 多為唯讀，會靜默失敗，故不依賴它）。
         try:
             with open(VOCAB_BANK_FILE, "w", encoding="utf-8") as f:
                 f.write(payload_json)
         except OSError:
             pass
-        st.session_state["live_bank"] = {}
         load_vocab_bank.clear() if hasattr(load_vocab_bank, "clear") else None
+        # 關鍵：把已推回的字移進「session 已同步層」（不清掉），畫面才會立刻顯示新總數
+        # 而非讀到部署當下的舊本機檔（唯讀寫不進去）。重新部署後本機檔才會追上。
+        st.session_state.setdefault("synced_bank", {}).update(live)
+        st.session_state["live_bank"] = {}
         return True
     except urllib.error.HTTPError as e:
         body_text = e.read().decode("utf-8", "replace")
@@ -1974,12 +1977,29 @@ def _persist_grammar(items: list, level: str) -> tuple:
     return added, ok
 
 
+def _grammar_for_level(level: str) -> list:
+    """合併「部署檔 + 本 session 生成」的文法（去重），確保生成後立刻看得到。
+
+    Streamlit Cloud 的 /mount/src 唯讀，寫本機會失敗，故顯示一律疊上 session 生成的內容。
+    """
+    sess = st.session_state.get("_sess_grammar", [])
+    out, seen = [], set()
+    for g in list(load_grammar_bank()) + list(sess):
+        if g.get("level") != level:
+            continue
+        if g.get("point") in seen:
+            continue
+        seen.add(g.get("point"))
+        out.append(g)
+    return out
+
+
 def view_grammar() -> None:
     """📐 文法生成：AI 依程度生成不重複文法，存進資料庫持續長大。"""
     st.caption("英文沒有內建文法庫——這裡用 AI 依程度生成核心文法/句型，"
                "每次都不重複，並永久存進資料庫越累積越多。")
     level = st.radio("程度", ["A2", "B1", "B2", "C1"], horizontal=True, key="gram_level")
-    bank = [g for g in load_grammar_bank() if g.get("level") == level]
+    bank = _grammar_for_level(level)
 
     if st.session_state.pop("_gram_saved", None) is not None:
         st.success(f"已生成並存進文法資料庫！{level} 現有 {len(bank)} 條。")
@@ -1995,8 +2015,13 @@ def view_grammar() -> None:
                 with st.spinner("AI 生成中…"):
                     items = _gen_grammar_batch(level, [g["point"] for g in bank], int(n))
                 if items:
-                    added, _ok = _persist_grammar(items, level)
-                    st.session_state["_gram_saved"] = added
+                    # 先放進 session 疊加層 → 立刻看得到（不依賴唯讀本機檔）
+                    st.session_state.setdefault("_sess_grammar", []).extend(items)
+                    try:
+                        _persist_grammar(items, level)  # 推回 GitHub 永久保存
+                    except Exception:  # noqa: BLE001
+                        pass
+                    st.session_state["_gram_saved"] = len(items)
                     st.rerun()
                 else:
                     st.warning("這次沒有產生新的（可能與既有重複），請再試一次。")
@@ -2557,7 +2582,8 @@ def view_vocab_bank() -> None:
         )
     file_bank = load_vocab_bank()
     live_bank = st.session_state.setdefault("live_bank", {})
-    bank = {**file_bank, **live_bank}
+    synced = st.session_state.get("synced_bank", {})
+    bank = {**file_bank, **synced, **live_bank}
     api_key = get_api_key()
 
     with st.expander("🤖 用 AI 在雲端即時生成（無需本機）", expanded=not bank):
@@ -2656,9 +2682,11 @@ def view_vocab_bank() -> None:
                     st.error(f"生成失敗：{e}")
         st.caption(
             f"詞表 {len(__import__('scripts.generate_vocab', fromlist=['load_wordlist']).load_wordlist())} 字"
-            f"　·　已完成 {len(bank)} 字"
-            f"　·　📁 repo 已存 {len(file_bank)} 字 / 🌱 session 新增 {len(live_bank)} 字"
+            f"　·　已完成 **{len(bank)}** 字"
+            f"　·　📁 部署檔 {len(file_bank)} / ☁️ 已推 GitHub {len(synced)} / 🌱 待推 {len(live_bank)}"
         )
+        if synced:
+            st.caption("💡 ☁️ 已推 GitHub 的字本次就看得到；Cloud 下次重新部署後會併入部署檔。")
         last_push = st.session_state.get("_last_push")
         if last_push:
             if last_push["ok"]:
