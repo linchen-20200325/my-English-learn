@@ -1,1 +1,76 @@
-[]
+[
+  {
+    "id": "interview-self-intro-b1",
+    "title": "面試自我介紹",
+    "level": "B1",
+    "scene": "應徵者在面試時向面試官介紹自己。",
+    "lines": [
+      {
+        "speaker": "Interviewer",
+        "en": "Please, have a seat. Can you tell me about yourself?",
+        "zh": "請坐。可以請你介紹一下你自己嗎？"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "Thank you. I'm a recent graduate with a degree in Marketing.",
+        "zh": "謝謝。我是一位剛畢業的學生，主修行銷。"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "During my studies, I gained practical experience through internships.",
+        "zh": "在學期間，我透過實習獲得了實務經驗。"
+      },
+      {
+        "speaker": "Interviewer",
+        "en": "That's great. What are your strengths?",
+        "zh": "那很好。你的優勢是什麼？"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "I'm a quick learner and very adaptable to new situations.",
+        "zh": "我學習能力強，也很能適應新情況。"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "I also enjoy working in a team environment.",
+        "zh": "我也很喜歡團隊合作的環境。"
+      },
+      {
+        "speaker": "Interviewer",
+        "en": "Excellent. And what are you looking for in this role?",
+        "zh": "很好。你對這個職位有什麼期望？"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "I'm eager to apply my skills and contribute to your company's success.",
+        "zh": "我渴望運用我的技能，為貴公司的成功貢獻心力。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple for past experiences",
+        "explain": "使用過去式描述過去的經驗。",
+        "examples": [
+          "I gained practical experience.",
+          "I enjoyed working in a team."
+        ]
+      },
+      {
+        "point": "Present Simple for current states and general truths",
+        "explain": "使用現在式描述現在的狀態或普遍事實。",
+        "examples": [
+          "I'm a recent graduate.",
+          "I'm eager to apply my skills."
+        ]
+      },
+      {
+        "point": "Phrases for expressing enthusiasm",
+        "explain": "表達積極或熱情的常用片語。",
+        "examples": [
+          "I'm eager to...",
+          "I enjoy..."
+        ]
+      }
+    ]
+  }
+]
