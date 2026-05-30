@@ -1233,31 +1233,38 @@ def view_generate() -> None:
         )
     else:
         st.caption("供應商：**Google Gemini**")
+        rand_clicked = st.button("🎲 隨機生成情境", type="primary",
+                                 use_container_width=True, key="gen_rand")
         with st.form("gen_form", clear_on_submit=False):
             scenario = st.text_input(
-                "目標情境",
+                "目標情境（自己指定）",
                 placeholder="例如：在咖啡廳跟店員點餐，並反映飲料做錯了",
             )
             model_label = st.selectbox("生成模型", GEN_MODEL_TIERS)
             submitted = st.form_submit_button("生成 ✨", type="primary")
 
-        if submitted:
-            if not scenario.strip():
-                st.warning("請先輸入情境。")
+        target, tier = None, next(iter(GEN_MODEL_TIERS))
+        if rand_clicked:
+            target = random.choice(_DIALOGUE_TOPICS)
+        elif submitted:
+            if scenario.strip():
+                target, tier = scenario.strip(), model_label
             else:
-                with st.spinner("生成中…"):
-                    try:
-                        raw = generate_material(scenario.strip(), model_label)
-                        mermaid, cards = parse_blocks(raw)
-                        st.session_state.gen_result = {
-                            "scenario": scenario.strip(),
-                            "mermaid": mermaid,
-                            "flashcards": cards or [],
-                            "raw": raw,
-                        }
-                    except Exception as e:  # noqa: BLE001 — 對使用者顯示友善訊息
-                        st.session_state.gen_result = None
-                        st.error(f"生成失敗：{e}")
+                st.warning("請先輸入情境，或直接按上方「🎲 隨機生成情境」。")
+        if target:
+            with st.spinner(f"AI 生成「{target}」中…"):
+                try:
+                    raw = generate_material(target, tier)
+                    mermaid, cards = parse_blocks(raw)
+                    st.session_state.gen_result = {
+                        "scenario": target,
+                        "mermaid": mermaid,
+                        "flashcards": cards or [],
+                        "raw": raw,
+                    }
+                except Exception as e:  # noqa: BLE001
+                    st.session_state.gen_result = None
+                    st.error(_friendly_gen_error(f"{type(e).__name__}: {e}"))
 
     result = st.session_state.get("gen_result")
     if result:
