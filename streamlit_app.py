@@ -532,6 +532,62 @@ def _gen_morph_examples(cat_zh: str, m: str, zh: str,
     return out[:n]
 
 
+_NEW_MORPH_PROMPT = """你是英文構詞學專家。請補 {n} 個全新的英文「{cat}」(目前清單沒有的),
+程度 B1-C1 常見實用、學習者該認識。
+
+不可使用以下已有的 morpheme(無論大小寫):
+{existing_m}
+
+輸出嚴格 JSON array,每筆物件含三欄:
+- "m": 該字首/字根/字尾的形式。字首結尾要 dash(例 "auto-"、"semi-");字尾開頭要 dash
+  (例 "-able"、"-tion");多變體用空白隔開(例 "in- im-")。字根不加 dash。
+- "zh": 繁中意思(精簡,1-2 詞,可用「／」分隔多義)
+- "ex": 3 個常見英文例字(全小寫,陣列)
+
+# 範例
+- 字首:{{"m":"semi-","zh":"半／部分","ex":["semifinal","semicircle","semicolon"]}}
+- 字根:{{"m":"voc voke","zh":"叫喚／聲音","ex":["vocal","provoke","advocate"]}}
+- 字尾:{{"m":"-fy","zh":"使…成為","ex":["simplify","clarify","modify"]}}
+
+只輸出 JSON array,前後無任何文字、無 markdown。
+"""
+
+
+def _gen_new_morphemes(cat_zh: str, existing_m: list, n: int) -> list:
+    """請 Gemini 補 n 個全新的字首/字根/字尾條目(不重複 existing_m)。回 list of {m,zh,ex}。"""
+    prompt = _NEW_MORPH_PROMPT.format(cat=cat_zh, n=n, existing_m=existing_m)
+    text = _llm_generate(prompt, f"補 {n} 個新{cat_zh}",
+                         next(iter(_MODEL_MAP.keys())), max_tokens=800)
+    mm = re.search(r"\[[\s\S]*\]", text)
+    if not mm:
+        return []
+    try:
+        items = json.loads(mm.group(0))
+    except json.JSONDecodeError:
+        return []
+    exist_lower = {str(m).strip().lower() for m in existing_m}
+    out = []
+    for it in items:
+        if not isinstance(it, dict):
+            continue
+        m = str(it.get("m", "")).strip().lower()
+        zh = str(it.get("zh", "")).strip()
+        ex = it.get("ex", [])
+        if not m or not zh or not isinstance(ex, list):
+            continue
+        if m in exist_lower or m in {x["m"] for x in out}:
+            continue
+        # ex 清洗
+        clean_ex = []
+        for w in ex:
+            ww = str(w).strip().lower()
+            if ww and re.match(r"^[a-z][a-z\-']*$", ww) and ww not in clean_ex:
+                clean_ex.append(ww)
+        if clean_ex:
+            out.append({"m": m, "zh": zh, "ex": clean_ex[:6]})
+    return out[:n]
+
+
 def _sanitize_mermaid(text: str) -> str:
     """清潔 Gemini 產出的 mermaid 文字,避免常見解析失敗:
     - 移除節點標籤 `["..."]` 內部的半形括號(常被當形狀語法),改全形
@@ -1574,11 +1630,14 @@ def view_morphology() -> None:
         )
     st.caption("離線字根字首字尾樹狀圖 + SEED 單字台味諧音速記，完全不需 API。")
 
-    # AI 額外例字:每次 render 從檔案 + session 合併,生成後寫檔(永久保存)
+    # AI 額外例字 + 新 morpheme:從檔案 + session 合併,生成後寫檔(永久保存)
     file_morph = load_morph_examples()
     sess = st.session_state.setdefault("live_morph_ex",
-                                        {"pre": {}, "root": {}, "suf": {}})
-    # 合併(檔案+session 同 key 取集合並集,保持順序)
+                                        {"pre": {}, "root": {}, "suf": {},
+                                         "new_pre": [], "new_root": [], "new_suf": []})
+    # 確保 6 個 key 都存在(向後相容舊 session)
+    for k in ("new_pre", "new_root", "new_suf"):
+        sess.setdefault(k, [])
     live = {}
     for k in ("pre", "root", "suf"):
         merged_k = {}
@@ -1589,17 +1648,29 @@ def view_morphology() -> None:
                     if w not in bucket:
                         bucket.append(w)
         live[k] = merged_k
+    # 新 morpheme:合併檔案 + session,以 m 為 key 去重(檔案優先)
+    for k in ("new_pre", "new_root", "new_suf"):
+        seen_m = set()
+        merged_list = []
+        for it in list(file_morph.get(k, [])) + list(sess.get(k, [])):
+            if isinstance(it, dict) and it.get("m") and it["m"] not in seen_m:
+                seen_m.add(it["m"])
+                merged_list.append(it)
+        live[k] = merged_list
 
     tab1, tab2, tab3 = st.tabs(["字首 Prefix", "字中 Root", "字尾 Suffix"])
-    for tab, title, items, key, cat_zh in (
+    for tab, title, items_base, key, cat_zh in (
         (tab1, "字首 Prefix", PREFIXES, "pre", "字首"),
         (tab2, "字中 Root", ROOTS, "root", "字根"),
         (tab3, "字尾 Suffix", SUFFIXES, "suf", "字尾"),
     ):
         with tab:
+            # 包含 AI 新增的 morphemes
+            new_items = live[f"new_{key}"]
+            items = list(items_base) + new_items
             options = [f"{it['m']} · {it['zh']}" for it in items]
             picked = st.multiselect(
-                f"挑選想看的（不選 = 全部 {len(items)} 個）",
+                f"挑選想看的（不選 = 全部 {len(items)} 個,含 AI 新增 {len(new_items)}）",
                 options,
                 key=f"morph_pick_{key}",
                 placeholder="例如：anti-, pre-, dis-",
@@ -1657,13 +1728,57 @@ def view_morphology() -> None:
             elif picked and not get_api_key():
                 st.caption("設好 Gemini key 後,選 1-3 個目標就可用 AI 補例字。")
 
+            # 🆕 用 AI 補全新 morpheme(本分類目前沒有的)
+            if get_api_key():
+                with st.expander(f"🆕 用 AI 補全新{cat_zh}條目(不重複既有)"):
+                    n_new = st.number_input(
+                        f"一次補幾個新{cat_zh}", min_value=1, max_value=10, value=3,
+                        step=1, key=f"morph_newn_{key}",
+                    )
+                    if st.button(f"🆕 生成新{cat_zh}",
+                                 key=f"morph_newgen_{key}", type="primary"):
+                        try:
+                            existing_m = [it["m"] for it in items_base] + [
+                                it["m"] for it in new_items]
+                            with st.spinner(f"Gemini 補新{cat_zh}…"):
+                                fresh = _gen_new_morphemes(
+                                    cat_zh, existing_m, int(n_new))
+                            if not fresh:
+                                st.warning("Gemini 沒回任何新條目,可能本分類已涵蓋大部分常見項。")
+                            else:
+                                sess[f"new_{key}"].extend(fresh)
+                                # 寫回檔案
+                                live_for_save = {**live,
+                                                 f"new_{key}": list(live[f"new_{key}"]) + fresh}
+                                save_morph_examples(live_for_save)
+                                # 有 token 自動推回
+                                if get_github_token():
+                                    _push_file_to_github(
+                                        MORPH_EXAMPLES_FILE,
+                                        "morph_examples_bank.json",
+                                        f"morph_examples: +{len(fresh)} 新{cat_zh}",
+                                    )
+                                st.success(f"✅ 新增 {len(fresh)} 個新{cat_zh}: "
+                                           + ", ".join(f["m"] for f in fresh))
+                                st.rerun()
+                        except Exception as e:  # noqa: BLE001
+                            st.error(f"生成失敗:{type(e).__name__}: {str(e)[:200]}")
+
             with st.expander("檢視清單"):
                 for it in items:
-                    st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
+                    is_new = it in new_items
+                    tag = "🆕 " if is_new else ""
+                    st.markdown(
+                        f"- {tag}**{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}"
+                    )
 
-    # 🔀 一鍵把累積的 AI 例字回流進 morphology.py 預設清單(永久內建)
+    # 🔀 一鍵把累積的 AI 例字 + 新 morpheme 回流進 morphology.py 預設清單
     file_morph = load_morph_examples()
-    pending_count = sum(len(v) for cat in file_morph.values() for v in cat.values())
+    pending_ex = sum(len(v) for k in ("pre", "root", "suf")
+                     for v in file_morph.get(k, {}).values())
+    pending_new = sum(len(file_morph.get(k, []))
+                      for k in ("new_pre", "new_root", "new_suf"))
+    pending_count = pending_ex + pending_new
     if pending_count > 0:
         st.divider()
         st.markdown(f"#### 🔀 把累積的 **{pending_count}** 個 AI 例字回流進 morphology.py 預設清單")
@@ -1763,13 +1878,27 @@ def load_vocab_bank() -> dict:
 # ---------------------------------------------------------------------------
 @st.cache_data
 def _load_morph_examples_cached(_mtime: float) -> dict:
+    """讀 morph_examples_bank.json。結構含 6 key:
+       前 3 (pre/root/suf) = 給已知 morpheme 加 ex;
+       後 3 (new_pre/new_root/new_suf) = 全新 morpheme 條目陣列。"""
+    default = {"pre": {}, "root": {}, "suf": {},
+               "new_pre": [], "new_root": [], "new_suf": []}
     try:
         with open(MORPH_EXAMPLES_FILE, "r", encoding="utf-8") as f:
             d = json.load(f)
-        return {k: dict(v) for k, v in d.items() if k in ("pre", "root", "suf")} \
-               if isinstance(d, dict) else {"pre": {}, "root": {}, "suf": {}}
+        if not isinstance(d, dict):
+            return default
+        out = {**default}
+        for k in ("pre", "root", "suf"):
+            if isinstance(d.get(k), dict):
+                out[k] = dict(d[k])
+        for k in ("new_pre", "new_root", "new_suf"):
+            if isinstance(d.get(k), list):
+                out[k] = [x for x in d[k]
+                          if isinstance(x, dict) and x.get("m") and x.get("zh")]
+        return out
     except (OSError, json.JSONDecodeError):
-        return {"pre": {}, "root": {}, "suf": {}}
+        return default
 
 
 def load_morph_examples() -> dict:
@@ -1785,7 +1914,10 @@ def save_morph_examples(d: dict) -> bool:
         with open(MORPH_EXAMPLES_FILE, "w", encoding="utf-8") as f:
             json.dump({"pre": d.get("pre", {}),
                        "root": d.get("root", {}),
-                       "suf": d.get("suf", {})},
+                       "suf": d.get("suf", {}),
+                       "new_pre": d.get("new_pre", []),
+                       "new_root": d.get("new_root", []),
+                       "new_suf": d.get("new_suf", [])},
                       f, ensure_ascii=False, indent=2)
             f.write("\n")
         load_morph_examples.clear() if hasattr(load_morph_examples, "clear") else None
