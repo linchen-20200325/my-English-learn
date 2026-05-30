@@ -72,5 +72,88 @@
         ]
       }
     ]
+  },
+  {
+    "id": "weekend_chat_colleague_b1",
+    "title": "和同事聊週末",
+    "level": "B1",
+    "scene": "在辦公室茶水間或走廊，同事之間輕鬆的週末閒聊。",
+    "lines": [
+      {
+        "speaker": "Sarah",
+        "en": "Hey Mark, how was your weekend?",
+        "zh": "嗨 Mark，你週末過得如何？"
+      },
+      {
+        "speaker": "Mark",
+        "en": "It was great, thanks! I went hiking on Saturday.",
+        "zh": "很棒，謝謝！我週六去爬山了。"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "Oh, nice! Where did you go?",
+        "zh": "喔，真不錯！你去哪裡了？"
+      },
+      {
+        "speaker": "Mark",
+        "en": "I went to that new park near the mountains. The view was amazing.",
+        "zh": "我去了山附近那個新公園。風景很棒。"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "That sounds lovely. I just relaxed at home mostly.",
+        "zh": "聽起來真愜意。我大部分時間都在家放鬆。"
+      },
+      {
+        "speaker": "Mark",
+        "en": "Sometimes that's just what you need. Did you watch anything good?",
+        "zh": "有時候就是需要那樣。你有看什麼好看的嗎？"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "Yeah, I finished that series everyone's talking about.",
+        "zh": "對啊，我看完了大家都在討論的那部影集。"
+      },
+      {
+        "speaker": "Mark",
+        "en": "Oh really? Was it worth the hype?",
+        "zh": "喔真的嗎？值得那麼多人討論嗎？"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "Definitely! I'll tell you about it later.",
+        "zh": "絕對值得！晚點再跟你說。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Asking about the weekend",
+        "explain": "詢問週末活動的常用句式。",
+        "examples": [
+          "How was your weekend?",
+          "What did you do last weekend?",
+          "Did you do anything fun over the weekend?"
+        ]
+      },
+      {
+        "point": "Past Simple for weekend activities",
+        "explain": "用過去式描述週末發生的事情。",
+        "examples": [
+          "I went hiking.",
+          "I relaxed at home.",
+          "I finished that series."
+        ]
+      },
+      {
+        "point": "Expressing opinions/recommendations",
+        "explain": "表達看法或推薦的說法。",
+        "examples": [
+          "The view was amazing.",
+          "That sounds lovely.",
+          "It was worth the hype.",
+          "I'll tell you about it later."
+        ]
+      }
+    ]
   }
 ]
