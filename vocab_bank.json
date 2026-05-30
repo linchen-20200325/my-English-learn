@@ -6906,5 +6906,306 @@
     "usage_zh": "常用 'annual salary', 'starting salary'。",
     "pos": "名詞",
     "other_forms": []
+  },
+  "account": {
+    "word": "account",
+    "meaning_zh": "帳戶；說明",
+    "kk": "[əˈkaʊnt]",
+    "phonics": "uh-COUNT",
+    "homophone": "阿共",
+    "image": "『阿共』的帳戶有問題，需要說明清楚。",
+    "example_en": "Can you give me an account of what happened?",
+    "example_zh": "你能給我一個事情經過的說明嗎？",
+    "usage_zh": "用於要求或提供事件的詳細說明，常用 'give an account of sth'。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "accountant",
+        "pos": "名詞",
+        "meaning_zh": "會計師",
+        "example": "My accountant handles all my taxes."
+      }
+    ]
+  },
+  "ticket": {
+    "word": "ticket",
+    "meaning_zh": "票；罰單",
+    "kk": "[ˈtɪkɪt]",
+    "phonics": "TIH-kit",
+    "homophone": "踢 kit",
+    "image": "你『踢』了那個『kit』，收到一張罰單！",
+    "example_en": "I need to buy a ticket for the train.",
+    "example_zh": "我需要買一張火車票。",
+    "usage_zh": "指各種票券，如電影票、車票，或交通違規罰單。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "station": {
+    "word": "station",
+    "meaning_zh": "車站；站點",
+    "kk": "[ˈsteɪʃən]",
+    "phonics": "STAY-shun",
+    "homophone": "死貼神",
+    "image": "『死貼神』般的站務員，堅守在車站。",
+    "example_en": "We arrived at the train station on time.",
+    "example_zh": "我們準時到達火車站。",
+    "usage_zh": "泛指各種交通運輸的起訖點，如火車站、巴士站、捷運站。",
+    "pos": "名詞 / 動詞",
+    "other_forms": []
+  },
+  "airport": {
+    "word": "airport",
+    "meaning_zh": "機場",
+    "kk": "[ˈɛrˌpɔrt]",
+    "phonics": "AIR-port",
+    "homophone": "愛跑特",
+    "image": "『愛跑特』的旅客，急著在機場趕飛機。",
+    "example_en": "The airport was very crowded today.",
+    "example_zh": "機場今天非常擁擠。",
+    "usage_zh": "專指航空站，機場。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "hospital": {
+    "word": "hospital",
+    "meaning_zh": "醫院",
+    "kk": "[ˈhɑspɪtl]",
+    "phonics": "HOS-pih-tul",
+    "homophone": "好撕屁股",
+    "image": "『好撕屁股』的病人，被送進醫院治療。",
+    "example_en": "She is recovering well in the hospital.",
+    "example_zh": "她在醫院恢復得很好。",
+    "usage_zh": "用於指醫療機構，醫院。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "doctor": {
+    "word": "doctor",
+    "meaning_zh": "醫生",
+    "kk": "[ˈdɑktɚ]",
+    "phonics": "DOK-ter",
+    "homophone": "倒喀特",
+    "image": "這位『倒喀特』的醫生，醫術高明。",
+    "example_en": "I need to make an appointment with the doctor.",
+    "example_zh": "我需要預約看醫生。",
+    "usage_zh": "指醫護人員，醫生。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "patient": {
+    "word": "patient",
+    "meaning_zh": "病人；有耐心的",
+    "kk": "[ˈpeɪʃənt]",
+    "phonics": "PAY-shunt",
+    "homophone": "佩服腎",
+    "image": "『佩服腎』的病人，很有耐心等待治療。",
+    "example_en": "The patient is responding well to treatment.",
+    "example_zh": "這位病患對治療反應良好。",
+    "usage_zh": "指接受醫療照護的人；也可作形容詞，表示有耐心的。",
+    "pos": "名詞 / 形容詞",
+    "other_forms": [
+      {
+        "word": "patience",
+        "pos": "名詞",
+        "meaning_zh": "耐心",
+        "example": "Patience is a virtue."
+      }
+    ]
+  },
+  "medicine": {
+    "word": "medicine",
+    "meaning_zh": "藥；醫學",
+    "kk": "[ˈmɛdəsən]",
+    "phonics": "MED-uh-sin",
+    "homophone": "麥的腎",
+    "image": "『麥的腎』出了問題，需要吃這個藥。",
+    "example_en": "Take this medicine twice a day.",
+    "example_zh": "一天吃兩次這個藥。",
+    "usage_zh": "指藥物或醫學領域。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "health": {
+    "word": "health",
+    "meaning_zh": "健康",
+    "kk": "[hɛlθ]",
+    "phonics": "HELTH",
+    "homophone": "黑死",
+    "image": "為了『黑死』的健康，我們要多運動。",
+    "example_en": "Good health is important for everyone.",
+    "example_zh": "良好的健康對每個人都很重要。",
+    "usage_zh": "指身體或心理上的健康狀態。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "healthy",
+        "pos": "形容詞",
+        "meaning_zh": "健康的；健康的",
+        "example": "He eats healthy food."
+      },
+      {
+        "word": "healthful",
+        "pos": "形容詞",
+        "meaning_zh": "有益健康的",
+        "example": "Exercise is healthful."
+      }
+    ]
+  },
+  "exercise": {
+    "word": "exercise",
+    "meaning_zh": "運動；練習",
+    "kk": "[ˈɛksɚˌsaɪz]",
+    "phonics": "EK-ser-size",
+    "homophone": "艾克斯賽斯",
+    "image": "『艾克斯賽斯』在做運動，練練身體。",
+    "example_en": "Regular exercise is good for you.",
+    "example_zh": "規律運動對你有好處。",
+    "usage_zh": "指身體活動以促進健康，或指練習、演習。",
+    "pos": "名詞 / 動詞",
+    "other_forms": []
+  },
+  "kitchen": {
+    "word": "kitchen",
+    "meaning_zh": "廚房",
+    "kk": "[ˈkɪtʃən]",
+    "phonics": "KITCH-un",
+    "homophone": "起嗔",
+    "image": "他『起嗔』了，在廚房大聲斥責。",
+    "example_en": "She loves cooking in her new kitchen.",
+    "example_zh": "她喜歡在她新廚房裡做飯。",
+    "usage_zh": "指準備食物的地方，廚房。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "garden": {
+    "word": "garden",
+    "meaning_zh": "花園；庭院",
+    "kk": "[ˈɡɑrdn]",
+    "phonics": "GAR-dun",
+    "homophone": "嘎登",
+    "image": "『嘎登』的花園很漂亮，讓人心情愉悅。",
+    "example_en": "The roses in the garden are blooming.",
+    "example_zh": "花園裡的玫瑰正在盛開。",
+    "usage_zh": "指種植花草樹木的戶外區域，花園。",
+    "pos": "名詞 / 動詞",
+    "other_forms": []
+  },
+  "street": {
+    "word": "street",
+    "meaning_zh": "街道；街",
+    "kk": "[strit]",
+    "phonics": "STREET",
+    "homophone": "死捉泥",
+    "image": "那個人『死捉泥』在街上，引起大家注意。",
+    "example_en": "The children are playing in the street.",
+    "example_zh": "孩子們正在街上玩耍。",
+    "usage_zh": "指連接建築物的道路，街道。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "building": {
+    "word": "building",
+    "meaning_zh": "建築物；建造",
+    "kk": "[ˈbɪldɪŋ]",
+    "phonics": "BUILD-ing",
+    "homophone": "比爾丁",
+    "image": "『比爾丁』蓋了一棟新建築物。",
+    "example_en": "That's a very tall building.",
+    "example_zh": "那是一棟非常高的建築物。",
+    "usage_zh": "指有牆壁和屋頂的結構物，建築物；也可指建造的動作。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "build",
+        "pos": "動詞",
+        "meaning_zh": "建造；建立",
+        "example": "They are building a new bridge."
+      }
+    ]
+  },
+  "office": {
+    "word": "office",
+    "meaning_zh": "辦公室；辦公",
+    "kk": "[ˈɔfɪs]",
+    "phonics": "OF-fis",
+    "homophone": "喔佛斯",
+    "image": "『喔佛斯』的員工們都在辦公室工作。",
+    "example_en": "He works in a large office downtown.",
+    "example_zh": "他在市中心一個大辦公室工作。",
+    "usage_zh": "指提供行政、專業或商業服務的場所，辦公室。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "factory": {
+    "word": "factory",
+    "meaning_zh": "工廠",
+    "kk": "[ˈfæktəri]",
+    "phonics": "FAK-tuh-ree",
+    "homophone": "發克特瑞",
+    "image": "『發克特瑞』的工廠生產很多產品。",
+    "example_en": "The factory produces cars.",
+    "example_zh": "這家工廠生產汽車。",
+    "usage_zh": "指製造商品的工業場所，工廠。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "environment": {
+    "word": "environment",
+    "meaning_zh": "環境",
+    "kk": "[ɪnˈvaɪrənmənt]",
+    "phonics": "in-VY-run-ment",
+    "homophone": "因壞人門特",
+    "image": "『因壞人門特』聚集，破壞了我們的環境。",
+    "example_en": "We need to protect the environment.",
+    "example_zh": "我們需要保護環境。",
+    "usage_zh": "指周圍的自然或人為條件，環境。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "environmental",
+        "pos": "形容詞",
+        "meaning_zh": "環境的",
+        "example": "Environmental pollution is a serious issue."
+      }
+    ]
+  },
+  "nature": {
+    "word": "nature",
+    "meaning_zh": "自然；性質",
+    "kk": "[ˈneɪtʃɚ]",
+    "phonics": "NAY-cher",
+    "homophone": "餒扯",
+    "image": "『餒扯』了，大家在自然風景區嬉鬧。",
+    "example_en": "I love spending time in nature.",
+    "example_zh": "我喜歡在大自然中度過時光。",
+    "usage_zh": "指自然界；或事物的本質、屬性。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "season": {
+    "word": "season",
+    "meaning_zh": "季節；調味",
+    "kk": "[ˈsizn]",
+    "phonics": "SEE-zun",
+    "homophone": "西生",
+    "image": "『西生』了，這是四季的變化。",
+    "example_en": "Summer is my favorite season.",
+    "example_zh": "夏天是我最喜歡的季節。",
+    "usage_zh": "指一年中的特定時期，季節；也可指調味。",
+    "pos": "名詞 / 動詞",
+    "other_forms": []
+  },
+  "temperature": {
+    "word": "temperature",
+    "meaning_zh": "溫度；體溫",
+    "kk": "[ˈtɛmpərətʃɚ]",
+    "phonics": "TEM-puh-ruh-cher",
+    "homophone": "天 pobre氣扯",
+    "image": "『天 pobre氣扯』，高溫的溫度讓人受不了。",
+    "example_en": "The temperature dropped suddenly.",
+    "example_zh": "溫度驟降。",
+    "usage_zh": "指熱或冷的程度，溫度；也指人體體溫。",
+    "pos": "名詞",
+    "other_forms": []
   }
 }
