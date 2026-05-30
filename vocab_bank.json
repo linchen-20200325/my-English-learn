@@ -3957,5 +3957,1144 @@
         "example": "Keep the room orderly."
       }
     ]
+  },
+  "power": {
+    "word": "power",
+    "meaning_zh": "力量、權力、電力",
+    "kk": "[ˈpaʊɚ]",
+    "phonics": "POW-er",
+    "homophone": "泡爾",
+    "image": "泡爾的超能力，讓他擁有無窮力量。",
+    "example_en": "The battery has low power.",
+    "example_zh": "電池快沒電了。",
+    "usage_zh": "指電力時常跟 'battery'、'electricity' 搭配；指權力時常用 'political power'、'abuse of power'。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "powerful",
+        "pos": "形容詞",
+        "meaning_zh": "強大的",
+        "example": "He is a powerful leader."
+      }
+    ]
+  },
+  "price": {
+    "word": "price",
+    "meaning_zh": "價格",
+    "kk": "[praɪs]",
+    "phonics": "PRICE",
+    "homophone": "菜",
+    "image": "這盤『菜』價格很高，你買不買？",
+    "example_en": "What's the price of this shirt?",
+    "example_zh": "這件襯衫多少錢？",
+    "usage_zh": "詢問價格最常用 'What's the price...?' 或 'How much is...?'。",
+    "pos": "名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "pricey",
+        "pos": "形容詞",
+        "meaning_zh": "貴的",
+        "example": "That restaurant is a bit pricey."
+      }
+    ]
+  },
+  "case": {
+    "word": "case",
+    "meaning_zh": "情況、案件、盒子",
+    "kk": "[keɪs]",
+    "phonics": "CASE",
+    "homophone": "凱斯",
+    "image": "『凱斯』的案件，是個棘手的狀況。",
+    "example_en": "In that case, we should leave.",
+    "example_zh": "那種情況下，我們該走了。",
+    "usage_zh": "'In that case' 是非常常用的片語,表示「在這種情況下」,用來回應或提出對策。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "good": {
+    "word": "good",
+    "meaning_zh": "好的",
+    "kk": "[ɡʊd]",
+    "phonics": "GOOD",
+    "homophone": "古德",
+    "image": "『古德』牌的產品，品質就是好。",
+    "example_en": "This is a good movie.",
+    "example_zh": "這部電影不錯。",
+    "usage_zh": "形容事物、人、狀況,是最基礎的正面評價。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "goodness",
+        "pos": "名詞",
+        "meaning_zh": "善良；天哪",
+        "example": "Goodness, that's expensive!"
+      },
+      {
+        "word": "goodly",
+        "pos": "副詞",
+        "meaning_zh": "大量地；愉快地",
+        "example": "He ate goodly."
+      }
+    ]
+  },
+  "bad": {
+    "word": "bad",
+    "meaning_zh": "壞的",
+    "kk": "[bæd]",
+    "phonics": "BAD",
+    "homophone": "爸的",
+    "image": "『爸的』牌香腸，味道很差。",
+    "example_en": "He has a bad temper.",
+    "example_zh": "他脾氣很差。",
+    "usage_zh": "與 'good' 相反,用來形容負面情況,如 'bad weather'、'bad news'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "badly",
+        "pos": "副詞",
+        "meaning_zh": "嚴重地；惡劣地",
+        "example": "He was badly injured."
+      },
+      {
+        "word": "badness",
+        "pos": "名詞",
+        "meaning_zh": "邪惡；惡劣",
+        "example": "The badness of the situation was clear."
+      }
+    ]
+  },
+  "big": {
+    "word": "big",
+    "meaning_zh": "大的",
+    "kk": "[bɪɡ]",
+    "phonics": "BIG",
+    "homophone": "逼格",
+    "image": "這『逼格』很高的房子，真的很大。",
+    "example_en": "That's a big house.",
+    "example_zh": "那是一棟大房子。",
+    "usage_zh": "形容尺寸、規模、重要性,常用 'big deal' 表示「重要的事情」。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "bigger",
+        "pos": "形容詞",
+        "meaning_zh": "更大的",
+        "example": "This one is bigger."
+      },
+      {
+        "word": "biggest",
+        "pos": "形容詞",
+        "meaning_zh": "最大的",
+        "example": "This is the biggest one."
+      }
+    ]
+  },
+  "small": {
+    "word": "small",
+    "meaning_zh": "小的",
+    "kk": "[smɔl]",
+    "phonics": "SMOL",
+    "homophone": "斯抹",
+    "image": "『斯抹』一點就好，不要那麼大。",
+    "example_en": "It's a small town.",
+    "example_zh": "那是一個小鎮。",
+    "usage_zh": "與 'big' 相反,形容尺寸、規模,常用 'small talk' 指「閒聊」。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "smaller",
+        "pos": "形容詞",
+        "meaning_zh": "更小的",
+        "example": "This one is smaller."
+      },
+      {
+        "word": "smallest",
+        "pos": "形容詞",
+        "meaning_zh": "最小的",
+        "example": "This is the smallest one."
+      }
+    ]
+  },
+  "new": {
+    "word": "new",
+    "meaning_zh": "新的",
+    "kk": "[nu]",
+    "phonics": "NEW",
+    "homophone": "牛",
+    "image": "這頭『牛』是新的，還沒被馴服。",
+    "example_en": "I bought a new car.",
+    "example_zh": "我買了輛新車。",
+    "usage_zh": "形容剛買的、剛出現的,與 'old' 相反。常用 'new year'、'new friend'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "newer",
+        "pos": "形容詞",
+        "meaning_zh": "更新的",
+        "example": "This is newer."
+      },
+      {
+        "word": "newest",
+        "pos": "形容詞",
+        "meaning_zh": "最新的",
+        "example": "This is the newest model."
+      }
+    ]
+  },
+  "old": {
+    "word": "old",
+    "meaning_zh": "老的、舊的",
+    "kk": "[oʊld]",
+    "phonics": "OLD",
+    "homophone": "嘔吐",
+    "image": "那個『嘔吐』的老人，看起來很老。",
+    "example_en": "He is an old man.",
+    "example_zh": "他是一位老人。",
+    "usage_zh": "形容年紀大或物品使用很久,與 'new' 相反。常用 'old friend'、'old story'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "older",
+        "pos": "形容詞",
+        "meaning_zh": "更老的",
+        "example": "He is older than me."
+      },
+      {
+        "word": "oldest",
+        "pos": "形容詞",
+        "meaning_zh": "最老的",
+        "example": "She is the oldest sister."
+      }
+    ]
+  },
+  "young": {
+    "word": "young",
+    "meaning_zh": "年輕的",
+    "kk": "[jʌŋ]",
+    "phonics": "YUNG",
+    "homophone": "洋",
+    "image": "『洋』娃娃看起來都很年輕。",
+    "example_en": "She is very young.",
+    "example_zh": "她很年輕。",
+    "usage_zh": "形容年紀輕,與 'old' 相對。常用 'young people'、'young generation'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "younger",
+        "pos": "形容詞",
+        "meaning_zh": "更年輕的",
+        "example": "He is younger."
+      },
+      {
+        "word": "youngest",
+        "pos": "形容詞",
+        "meaning_zh": "最年輕的",
+        "example": "She is the youngest."
+      }
+    ]
+  },
+  "long": {
+    "word": "long",
+    "meaning_zh": "長的",
+    "kk": "[lɔŋ]",
+    "phonics": "LONG",
+    "homophone": "浪",
+    "image": "『浪』費了很長時間，路途好長。",
+    "example_en": "It's a long road.",
+    "example_zh": "這是一條長路。",
+    "usage_zh": "形容長度、時間,與 'short' 相反。常用 'long time'、'long way'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "longer",
+        "pos": "形容詞",
+        "meaning_zh": "更長的",
+        "example": "This one is longer."
+      },
+      {
+        "word": "longest",
+        "pos": "形容詞",
+        "meaning_zh": "最長的",
+        "example": "This is the longest one."
+      }
+    ]
+  },
+  "short": {
+    "word": "short",
+    "meaning_zh": "短的",
+    "kk": "[ʃɔrt]",
+    "phonics": "SHORT",
+    "homophone": " sacerdote",
+    "image": "這位『sacerdote』的法袍很短。",
+    "example_en": "He has short hair.",
+    "example_zh": "他頭髮很短。",
+    "usage_zh": "形容長度、時間,與 'long' 相反。常用 'short story'、'short break'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "shorter",
+        "pos": "形容詞",
+        "meaning_zh": "更短的",
+        "example": "This one is shorter."
+      },
+      {
+        "word": "shortest",
+        "pos": "形容詞",
+        "meaning_zh": "最短的",
+        "example": "This is the shortest one."
+      }
+    ]
+  },
+  "high": {
+    "word": "high",
+    "meaning_zh": "高的",
+    "kk": "[haɪ]",
+    "phonics": "HIGH",
+    "homophone": "嗨",
+    "image": "『嗨！』山頂好高，大家都興奮地嗨起來。",
+    "example_en": "The mountain is very high.",
+    "example_zh": "那座山很高。",
+    "usage_zh": "形容高度,與 'low' 相反。常用 'high temperature'、'high price'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "higher",
+        "pos": "形容詞",
+        "meaning_zh": "更高的",
+        "example": "The price is higher now."
+      },
+      {
+        "word": "highest",
+        "pos": "形容詞",
+        "meaning_zh": "最高的",
+        "example": "This is the highest point."
+      }
+    ]
+  },
+  "low": {
+    "word": "low",
+    "meaning_zh": "低的",
+    "kk": "[loʊ]",
+    "phonics": "LOW",
+    "homophone": "漏",
+    "image": "水『漏』到地上，水位很低。",
+    "example_en": "The price is low.",
+    "example_zh": "價格很低。",
+    "usage_zh": "形容高度、水平、聲音,與 'high' 相反。常用 'low battery'、'low speed'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "lower",
+        "pos": "形容詞",
+        "meaning_zh": "更低的",
+        "example": "The temperature is lower today."
+      },
+      {
+        "word": "lowest",
+        "pos": "形容詞",
+        "meaning_zh": "最低的",
+        "example": "This is the lowest score."
+      }
+    ]
+  },
+  "easy": {
+    "word": "easy",
+    "meaning_zh": "容易的",
+    "kk": "[ˈizi]",
+    "phonics": "EE-zee",
+    "homophone": "醫治",
+    "image": "『醫治』這個小病很容易，不用擔心。",
+    "example_en": "This is an easy task.",
+    "example_zh": "這是一個容易的任務。",
+    "usage_zh": "形容事情不難,與 'hard' 相反。常用 'easy to use'、'easy to understand'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "easily",
+        "pos": "副詞",
+        "meaning_zh": "容易地",
+        "example": "He won easily."
+      },
+      {
+        "word": "ease",
+        "pos": "名詞 / 動詞",
+        "meaning_zh": "輕鬆；減輕",
+        "example": "The medicine brought him ease."
+      }
+    ]
+  },
+  "hard": {
+    "word": "hard",
+    "meaning_zh": "困難的、努力地",
+    "kk": "[hɑrd]",
+    "phonics": "HARD",
+    "homophone": "哈的",
+    "image": "『哈』！這個題目好難，我得努力。",
+    "example_en": "It's a hard problem.",
+    "example_zh": "這是個難題。",
+    "usage_zh": "形容事情困難,與 'easy' 相反。作副詞時表示「努力地」。常用 'work hard'、'study hard'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "hardship",
+        "pos": "名詞",
+        "meaning_zh": "艱難；苦難",
+        "example": "They faced many hardships."
+      }
+    ]
+  },
+  "fast": {
+    "word": "fast",
+    "meaning_zh": "快的",
+    "kk": "[fæst]",
+    "phonics": "FAST",
+    "homophone": "罰死",
+    "image": "跑『罰死』你！他跑得很快。",
+    "example_en": "He runs very fast.",
+    "example_zh": "他跑得很快。",
+    "usage_zh": "形容速度快,與 'slow' 相反。常用 'fast food'、'fast car'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": []
+  },
+  "slow": {
+    "word": "slow",
+    "meaning_zh": "慢的",
+    "kk": "[sloʊ]",
+    "phonics": "SLOH",
+    "homophone": "斯洛",
+    "image": "『斯洛』伐克人走路很慢。",
+    "example_en": "The train is slow.",
+    "example_zh": "火車很慢。",
+    "usage_zh": "形容速度慢,與 'fast' 相反。常用 'slow down'、'slow motion'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "slower",
+        "pos": "形容詞",
+        "meaning_zh": "更慢的",
+        "example": "This is slower."
+      },
+      {
+        "word": "slowest",
+        "pos": "形容詞",
+        "meaning_zh": "最慢的",
+        "example": "This is the slowest."
+      }
+    ]
+  },
+  "hot": {
+    "word": "hot",
+    "meaning_zh": "熱的",
+    "kk": "[hɑt]",
+    "phonics": "HOT",
+    "homophone": "哈特",
+    "image": "『哈特』先生，天氣好熱，快喝水。",
+    "example_en": "It's hot today.",
+    "example_zh": "今天很熱。",
+    "usage_zh": "形容溫度高,與 'cold' 相反。常用 'hot weather'、'hot topic'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "hotter",
+        "pos": "形容詞",
+        "meaning_zh": "更熱的",
+        "example": "It's hotter tomorrow."
+      },
+      {
+        "word": "hottest",
+        "pos": "形容詞",
+        "meaning_zh": "最熱的",
+        "example": "This is the hottest day."
+      }
+    ]
+  },
+  "cold": {
+    "word": "cold",
+    "meaning_zh": "冷的",
+    "kk": "[koʊld]",
+    "phonics": "COLED",
+    "homophone": "摳了",
+    "image": "他『摳了』我的錢，還對我冷冷的。",
+    "example_en": "It's cold outside.",
+    "example_zh": "外面很冷。",
+    "usage_zh": "形容溫度低,與 'hot' 相反。常用 'cold weather'、'cold drink'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "colder",
+        "pos": "形容詞",
+        "meaning_zh": "更冷的",
+        "example": "It's colder tomorrow."
+      },
+      {
+        "word": "coldest",
+        "pos": "形容詞",
+        "meaning_zh": "最冷的",
+        "example": "This is the coldest day."
+      }
+    ]
+  },
+  "warm": {
+    "word": "warm",
+    "meaning_zh": "溫暖的",
+    "kk": "[wɔrm]",
+    "phonics": "WARM",
+    "homophone": "挖姆",
+    "image": "『挖姆』！這種天氣穿毛衣，感覺好溫暖。",
+    "example_en": "The water is warm.",
+    "example_zh": "水溫溫的。",
+    "usage_zh": "形容溫度適中,比 'hot' 涼,比 'cold' 暖。常用 'warm welcome'、'warm clothes'。",
+    "pos": "形容詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "warmer",
+        "pos": "形容詞",
+        "meaning_zh": "更溫暖的",
+        "example": "It's warmer today."
+      },
+      {
+        "word": "warmest",
+        "pos": "形容詞",
+        "meaning_zh": "最溫暖的",
+        "example": "This is the warmest place."
+      }
+    ]
+  },
+  "free": {
+    "word": "free",
+    "meaning_zh": "自由的、免費的",
+    "kk": "[fri]",
+    "phonics": "FREE",
+    "homophone": "呋哩",
+    "image": "『呋哩』！這裡很自由，東西都是免費的。",
+    "example_en": "This is free admission.",
+    "example_zh": "這裡免費入場。",
+    "usage_zh": "有「不受限制」和「不用付費」兩種意思,需看語境。常用 'free time'、'free speech'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "freedom",
+        "pos": "名詞",
+        "meaning_zh": "自由",
+        "example": "They fought for freedom."
+      }
+    ]
+  },
+  "busy": {
+    "word": "busy",
+    "meaning_zh": "忙碌的",
+    "kk": "[ˈbɪzi]",
+    "phonics": "BIH-zee",
+    "homophone": "逼死",
+    "image": "工作量『逼死』人，我好忙。",
+    "example_en": "I'm very busy today.",
+    "example_zh": "我今天很忙。",
+    "usage_zh": "形容沒有空閒時間,與 'free' 相反。常用 'busy schedule'、'busy street'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "busily",
+        "pos": "副詞",
+        "meaning_zh": "忙碌地",
+        "example": "He worked busily."
+      }
+    ]
+  },
+  "ready": {
+    "word": "ready",
+    "meaning_zh": "準備好的",
+    "kk": "[ˈrɛdi]",
+    "phonics": "RED-ee",
+    "homophone": "瑞迪",
+    "image": "『瑞迪』！我準備好了，隨時可以出發。",
+    "example_en": "Are you ready?",
+    "example_zh": "你準備好了嗎？",
+    "usage_zh": "表示已做好準備,常用 'get ready'、'ready to go'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "readiness",
+        "pos": "名詞",
+        "meaning_zh": "準備就緒",
+        "example": "His readiness was impressive."
+      }
+    ]
+  },
+  "important": {
+    "word": "important",
+    "meaning_zh": "重要的",
+    "kk": "[ɪmˈpɔrtnt]",
+    "phonics": "im-POR-tunt",
+    "homophone": "硬碰硬",
+    "image": "『硬碰硬』的比賽，對我們很重要。",
+    "example_en": "This is important news.",
+    "example_zh": "這是重要新聞。",
+    "usage_zh": "形容有價值、有影響力,常用 'important issue'、'important decision'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "importance",
+        "pos": "名詞",
+        "meaning_zh": "重要性",
+        "example": "The importance of the matter is clear."
+      }
+    ]
+  },
+  "true": {
+    "word": "true",
+    "meaning_zh": "真實的、正確的",
+    "kk": "[tru]",
+    "phonics": "TRUE",
+    "homophone": "粗梨",
+    "image": "這顆『粗梨』是真的，不是假的。",
+    "example_en": "Is this story true?",
+    "example_zh": "這個故事是真的嗎？",
+    "usage_zh": "表示符合事實、準確,與 'false' 相反。常用 'true love'、'true story'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "truth",
+        "pos": "名詞",
+        "meaning_zh": "真相；真理",
+        "example": "Tell me the truth."
+      },
+      {
+        "word": "truly",
+        "pos": "副詞",
+        "meaning_zh": "真正地",
+        "example": "I truly appreciate it."
+      }
+    ]
+  },
+  "real": {
+    "word": "real",
+    "meaning_zh": "真實的、實在的",
+    "kk": "[ˈriəl]",
+    "phonics": "REE-ul",
+    "homophone": "哩哦",
+    "image": "『哩哦』！這是真的，不是夢。",
+    "example_en": "This is a real diamond.",
+    "example_zh": "這是真鑽石。",
+    "usage_zh": "強調非虛構、非人造,與 'fake' 相反。常用 'real life'、'real estate'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "reality",
+        "pos": "名詞",
+        "meaning_zh": "現實",
+        "example": "This is the reality."
+      },
+      {
+        "word": "realize",
+        "pos": "動詞",
+        "meaning_zh": "意識到；實現",
+        "example": "I didn't realize that."
+      }
+    ]
+  },
+  "same": {
+    "word": "same",
+    "meaning_zh": "相同的",
+    "kk": "[seɪm]",
+    "phonics": "SAME",
+    "homophone": "塞母",
+    "image": "『塞母』親生了兩個孩子，長得一模一樣。",
+    "example_en": "We are the same age.",
+    "example_zh": "我們同年齡。",
+    "usage_zh": "表示兩者或以上沒有差異,常用 'the same as'、'all the same'。",
+    "pos": "形容詞 / 代名詞",
+    "other_forms": []
+  },
+  "different": {
+    "word": "different",
+    "meaning_zh": "不同的",
+    "kk": "[ˈdɪfərənt]",
+    "phonics": "DIFF-er-ent",
+    "homophone": "低分論",
+    "image": "『低分論』是錯誤的，每個人的情況都不同。",
+    "example_en": "They have different opinions.",
+    "example_zh": "他們有不同意見。",
+    "usage_zh": "表示兩者或以上有差異,與 'same' 相反。常用 'different from'、'different kinds'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "differ",
+        "pos": "動詞",
+        "meaning_zh": "不同；意見不合",
+        "example": "We differ on this point."
+      },
+      {
+        "word": "difference",
+        "pos": "名詞",
+        "meaning_zh": "差異",
+        "example": "What's the difference?"
+      }
+    ]
+  },
+  "beautiful": {
+    "word": "beautiful",
+    "meaning_zh": "美麗的",
+    "kk": "[ˈbjutɪfəl]",
+    "phonics": "BYOO-ti-ful",
+    "homophone": "逼乳腹",
+    "image": "『逼乳腹』的模特兒，看起來很美麗。",
+    "example_en": "She is beautiful.",
+    "example_zh": "她很漂亮。",
+    "usage_zh": "形容外表吸引人,常用於女性、風景、藝術品。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "beautifully",
+        "pos": "副詞",
+        "meaning_zh": "美麗地",
+        "example": "She sings beautifully."
+      }
+    ]
+  },
+  "happy": {
+    "word": "happy",
+    "meaning_zh": "快樂的",
+    "kk": "[ˈhæpi]",
+    "phonics": "HAP-ee",
+    "homophone": "哈皮",
+    "image": "『哈皮』！收到禮物，我好快樂。",
+    "example_en": "I'm happy to see you.",
+    "example_zh": "很高興見到你。",
+    "usage_zh": "表達愉悅、滿足的情緒,與 'sad' 相反。常用 'happy birthday'、'happy ending'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "happily",
+        "pos": "副詞",
+        "meaning_zh": "快樂地",
+        "example": "They lived happily."
+      },
+      {
+        "word": "happiness",
+        "pos": "名詞",
+        "meaning_zh": "快樂；幸福",
+        "example": "Happiness is important."
+      }
+    ]
+  },
+  "sad": {
+    "word": "sad",
+    "meaning_zh": "悲傷的",
+    "kk": "[sæd]",
+    "phonics": "SAD",
+    "homophone": "薩德",
+    "image": "『薩德』侯爵，一生充滿悲傷。",
+    "example_en": "He looks sad.",
+    "example_zh": "他看起來很悲傷。",
+    "usage_zh": "表達不快樂、憂愁的情緒,與 'happy' 相反。常用 'sad news'、'sad movie'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "sadly",
+        "pos": "副詞",
+        "meaning_zh": "悲傷地",
+        "example": "He spoke sadly."
+      },
+      {
+        "word": "sadness",
+        "pos": "名詞",
+        "meaning_zh": "悲傷",
+        "example": "Her sadness was obvious."
+      }
+    ]
+  },
+  "angry": {
+    "word": "angry",
+    "meaning_zh": "生氣的",
+    "kk": "[ˈæŋɡri]",
+    "phonics": "ANG-gree",
+    "homophone": "安格利",
+    "image": "『安格利』兄弟，總是吵架生氣。",
+    "example_en": "She is angry with him.",
+    "example_zh": "她對他很生氣。",
+    "usage_zh": "表達不滿、憤怒的情緒。常用 'angry about'、'angry at'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "angrily",
+        "pos": "副詞",
+        "meaning_zh": "生氣地",
+        "example": "He shouted angrily."
+      }
+    ]
+  },
+  "tired": {
+    "word": "tired",
+    "meaning_zh": "疲倦的",
+    "kk": "[ˈtaɪərd]",
+    "phonics": "TIRED",
+    "homophone": "胎兒",
+    "image": "那個『胎兒』睡著了，看起來很疲倦。",
+    "example_en": "I'm tired after work.",
+    "example_zh": "下班後我累了。",
+    "usage_zh": "表達身體或精神上的疲勞。常用 'tired of' 表示「厭倦」。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "tire",
+        "pos": "動詞",
+        "meaning_zh": "使疲倦",
+        "example": "The long journey tired me."
+      },
+      {
+        "word": "tiring",
+        "pos": "形容詞",
+        "meaning_zh": "令人疲倦的",
+        "example": "It was a tiring day."
+      }
+    ]
+  },
+  "sick": {
+    "word": "sick",
+    "meaning_zh": "生病的",
+    "kk": "[sɪk]",
+    "phonics": "SICK",
+    "homophone": "西克",
+    "image": "『西克』！他生病了，臉色很不好。",
+    "example_en": "He is sick today.",
+    "example_zh": "他今天生病了。",
+    "usage_zh": "表示身體不適。常用 'sick leave'、'sick and tired' (厭煩)。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "sickness",
+        "pos": "名詞",
+        "meaning_zh": "疾病",
+        "example": "He has a sickness."
+      }
+    ]
+  },
+  "strong": {
+    "word": "strong",
+    "meaning_zh": "強壯的、強力的",
+    "kk": "[strɔŋ]",
+    "phonics": "STRONG",
+    "homophone": "斯壯",
+    "image": "『斯壯』！他長得強壯，力氣很大。",
+    "example_en": "He is very strong.",
+    "example_zh": "他很強壯。",
+    "usage_zh": "形容體力、力量、效力。常用 'strong coffee'、'strong wind'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "strongly",
+        "pos": "副詞",
+        "meaning_zh": "強烈地",
+        "example": "I strongly disagree."
+      },
+      {
+        "word": "stronger",
+        "pos": "形容詞",
+        "meaning_zh": "更強壯的",
+        "example": "He is stronger now."
+      },
+      {
+        "word": "strongest",
+        "pos": "形容詞",
+        "meaning_zh": "最強壯的",
+        "example": "He is the strongest."
+      }
+    ]
+  },
+  "clean": {
+    "word": "clean",
+    "meaning_zh": "乾淨的、清潔",
+    "kk": "[klin]",
+    "phonics": "CLEAN",
+    "homophone": "摳零",
+    "image": "『摳零』錢買肥皂，把手洗乾淨。",
+    "example_en": "Keep your room clean.",
+    "example_zh": "保持你的房間乾淨。",
+    "usage_zh": "形容沒有污垢,或指打掃動作。常用 'clean up'、'clean water'。",
+    "pos": "形容詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "cleaner",
+        "pos": "名詞",
+        "meaning_zh": "清潔工；清潔劑",
+        "example": "She works as a cleaner."
+      },
+      {
+        "word": "cleaning",
+        "pos": "名詞",
+        "meaning_zh": "清潔工作",
+        "example": "House cleaning is tiring."
+      }
+    ]
+  },
+  "deep": {
+    "word": "deep",
+    "meaning_zh": "深的",
+    "kk": "[dip]",
+    "phonics": "DEEP",
+    "homophone": "迪普",
+    "image": "『迪普』先生住在深海裡，水很深。",
+    "example_en": "The ocean is deep.",
+    "example_zh": "海洋很深。",
+    "usage_zh": "形容深度,與 'shallow' 相反。常用 'deep sleep'、'deep thought'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "deepen",
+        "pos": "動詞",
+        "meaning_zh": "加深",
+        "example": "The crisis deepened."
+      }
+    ]
+  },
+  "dead": {
+    "word": "dead",
+    "meaning_zh": "死的",
+    "kk": "[dɛd]",
+    "phonics": "DED",
+    "homophone": "爹的",
+    "image": "『爹的』！這隻鳥死了。",
+    "example_en": "The flower is dead.",
+    "example_zh": "這朵花謝了。",
+    "usage_zh": "表示沒有生命,與 'alive' 相反。常用 'dead end'、'dead silence'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "death",
+        "pos": "名詞",
+        "meaning_zh": "死亡",
+        "example": "His death shocked everyone."
+      }
+    ]
+  },
+  "fine": {
+    "word": "fine",
+    "meaning_zh": "好的、罰款",
+    "kk": "[faɪn]",
+    "phonics": "FINE",
+    "homophone": "煩",
+    "image": "『煩』！罰單我繳了，我沒事，一切都好。",
+    "example_en": "I'm fine, thank you.",
+    "example_zh": "我很好，謝謝。",
+    "usage_zh": "表示「好」時是口語化的回應；表示「罰款」時是名詞。常用 'fine weather'、'pay a fine'。",
+    "pos": "形容詞 / 名詞 / 動詞 / 副詞",
+    "other_forms": []
+  },
+  "full": {
+    "word": "full",
+    "meaning_zh": "滿的",
+    "kk": "[fʊl]",
+    "phonics": "FULL",
+    "homophone": "福爾",
+    "image": "『福爾』摩斯說，杯子是滿的。",
+    "example_en": "The glass is full.",
+    "example_zh": "杯子是滿的。",
+    "usage_zh": "表示已裝滿,沒有空間。常用 'full moon'、'full of energy'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "fully",
+        "pos": "副詞",
+        "meaning_zh": "完全地",
+        "example": "I fully understand."
+      }
+    ]
+  },
+  "kind": {
+    "word": "kind",
+    "meaning_zh": "善良的、種類",
+    "kk": "[kaɪnd]",
+    "phonics": "KIND",
+    "homophone": "開的",
+    "image": "『開的』！他對大家都很好，真是善良。",
+    "example_en": "She is a kind person.",
+    "example_zh": "她是個善良的人。",
+    "usage_zh": "形容人品好；指「種類」時常用 'What kind...?'。常用 'kind heart'、'kind words'。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "kindly",
+        "pos": "副詞",
+        "meaning_zh": "親切地",
+        "example": "He spoke kindly."
+      }
+    ]
+  },
+  "late": {
+    "word": "late",
+    "meaning_zh": "晚的",
+    "kk": "[leɪt]",
+    "phonics": "LATE",
+    "homophone": "累特",
+    "image": "『累特』！我遲到了，真累。",
+    "example_en": "He arrived late.",
+    "example_zh": "他遲到了。",
+    "usage_zh": "表示時間晚,與 'early' 相反。常用 'late for work'、'better late than never'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "lately",
+        "pos": "副詞",
+        "meaning_zh": "最近",
+        "example": "Have you seen him lately?"
+      }
+    ]
+  },
+  "many": {
+    "word": "many",
+    "meaning_zh": "許多",
+    "kk": "[ˈmɛni]",
+    "phonics": "MEN-ee",
+    "homophone": "美逆",
+    "image": "『美逆』！這麼多東西，我該怎麼搬？",
+    "example_en": "There are many books.",
+    "example_zh": "有很多書。",
+    "usage_zh": "用於可數名詞,表示數量大,與 'few' 相反。常用 'many people'、'many times'。",
+    "pos": "形容詞 / 代名詞",
+    "other_forms": []
+  },
+  "nice": {
+    "word": "nice",
+    "meaning_zh": "好的、令人愉快的",
+    "kk": "[naɪs]",
+    "phonics": "NICE",
+    "homophone": "奶昔",
+    "image": "這杯『奶昔』真好喝，讓人心情愉快。",
+    "example_en": "It's a nice day.",
+    "example_zh": "今天天氣真好。",
+    "usage_zh": "通用性很強的正面評價,可用於人、事、物。常用 'nice to meet you'、'nice job'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "nicely",
+        "pos": "副詞",
+        "meaning_zh": "恰當地；愉快地",
+        "example": "It fit nicely."
+      }
+    ]
+  },
+  "poor": {
+    "word": "poor",
+    "meaning_zh": "貧窮的、可憐的",
+    "kk": "[pɔr]",
+    "phonics": "POOR",
+    "homophone": " pobre",
+    "image": "那個『pobre』的人，很可憐。",
+    "example_en": "He comes from a poor family.",
+    "example_zh": "他出身貧寒家庭。",
+    "usage_zh": "指經濟狀況差；也可指「可憐的」。常用 'poor quality'、'poor performance'。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "poorly",
+        "pos": "副詞",
+        "meaning_zh": "貧乏地；拙劣地",
+        "example": "He performed poorly."
+      }
+    ]
+  },
+  "quick": {
+    "word": "quick",
+    "meaning_zh": "快的",
+    "kk": "[kwɪk]",
+    "phonics": "QUICK",
+    "homophone": "奎克",
+    "image": "『奎克』！他動作很快，一下子就做完了。",
+    "example_en": "He is quick to learn.",
+    "example_zh": "他學得很快。",
+    "usage_zh": "與 'fast' 類似,強調速度快。常用 'quick answer'、'quick meal'。",
+    "pos": "形容詞 / 副詞",
+    "other_forms": [
+      {
+        "word": "quickly",
+        "pos": "副詞",
+        "meaning_zh": "快速地",
+        "example": "He ran quickly."
+      },
+      {
+        "word": "quicker",
+        "pos": "形容詞",
+        "meaning_zh": "更快的",
+        "example": "This is quicker."
+      },
+      {
+        "word": "quickest",
+        "pos": "形容詞",
+        "meaning_zh": "最快的",
+        "example": "This is the quickest."
+      }
+    ]
+  },
+  "quiet": {
+    "word": "quiet",
+    "meaning_zh": "安靜的",
+    "kk": "[ˈkwaɪət]",
+    "phonics": "KWYET",
+    "homophone": "虧యత్",
+    "image": "『虧యత్』！這裡很安靜，大家都在睡覺。",
+    "example_en": "Please be quiet.",
+    "example_zh": "請保持安靜。",
+    "usage_zh": "形容沒有聲音或人聲,與 'noisy' 相反。常用 'quiet place'、'quiet night'。",
+    "pos": "形容詞 / 名詞 / 動詞",
+    "other_forms": [
+      {
+        "word": "quietly",
+        "pos": "副詞",
+        "meaning_zh": "安靜地",
+        "example": "He spoke quietly."
+      }
+    ]
+  },
+  "rich": {
+    "word": "rich",
+    "meaning_zh": "富有的",
+    "kk": "[rɪtʃ]",
+    "phonics": "RICH",
+    "homophone": "綠橘",
+    "image": "這顆『綠橘』很貴，他很有錢。",
+    "example_en": "He is a rich man.",
+    "example_zh": "他是有錢人。",
+    "usage_zh": "指財產多,與 'poor' 相反。常用 'rich food' (豐盛的)、'rich flavor' (濃郁的)。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "richer",
+        "pos": "形容詞",
+        "meaning_zh": "更富有的",
+        "example": "He became richer."
+      },
+      {
+        "word": "richest",
+        "pos": "形容詞",
+        "meaning_zh": "最富有的",
+        "example": "He is the richest man."
+      }
+    ]
+  },
+  "safe": {
+    "word": "safe",
+    "meaning_zh": "安全的",
+    "kk": "[seɪf]",
+    "phonics": "SAFE",
+    "homophone": "賽芙",
+    "image": "『賽芙』女神保護大家，這裡很安全。",
+    "example_en": "The area is safe.",
+    "example_zh": "這個區域很安全。",
+    "usage_zh": "表示沒有危險、不受侵害。常用 'safe and sound'、'safe place'。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "safely",
+        "pos": "副詞",
+        "meaning_zh": "安全地",
+        "example": "He arrived safely."
+      },
+      {
+        "word": "safety",
+        "pos": "名詞",
+        "meaning_zh": "安全",
+        "example": "Safety first!"
+      }
+    ]
   }
 }
