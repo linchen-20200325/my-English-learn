@@ -158,5 +158,137 @@
         ]
       }
     ]
+  },
+  {
+    "id": "morning-meeting-a2",
+    "title": "Starting the Day Right: Morning Meetings",
+    "title_zh": "美好的一天從早會開始",
+    "level": "A2",
+    "summary": "這篇文章使用簡單的現在式和常見的生活詞彙，介紹了早會的目的和一些簡單的流程，適合初學者練習。",
+    "sentences": [
+      {
+        "en": "Good morning, everyone! Let's start our daily meeting.",
+        "zh": "大家早安！我們開始今天的日常會議吧。",
+        "vocab": {
+          "daily": "每日的",
+          "meeting": "會議"
+        },
+        "phrases": [
+          {
+            "en": "start our daily meeting",
+            "zh": "開始我們每日的會議"
+          }
+        ]
+      },
+      {
+        "en": "Today, we will talk about our plans for the day.",
+        "zh": "今天，我們將談論我們當天的計畫。",
+        "vocab": {
+          "talk about": "談論",
+          "plans": "計畫"
+        },
+        "phrases": [
+          {
+            "en": "plans for the day",
+            "zh": "當天的計畫"
+          }
+        ]
+      },
+      {
+        "en": "First, let's share what we did yesterday.",
+        "zh": "首先，讓我們分享一下昨天做了什麼。",
+        "vocab": {
+          "share": "分享",
+          "did": "做了"
+        },
+        "phrases": [
+          {
+            "en": "what we did yesterday",
+            "zh": "我們昨天做了什麼"
+          }
+        ]
+      },
+      {
+        "en": "Then, we can discuss our main tasks.",
+        "zh": "然後，我們可以討論我們的主要任務。",
+        "vocab": {
+          "discuss": "討論",
+          "main": "主要的",
+          "tasks": "任務"
+        },
+        "phrases": [
+          {
+            "en": "discuss our main tasks",
+            "zh": "討論我們的主要任務"
+          }
+        ]
+      },
+      {
+        "en": "Does anyone have any questions or updates?",
+        "zh": "有人有任何問題或更新嗎？",
+        "vocab": {
+          "questions": "問題",
+          "updates": "更新"
+        },
+        "phrases": [
+          {
+            "en": "any questions or updates",
+            "zh": "任何問題或更新"
+          }
+        ]
+      },
+      {
+        "en": "Great! Let's work together and have a productive day.",
+        "zh": "太好了！讓我們一起努力，度過充實的一天。",
+        "vocab": {
+          "work together": "一起努力",
+          "productive": "有生產力的，充實的"
+        },
+        "phrases": [
+          {
+            "en": "work together",
+            "zh": "一起合作/努力"
+          },
+          {
+            "en": "have a productive day",
+            "zh": "度過充實的一天"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Simple Present Tense (簡單現在式)",
+        "explain": "用來描述習慣、事實或經常發生的動作。例：'Let's start our daily meeting.' (讓我們開始日常會議)",
+        "examples": [
+          "We talk about plans.",
+          "I share my ideas."
+        ]
+      },
+      {
+        "point": "Modal Verb 'Can' (助動詞 'can')",
+        "explain": "表示能力或可能性。例：'we can discuss our main tasks.' (我們可以討論主要任務)",
+        "examples": [
+          "I can help you.",
+          "We can finish this task."
+        ]
+      },
+      {
+        "point": "Question Words (疑問詞)",
+        "explain": "用來提問，如 'what' (什麼), 'who' (誰), 'where' (哪裡)。例：'Does anyone have any questions or updates?' (有人有任何問題或更新嗎？)",
+        "examples": [
+          "What is the plan?",
+          "Who is attending?"
+        ]
+      },
+      {
+        "point": "Common Phrases for Meetings (會議常用語)",
+        "explain": "學習一些簡單的會議用語，能幫助你更自信地參與。例：'Good morning, everyone!' (大家早安！)",
+        "examples": [
+          "Let's begin.",
+          "Thank you."
+        ]
+      }
+    ]
   }
 ]
