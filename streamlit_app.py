@@ -2862,7 +2862,7 @@ def main() -> None:
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
              "💬 情境會話", "📚 互動閱讀", "🎬 影視字幕", "📐 文法生成",
-             "📖 單字庫", "🔁 複習", "📊 學習儀表板", "✅ 學習計畫"],
+             "📖 單字庫", "🔁 複習", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
         st.divider()
@@ -3056,8 +3056,6 @@ def main() -> None:
         view_vocab_bank()
     elif view.endswith("複習"):
         view_review()
-    elif view.endswith("學習儀表板"):
-        view_progress()
     elif view.endswith("學習計畫"):
         view_plan()
 
