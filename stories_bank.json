@@ -1,0 +1,61 @@
+[
+  {
+    "id": "my-first-job",
+    "title": "My First Real Job",
+    "level": "B1",
+    "scene": "描述第一次打工的經驗，練習過去式動詞和描述感受的形容詞。",
+    "paragraphs": [
+      {
+        "en": "I still remember my first real job after finishing high school. It was at a small local bookstore, a place I had always loved to visit. I was so excited to finally be earning my own money, even if it wasn't a lot.",
+        "zh": "我還記得高中畢業後的第一份正式工作。那是在一家我一直很喜歡去的小書店。我非常興奮終於能賺自己的錢了，即使金額不多。"
+      },
+      {
+        "en": "My main tasks involved organizing shelves, helping customers find books, and working the cash register. It was often busy, especially on weekends, but I enjoyed the challenge. I learned a lot about different kinds of books and how to talk to people.",
+        "zh": "我的主要工作是整理書架、幫助顧客找書，以及操作收銀機。工作常常很忙，尤其是在週末，但我很享受這個挑戰。我學到了很多關於不同種類的書，以及如何與人交談。"
+      },
+      {
+        "en": "One of my favorite parts was recommending books to customers. Sometimes, people would come back later to tell me they enjoyed the book I suggested. Those moments made me feel really proud and useful.",
+        "zh": "我最喜歡的部分之一是向顧客推薦書籍。有時候，顧客之後會回來告訴我他們喜歡我推薦的書。那些時刻讓我覺得非常自豪和有用。"
+      },
+      {
+        "en": "Of course, there were also difficult days. I sometimes made mistakes with the cash register or misplaced books. My manager was usually patient, but I still felt a bit embarrassed when things went wrong. Overall, though, it was a valuable experience.",
+        "zh": "當然，也有艱難的日子。我偶爾會在收銀機上犯錯或放錯書。我的經理通常很有耐心，但事情出錯時我還是會覺得有點尷尬。不過總體來說，這是一次寶貴的經驗。"
+      },
+      {
+        "en": "That first job taught me responsibility, the importance of customer service, and that hard work can be rewarding. It was the first step into the adult world, and I’m glad I started there.",
+        "zh": "我的第一份工作教會了我責任感、顧客服務的重要性，以及努力工作可以帶來回報。這是踏入成人世界的第一步，我很高興在那裡開始。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple Tense",
+        "explain": "用於描述過去發生的動作或事件，是敘述過去經歷的基礎。",
+        "examples": [
+          "I still remember my first real job.",
+          "It was at a small local bookstore.",
+          "I learned a lot about different kinds of books."
+        ]
+      },
+      {
+        "point": "Adjectives to describe feelings",
+        "explain": "使用形容詞來表達情緒和感受，使敘述更生動。",
+        "examples": [
+          "I was so excited.",
+          "I enjoyed the challenge.",
+          "I felt a bit embarrassed.",
+          "I felt really proud and useful."
+        ]
+      },
+      {
+        "point": "Phrasal verbs for actions",
+        "explain": "使用常見的片語動詞來描述具體動作。",
+        "examples": [
+          "organizing shelves",
+          "helping customers find books",
+          "working the cash register",
+          "recommend books to customers"
+        ]
+      }
+    ]
+  }
+]

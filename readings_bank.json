@@ -1,0 +1,1215 @@
+[
+  {
+    "id": "morning-meeting-hosting-a2",
+    "title": "Hosting a Morning Meeting",
+    "title_zh": "主持晨會",
+    "level": "A2",
+    "summary": "學習主持簡單晨會所需的常用詞彙和基本句型，包含問候、報告事項和結束。",
+    "sentences": [
+      {
+        "en": "Good morning, everyone. Let's start our meeting.",
+        "zh": "大家早安。我們開始開會吧。",
+        "vocab": {
+          "good morning": "早安",
+          "start": "開始"
+        },
+        "phrases": [
+          {
+            "en": "Let's start",
+            "zh": "讓我們開始 (用於提議或啟動某事)"
+          }
+        ]
+      },
+      {
+        "en": "First, let's review yesterday's tasks.",
+        "zh": "首先，我們來複習昨天的任務。",
+        "vocab": {
+          "review": "複習",
+          "yesterday": "昨天",
+          "tasks": "任務"
+        },
+        "phrases": [
+          {
+            "en": "let's review",
+            "zh": "讓我們複習 (用於提議回顧)"
+          }
+        ]
+      },
+      {
+        "en": "John, please update us on the project.",
+        "zh": "John，請向我們報告一下專案的進度。",
+        "vocab": {
+          "update": "更新",
+          "project": "專案"
+        },
+        "phrases": [
+          {
+            "en": "update us on",
+            "zh": "向某人報告關於某事"
+          }
+        ]
+      },
+      {
+        "en": "Thanks, John. Now, let's talk about today's goals.",
+        "zh": "謝謝 John。現在，我們來談談今天的目標。",
+        "vocab": {
+          "thanks": "謝謝",
+          "talk about": "談論",
+          "today": "今天",
+          "goals": "目標"
+        },
+        "phrases": [
+          {
+            "en": "talk about",
+            "zh": "談論 (討論某個話題)"
+          }
+        ]
+      },
+      {
+        "en": "Does anyone have any questions or suggestions?",
+        "zh": "有人有任何問題或建議嗎？",
+        "vocab": {
+          "anyone": "任何人",
+          "questions": "問題",
+          "suggestions": "建議"
+        },
+        "phrases": [
+          {
+            "en": "any questions",
+            "zh": "任何問題 (詢問是否有人有疑問)"
+          },
+          {
+            "en": "any suggestions",
+            "zh": "任何建議 (詢問是否有人想提出想法)"
+          }
+        ]
+      },
+      {
+        "en": "Okay, if there are no more points, we can finish here.",
+        "zh": "好的，如果沒有其他事項了，我們就可以在這裡結束。",
+        "vocab": {
+          "okay": "好的",
+          "more": "更多",
+          "points": "事項",
+          "finish": "結束"
+        },
+        "phrases": [
+          {
+            "en": "no more points",
+            "zh": "沒有其他事項 (表示討論已完結)"
+          }
+        ]
+      },
+      {
+        "en": "Thank you all for your time. Have a great day!",
+        "zh": "感謝大家的參與。祝你有美好的一天！",
+        "vocab": {
+          "thank you": "謝謝你",
+          "time": "時間",
+          "great": "美好的",
+          "day": "一天"
+        },
+        "phrases": [
+          {
+            "en": "Thank you all",
+            "zh": "感謝大家 (向一群人表達感謝)"
+          },
+          {
+            "en": "Have a great day",
+            "zh": "祝你有美好的一天 (常用的道別語)"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Simple Present Tense (簡單現在式)",
+        "explain": "用於描述日常習慣、事實或一般性陳述。在主持晨會時，常用於陳述會議目的或安排。",
+        "examples": [
+          "We start the meeting.",
+          "John updates us on the project.",
+          "We talk about goals."
+        ]
+      },
+      {
+        "point": "'Let's' + Verb (Let's + 動詞)",
+        "explain": "用於提議或邀請他人一起做某事，是主持會議時常用的句型。",
+        "examples": [
+          "Let's start our meeting.",
+          "Let's review yesterday's tasks.",
+          "Let's talk about today's goals."
+        ]
+      },
+      {
+        "point": "Asking for Information (詢問資訊)",
+        "explain": "使用疑問詞 (如 what, who) 或 'Do/Does' 開頭的問句來獲取資訊或確認情況。",
+        "examples": [
+          "Does anyone have any questions?",
+          "What is the status of the project?"
+        ]
+      },
+      {
+        "point": "Common Meeting Phrases (常用會議片語)",
+        "explain": "學習並使用標準的會議用語，能讓溝通更順暢。",
+        "examples": [
+          "Good morning, everyone.",
+          "Update us on...",
+          "Thank you for your time."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "morning-meeting-a2",
+    "title": "Starting the Day Right: Morning Meetings",
+    "title_zh": "美好的一天從早會開始",
+    "level": "A2",
+    "summary": "這篇文章使用簡單的現在式和常見的生活詞彙，介紹了早會的目的和一些簡單的流程，適合初學者練習。",
+    "sentences": [
+      {
+        "en": "Good morning, everyone! Let's start our daily meeting.",
+        "zh": "大家早安！我們開始今天的日常會議吧。",
+        "vocab": {
+          "daily": "每日的",
+          "meeting": "會議"
+        },
+        "phrases": [
+          {
+            "en": "start our daily meeting",
+            "zh": "開始我們每日的會議"
+          }
+        ]
+      },
+      {
+        "en": "Today, we will talk about our plans for the day.",
+        "zh": "今天，我們將談論我們當天的計畫。",
+        "vocab": {
+          "talk about": "談論",
+          "plans": "計畫"
+        },
+        "phrases": [
+          {
+            "en": "plans for the day",
+            "zh": "當天的計畫"
+          }
+        ]
+      },
+      {
+        "en": "First, let's share what we did yesterday.",
+        "zh": "首先，讓我們分享一下昨天做了什麼。",
+        "vocab": {
+          "share": "分享",
+          "did": "做了"
+        },
+        "phrases": [
+          {
+            "en": "what we did yesterday",
+            "zh": "我們昨天做了什麼"
+          }
+        ]
+      },
+      {
+        "en": "Then, we can discuss our main tasks.",
+        "zh": "然後，我們可以討論我們的主要任務。",
+        "vocab": {
+          "discuss": "討論",
+          "main": "主要的",
+          "tasks": "任務"
+        },
+        "phrases": [
+          {
+            "en": "discuss our main tasks",
+            "zh": "討論我們的主要任務"
+          }
+        ]
+      },
+      {
+        "en": "Does anyone have any questions or updates?",
+        "zh": "有人有任何問題或更新嗎？",
+        "vocab": {
+          "questions": "問題",
+          "updates": "更新"
+        },
+        "phrases": [
+          {
+            "en": "any questions or updates",
+            "zh": "任何問題或更新"
+          }
+        ]
+      },
+      {
+        "en": "Great! Let's work together and have a productive day.",
+        "zh": "太好了！讓我們一起努力，度過充實的一天。",
+        "vocab": {
+          "work together": "一起努力",
+          "productive": "有生產力的，充實的"
+        },
+        "phrases": [
+          {
+            "en": "work together",
+            "zh": "一起合作/努力"
+          },
+          {
+            "en": "have a productive day",
+            "zh": "度過充實的一天"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Simple Present Tense (簡單現在式)",
+        "explain": "用來描述習慣、事實或經常發生的動作。例：'Let's start our daily meeting.' (讓我們開始日常會議)",
+        "examples": [
+          "We talk about plans.",
+          "I share my ideas."
+        ]
+      },
+      {
+        "point": "Modal Verb 'Can' (助動詞 'can')",
+        "explain": "表示能力或可能性。例：'we can discuss our main tasks.' (我們可以討論主要任務)",
+        "examples": [
+          "I can help you.",
+          "We can finish this task."
+        ]
+      },
+      {
+        "point": "Question Words (疑問詞)",
+        "explain": "用來提問，如 'what' (什麼), 'who' (誰), 'where' (哪裡)。例：'Does anyone have any questions or updates?' (有人有任何問題或更新嗎？)",
+        "examples": [
+          "What is the plan?",
+          "Who is attending?"
+        ]
+      },
+      {
+        "point": "Common Phrases for Meetings (會議常用語)",
+        "explain": "學習一些簡單的會議用語，能幫助你更自信地參與。例：'Good morning, everyone!' (大家早安！)",
+        "examples": [
+          "Let's begin.",
+          "Thank you."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "neighbor-stories-c1",
+    "title": "The Unforeseen Symphony of Neighborly Relations",
+    "title_zh": "鄰里關係中意想不到的交響曲",
+    "level": "C1",
+    "summary": "本文透過描寫一對新舊鄰居間的互動，探討文化差異、個人空間界線以及如何透過理解與妥協建立和諧關係，並運用了進階句型、學術詞彙及象徵手法。",
+    "sentences": [
+      {
+        "en": "Moving into a new neighborhood often entails navigating a delicate dance of cultural nuances and unspoken social contracts.",
+        "zh": "搬進一個新社區，經常需要應對一場微妙的文化差異與潛規則的舞蹈。",
+        "vocab": {
+          "entails": "包含；需要",
+          "navigating": "導航；處理",
+          "nuances": "細微差別",
+          "unspoken": "未說出口的",
+          "contracts": "合約；協議"
+        },
+        "phrases": [
+          {
+            "en": "delicate dance",
+            "zh": "微妙的舞蹈（比喻需要小心處理的互動）"
+          },
+          {
+            "en": "social contracts",
+            "zh": "社會契約（指不成文的行為準則）"
+          }
+        ]
+      },
+      {
+        "en": "Ms. Anya Petrova, an émigré from Eastern Europe, cherished her meticulously cultivated privacy, a stark contrast to the boisterous camaraderie of her new surroundings.",
+        "zh": "來自東歐的移民 Anya Petrova 女士，非常珍視她一絲不苟培養起來的個人隱私，這與她新環境裡喧鬧的友善氣氛形成了鮮明對比。",
+        "vocab": {
+          "émigré": "移民（移出國者）",
+          "cherished": "珍愛",
+          "meticulously": "一絲不苟地",
+          "cultivated": "培養；耕耘",
+          "stark": "鮮明的；嚴酷的",
+          "boisterous": "喧鬧的",
+          "camaraderie": "友誼；同志情誼"
+        },
+        "phrases": [
+          {
+            "en": "stark contrast",
+            "zh": "鮮明對比"
+          },
+          {
+            "en": "new surroundings",
+            "zh": "新的周遭環境"
+          }
+        ]
+      },
+      {
+        "en": "Her neighbor, Mr. David Chen, a second-generation Chinese-American, operated under a more collectivist paradigm, where shared spaces and spontaneous interactions were the norm.",
+        "zh": "她的鄰居 David Chen 先生，一位第二代華裔美國人，則遵循一種更集體的模式，共享空間和自發的互動是常態。",
+        "vocab": {
+          "second-generation": "第二代",
+          "operated under": "在...之下運作",
+          "collectivist": "集體的；集體主義的",
+          "paradigm": "範式；模式",
+          "spontaneous": "自發的",
+          "interactions": "互動",
+          "norm": "常態；規範"
+        },
+        "phrases": [
+          {
+            "en": "Chinese-American",
+            "zh": "華裔美國人"
+          },
+          {
+            "en": "were the norm",
+            "zh": "是常態"
+          }
+        ]
+      },
+      {
+        "en": "Initially, their differing perspectives manifested as subtle tensions, like Anya's aversion to David's frequent backyard barbecues that often spilled over into communal areas.",
+        "zh": "起初，他們不同的觀點表現為微妙的緊張關係，例如 Anya 厭惡 David 頻繁舉辦的後院烤肉，這些烤肉活動常常會延伸到公共區域。",
+        "vocab": {
+          "initially": "起初",
+          "differing": "不同的",
+          "perspectives": "觀點；看法",
+          "manifested": "顯示；表明",
+          "subtle": "微妙的",
+          "tensions": "緊張關係",
+          "aversion": "厭惡",
+          "frequent": "頻繁的",
+          "barbecues": "烤肉",
+          "spilled over into": "溢出到；延伸到"
+        },
+        "phrases": [
+          {
+            "en": "differing perspectives",
+            "zh": "不同的觀點"
+          },
+          {
+            "en": "subtle tensions",
+            "zh": "微妙的緊張關係"
+          },
+          {
+            "en": "spilled over into",
+            "zh": "溢出到；延伸到（比喻影響範圍擴大）"
+          }
+        ]
+      },
+      {
+        "en": "However, a shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding.",
+        "zh": "然而，一個共同的困境——一場突如其來的傾盆大雨，威脅要淹沒他們相鄰的地下室——卻成了促成相互理解的、意想不到的催化劑。",
+        "vocab": {
+          "predicament": "困境",
+          "torrential": "傾瀉的；洶湧的",
+          "downpour": "傾盆大雨",
+          "threatened": "威脅",
+          "flood": "淹沒",
+          "adjacent": "相鄰的",
+          "basements": "地下室",
+          "unlikely": "不太可能的",
+          "catalyst": "催化劑",
+          "mutual": "相互的"
+        },
+        "phrases": [
+          {
+            "en": "shared predicament",
+            "zh": "共同的困境"
+          },
+          {
+            "en": "torrential downpour",
+            "zh": "傾盆大雨"
+          },
+          {
+            "en": "became the unlikely catalyst",
+            "zh": "成為意想不到的催化劑"
+          }
+        ]
+      },
+      {
+        "en": "Working side-by-side, shoveling mud and reinforcing sandbags, they transcended their initial reservations and began to appreciate each other's inherent strengths.",
+        "zh": "他們並肩工作，鏟泥、加固沙袋，超越了最初的顧慮，開始欣賞彼此固有的優點。",
+        "vocab": {
+          "side-by-side": "並肩地",
+          "shoveling": "鏟",
+          "reinforcing": "加固",
+          "sandbags": "沙袋",
+          "transcended": "超越",
+          "reservations": "顧慮；保留",
+          "appreciate": "欣賞；感激",
+          "inherent": "固有的",
+          "strengths": "優點；長處"
+        },
+        "phrases": [
+          {
+            "en": "Working side-by-side",
+            "zh": "並肩工作"
+          },
+          {
+            "en": "began to appreciate",
+            "zh": "開始欣賞"
+          }
+        ]
+      },
+      {
+        "en": "Anya discovered David's pragmatic resourcefulness, while David recognized Anya's quiet resilience and meticulous planning capabilities.",
+        "zh": "Anya 發現了 David 務實的應變能力，而 David 則認識到 Anya 安靜的韌性以及一絲不苟的規劃能力。",
+        "vocab": {
+          "pragmatic": "務實的",
+          "resourcefulness": "足智多謀；應變能力",
+          "recognized": "認識到；承認",
+          "quiet": "安靜的",
+          "resilience": "韌性；恢復力",
+          "meticulous": "一絲不苟的",
+          "planning": "規劃",
+          "capabilities": "能力"
+        },
+        "phrases": [
+          {
+            "en": "pragmatic resourcefulness",
+            "zh": "務實的應變能力"
+          },
+          {
+            "en": "quiet resilience",
+            "zh": "安靜的韌性"
+          }
+        ]
+      },
+      {
+        "en": "Ultimately, their relationship evolved from a hesitant coexistence into a genuine, albeit unconventional, neighborhood symbiosis, proving that understanding often blossoms in the soil of shared adversity.",
+        "zh": "最終，他們的關係從一種猶豫的共存演變成一種真誠的、儘管不同尋常的鄰里共生關係，證明了理解常常在共同逆境的土壤中綻放。",
+        "vocab": {
+          "ultimately": "最終",
+          "evolved": "演變",
+          "hesitant": "猶豫的",
+          "coexistence": "共存",
+          "genuine": "真誠的",
+          "albeit": "儘管",
+          "unconventional": "不同尋常的",
+          "symbiosis": "共生關係",
+          "proving": "證明",
+          "blossoms": "綻放",
+          "soil": "土壤",
+          "adversity": "逆境"
+        },
+        "phrases": [
+          {
+            "en": "hesitant coexistence",
+            "zh": "猶豫的共存"
+          },
+          {
+            "en": "neighborhood symbiosis",
+            "zh": "鄰里共生關係"
+          },
+          {
+            "en": "shared adversity",
+            "zh": "共同的逆境"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "過去分詞作為形容詞 (Past Participles as Adjectives)",
+        "explain": "過去分詞（如 'cultivated', 'unspoken', 'broken'）可以用來修飾名詞，描述名詞的狀態或被動的動作。",
+        "examples": [
+          "Ms. Anya Petrova, an émigré from Eastern Europe, cherished her meticulously cultivated privacy.",
+          "Moving into a new neighborhood often entails navigating a delicate dance of cultural nuances and unspoken social contracts.",
+          "A shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding."
+        ]
+      },
+      {
+        "point": "分詞構句 (Participle Clauses)",
+        "explain": "分詞構句是用來簡化句子，表達原因、時間、結果或補充說明。常見的有現在分詞構句和過去分詞構句。",
+        "examples": [
+          "Working side-by-side, shoveling mud and reinforcing sandbags, they transcended their initial reservations.",
+          "Moving into a new neighborhood often entails navigating a delicate dance of cultural nuances and unspoken social contracts.",
+          "A shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding."
+        ]
+      },
+      {
+        "point": "對比連接詞 (Contrast Conjunctions)",
+        "explain": "使用 'however', 'while', 'albeit' 等連接詞來表達對比或轉折，使論述更具層次感。",
+        "examples": [
+          "Initially, their differing perspectives manifested as subtle tensions, like Anya's aversion to David's frequent backyard barbecues that often spilled over into communal areas.",
+          "Anya discovered David's pragmatic resourcefulness, while David recognized Anya's quiet resilience and meticulous planning capabilities.",
+          "Ultimately, their relationship evolved from a hesitant coexistence into a genuine, albeit unconventional, neighborhood symbiosis..."
+        ]
+      },
+      {
+        "point": "比喻與象徵手法 (Metaphor and Symbolism)",
+        "explain": "文章運用了比喻（如 'delicate dance', 'soil of shared adversity'）和象徵（如傾盆大雨象徵共同的挑戰）來豐富文章的意涵。",
+        "examples": [
+          "Ms. Anya Petrova, an émigré from Eastern Europe, cherished her meticulously cultivated privacy, a stark contrast to the boisterous camaraderie of her new surroundings.",
+          "However, a shared predicament – a sudden, torrential downpour that threatened to flood their adjacent basements – became the unlikely catalyst for mutual understanding.",
+          "Ultimately, their relationship evolved from a hesitant coexistence into a genuine, albeit unconventional, neighborhood symbiosis, proving that understanding often blossoms in the soil of shared adversity."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "first-time-volunteer-a2",
+    "title": "My First Day as a Volunteer",
+    "title_zh": "我的第一次志工經驗",
+    "level": "A2",
+    "summary": "這篇文章使用簡單的現在式和過去式，描述第一次擔任志工的經驗，適合初學者練習基本動詞和生活詞彙。",
+    "sentences": [
+      {
+        "en": "Last Saturday, I decided to volunteer at the animal shelter.",
+        "zh": "上週六，我決定去動物收容所當志工。",
+        "vocab": {
+          "decided": "決定",
+          "volunteer": "當志工",
+          "animal shelter": "動物收容所"
+        },
+        "phrases": [
+          {
+            "en": "Last Saturday",
+            "zh": "上週六 (時間指示)"
+          }
+        ]
+      },
+      {
+        "en": "I felt a little nervous before I went.",
+        "zh": "去之前我有點緊張。",
+        "vocab": {
+          "nervous": "緊張的",
+          "before": "在...之前"
+        },
+        "phrases": [
+          {
+            "en": "a little nervous",
+            "zh": "有點緊張 (程度副詞)"
+          }
+        ]
+      },
+      {
+        "en": "But the people there were very friendly.",
+        "zh": "但那裡的人們非常友善。",
+        "vocab": {
+          "friendly": "友善的",
+          "there": "在那裡"
+        },
+        "phrases": [
+          {
+            "en": "people there",
+            "zh": "那裡的人們 (指代)"
+          }
+        ]
+      },
+      {
+        "en": "My job was to clean the dog cages.",
+        "zh": "我的工作是清理狗籠。",
+        "vocab": {
+          "job": "工作",
+          "clean": "清理",
+          "dog cages": "狗籠"
+        },
+        "phrases": [
+          {
+            "en": "My job was to",
+            "zh": "我的工作是 (介紹任務)"
+          }
+        ]
+      },
+      {
+        "en": "I also helped feed the cats.",
+        "zh": "我也幫忙餵貓咪。",
+        "vocab": {
+          "helped": "幫忙",
+          "feed": "餵食",
+          "cats": "貓咪"
+        },
+        "phrases": [
+          {
+            "en": "helped feed",
+            "zh": "幫忙餵食 (動詞搭配)"
+          }
+        ]
+      },
+      {
+        "en": "It was hard work, but it was fun.",
+        "zh": "這是一份辛苦的工作，但很有趣。",
+        "vocab": {
+          "hard work": "辛苦的工作",
+          "fun": "有趣的"
+        },
+        "phrases": [
+          {
+            "en": "It was hard work",
+            "zh": "這是一份辛苦的工作 (描述工作性質)"
+          }
+        ]
+      },
+      {
+        "en": "I learned a lot and met new friends.",
+        "zh": "我學到很多，也認識了新朋友。",
+        "vocab": {
+          "learned": "學到",
+          "met": "認識",
+          "new friends": "新朋友"
+        },
+        "phrases": [
+          {
+            "en": "learned a lot",
+            "zh": "學到很多 (程度副詞)"
+          },
+          {
+            "en": "met new friends",
+            "zh": "認識新朋友 (社交互動)"
+          }
+        ]
+      },
+      {
+        "en": "I want to volunteer again next month.",
+        "zh": "我想下個月再去當志工。",
+        "vocab": {
+          "want to": "想要",
+          "again": "再一次",
+          "next month": "下個月"
+        },
+        "phrases": [
+          {
+            "en": "want to volunteer",
+            "zh": "想要當志工 (表達意願)"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Simple Past Tense (簡單過去式)",
+        "explain": "用來描述過去發生的動作或事件，例如 'decided', 'felt', 'was', 'helped', 'learned', 'met'。",
+        "examples": [
+          "I decided to volunteer.",
+          "It was fun.",
+          "I learned a lot."
+        ]
+      },
+      {
+        "point": "Simple Present Tense (簡單現在式)",
+        "explain": "用來描述習慣性動作、事實或狀態，例如 'people are friendly' (雖然本文多用過去式，但此處為例)。",
+        "examples": [
+          "Animals need care.",
+          "Volunteers help."
+        ]
+      },
+      {
+        "point": "Subject + Verb + Object (主詞 + 動詞 + 受詞)",
+        "explain": "最基本的句子結構，說明誰做了什麼，例如 'I cleaned the cages.'",
+        "examples": [
+          "I cleaned the dog cages.",
+          "I fed the cats."
+        ]
+      },
+      {
+        "point": "Vocabulary for Feelings and Activities (表示情感與活動的詞彙)",
+        "explain": "學習描述情感 (nervous, friendly, fun) 和活動 (volunteer, clean, feed) 的單字。",
+        "examples": [
+          "I felt nervous.",
+          "It was fun.",
+          "I helped feed the cats."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sudden-downpour-b1",
+    "title": "Caught in a Sudden Downpour",
+    "title_zh": "突如其來的傾盆大雨",
+    "level": "B1",
+    "summary": "這篇文章描述了突如其來的傾盆大雨，以及主角如何應對，練習了過去式、過去進行式和一些常用片語。",
+    "sentences": [
+      {
+        "en": "Yesterday afternoon, the sky turned dark very quickly.",
+        "zh": "昨天下午，天空很快就變黑了。",
+        "vocab": {
+          "turned": "變成了",
+          "quickly": "快速地"
+        },
+        "phrases": [
+          {
+            "very quickly": "非常快地"
+          }
+        ]
+      },
+      {
+        "en": "I was walking home from the library when the rain started.",
+        "zh": "當大雨開始時，我正從圖書館走回家。",
+        "vocab": {
+          "walking": "走著",
+          "started": "開始了"
+        },
+        "phrases": [
+          {
+            "walking home": "走回家"
+          },
+          {
+            "started to rain": "開始下雨"
+          }
+        ]
+      },
+      {
+        "en": "It wasn't just a little rain; it was a heavy downpour!",
+        "zh": "這不是一點小雨，而是傾盆大雨！",
+        "vocab": {
+          "heavy": "大(雨)",
+          "downpour": "傾盆大雨"
+        },
+        "phrases": [
+          {
+            "heavy downpour": "傾盆大雨"
+          }
+        ]
+      },
+      {
+        "en": "Everyone around me was running for cover.",
+        "zh": "我身邊的每個人都在奔跑尋找遮蔽處。",
+        "vocab": {
+          "everyone": "每個人",
+          "running": "跑著",
+          "cover": "遮蔽處"
+        },
+        "phrases": [
+          {
+            "running for cover": "奔跑尋找遮蔽處"
+          }
+        ]
+      },
+      {
+        "en": "I quickly found an awning to shelter under.",
+        "zh": "我很快找到了一個遮雨篷躲避。",
+        "vocab": {
+          "found": "找到",
+          "awning": "遮雨篷",
+          "shelter": "躲避"
+        },
+        "phrases": [
+          {
+            "found an awning": "找到一個遮雨篷"
+          },
+          {
+            "shelter under": "在...下躲避"
+          }
+        ]
+      },
+      {
+        "en": "The rain was so loud on the roof above me.",
+        "zh": "雨點打在上面的屋頂上非常響。",
+        "vocab": {
+          "loud": "響亮的",
+          "roof": "屋頂"
+        },
+        "phrases": [
+          {
+            "on the roof": "在屋頂上"
+          }
+        ]
+      },
+      {
+        "en": "After about twenty minutes, the rain stopped as suddenly as it had begun.",
+        "zh": "大約二十分鐘後，雨就像開始時一樣突然地停了。",
+        "vocab": {
+          "about": "大約",
+          "twenty": "二十",
+          "minutes": "分鐘",
+          "stopped": "停止了",
+          "suddenly": "突然地",
+          "begun": "開始了"
+        },
+        "phrases": [
+          {
+            "as suddenly as": "和...一樣突然地",
+            "as it had begun": "就像它開始時一樣"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple (過去簡單式)",
+        "explain": "用來描述過去發生的單一事件或一系列事件，例如 'turned', 'started', 'found', 'stopped'。",
+        "examples": [
+          "The sky turned dark.",
+          "The rain started.",
+          "I found an awning."
+        ]
+      },
+      {
+        "point": "Past Continuous (過去進行式)",
+        "explain": "用來描述過去某個時間點正在進行的動作，通常與過去簡單式一起使用，例如 'I was walking home'。",
+        "examples": [
+          "I was walking home when it rained.",
+          "They were talking when the storm hit."
+        ]
+      },
+      {
+        "point": "Past Perfect (過去完成式)",
+        "explain": "用來描述在過去某個時間點之前已經完成的動作，例如 'as it had begun'。",
+        "examples": [
+          "The rain had stopped by the time we left.",
+          "She had already eaten when I arrived."
+        ]
+      },
+      {
+        "point": "Common Phrases (常用片語)",
+        "explain": "學習日常對話中常用的片語，例如 'walking home', 'running for cover', 'heavy downpour'。",
+        "examples": [
+          "He is running for cover from the rain.",
+          "We experienced a heavy downpour.",
+          "She is walking home now."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "growth-from-failure-b1",
+    "title": "Learning from a Mistake",
+    "title_zh": "從錯誤中學習",
+    "level": "B1",
+    "summary": "透過一個關於嘗試新事物卻失敗的個人經歷，學習如何處理挫折並從中成長，並介紹過去式、完成式及常用片語。",
+    "sentences": [
+      {
+        "en": "Last year, I decided to try baking a cake for my friend's birthday party.",
+        "zh": "去年，我決定嘗試為朋友的生日派對烤一個蛋糕。",
+        "vocab": {
+          "decided": "決定",
+          "baking": "烘焙",
+          "birthday party": "生日派對"
+        },
+        "phrases": [
+          {
+            "en": "try baking",
+            "zh": "嘗試烘焙"
+          },
+          {
+            "en": "for my friend's birthday party",
+            "zh": "為了我朋友的生日派對"
+          }
+        ]
+      },
+      {
+        "en": "I had never baked anything complex before, so I was a little nervous.",
+        "zh": "我以前從未烤過任何複雜的東西，所以我有點緊張。",
+        "vocab": {
+          "never": "從未",
+          "complex": "複雜的",
+          "nervous": "緊張的"
+        },
+        "phrases": [
+          {
+            "en": "baked anything complex",
+            "zh": "烤過任何複雜的東西"
+          },
+          {
+            "en": "a little nervous",
+            "zh": "有點緊張"
+          }
+        ]
+      },
+      {
+        "en": "I followed the recipe carefully, but I made a mistake with the oven temperature.",
+        "zh": "我仔細地按照食譜操作，但我卻在烤箱溫度上犯了一個錯誤。",
+        "vocab": {
+          "followed": "跟隨、遵循",
+          "recipe": "食譜",
+          "carefully": "仔細地",
+          "mistake": "錯誤"
+        },
+        "phrases": [
+          {
+            "en": "followed the recipe",
+            "zh": "按照食譜操作"
+          },
+          {
+            "en": "oven temperature",
+            "zh": "烤箱溫度"
+          }
+        ]
+      },
+      {
+        "en": "When I took the cake out, it was burnt on the outside and raw inside.",
+        "zh": "當我把蛋糕拿出來時，外面燒焦了，裡面卻是生的。",
+        "vocab": {
+          "took out": "拿出來",
+          "burnt": "燒焦的",
+          "raw": "生的"
+        },
+        "phrases": [
+          {
+            "en": "took the cake out",
+            "zh": "把蛋糕拿出來"
+          },
+          {
+            "en": "burnt on the outside",
+            "zh": "外面燒焦的"
+          },
+          {
+            "en": "raw inside",
+            "zh": "裡面是生的"
+          }
+        ]
+      },
+      {
+        "en": "I felt very disappointed because I had worked hard on it.",
+        "zh": "我感到非常失望，因為我為此付出了很多努力。",
+        "vocab": {
+          "disappointed": "失望的",
+          "worked hard": "努力工作"
+        },
+        "phrases": [
+          {
+            "en": "felt very disappointed",
+            "zh": "感到非常失望"
+          },
+          {
+            "en": "worked hard on it",
+            "zh": "為此付出了努力"
+          }
+        ]
+      },
+      {
+        "en": "However, I realized that failure is a part of learning new skills.",
+        "zh": "然而，我意識到失敗是學習新技能的一部分。",
+        "vocab": {
+          "realized": "意識到",
+          "failure": "失敗",
+          "skills": "技能"
+        },
+        "phrases": [
+          {
+            "en": "part of learning",
+            "zh": "學習的一部分"
+          },
+          {
+            "en": "new skills",
+            "zh": "新技能"
+          }
+        ]
+      },
+      {
+        "en": "The next time I tried baking, I paid more attention to the details.",
+        "zh": "下次我再嘗試烘焙時，我更加注意細節了。",
+        "vocab": {
+          "paid attention": "注意",
+          "details": "細節"
+        },
+        "phrases": [
+          {
+            "en": "paid more attention to",
+            "zh": "更加注意"
+          },
+          {
+            "en": "the details",
+            "zh": "細節"
+          }
+        ]
+      },
+      {
+        "en": "Although the first cake wasn't perfect, the experience taught me valuable lessons.",
+        "zh": "雖然第一個蛋糕並不完美，但這次經歷教會了我寶貴的一課。",
+        "vocab": {
+          "perfect": "完美的",
+          "experience": "經驗",
+          "valuable": "寶貴的",
+          "lessons": "教訓"
+        },
+        "phrases": [
+          {
+            "en": "wasn't perfect",
+            "zh": "並不完美"
+          },
+          {
+            "en": "taught me valuable lessons",
+            "zh": "教會了我寶貴的教訓"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple (過去簡單式)",
+        "explain": "用來描述過去發生的單一事件或一系列事件，句中常有表示過去的時間詞，如 'last year', 'yesterday'。",
+        "examples": [
+          "I decided to try baking.",
+          "I followed the recipe.",
+          "I made a mistake."
+        ]
+      },
+      {
+        "point": "Past Perfect Simple (過去完成式)",
+        "explain": "用來描述在過去某個時間點之前已經完成的動作，強調動作的先後順序。常與過去簡單式連用，表示先發生的動作。",
+        "examples": [
+          "I had never baked anything complex before.",
+          "I had worked hard on it."
+        ]
+      },
+      {
+        "point": "Common Phrases (常用片語)",
+        "explain": "學習並掌握一些常用的多字片語，能讓表達更自然、更貼近母語人士的用法。",
+        "examples": [
+          "try baking (嘗試烘焙)",
+          "paid attention to (注意)",
+          "part of learning (學習的一部分)"
+        ]
+      },
+      {
+        "point": "Vocabulary for Emotions and Experiences (情感與經歷詞彙)",
+        "explain": "學習描述個人感受和經驗的詞彙，如 'nervous', 'disappointed', 'failure', 'experience'。",
+        "examples": [
+          "I was a little nervous.",
+          "I felt very disappointed.",
+          "Failure is a part of learning."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "commute-happiness-b1",
+    "title": "Little Joys on the Commute",
+    "title_zh": "通勤路上的小確幸",
+    "level": "B1",
+    "summary": "文章描述了作者在通勤途中發現的日常小樂趣，並運用了過去式、現在進行式和一些表示頻率的副詞。",
+    "sentences": [
+      {
+        "en": "Every morning, I take the bus to work.",
+        "zh": "每天早上，我搭公車去上班。",
+        "vocab": {
+          "morning": "早上",
+          "bus": "公車"
+        },
+        "phrases": []
+      },
+      {
+        "en": "I used to feel tired and bored during the ride.",
+        "zh": "我以前在通勤時感到又累又無聊。",
+        "vocab": {
+          "used to": "以前",
+          "tired": "疲倦的",
+          "bored": "無聊的"
+        },
+        "phrases": [
+          {
+            "en": "during the ride",
+            "zh": "在路程中"
+          }
+        ]
+      },
+      {
+        "en": "But recently, I've been looking for small moments of happiness.",
+        "zh": "但最近，我一直在尋找快樂的小時刻。",
+        "vocab": {
+          "recently": "最近",
+          "looking for": "尋找",
+          "moments": "時刻"
+        },
+        "phrases": [
+          {
+            "en": "small moments of happiness",
+            "zh": "快樂的小時刻"
+          }
+        ]
+      },
+      {
+        "en": "Sometimes, I listen to my favorite music and sing along quietly.",
+        "zh": "有時候，我會聽我最喜歡的音樂，並小聲跟著唱。",
+        "vocab": {
+          "favorite": "最喜歡的",
+          "music": "音樂",
+          "quietly": "安靜地"
+        },
+        "phrases": [
+          {
+            "en": "sing along",
+            "zh": "跟著唱"
+          }
+        ]
+      },
+      {
+        "en": "Other times, I observe the people around me and imagine their stories.",
+        "zh": "其他時候，我會觀察周圍的人，並想像他們的故事。",
+        "vocab": {
+          "observe": "觀察",
+          "imagine": "想像",
+          "stories": "故事"
+        },
+        "phrases": [
+          {
+            "en": "around me",
+            "zh": "在我周圍"
+          }
+        ]
+      },
+      {
+        "en": "I also enjoy watching the city wake up as the sun rises.",
+        "zh": "我也喜歡看著太陽升起，城市逐漸甦醒。",
+        "vocab": {
+          "enjoy": "享受",
+          "watching": "看著",
+          "wake up": "甦醒"
+        },
+        "phrases": [
+          {
+            "en": "wake up",
+            "zh": "甦醒 (動詞片語)"
+          },
+          {
+            "en": "as the sun rises",
+            "zh": "隨著太陽升起"
+          }
+        ]
+      },
+      {
+        "en": "These little things make my commute much more pleasant.",
+        "zh": "這些小事情讓我的通勤變得更加愉快。",
+        "vocab": {
+          "little things": "小事情",
+          "pleasant": "愉快的"
+        },
+        "phrases": [
+          {
+            "en": "make my commute",
+            "zh": "讓我的通勤"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple (used to)",
+        "explain": "用於描述過去習慣的動作或狀態，現在已經不再發生。",
+        "examples": [
+          "I used to live in a small town.",
+          "She used to play the piano every day.",
+          "They used to go fishing on weekends."
+        ]
+      },
+      {
+        "point": "Present Continuous (be + V-ing)",
+        "explain": "用於描述現在正在進行的動作，或近期正在發生的情況。",
+        "examples": [
+          "I am studying for my exam.",
+          "He is working on a new project.",
+          "They are planning a trip."
+        ]
+      },
+      {
+        "point": "Frequency Adverbs",
+        "explain": "表示動作發生的頻率，例如: always, usually, often, sometimes, rarely, never。",
+        "examples": [
+          "He always arrives on time.",
+          "She sometimes forgets her keys.",
+          "We never eat fast food."
+        ]
+      },
+      {
+        "point": "Phrasal Verbs",
+        "explain": "由動詞和一個或多個介詞或副詞組成的片語，意思通常與單獨的動詞不同。",
+        "examples": [
+          "look for (尋找)",
+          "wake up (甦醒)",
+          "sing along (跟著唱)"
+        ]
+      }
+    ]
+  }
+]

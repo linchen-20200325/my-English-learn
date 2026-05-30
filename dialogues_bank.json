@@ -1,0 +1,325 @@
+[
+  {
+    "id": "interview-self-intro-b1",
+    "title": "面試自我介紹",
+    "level": "B1",
+    "scene": "應徵者在面試時向面試官介紹自己。",
+    "lines": [
+      {
+        "speaker": "Interviewer",
+        "en": "Please, have a seat. Can you tell me about yourself?",
+        "zh": "請坐。可以請你介紹一下你自己嗎？"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "Thank you. I'm a recent graduate with a degree in Marketing.",
+        "zh": "謝謝。我是一位剛畢業的學生，主修行銷。"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "During my studies, I gained practical experience through internships.",
+        "zh": "在學期間，我透過實習獲得了實務經驗。"
+      },
+      {
+        "speaker": "Interviewer",
+        "en": "That's great. What are your strengths?",
+        "zh": "那很好。你的優勢是什麼？"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "I'm a quick learner and very adaptable to new situations.",
+        "zh": "我學習能力強，也很能適應新情況。"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "I also enjoy working in a team environment.",
+        "zh": "我也很喜歡團隊合作的環境。"
+      },
+      {
+        "speaker": "Interviewer",
+        "en": "Excellent. And what are you looking for in this role?",
+        "zh": "很好。你對這個職位有什麼期望？"
+      },
+      {
+        "speaker": "Applicant",
+        "en": "I'm eager to apply my skills and contribute to your company's success.",
+        "zh": "我渴望運用我的技能，為貴公司的成功貢獻心力。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple for past experiences",
+        "explain": "使用過去式描述過去的經驗。",
+        "examples": [
+          "I gained practical experience.",
+          "I enjoyed working in a team."
+        ]
+      },
+      {
+        "point": "Present Simple for current states and general truths",
+        "explain": "使用現在式描述現在的狀態或普遍事實。",
+        "examples": [
+          "I'm a recent graduate.",
+          "I'm eager to apply my skills."
+        ]
+      },
+      {
+        "point": "Phrases for expressing enthusiasm",
+        "explain": "表達積極或熱情的常用片語。",
+        "examples": [
+          "I'm eager to...",
+          "I enjoy..."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "weekend_chat_colleague_b1",
+    "title": "和同事聊週末",
+    "level": "B1",
+    "scene": "在辦公室茶水間或走廊，同事之間輕鬆的週末閒聊。",
+    "lines": [
+      {
+        "speaker": "Sarah",
+        "en": "Hey Mark, how was your weekend?",
+        "zh": "嗨 Mark，你週末過得如何？"
+      },
+      {
+        "speaker": "Mark",
+        "en": "It was great, thanks! I went hiking on Saturday.",
+        "zh": "很棒，謝謝！我週六去爬山了。"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "Oh, nice! Where did you go?",
+        "zh": "喔，真不錯！你去哪裡了？"
+      },
+      {
+        "speaker": "Mark",
+        "en": "I went to that new park near the mountains. The view was amazing.",
+        "zh": "我去了山附近那個新公園。風景很棒。"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "That sounds lovely. I just relaxed at home mostly.",
+        "zh": "聽起來真愜意。我大部分時間都在家放鬆。"
+      },
+      {
+        "speaker": "Mark",
+        "en": "Sometimes that's just what you need. Did you watch anything good?",
+        "zh": "有時候就是需要那樣。你有看什麼好看的嗎？"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "Yeah, I finished that series everyone's talking about.",
+        "zh": "對啊，我看完了大家都在討論的那部影集。"
+      },
+      {
+        "speaker": "Mark",
+        "en": "Oh really? Was it worth the hype?",
+        "zh": "喔真的嗎？值得那麼多人討論嗎？"
+      },
+      {
+        "speaker": "Sarah",
+        "en": "Definitely! I'll tell you about it later.",
+        "zh": "絕對值得！晚點再跟你說。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Asking about the weekend",
+        "explain": "詢問週末活動的常用句式。",
+        "examples": [
+          "How was your weekend?",
+          "What did you do last weekend?",
+          "Did you do anything fun over the weekend?"
+        ]
+      },
+      {
+        "point": "Past Simple for weekend activities",
+        "explain": "用過去式描述週末發生的事情。",
+        "examples": [
+          "I went hiking.",
+          "I relaxed at home.",
+          "I finished that series."
+        ]
+      },
+      {
+        "point": "Expressing opinions/recommendations",
+        "explain": "表達看法或推薦的說法。",
+        "examples": [
+          "The view was amazing.",
+          "That sounds lovely.",
+          "It was worth the hype.",
+          "I'll tell you about it later."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "weekend-outing-plan",
+    "title": "跟朋友約週末出遊",
+    "level": "B1",
+    "scene": "兩位朋友正在討論週末的出遊計畫。",
+    "lines": [
+      {
+        "speaker": "Alice",
+        "en": "Hey Bob, what are you up to this weekend?",
+        "zh": "嘿 Bob，你這週末有什麼計畫嗎？"
+      },
+      {
+        "speaker": "Bob",
+        "en": "Not much yet. I was thinking of doing something fun.",
+        "zh": "還沒什麼。我正想做些有趣的事。"
+      },
+      {
+        "speaker": "Alice",
+        "en": "Me too! How about going hiking on Saturday?",
+        "zh": "我也是！週六去健行怎麼樣？"
+      },
+      {
+        "speaker": "Bob",
+        "en": "That sounds great! Where should we go?",
+        "zh": "聽起來很棒！我們該去哪裡？"
+      },
+      {
+        "speaker": "Alice",
+        "en": "There's a nice trail at Green Mountain Park.",
+        "zh": "Green Mountain Park 有一條不錯的步道。"
+      },
+      {
+        "speaker": "Bob",
+        "en": "Perfect! What time should we meet?",
+        "zh": "太好了！我們幾點見面？"
+      },
+      {
+        "speaker": "Alice",
+        "en": "Let's aim for 9 AM. We can grab breakfast afterwards.",
+        "zh": "我們訂早上九點吧。之後我們可以去吃早餐。"
+      },
+      {
+        "speaker": "Bob",
+        "en": "Sounds like a plan! I'll bring some snacks.",
+        "zh": "聽起來是個好計畫！我會帶些零食。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "What are you up to...?",
+        "explain": "詢問對方正在做什麼，或有什麼計畫。",
+        "examples": [
+          "What are you up to tonight?",
+          "What are you up to this weekend?"
+        ]
+      },
+      {
+        "point": "How about + V-ing / N?",
+        "explain": "提出建議，詢問對方意見。",
+        "examples": [
+          "How about watching a movie?",
+          "How about going to the beach?"
+        ]
+      },
+      {
+        "point": "Let's aim for...",
+        "explain": "提出一個目標時間或計畫，但保留彈性。",
+        "examples": [
+          "Let's aim for a 7 PM arrival.",
+          "Let's aim for finishing by noon."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "work_complaint_01",
+    "title": "跟朋友抱怨工作",
+    "level": "B1",
+    "scene": "在咖啡廳，你向朋友傾訴工作上的煩惱。",
+    "lines": [
+      {
+        "speaker": "You",
+        "en": "Hey, can I vent for a minute?",
+        "zh": "嘿，我能抱怨一下嗎？"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Of course! What's up?",
+        "zh": "當然！怎麼了？"
+      },
+      {
+        "speaker": "You",
+        "en": "My boss is driving me crazy lately.",
+        "zh": "我老闆最近快把我逼瘋了。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Oh no, what did he do?",
+        "zh": "哦不，他做了什麼？"
+      },
+      {
+        "speaker": "You",
+        "en": "He keeps piling on more work.",
+        "zh": "他一直給我增加更多的工作。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "That sounds really stressful.",
+        "zh": "聽起來壓力真的很大。"
+      },
+      {
+        "speaker": "You",
+        "en": "Yeah, I feel so overwhelmed.",
+        "zh": "對啊，我感覺壓力好大。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Have you tried talking to him?",
+        "zh": "你有試著跟他談談嗎？"
+      },
+      {
+        "speaker": "You",
+        "en": "Not yet, I'm not sure how.",
+        "zh": "還沒有，我不知道該怎麼開口。"
+      },
+      {
+        "speaker": "Friend",
+        "en": "Maybe we can brainstorm some ideas.",
+        "zh": "或許我們可以一起想些辦法。"
+      }
+    ],
+    "grammar": [
+      {
+        "point": "vent",
+        "explain": "發洩（情緒、不滿等）。",
+        "examples": [
+          "I need to vent about my day.",
+          "She likes to vent her frustrations."
+        ]
+      },
+      {
+        "point": "drive someone crazy",
+        "explain": "讓某人抓狂、非常惱火。",
+        "examples": [
+          "This traffic is driving me crazy.",
+          "His constant complaining drove her crazy."
+        ]
+      },
+      {
+        "point": "pile on",
+        "explain": "不斷增加（工作、壓力等）。",
+        "examples": [
+          "They keep piling on more tasks.",
+          "Don't pile on too much work at once."
+        ]
+      },
+      {
+        "point": "overwhelmed",
+        "explain": "不知所措的；應接不暇的。",
+        "examples": [
+          "I feel overwhelmed with all this work.",
+          "She was overwhelmed by the amount of information."
+        ]
+      }
+    ]
+  }
+]
