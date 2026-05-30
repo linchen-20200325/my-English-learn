@@ -5976,5 +5976,935 @@
         "example": "Crime prevention."
       }
     ]
+  },
+  "allow": {
+    "word": "allow",
+    "meaning_zh": "允許、准許",
+    "kk": "[əˈlaʊ]",
+    "phonics": "uh-LOW",
+    "homophone": "阿囉",
+    "image": "阿囉！媽媽『允許』我出去玩。",
+    "example_en": "Smoking is not allowed here.",
+    "example_zh": "這裡不允許抽菸。",
+    "usage_zh": "表示「被允許」時常用被動語態 'be allowed to do sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "allowance",
+        "pos": "名詞",
+        "meaning_zh": "零用錢；津貼",
+        "example": "My parents give me a weekly allowance."
+      }
+    ]
+  },
+  "achieve": {
+    "word": "achieve",
+    "meaning_zh": "達成、實現",
+    "kk": "[əˈtʃiv]",
+    "phonics": "uh-CHEEV",
+    "homophone": "阿奇夫",
+    "image": "『阿奇夫』！你終於『達成』目標了！",
+    "example_en": "She achieved her goal of running a marathon.",
+    "example_zh": "她達成了跑馬拉松的目標。",
+    "usage_zh": "常用於描述達成目標、成就等正面結果, 'achieve success' 是常見搭配。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "achievement",
+        "pos": "名詞",
+        "meaning_zh": "成就；達成",
+        "example": "Graduating from college is a great achievement."
+      }
+    ]
+  },
+  "avoid": {
+    "word": "avoid",
+    "meaning_zh": "避免、迴避",
+    "kk": "[əˈvɔɪd]",
+    "phonics": "uh-VOID",
+    "homophone": "阿喂",
+    "image": "『阿喂』！快『迴避』，有車來了！",
+    "example_en": "Try to avoid sugary drinks.",
+    "example_zh": "試著避免含糖飲料。",
+    "usage_zh": "常用 'avoid + V-ing' 結構,強調主動規避某事。",
+    "pos": "動詞",
+    "other_forms": []
+  },
+  "complain": {
+    "word": "complain",
+    "meaning_zh": "抱怨",
+    "kk": "[kəmˈpleɪn]",
+    "phonics": "kum-PLAYN",
+    "homophone": " ખમ્મ પ્લેન",
+    "image": "『 ખમ્મ પ્લેન』！我『抱怨』這飛機太慢了！",
+    "example_en": "He always complains about the weather.",
+    "example_zh": "他總是抱怨天氣。",
+    "usage_zh": "常用 'complain about sth' 或 'complain to sb about sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "complaint",
+        "pos": "名詞",
+        "meaning_zh": "抱怨；客訴",
+        "example": "I have a complaint about the food."
+      }
+    ]
+  },
+  "agree": {
+    "word": "agree",
+    "meaning_zh": "同意",
+    "kk": "[əˈɡri]",
+    "phonics": "uh-GREE",
+    "homophone": "阿格力",
+    "image": "『阿格力』！我『同意』你的提議。",
+    "example_en": "I agree with you on this point.",
+    "example_zh": "我在這一點上同意你。",
+    "usage_zh": "常用 'agree with sb' 或 'agree on sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "agreement",
+        "pos": "名詞",
+        "meaning_zh": "同意；協議",
+        "example": "We reached an agreement."
+      }
+    ]
+  },
+  "disagree": {
+    "word": "disagree",
+    "meaning_zh": "不同意",
+    "kk": "[ˈdɪsəˌɡri]",
+    "phonics": "DIS-uh-gree",
+    "homophone": "的死格力",
+    "image": "『的死格力』！我就是『不同意』你！",
+    "example_en": "They disagreed about the best course of action.",
+    "example_zh": "他們對於最佳行動方案意見不合。",
+    "usage_zh": "與 'agree' 相反,表示意見不合。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "disagreement",
+        "pos": "名詞",
+        "meaning_zh": "意見不合；爭執",
+        "example": "There was a slight disagreement."
+      }
+    ]
+  },
+  "depend": {
+    "word": "depend",
+    "meaning_zh": "依賴、取決於",
+    "kk": "[dɪˈpɛnd]",
+    "phonics": "dih-PEND",
+    "homophone": "的胖",
+    "image": "『的胖』！我們『依賴』你，不要讓我們失望。",
+    "example_en": "It depends on the situation.",
+    "example_zh": "這取決於情況。",
+    "usage_zh": "常用 'depend on sth/sb'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "dependent",
+        "pos": "形容詞",
+        "meaning_zh": "依賴的；依附的",
+        "example": "He is financially dependent on his parents."
+      },
+      {
+        "word": "dependence",
+        "pos": "名詞",
+        "meaning_zh": "依賴；依附",
+        "example": "She has a dependence on painkillers."
+      }
+    ]
+  },
+  "succeed": {
+    "word": "succeed",
+    "meaning_zh": "成功",
+    "kk": "[səkˈsid]",
+    "phonics": "suk-SEED",
+    "homophone": "塞起司",
+    "image": "『塞起司』！你終於『成功』了！",
+    "example_en": "He succeeded in passing the exam.",
+    "example_zh": "他成功通過了考試。",
+    "usage_zh": "常用 'succeed in V-ing' 或 'succeed as...'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "success",
+        "pos": "名詞",
+        "meaning_zh": "成功",
+        "example": "Hard work leads to success."
+      },
+      {
+        "word": "successful",
+        "pos": "形容詞",
+        "meaning_zh": "成功的",
+        "example": "It was a successful event."
+      }
+    ]
+  },
+  "fail": {
+    "word": "fail",
+    "meaning_zh": "失敗",
+    "kk": "[feɪl]",
+    "phonics": "FAYL",
+    "homophone": "廢了",
+    "image": "『廢了』！考試『失敗』，我好難過。",
+    "example_en": "The project failed due to lack of funding.",
+    "example_zh": "由於資金不足，該計畫失敗了。",
+    "usage_zh": "常用 'fail to do sth' 或 'fail in sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "failure",
+        "pos": "名詞",
+        "meaning_zh": "失敗；失職",
+        "example": "His failure didn't discourage him."
+      }
+    ]
+  },
+  "repeat": {
+    "word": "repeat",
+    "meaning_zh": "重複",
+    "kk": "[rɪˈpit]",
+    "phonics": "rih-PEET",
+    "homophone": "哩屁",
+    "image": "『哩』『屁』！你講的我都聽過了，不要『重複』。",
+    "example_en": "Please don't repeat the same mistake.",
+    "example_zh": "請不要重複犯同樣的錯誤。",
+    "usage_zh": "常用 'repeat sth' 或 'repeat oneself' (說話重複)。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "repetition",
+        "pos": "名詞",
+        "meaning_zh": "重複；反覆",
+        "example": "The teacher discouraged repetition."
+      }
+    ]
+  },
+  "prove": {
+    "word": "prove",
+    "meaning_zh": "證明",
+    "kk": "[pruv]",
+    "phonics": "PROOV",
+    "homophone": "普魯夫",
+    "image": "『普魯夫』！我『證明』給你看看。",
+    "example_en": "Can you prove it?",
+    "example_zh": "你能證明嗎？",
+    "usage_zh": "常用 'prove sth' 或 'prove that...'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "proof",
+        "pos": "名詞",
+        "meaning_zh": "證據；證明",
+        "example": "There is no proof of that."
+      },
+      {
+        "word": "proven",
+        "pos": "形容詞",
+        "meaning_zh": "被證明的；公認的",
+        "example": "This is a proven method."
+      }
+    ]
+  },
+  "mention": {
+    "word": "mention",
+    "meaning_zh": "提及、提到",
+    "kk": "[ˈmɛnʃən]",
+    "phonics": "MEN-shun",
+    "homophone": "門神",
+    "image": "『門神』！你『提到』了不該提的事。",
+    "example_en": "Did he mention the meeting?",
+    "example_zh": "他有提到會議嗎？",
+    "usage_zh": "常用 'mention sth' 或 'mention that...'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
+  },
+  "introduce": {
+    "word": "introduce",
+    "meaning_zh": "介紹；引進",
+    "kk": "[ˌɪntrəˈdus]",
+    "phonics": "in-truh-DOOS",
+    "homophone": "引tudo死",
+    "image": "『引tudo死』！讓我『介紹』這位新朋友。",
+    "example_en": "Let me introduce myself.",
+    "example_zh": "讓我自我介紹一下。",
+    "usage_zh": "常用 'introduce sb to sb' 或 'introduce sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "introduction",
+        "pos": "名詞",
+        "meaning_zh": "介紹；引言",
+        "example": "The introduction was too long."
+      },
+      {
+        "word": "introductory",
+        "pos": "形容詞",
+        "meaning_zh": "引導的；入門的",
+        "example": "This is an introductory course."
+      }
+    ]
+  },
+  "complete": {
+    "word": "complete",
+    "meaning_zh": "完成",
+    "kk": "[kəmˈplit]",
+    "phonics": "kum-PLEET",
+    "homophone": " ખમ્મ плит",
+    "image": "『 ખમ્મ плит』！任務『完成』了！",
+    "example_en": "Have you completed the assignment?",
+    "example_zh": "你完成作業了嗎？",
+    "usage_zh": "常用 'complete sth'。",
+    "pos": "動詞 / 形容詞",
+    "other_forms": [
+      {
+        "word": "completion",
+        "pos": "名詞",
+        "meaning_zh": "完成",
+        "example": "The completion of the project is near."
+      }
+    ]
+  },
+  "cause": {
+    "word": "cause",
+    "meaning_zh": "導致、引起；原因",
+    "kk": "[kɔz]",
+    "phonics": "KAWZ",
+    "homophone": "靠著",
+    "image": "『靠著』山『導致』了土石流。",
+    "example_en": "What caused the accident?",
+    "example_zh": "是什麼導致了事故？",
+    "usage_zh": "常用 'cause sth' 或 'cause sb to do sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "causal",
+        "pos": "形容詞",
+        "meaning_zh": "引起...的；因果關係的",
+        "example": "We need to find the causal link."
+      }
+    ]
+  },
+  "affect": {
+    "word": "affect",
+    "meaning_zh": "影響",
+    "kk": "[əˈfɛkt]",
+    "phonics": "uh-FECT",
+    "homophone": "阿飛客",
+    "image": "『阿飛客』的電影『影響』了很多人。",
+    "example_en": "The weather will affect our plans.",
+    "example_zh": "天氣將影響我們的計畫。",
+    "usage_zh": "常用 'affect sth/sb'。注意與 'effect' (名詞) 的區別。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "affection",
+        "pos": "名詞",
+        "meaning_zh": "喜愛；感情",
+        "example": "He showed great affection for his dog."
+      }
+    ]
+  },
+  "attend": {
+    "word": "attend",
+    "meaning_zh": "出席、參加",
+    "kk": "[əˈtɛnd]",
+    "phonics": "uh-TEND",
+    "homophone": "阿疼",
+    "image": "『阿疼』！我『參加』了這場演講。",
+    "example_en": "Will you attend the conference?",
+    "example_zh": "你會參加這次會議嗎？",
+    "usage_zh": "常用 'attend sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "attendance",
+        "pos": "名詞",
+        "meaning_zh": "出席；出席人數",
+        "example": "His attendance was perfect."
+      }
+    ]
+  },
+  "apply": {
+    "word": "apply",
+    "meaning_zh": "申請；應用",
+    "kk": "[əˈplaɪ]",
+    "phonics": "uh-PLY",
+    "homophone": "阿派",
+    "image": "『阿派』！我『申請』獎學金。",
+    "example_en": "You should apply for the job.",
+    "example_zh": "你應該申請這份工作。",
+    "usage_zh": "常用 'apply for sth' (申請) 或 'apply sth to sth' (應用)。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "application",
+        "pos": "名詞",
+        "meaning_zh": "申請；應用",
+        "example": "The application was successful."
+      },
+      {
+        "word": "applicant",
+        "pos": "名詞",
+        "meaning_zh": "申請人",
+        "example": "The applicant was qualified."
+      }
+    ]
+  },
+  "save": {
+    "word": "save",
+    "meaning_zh": "節省；拯救；儲存",
+    "kk": "[sev]",
+    "phonics": "SAYV",
+    "homophone": "賽",
+    "image": "『賽』跑的錢要『節省』下來。",
+    "example_en": "Save money for a rainy day.",
+    "example_zh": "為不時之需存錢。",
+    "usage_zh": "有多種意思,常見於 'save money', 'save sb/sth from sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "saver",
+        "pos": "名詞",
+        "meaning_zh": "節省者；儲蓄者",
+        "example": "He's a real saver."
+      }
+    ]
+  },
+  "waste": {
+    "word": "waste",
+    "meaning_zh": "浪費；廢料",
+    "kk": "[west]",
+    "phonics": "WAYST",
+    "homophone": "喂死",
+    "image": "『喂死』了這麼多食物，真是『浪費』。",
+    "example_en": "Don't waste your time.",
+    "example_zh": "不要浪費你的時間。",
+    "usage_zh": "常用 'waste sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "wasted",
+        "pos": "形容詞",
+        "meaning_zh": "浪費的；徒勞的",
+        "example": "It was a wasted effort."
+      }
+    ]
+  },
+  "fix": {
+    "word": "fix",
+    "meaning_zh": "修理；固定",
+    "kk": "[fɪks]",
+    "phonics": "FIKS",
+    "homophone": "菲克斯",
+    "image": "『菲克斯』！快來『修理』這個壞掉的東西。",
+    "example_en": "Can you fix my bike?",
+    "example_zh": "你能修我的腳踏車嗎？",
+    "usage_zh": "口語中常用來指「修理」東西。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
+  },
+  "repair": {
+    "word": "repair",
+    "meaning_zh": "修理",
+    "kk": "[rɪˈpɛr]",
+    "phonics": "rih-PAIR",
+    "homophone": "哩賠",
+    "image": "『哩』『賠』多少錢才能『修理』好？",
+    "example_en": "The car needs repair.",
+    "example_zh": "這輛車需要修理。",
+    "usage_zh": "與 'fix' 類似,但 'repair' 較正式。常用 'repair sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "repairman",
+        "pos": "名詞",
+        "meaning_zh": "修理工",
+        "example": "We called a repairman."
+      }
+    ]
+  },
+  "borrow": {
+    "word": "borrow",
+    "meaning_zh": "借入",
+    "kk": "[ˈbɑro]",
+    "phonics": "BAH-roh",
+    "homophone": "ㄅㄠˊ 囉",
+    "image": "『ㄅㄠˊ 囉』！我向你『借入』這本書。",
+    "example_en": "Can I borrow your pen?",
+    "example_zh": "我可以借你的筆嗎？",
+    "usage_zh": "表示「借入」,與 'lend' (借出) 相反。常用 'borrow sth from sb'。",
+    "pos": "動詞",
+    "other_forms": []
+  },
+  "lend": {
+    "word": "lend",
+    "meaning_zh": "借出",
+    "kk": "[lɛnd]",
+    "phonics": "LEND",
+    "homophone": "冷",
+    "image": "『冷』！我『借出』外套給你。",
+    "example_en": "Can you lend me some money?",
+    "example_zh": "你能借我一些錢嗎？",
+    "usage_zh": "表示「借出」,與 'borrow' (借入) 相反。常用 'lend sb sth' 或 'lend sth to sb'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "loan",
+        "pos": "名詞 / 動詞",
+        "meaning_zh": "貸款；借出",
+        "example": "He got a bank loan."
+      }
+    ]
+  },
+  "deliver": {
+    "word": "deliver",
+    "meaning_zh": "遞送、傳送；發表",
+    "kk": "[dɪˈlɪvɚ]",
+    "phonics": "dih-LIV-er",
+    "homophone": "低哩喂",
+    "image": "『低哩喂』！快把包裹『遞送』出去。",
+    "example_en": "They will deliver the package tomorrow.",
+    "example_zh": "他們明天會遞送包裹。",
+    "usage_zh": "常用 'deliver sth to sb'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "delivery",
+        "pos": "名詞",
+        "meaning_zh": "遞送；發表",
+        "example": "The delivery was late."
+      }
+    ]
+  },
+  "search": {
+    "word": "search",
+    "meaning_zh": "搜尋、尋找",
+    "kk": "[sɝtʃ]",
+    "phonics": "SERCH",
+    "homophone": "塞起",
+    "image": "『塞起』紅包『尋找』失物。",
+    "example_en": "I need to search for my keys.",
+    "example_zh": "我需要找我的鑰匙。",
+    "usage_zh": "常用 'search for sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "searcher",
+        "pos": "名詞",
+        "meaning_zh": "搜尋者",
+        "example": "The searcher found the treasure."
+      }
+    ]
+  },
+  "download": {
+    "word": "download",
+    "meaning_zh": "下載",
+    "kk": "[ˈdaʊnˌloʊd]",
+    "phonics": "DOWN-lohd",
+    "homophone": "當樓",
+    "image": "『當樓』！快把檔案『下載』下來。",
+    "example_en": "You can download the app here.",
+    "example_zh": "你可以在這裡下載這個應用程式。",
+    "usage_zh": "與 'upload' 相反。常用 'download sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
+  },
+  "upload": {
+    "word": "upload",
+    "meaning_zh": "上傳",
+    "kk": "[ˈʌpˌloʊd]",
+    "phonics": "UP-lohd",
+    "homophone": "阿婆樓",
+    "image": "『阿婆樓』！幫我把照片『上傳』。",
+    "example_en": "Please upload your resume.",
+    "example_zh": "請上傳你的履歷。",
+    "usage_zh": "與 'download' 相反。常用 'upload sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
+  },
+  "record": {
+    "word": "record",
+    "meaning_zh": "記錄；唱片",
+    "kk": "[rɪˈkɔrd]",
+    "phonics": "rih-KORD",
+    "homophone": "哩扣的",
+    "image": "『哩扣的』！把這段聲音『記錄』下來。",
+    "example_en": "Let's record this moment.",
+    "example_zh": "讓我們記錄下這一刻。",
+    "usage_zh": "常用 'record sth'。注意名詞 'record' [ˈrɛkɚd] 重音不同。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "recording",
+        "pos": "名詞",
+        "meaning_zh": "錄音；記錄",
+        "example": "The recording is clear."
+      }
+    ]
+  },
+  "design": {
+    "word": "design",
+    "meaning_zh": "設計",
+    "kk": "[dɪˈzaɪn]",
+    "phonics": "dih-ZYN",
+    "homophone": "低賽",
+    "image": "『低賽』！這個『設計』太棒了。",
+    "example_en": "Who designed this building?",
+    "example_zh": "是誰設計了這棟建築？",
+    "usage_zh": "常用 'design sth'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "designer",
+        "pos": "名詞",
+        "meaning_zh": "設計師",
+        "example": "She is a famous fashion designer."
+      }
+    ]
+  },
+  "imagine": {
+    "word": "imagine",
+    "meaning_zh": "想像",
+    "kk": "[ɪˈmædʒən]",
+    "phonics": "ih-MAJ-in",
+    "homophone": "醫馬診",
+    "image": "『醫馬診』！請『想像』一下。",
+    "example_en": "Imagine you are a millionaire.",
+    "example_zh": "想像你是一個百萬富翁。",
+    "usage_zh": "常用 'imagine sth' 或 'imagine that...'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "imagination",
+        "pos": "名詞",
+        "meaning_zh": "想像力",
+        "example": "He has a vivid imagination."
+      }
+    ]
+  },
+  "admit": {
+    "word": "admit",
+    "meaning_zh": "承認；准許進入",
+    "kk": "[ədˈmɪt]",
+    "phonics": "ad-MIT",
+    "homophone": "阿米特",
+    "image": "『阿米特』！你『承認』你做錯了。",
+    "example_en": "He admitted he was wrong.",
+    "example_zh": "他承認自己錯了。",
+    "usage_zh": "常用 'admit sth' 或 'admit to V-ing'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "admission",
+        "pos": "名詞",
+        "meaning_zh": "承認；准許進入；入場費",
+        "example": "Admission is free."
+      }
+    ]
+  },
+  "announce": {
+    "word": "announce",
+    "meaning_zh": "宣布",
+    "kk": "[əˈnaʊns]",
+    "phonics": "uh-NOUNS",
+    "homophone": "阿nouns",
+    "image": "『阿nouns』！『宣布』好消息！",
+    "example_en": "They announced the winner.",
+    "example_zh": "他們宣布了獲獎者。",
+    "usage_zh": "常用 'announce sth' 或 'announce that...'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "announcement",
+        "pos": "名詞",
+        "meaning_zh": "宣布；公告",
+        "example": "It was an important announcement."
+      }
+    ]
+  },
+  "arrange": {
+    "word": "arrange",
+    "meaning_zh": "安排",
+    "kk": "[əˈreɪndʒ]",
+    "phonics": "uh-RAINJ",
+    "homophone": "阿RANGE",
+    "image": "『阿RANGE』！我『安排』了座位。",
+    "example_en": "Can you arrange a meeting?",
+    "example_zh": "你能安排一次會議嗎？",
+    "usage_zh": "常用 'arrange sth' 或 'arrange for sb/sth to do sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "arrangement",
+        "pos": "名詞",
+        "meaning_zh": "安排；佈置",
+        "example": "The seating arrangement was good."
+      }
+    ]
+  },
+  "belong": {
+    "word": "belong",
+    "meaning_zh": "屬於",
+    "kk": "[bɪˈlɔŋ]",
+    "phonics": "bih-LONG",
+    "homophone": "比long",
+    "image": "『比long』！這東西『屬於』你的。",
+    "example_en": "This book belongs to me.",
+    "example_zh": "這本書是我的。",
+    "usage_zh": "常用 'belong to sb/sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "belongings",
+        "pos": "名詞",
+        "meaning_zh": "隨身物品；財產",
+        "example": "Pack all your belongings."
+      }
+    ]
+  },
+  "celebrate": {
+    "word": "celebrate",
+    "meaning_zh": "慶祝",
+    "kk": "[ˈsɛləˌbreɪt]",
+    "phonics": "SELL-uh-brayt",
+    "homophone": "色咧拜",
+    "image": "『色咧拜』！我們一起『慶祝』生日。",
+    "example_en": "Let's celebrate your birthday!",
+    "example_zh": "我們來慶祝你的生日吧！",
+    "usage_zh": "常用 'celebrate sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "celebration",
+        "pos": "名詞",
+        "meaning_zh": "慶祝；慶典",
+        "example": "The celebration was a success."
+      },
+      {
+        "word": "celebrity",
+        "pos": "名詞",
+        "meaning_zh": "名人",
+        "example": "He is a famous celebrity."
+      }
+    ]
+  },
+  "communicate": {
+    "word": "communicate",
+    "meaning_zh": "溝通",
+    "kk": "[kəˈmjunəˌkeɪt]",
+    "phonics": "kuh-MYOO-nih-kayt",
+    "homophone": " ખમ્મ 謬逆凱特",
+    "image": "『 ખમ્મ 謬逆凱特』！我們需要『溝通』。",
+    "example_en": "It's important to communicate effectively.",
+    "example_zh": "有效溝通很重要。",
+    "usage_zh": "常用 'communicate with sb' 或 'communicate sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "communication",
+        "pos": "名詞",
+        "meaning_zh": "溝通；通訊",
+        "example": "Good communication is key."
+      }
+    ]
+  },
+  "compete": {
+    "word": "compete",
+    "meaning_zh": "競爭",
+    "kk": "[kəmˈpit]",
+    "phonics": "kum-PEET",
+    "homophone": " ખમ્મ 屁",
+    "image": "『 ખમ્મ 屁』！大家都在『競爭』。",
+    "example_en": "They will compete in the Olympics.",
+    "example_zh": "他們將參加奧運會的比賽。",
+    "usage_zh": "常用 'compete with sb' 或 'compete for sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "competition",
+        "pos": "名詞",
+        "meaning_zh": "競爭；比賽",
+        "example": "The competition was fierce."
+      },
+      {
+        "word": "competitor",
+        "pos": "名詞",
+        "meaning_zh": "競爭者",
+        "example": "He is my main competitor."
+      }
+    ]
+  },
+  "concentrate": {
+    "word": "concentrate",
+    "meaning_zh": "集中注意力；濃縮",
+    "kk": "[ˈkɑnsənˌtreɪt]",
+    "phonics": "KON-sun-trayt",
+    "homophone": " ખન્સન трет",
+    "image": "『 ખન્સન трет』！請『集中注意力』。",
+    "example_en": "Concentrate on your work.",
+    "example_zh": "專心工作。",
+    "usage_zh": "常用 'concentrate on sth'。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "concentration",
+        "pos": "名詞",
+        "meaning_zh": "專注；濃度",
+        "example": "He lost his concentration."
+      }
+    ]
+  },
+  "weather": {
+    "word": "weather",
+    "meaning_zh": "天氣",
+    "kk": "[ˈwɛðɚ]",
+    "phonics": "WETH-er",
+    "homophone": "為則",
+    "image": "『為則』麼『天氣』這麼糟？",
+    "example_en": "The weather is nice today.",
+    "example_zh": "今天天氣很好。",
+    "usage_zh": "常用於描述天氣狀況,如 'good weather', 'bad weather'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "holiday": {
+    "word": "holiday",
+    "meaning_zh": "假日；假期",
+    "kk": "[ˈhɑləˌdeɪ]",
+    "phonics": "HOL-uh-day",
+    "homophone": "好累的",
+    "image": "『好累的』！終於放『假』了！",
+    "example_en": "We are going on holiday next week.",
+    "example_zh": "我們下週要去度假。",
+    "usage_zh": "英式英文常用,美式英文常用 'vacation'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "vacation": {
+    "word": "vacation",
+    "meaning_zh": "假期；休假",
+    "kk": "[veɪˈkeɪʃən]",
+    "phonics": "vay-KAY-shun",
+    "homophone": "喂乖乖",
+    "image": "『喂乖乖』！快去『休假』吧！",
+    "example_en": "We took a vacation in Hawaii.",
+    "example_zh": "我們在夏威夷度了個假。",
+    "usage_zh": "美式英文常用,指較長的假期,如 summer vacation。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "weekend": {
+    "word": "weekend",
+    "meaning_zh": "週末",
+    "kk": "[ˈwikˌɛnd]",
+    "phonics": "WEEK-end",
+    "homophone": " ويك اند",
+    "image": "『 ويك اند』！『週末』愉快！",
+    "example_en": "What are you doing this weekend?",
+    "example_zh": "這個週末你打算做什麼？",
+    "usage_zh": "常用 'on the weekend' 或 'this weekend', 'next weekend'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "meeting": {
+    "word": "meeting",
+    "meaning_zh": "會議",
+    "kk": "[ˈmitɪŋ]",
+    "phonics": "MEE-ting",
+    "homophone": "米汀",
+    "image": "『米汀』！準時『開會』。",
+    "example_en": "The meeting starts at 9 AM.",
+    "example_zh": "會議早上九點開始。",
+    "usage_zh": "常用 'have a meeting', 'attend a meeting'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "project": {
+    "word": "project",
+    "meaning_zh": "計畫；專案",
+    "kk": "[ˈprɑdʒɛkt]",
+    "phonics": "PROJ-ekt",
+    "homophone": "普羅傑克",
+    "image": "『普羅傑克』！這個『專案』很難。",
+    "example_en": "We are working on a new project.",
+    "example_zh": "我們正在進行一個新專案。",
+    "usage_zh": "常用 'a new project', 'complete a project'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "customer": {
+    "word": "customer",
+    "meaning_zh": "顧客；客戶",
+    "kk": "[ˈkʌstəmɚ]",
+    "phonics": "KUS-tuh-mer",
+    "homophone": "客死他媽",
+    "image": "『客死他媽』！這位『顧客』很難搞。",
+    "example_en": "The customer is always right.",
+    "example_zh": "顧客永遠是對的。",
+    "usage_zh": "常用 'a loyal customer', 'new customer'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "service": {
+    "word": "service",
+    "meaning_zh": "服務；服務業",
+    "kk": "[ˈsɝvəs]",
+    "phonics": "SER-vis",
+    "homophone": "塞維斯",
+    "image": "『塞維斯』！這家店『服務』很好。",
+    "example_en": "The customer service was excellent.",
+    "example_zh": "顧客服務很棒。",
+    "usage_zh": "常用 'customer service', 'provide service'。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "serve",
+        "pos": "動詞",
+        "meaning_zh": "服務；供應",
+        "example": "He served us well."
+      }
+    ]
+  },
+  "product": {
+    "word": "product",
+    "meaning_zh": "產品",
+    "kk": "[ˈprɑdʌkt]",
+    "phonics": "PROD-ukt",
+    "homophone": "普羅達克",
+    "image": "『普羅達克』！這是我們的新『產品』。",
+    "example_en": "This is our latest product.",
+    "example_zh": "這是我們的最新產品。",
+    "usage_zh": "常用 'a new product', 'launch a product'。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "cost": {
+    "word": "cost",
+    "meaning_zh": "花費；成本",
+    "kk": "[kɔst]",
+    "phonics": "KAWST",
+    "homophone": "靠死",
+    "image": "『靠死』！這『成本』太高了。",
+    "example_en": "What is the cost of this item?",
+    "example_zh": "這件商品的價格是多少？",
+    "usage_zh": "常用 'the cost of sth', 'at a cost of...'。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
+  },
+  "salary": {
+    "word": "salary",
+    "meaning_zh": "薪水",
+    "kk": "[ˈsæləri]",
+    "phonics": "SAL-uh-ree",
+    "homophone": "撒了哩",
+    "image": "『撒了哩』！我的『薪水』太少了。",
+    "example_en": "He earns a good salary.",
+    "example_zh": "他賺的薪水很高。",
+    "usage_zh": "常用 'annual salary', 'starting salary'。",
+    "pos": "名詞",
+    "other_forms": []
   }
 }
