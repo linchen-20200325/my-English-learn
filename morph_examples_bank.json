@@ -1,1 +1,36 @@
-{"pre": {}, "root": {}, "suf": {}}
+{
+  "pre": {},
+  "root": {},
+  "suf": {},
+  "new_pre": [],
+  "new_root": [
+    {
+      "m": "grad guise",
+      "zh": "步驟／等級",
+      "ex": [
+        "grade",
+        "gradual",
+        "upgrade"
+      ]
+    },
+    {
+      "m": "cede cess",
+      "zh": "讓予／停止",
+      "ex": [
+        "cede",
+        "process",
+        "recess"
+      ]
+    },
+    {
+      "m": "vert vers",
+      "zh": "轉／轉變",
+      "ex": [
+        "convert",
+        "reverse",
+        "versatile"
+      ]
+    }
+  ],
+  "new_suf": []
+}
