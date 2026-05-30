@@ -1308,7 +1308,6 @@ def view_morphology() -> None:
                     st.markdown(f"- **{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}")
 
 
-
 @st.cache_data
 def _load_vocab_bank_cached(_mtime: float) -> dict:
     """讀取 + 自動清理:把 key 正規化為小寫,大小寫撞 key 只保留第一筆,

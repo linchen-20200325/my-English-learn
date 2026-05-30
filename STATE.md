@@ -3,7 +3,7 @@
 ## 📌 當前狀態
 - **專案**: 英文學習儀表板 (English Learning Dashboard)
 - **環境**: Streamlit Cloud + GitHub
-- **進度**: 九大分頁已完成並通過 AppTest 驗證（新增「📖 單字庫」分頁＋批次生成腳本 `scripts/generate_vocab.py`：本機跑 Claude API 把 ~250 字啟動詞表填上諧音／例句／用法寫進 `vocab_bank.json`，分頁支援搜尋與分頁瀏覽）；Streamlit Cloud 部署設定就緒；協議 v2.0 已部署
+- **進度**: 代碼淨化與收尾完成。11 大分頁(總覽／單字學習／測驗／字根速記／口說範本／互動閱讀／單字庫／情境生成／複習／進度／計畫)通過 AppTest 驗證,Streamlit Cloud + GitHub auto-push 流程就緒。
 - **分支**: `main`（預設分支）+ 開發分支 `claude/brave-lovelace-Q786A`
 
 ## 🛠️ 檔案結構與核心組件

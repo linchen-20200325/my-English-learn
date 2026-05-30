@@ -7,3 +7,6 @@ __pycache__/
 .venv/
 venv/
 .streamlit/secrets.toml
+
+# 防禦性備份(代碼淨化任務暫存)
+*.bak
