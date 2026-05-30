@@ -1062,5 +1062,154 @@
         ]
       }
     ]
+  },
+  {
+    "id": "commute-happiness-b1",
+    "title": "Little Joys on the Commute",
+    "title_zh": "通勤路上的小確幸",
+    "level": "B1",
+    "summary": "文章描述了作者在通勤途中發現的日常小樂趣，並運用了過去式、現在進行式和一些表示頻率的副詞。",
+    "sentences": [
+      {
+        "en": "Every morning, I take the bus to work.",
+        "zh": "每天早上，我搭公車去上班。",
+        "vocab": {
+          "morning": "早上",
+          "bus": "公車"
+        },
+        "phrases": []
+      },
+      {
+        "en": "I used to feel tired and bored during the ride.",
+        "zh": "我以前在通勤時感到又累又無聊。",
+        "vocab": {
+          "used to": "以前",
+          "tired": "疲倦的",
+          "bored": "無聊的"
+        },
+        "phrases": [
+          {
+            "en": "during the ride",
+            "zh": "在路程中"
+          }
+        ]
+      },
+      {
+        "en": "But recently, I've been looking for small moments of happiness.",
+        "zh": "但最近，我一直在尋找快樂的小時刻。",
+        "vocab": {
+          "recently": "最近",
+          "looking for": "尋找",
+          "moments": "時刻"
+        },
+        "phrases": [
+          {
+            "en": "small moments of happiness",
+            "zh": "快樂的小時刻"
+          }
+        ]
+      },
+      {
+        "en": "Sometimes, I listen to my favorite music and sing along quietly.",
+        "zh": "有時候，我會聽我最喜歡的音樂，並小聲跟著唱。",
+        "vocab": {
+          "favorite": "最喜歡的",
+          "music": "音樂",
+          "quietly": "安靜地"
+        },
+        "phrases": [
+          {
+            "en": "sing along",
+            "zh": "跟著唱"
+          }
+        ]
+      },
+      {
+        "en": "Other times, I observe the people around me and imagine their stories.",
+        "zh": "其他時候，我會觀察周圍的人，並想像他們的故事。",
+        "vocab": {
+          "observe": "觀察",
+          "imagine": "想像",
+          "stories": "故事"
+        },
+        "phrases": [
+          {
+            "en": "around me",
+            "zh": "在我周圍"
+          }
+        ]
+      },
+      {
+        "en": "I also enjoy watching the city wake up as the sun rises.",
+        "zh": "我也喜歡看著太陽升起，城市逐漸甦醒。",
+        "vocab": {
+          "enjoy": "享受",
+          "watching": "看著",
+          "wake up": "甦醒"
+        },
+        "phrases": [
+          {
+            "en": "wake up",
+            "zh": "甦醒 (動詞片語)"
+          },
+          {
+            "en": "as the sun rises",
+            "zh": "隨著太陽升起"
+          }
+        ]
+      },
+      {
+        "en": "These little things make my commute much more pleasant.",
+        "zh": "這些小事情讓我的通勤變得更加愉快。",
+        "vocab": {
+          "little things": "小事情",
+          "pleasant": "愉快的"
+        },
+        "phrases": [
+          {
+            "en": "make my commute",
+            "zh": "讓我的通勤"
+          }
+        ]
+      }
+    ],
+    "grammar": [
+      {
+        "point": "Past Simple (used to)",
+        "explain": "用於描述過去習慣的動作或狀態，現在已經不再發生。",
+        "examples": [
+          "I used to live in a small town.",
+          "She used to play the piano every day.",
+          "They used to go fishing on weekends."
+        ]
+      },
+      {
+        "point": "Present Continuous (be + V-ing)",
+        "explain": "用於描述現在正在進行的動作，或近期正在發生的情況。",
+        "examples": [
+          "I am studying for my exam.",
+          "He is working on a new project.",
+          "They are planning a trip."
+        ]
+      },
+      {
+        "point": "Frequency Adverbs",
+        "explain": "表示動作發生的頻率，例如: always, usually, often, sometimes, rarely, never。",
+        "examples": [
+          "He always arrives on time.",
+          "She sometimes forgets her keys.",
+          "We never eat fast food."
+        ]
+      },
+      {
+        "point": "Phrasal Verbs",
+        "explain": "由動詞和一個或多個介詞或副詞組成的片語，意思通常與單獨的動詞不同。",
+        "examples": [
+          "look for (尋找)",
+          "wake up (甦醒)",
+          "sing along (跟著唱)"
+        ]
+      }
+    ]
   }
 ]
