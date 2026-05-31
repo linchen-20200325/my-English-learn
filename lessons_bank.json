@@ -1,1 +1,65 @@
-[]
+[
+  {
+    "id": 1,
+    "scenario": "計程車上閒聊",
+    "mermaid": "flowchart LR\n    root((\"計程車上閒聊\"))\n    n0[\"Greeting 開場\"]\n    n1[\"Small Talk 閒聊\"]\n    n2[\"Destination 確認目的地\"]\n    n3[\"Fare 談論費用\"]\n    n4[\"Farewell 告別\"]\n    root --> n0\n    root --> n1\n    root --> n2\n    root --> n3\n    root --> n4\n    n0_0[\"Hi there! | 嗨!\"]\n    n0 --> n0_0\n    n0_1[\"How's your day? | 你今天過得如何?\"]\n    n0 --> n0_1\n    n1_0[\"Nice weather today. | 今天天氣不錯。\"]\n    n1 --> n1_0\n    n1_1[\"Are you from around here? | 你是本地人嗎?\"]\n    n1 --> n1_1\n    n2_0[\"To this address, please. | 請到這個地址。\"]\n    n2 --> n2_0\n    n2_1[\"How far is it? | 還有多遠?\"]\n    n2 --> n2_1\n    n3_0[\"How much is it? | 總共多少錢?\"]\n    n3 --> n3_0\n    n3_1[\"Can I pay by card? | 可以刷卡嗎?\"]\n    n3 --> n3_1\n    n4_0[\"Thanks, drive safe! | 謝謝，路上小心!\"]\n    n4 --> n4_0\n    n4_1[\"Have a good one! | 祝你有美好的一天!\"]\n    n4 --> n4_1",
+    "flashcards": [
+      {
+        "id": 1,
+        "sentence": "How's your day?",
+        "chinese": "你今天過得如何?",
+        "chunk": "How's your day",
+        "target_word": "day",
+        "kk": "[deɪ]",
+        "phonics": "DAY",
+        "mnemonic": "『Day』，今天！今天過得怎麼樣？別『day』了，快回答！",
+        "context": "剛上計程車，司機或乘客可以輕鬆開啟話題。"
+      },
+      {
+        "id": 2,
+        "sentence": "Are you from around here?",
+        "chinese": "你是本地人嗎?",
+        "chunk": "from around here",
+        "target_word": "around",
+        "kk": "[əˈraʊnd]",
+        "phonics": "uh-ROUND",
+        "mnemonic": "『Around』，環繞。你環繞著這個地方住嗎？",
+        "context": "閒聊中想了解對方是否為當地人。"
+      },
+      {
+        "id": 3,
+        "sentence": "To this address, please.",
+        "chinese": "請到這個地址。",
+        "chunk": "To this address",
+        "target_word": "address",
+        "kk": "[əˈdrɛs]",
+        "phonics": "uh-DRESS",
+        "mnemonic": "『Address』，地址。給我你的『地址』，否則我就把你丟到『dress』(洋裝)裡！",
+        "context": "清楚告知司機要去的目的地。"
+      },
+      {
+        "id": 4,
+        "sentence": "How much is it?",
+        "chinese": "總共多少錢?",
+        "chunk": "How much",
+        "target_word": "much",
+        "kk": "[mʌtʃ]",
+        "phonics": "MUCH",
+        "mnemonic": "『Much』，多少。『媽』(Ma)！這個多少錢？『媽』(Ma)！",
+        "context": "詢問計程車車資。"
+      },
+      {
+        "id": 5,
+        "sentence": "Thanks, drive safe!",
+        "chinese": "謝謝，路上小心!",
+        "chunk": "drive safe",
+        "target_word": "safe",
+        "kk": "[seɪf]",
+        "phonics": "SAYF",
+        "mnemonic": "『Safe』，安全。司機開車要『Say Fxxk』(說髒話)嗎？不！要『Safe』(安全)！",
+        "context": "下車時，感謝司機並祝福對方行車平安。"
+      }
+    ],
+    "created": "2026-05-31"
+  }
+]
