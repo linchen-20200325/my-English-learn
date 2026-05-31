@@ -1037,13 +1037,24 @@ def view_overview() -> None:
     with left:
         st.markdown("#### 📌 每日一句")
         p = DAILY_PHRASES[data["phrase_index"] % len(DAILY_PHRASES)]
-        st.markdown(
-            f"""<div class="phrase-box">
-            <div class="en">“{p['en']}”</div>
-            <div class="zh">{p['zh']}</div>
-            <span class="tag"># {p['tag']}</span></div>""",
-            unsafe_allow_html=True,
+        en_js = _esc_js(p["en"])
+        tts_html = (
+            f'<button onclick="'
+            f'const u=new SpeechSynthesisUtterance(\'{en_js}\');'
+            f'u.lang=\'en-US\'; u.rate=0.92;'
+            f'speechSynthesis.cancel(); speechSynthesis.speak(u);'
+            f'" style="padding:8px 18px; font-size:14px; border:none; '
+            f'border-radius:999px; cursor:pointer; background:rgba(255,255,255,.28); '
+            f'color:#fff; font-weight:600; margin-top:12px;">🔊 唸這句</button>'
         )
+        phrase_html = (
+            f'<div class="phrase-box">'
+            f'<div class="en">“{_html.escape(p["en"])}”</div>'
+            f'<div class="zh">{_html.escape(p["zh"])}</div>'
+            f'<span class="tag"># {_html.escape(p["tag"])}</span>'
+            f'{tts_html}</div>'
+        )
+        _embed_html(phrase_html, 200)
         if st.button("換一句 🔄"):
             data["phrase_index"] = (data["phrase_index"] + 1) % len(DAILY_PHRASES)
             save_data()
@@ -1764,13 +1775,39 @@ def view_morphology() -> None:
                         except Exception as e:  # noqa: BLE001
                             st.error(f"生成失敗:{type(e).__name__}: {str(e)[:200]}")
 
-            with st.expander("檢視清單"):
+            with st.expander("檢視清單（點任一例字唸給你聽）"):
+                # 把例字渲染成 chip,可點唸(Web Speech API)
+                rows = []
                 for it in items:
                     is_new = it in new_items
                     tag = "🆕 " if is_new else ""
-                    st.markdown(
-                        f"- {tag}**{it['m']}**（{it['zh']}）：{', '.join(it['ex'])}"
+                    chips = []
+                    for ex in it["ex"]:
+                        en_js = _esc_js(ex)
+                        chips.append(
+                            f'<button onclick="'
+                            f'const u=new SpeechSynthesisUtterance(\'{en_js}\');'
+                            f'u.lang=\'en-US\'; u.rate=0.95;'
+                            f'speechSynthesis.cancel(); speechSynthesis.speak(u);'
+                            f'" style="margin:2px; padding:3px 10px; font-size:13px; '
+                            f'border:1px solid #b45309; border-radius:999px; '
+                            f'background:#fef3c7; color:#7c2d12; cursor:pointer;">'
+                            f'🔊 {_html.escape(ex)}</button>'
+                        )
+                    rows.append(
+                        f'<div style="margin:8px 0; padding:6px 10px; background:#f8fafc; '
+                        f'border-radius:6px;">'
+                        f'<span style="font-weight:600; color:#4f46e5;">'
+                        f'{tag}{_html.escape(it["m"])}</span>'
+                        f'<span style="color:#64748b; font-size:13px;">'
+                        f'　({_html.escape(it["zh"])})</span><br>'
+                        f'{"".join(chips)}</div>'
                     )
+                _embed_html(
+                    '<div style="font-family:-apple-system,sans-serif;">'
+                    + "".join(rows) + "</div>",
+                    height=80 + 60 * len(items),
+                )
 
     # 🔀 一鍵把累積的 AI 例字 + 新 morpheme 回流進 morphology.py 預設清單
     file_morph = load_morph_examples()
@@ -3433,6 +3470,135 @@ def view_reading() -> None:
                 st.success(f"已加入 {n} 句到複習清單。")
 
 
+def _collect_listening_pool() -> list:
+    """從現有素材抽英中對照句:vocab_bank example + SEED MNEMONICS + 口說範本 +
+    故事段落 + 互動閱讀句子。每筆 {en, zh, source}。"""
+    pool = []
+    # SEED MNEMONICS
+    for w, m in MNEMONICS.items():
+        if m.get("example_en") and m.get("example_zh"):
+            pool.append({"en": m["example_en"], "zh": m["example_zh"],
+                         "source": f"SEED · {w}"})
+    # vocab_bank
+    for w, e in load_vocab_bank().items():
+        if e.get("example_en") and e.get("example_zh"):
+            pool.append({"en": e["example_en"], "zh": e["example_zh"],
+                         "source": f"單字庫 · {w}"})
+    # 口說範本 - 對話
+    for conv in CONVERSATIONS:
+        for line in conv.get("lines", []):
+            if line.get("en") and line.get("zh"):
+                pool.append({"en": line["en"], "zh": line["zh"],
+                             "source": f"對話 · {conv.get('title','')}"})
+    # 口說範本 - 故事
+    for story in STORIES:
+        for p in story.get("paragraphs", []):
+            if p.get("en") and p.get("zh"):
+                pool.append({"en": p["en"], "zh": p["zh"],
+                             "source": f"故事 · {story.get('title','')}"})
+    # 互動閱讀
+    for passage in READINGS:
+        for s in passage.get("sentences", []):
+            if s.get("en") and s.get("zh"):
+                pool.append({"en": s["en"], "zh": s["zh"],
+                             "source": f"閱讀 · {passage.get('title','')}"})
+    return pool
+
+
+def view_listening() -> None:
+    with st.expander("💡 這是什麼？怎麼用？", expanded=False):
+        st.markdown(
+            "**聽力訓練**＝從你現有的學習素材(SEED / 單字庫 / 對話 / 故事 / 互動閱讀)"
+            "隨機抽句做聽寫練習。\n\n"
+            "**兩種模式**:\n"
+            "1. **🇹🇼 看中文聽英文**:先看中文 → 按 ▶️ 聽英文 → 心裡跟讀 → 翻面對答案\n"
+            "2. **🇬🇧 純聽寫**:只聽不看 → 嘗試在腦中還原 → 翻面看英文+中文\n\n"
+            "**最有效學法**:**Shadowing 跟讀**——聽一遍 → 暫停模仿 → 比對你跟原音的差異。"
+        )
+    pool = _collect_listening_pool()
+    if not pool:
+        st.info("素材池是空的(SEED MNEMONICS 應有 20 句,看看是否載入正常)。")
+        return
+
+    # session 狀態:打亂後的順序 + 當前索引
+    pool_sig = (len(pool), pool[0]["en"][:20])
+    if st.session_state.get("_listen_sig") != pool_sig:
+        import random
+        shuffled = list(pool)
+        random.shuffle(shuffled)
+        st.session_state["_listen_pool"] = shuffled
+        st.session_state["_listen_sig"] = pool_sig
+        st.session_state["_listen_idx"] = 0
+        st.session_state["_listen_reveal"] = False
+
+    shuffled = st.session_state["_listen_pool"]
+    idx = st.session_state["_listen_idx"] % len(shuffled)
+    item = shuffled[idx]
+    reveal = st.session_state.get("_listen_reveal", False)
+
+    st.caption(f"📚 共 {len(shuffled)} 句　·　第 {idx + 1} 句　·　來源:{item['source']}")
+    mode = st.radio("模式", ["🇹🇼 看中文聽英文", "🇬🇧 純聽寫(英文翻中)"],
+                    horizontal=True, key="_listen_mode")
+
+    en_js = _esc_js(item["en"])
+    play_btn = (
+        f'<button onclick="'
+        f'const u=new SpeechSynthesisUtterance(\'{en_js}\');'
+        f'u.lang=\'en-US\'; u.rate=__RATE__;'
+        f'speechSynthesis.cancel(); speechSynthesis.speak(u);'
+        f'" style="padding:14px 28px; font-size:18px; border:none; '
+        f'border-radius:999px; cursor:pointer; background:__BG__; color:#fff; '
+        f'font-weight:700; margin:6px 6px;">__LABEL__</button>'
+    )
+    slow_btn = play_btn.replace("__RATE__", "0.7").replace("__BG__", "#0ea5e9").replace("__LABEL__", "🐌 慢速")
+    norm_btn = play_btn.replace("__RATE__", "0.92").replace("__BG__", "#10b981").replace("__LABEL__", "▶️ 正常速度")
+    fast_btn = play_btn.replace("__RATE__", "1.1").replace("__BG__", "#f59e0b").replace("__LABEL__", "🐇 快")
+
+    if mode.startswith("🇹🇼"):
+        card_inner = (
+            f'<div style="font-size:24px; font-weight:700; color:#312e81; '
+            f'text-align:center; margin-bottom:14px;">'
+            f'🇹🇼 {_html.escape(item["zh"])}</div>'
+        )
+    else:
+        card_inner = (
+            '<div style="font-size:18px; color:#64748b; text-align:center; margin-bottom:14px;">'
+            '🎧 聽下方音檔,試著在腦中還原英文;按「翻面」對答案</div>'
+        )
+    html = (
+        f'<div style="padding:20px; background:#f8fafc; border:2px solid #4f46e5; '
+        f'border-radius:16px; font-family:-apple-system,sans-serif; text-align:center;">'
+        + card_inner +
+        f'<div>{slow_btn}{norm_btn}{fast_btn}</div></div>'
+    )
+    _embed_html(html, 220)
+
+    c1, c2, c3 = st.columns(3)
+    if c1.button("← 上一句", use_container_width=True, key="_listen_prev"):
+        st.session_state["_listen_idx"] = (idx - 1) % len(shuffled)
+        st.session_state["_listen_reveal"] = False
+        st.rerun()
+    if c2.button(("🙈 隱藏答案" if reveal else "🔄 翻面看答案"),
+                 use_container_width=True, type="primary", key="_listen_flip"):
+        st.session_state["_listen_reveal"] = not reveal
+        st.rerun()
+    if c3.button("下一句 →", use_container_width=True, key="_listen_next"):
+        st.session_state["_listen_idx"] = (idx + 1) % len(shuffled)
+        st.session_state["_listen_reveal"] = False
+        st.rerun()
+
+    if reveal:
+        with st.container(border=True):
+            st.markdown(f"**🇬🇧 英文**:{item['en']}")
+            st.caption(f"🇹🇼 中文:{item['zh']}")
+            if st.button("➕ 加入複習(SRS 排程)", key="_listen_addrev"):
+                added = add_cards_to_review([{
+                    "sentence": item["en"], "chinese": item["zh"],
+                    "chunk": item["en"][:40], "context": f"聽力 · {item['source']}",
+                }])
+                st.success(f"已加入 {added} 句到複習清單。")
+
+
 def view_vocab_bank() -> None:
     with st.expander("💡 這是什麼？怎麼用？", expanded=False):
         st.markdown(
@@ -3804,7 +3970,8 @@ def main() -> None:
         view = st.radio(
             "導覽",
             ["🏠 總覽", "🗂️ 單字學習", "✏️ 單字測驗", "🔤 字根速記",
-             "💬 情境會話", "📚 互動閱讀", "🎬 影視字幕", "📐 文法生成",
+             "💬 情境會話", "📚 互動閱讀", "👂 聽力訓練",
+             "🎬 影視字幕", "📐 文法生成",
              "📖 單字庫", "📚 我的資料庫", "🔁 複習", "✅ 學習計畫"],
             label_visibility="collapsed",
         )
@@ -4014,6 +4181,8 @@ def main() -> None:
         view_scenario()
     elif view.endswith("互動閱讀"):
         view_reading()
+    elif view.endswith("聽力訓練"):
+        view_listening()
     elif view.endswith("影視字幕"):
         view_subtitles()
     elif view.endswith("文法生成"):
