@@ -1,4 +1,5 @@
-# 執行期產生的使用者資料
+# 執行期產生的使用者資料(可在 sidebar 按「📤 雲端備份學習進度」推回 repo,
+# 重新部署後自動恢復;但本機 commit 預設不要包,避免 git status 雜訊)
 dashboard_data.json
 
 # Python
