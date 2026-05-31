@@ -24778,5 +24778,367 @@
         "example": "He tends to monopolize the conversation."
       }
     ]
+  },
+  "monotonous": {
+    "word": "monotonous",
+    "meaning_zh": "單調的、乏味的",
+    "kk": "[məˈnɑtənəs]",
+    "phonics": "muh-NOT-uh-nus",
+    "homophone": "摸你偷吃肉",
+    "image": "你『摸』了『你』的『偷吃肉』，覺得好『單調』。",
+    "example_en": "His voice was monotonous and boring.",
+    "example_zh": "他的聲音單調乏味。",
+    "usage_zh": "用來形容聲音、工作、生活缺乏變化，聽起來或感覺起來很無聊。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "monument": {
+    "word": "monument",
+    "meaning_zh": "紀念碑、遺跡",
+    "kk": "[ˈmɑnjəmənt]",
+    "phonics": "MON-yuh-ment",
+    "homophone": "忙你門",
+    "image": "『忙你門』口的這個『紀念碑』，是為了紀念歷史。",
+    "example_en": "The monument honors fallen soldiers.",
+    "example_zh": "這座紀念碑是為了紀念陣亡的將士。",
+    "usage_zh": "通常指為了紀念重要人物或事件而建造的建築物或結構。",
+    "pos": "名詞",
+    "other_forms": []
+  },
+  "moral": {
+    "word": "moral",
+    "meaning_zh": "道德的、品德",
+    "kk": "[ˈmɔrəl]",
+    "phonics": "MOR-uhl",
+    "homophone": "摸乳",
+    "image": "『摸乳』有違『道德』，這是壞習慣。",
+    "example_en": "It's a matter of moral principle.",
+    "example_zh": "這是道德原則的問題。",
+    "usage_zh": "指關於是非對錯、良心、品行方面的。也可用作名詞指『寓意』。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "morality",
+        "pos": "名詞",
+        "meaning_zh": "道德觀、道德",
+        "example": "Different cultures have different moralities."
+      }
+    ]
+  },
+  "moreover": {
+    "word": "moreover",
+    "meaning_zh": "此外、而且",
+    "kk": "[mɔrˈoʊvɚ]",
+    "phonics": "more-OH-ver",
+    "homophone": "莫兒佛",
+    "image": "『莫兒佛』說，『此外』你還有其他問題嗎？",
+    "example_en": "The house is beautiful; moreover, it's affordable.",
+    "example_zh": "這房子很漂亮；此外，也很實惠。",
+    "usage_zh": "用於連接兩個句子或論點，表示進一步補充說明，語氣較正式。",
+    "pos": "副詞",
+    "other_forms": []
+  },
+  "mortal": {
+    "word": "mortal",
+    "meaning_zh": "凡人的、致死的",
+    "kk": "[ˈmɔrtl]",
+    "phonics": "MOR-tuhl",
+    "homophone": "墨脫",
+    "image": "在『墨脫』，『凡人』都有『致死』的風險。",
+    "example_en": "All humans are mortal.",
+    "example_zh": "所有人類都會死。",
+    "usage_zh": "指會死的、終有一死的，或指致命的、極度的（如 mortal enemy）。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": []
+  },
+  "motive": {
+    "word": "motive",
+    "meaning_zh": "動機、原因",
+    "kk": "[ˈmoʊtɪv]",
+    "phonics": "MOH-tiv",
+    "homophone": "毛貼",
+    "image": "他把『毛』『貼』在牆上，是想表達什麼『動機』？",
+    "example_en": "What was his motive for doing that?",
+    "example_zh": "他這樣做的動機是什麼？",
+    "usage_zh": "指做某事的理由或目的，常在討論犯罪、行為原因時使用。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "motivate",
+        "pos": "動詞",
+        "meaning_zh": "激勵、促使",
+        "example": "Good leaders motivate their teams."
+      },
+      {
+        "word": "motivation",
+        "pos": "名詞",
+        "meaning_zh": "動機、動力",
+        "example": "He lacks motivation to study."
+      }
+    ]
+  },
+  "mount": {
+    "word": "mount",
+    "meaning_zh": "騎上、登上、山",
+    "kk": "[maʊnt]",
+    "phonics": "MOWNT",
+    "homophone": "mounting",
+    "image": "『mounting』一個大『山』，需要很多體力。",
+    "example_en": "He will mount the horse.",
+    "example_zh": "他將騎上馬。",
+    "usage_zh": "可作動詞指騎上（馬、自行車）、登上（舞台、山），也可作名詞指山。常指有目的地、有準備地上去。",
+    "pos": "動詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "mountain",
+        "pos": "名詞",
+        "meaning_zh": "山",
+        "example": "They climbed the highest mountain."
+      }
+    ]
+  },
+  "mourn": {
+    "word": "mourn",
+    "meaning_zh": "哀悼、悲傷",
+    "kk": "[mɔrn]",
+    "phonics": "MORN",
+    "homophone": "morning",
+    "image": "每個『morning』（早晨），他都為逝去的親人『哀悼』。",
+    "example_en": "We mourn the loss of our friend.",
+    "example_zh": "我們哀悼失去的朋友。",
+    "usage_zh": "指因某人去世或某事失敗而感到悲傷、哀痛，通常用於較嚴肅的場合。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "mourning",
+        "pos": "名詞",
+        "meaning_zh": "哀悼、喪服",
+        "example": "She wore black mourning."
+      }
+    ]
+  },
+  "multiple": {
+    "word": "multiple",
+    "meaning_zh": "多個、多種",
+    "kk": "[ˈmʌltəpl]",
+    "phonics": "MUL-tuh-pul",
+    "homophone": "母弟破",
+    "image": "『母弟』被『破』了，他有『多個』原因。",
+    "example_en": "She has multiple talents.",
+    "example_zh": "她有多種才能。",
+    "usage_zh": "表示數量上很多，超過一個，有多方面的。常用於名詞前。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "multiply",
+        "pos": "動詞",
+        "meaning_zh": "乘、繁殖",
+        "example": "Two multiplied by three equals six."
+      }
+    ]
+  },
+  "municipal": {
+    "word": "municipal",
+    "meaning_zh": "市政的、市營的",
+    "kk": "[mjʊˈnɪsəpl]",
+    "phonics": "myoo-NIS-uh-pul",
+    "homophone": "謬尼斯破",
+    "image": "『謬尼斯』市『破』了，需要『市政』的介入。",
+    "example_en": "The municipal government provides services.",
+    "example_zh": "市政府提供服務。",
+    "usage_zh": "指與城市、市政府相關的，如 municipal buildings (市政大樓), municipal services (市政服務)。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "murmur": {
+    "word": "murmur",
+    "meaning_zh": "低語、抱怨",
+    "kk": "[ˈmɝmɚ]",
+    "phonics": "MUR-mer",
+    "homophone": "摸額",
+    "image": "他『摸』了『額』頭，小聲『低語』，似乎在『抱怨』。",
+    "example_en": "I heard him murmur something.",
+    "example_zh": "我聽到他低語了什麼。",
+    "usage_zh": "可指小聲說話（常帶有不滿或秘密），也可指連續不斷的低沉聲音（如流水聲）。",
+    "pos": "動詞 / 名詞",
+    "other_forms": []
+  },
+  "muscle": {
+    "word": "muscle",
+    "meaning_zh": "肌肉",
+    "kk": "[ˈmʌsl]",
+    "phonics": "MUS-uhl",
+    "homophone": "摸死偶",
+    "image": "他『摸』了『死偶』像的『肌肉』，覺得很強壯。",
+    "example_en": "He flexed his muscles.",
+    "example_zh": "他展示了他的肌肉。",
+    "usage_zh": "指身體裡的肌肉組織，也可用來形容力量、肌肉感。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "muscular",
+        "pos": "形容詞",
+        "meaning_zh": "肌肉發達的",
+        "example": "He has a muscular build."
+      }
+    ]
+  },
+  "mutual": {
+    "word": "mutual",
+    "meaning_zh": "相互的、共同的",
+    "kk": "[ˈmjutʃuəl]",
+    "phonics": "MYOO-choo-uhl",
+    "homophone": "謬 चूक偶",
+    "image": "這對『謬 चूक偶』，對彼此有『相互』的愛意。",
+    "example_en": "We have a mutual understanding.",
+    "example_zh": "我們有相互的理解。",
+    "usage_zh": "指雙方或多方之間都有的、共同的。常用於 mutual friends (共同的朋友), mutual respect (相互尊重)。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "mysterious": {
+    "word": "mysterious",
+    "meaning_zh": "神秘的、難解的",
+    "kk": "[mɪˈstɪriəs]",
+    "phonics": "mih-STEER-ee-us",
+    "homophone": "迷死熱",
+    "image": "這個『迷死熱』的女人，行為舉止好『神秘』。",
+    "example_en": "The disappearance was mysterious.",
+    "example_zh": "這次失蹤很神秘。",
+    "usage_zh": "用來形容難以理解、充滿謎團、讓人好奇的事物或人。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "mystery",
+        "pos": "名詞",
+        "meaning_zh": "謎、神秘",
+        "example": "The case remains a mystery."
+      }
+    ]
+  },
+  "naive": {
+    "word": "naive",
+    "meaning_zh": "天真的、幼稚的",
+    "kk": "[naɪˈiv]",
+    "phonics": "nye-EEV",
+    "homophone": "奈伊夫",
+    "image": "『奈伊夫』是一個『天真』的小孩，不懂世事。",
+    "example_en": "She was too naive to see the trap.",
+    "example_zh": "她太天真了，沒看到那個陷阱。",
+    "usage_zh": "形容一個人缺乏經驗、判斷力不足，容易受騙，有時帶有輕微的貶義。",
+    "pos": "形容詞",
+    "other_forms": [
+      {
+        "word": "naivete",
+        "pos": "名詞",
+        "meaning_zh": "天真",
+        "example": "Her naivete was charming."
+      }
+    ]
+  },
+  "narrate": {
+    "word": "narrate",
+    "meaning_zh": "敘述、講述",
+    "kk": "[ˈnɛreɪt]",
+    "phonics": "NAIR-ayt",
+    "homophone": "那瑞特",
+    "image": "『那瑞特』頻道專門『敘述』歷史故事。",
+    "example_en": "He will narrate the documentary.",
+    "example_zh": "他將為這部紀錄片配音敘述。",
+    "usage_zh": "指按照時間順序或邏輯順序講述故事、事件的過程。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "narrator",
+        "pos": "名詞",
+        "meaning_zh": "敘述者",
+        "example": "The narrator's voice was soothing."
+      },
+      {
+        "word": "narration",
+        "pos": "名詞",
+        "meaning_zh": "敘述",
+        "example": "The narration was well done."
+      }
+    ]
+  },
+  "nasty": {
+    "word": "nasty",
+    "meaning_zh": "噁心的、惡意的",
+    "kk": "[ˈnæsti]",
+    "phonics": "NAS-tee",
+    "homophone": "那時",
+    "image": "『那時』他講了一個『噁心』又『惡意』的笑話。",
+    "example_en": "That was a nasty comment.",
+    "example_zh": "那是一句惡意的評論。",
+    "usage_zh": "形容令人不快、粗魯、惡劣、危險的，可以用來形容人、事、物或天氣。",
+    "pos": "形容詞",
+    "other_forms": []
+  },
+  "navigate": {
+    "word": "navigate",
+    "meaning_zh": "導航、航行",
+    "kk": "[ˈnævəˌɡeɪt]",
+    "phonics": "NAV-uh-gayt",
+    "homophone": "哪飛特",
+    "image": "『哪飛特』公司教你如何『導航』飛機。",
+    "example_en": "Can you navigate the GPS?",
+    "example_zh": "你會操作 GPS 導航嗎？",
+    "usage_zh": "指確定方向並引導前進，可以用於實際的航行、駕駛，也可用於比喻性的情況，如 navigate a difficult situation (處理棘手狀況)。",
+    "pos": "動詞",
+    "other_forms": [
+      {
+        "word": "navigation",
+        "pos": "名詞",
+        "meaning_zh": "導航、航行",
+        "example": "Car navigation is very advanced now."
+      }
+    ]
+  },
+  "necessity": {
+    "word": "necessity",
+    "meaning_zh": "必需品、必要性",
+    "kk": "[nəˈsɛsəti]",
+    "phonics": "nuh-SESS-uh-tee",
+    "homophone": "ㄋㄟ ㄙ ㄙ 替",
+    "image": "『ㄋㄟ ㄙ ㄙ』，這東西是生活『必需品』，沒它不行。",
+    "example_en": "Water is a necessity for life.",
+    "example_zh": "水是生命的必需品。",
+    "usage_zh": "指必須有的東西（名詞），或指某事存在的理由、原因（名詞）。",
+    "pos": "名詞",
+    "other_forms": [
+      {
+        "word": "necessary",
+        "pos": "形容詞",
+        "meaning_zh": "必要的",
+        "example": "Is it necessary to go now?"
+      }
+    ]
+  },
+  "negative": {
+    "word": "negative",
+    "meaning_zh": "負面的、否定的",
+    "kk": "[ˈnɛɡətɪv]",
+    "phonics": "NEG-uh-tiv",
+    "homophone": "ㄋㄟ ㄍ 踢夫",
+    "image": "『ㄋㄟ ㄍ』，你說『負面』的，這『否定』的答案我聽了很不爽。",
+    "example_en": "He has a negative attitude.",
+    "example_zh": "他態度很消極。",
+    "usage_zh": "指不好的、否定的、少的（如負數）。常用於表示反對、不贊成。",
+    "pos": "形容詞 / 名詞",
+    "other_forms": [
+      {
+        "word": "negativity",
+        "pos": "名詞",
+        "meaning_zh": "消極、負面",
+        "example": "Avoid negativity in your life."
+      },
+      {
+        "word": "negate",
+        "pos": "動詞",
+        "meaning_zh": "否定、抵銷",
+        "example": "His actions negate his words."
+      }
+    ]
   }
 }
