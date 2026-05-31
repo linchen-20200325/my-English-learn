@@ -3978,8 +3978,26 @@ def main() -> None:
                 st.session_state["_gh_test"] = results
             for tag, msg in st.session_state.get("_gh_test", []):
                 st.markdown(f"{tag} {msg}")
+            # 📤 雲端備份學習進度(解 Streamlit Cloud 暫存檔系統重啟丟資料的問題)
+            if st.button("📤 雲端備份學習進度",
+                         use_container_width=True,
+                         help="把 dashboard_data.json(學會字、SRS 排程、待辦、目標、"
+                              "連續天數等)commit 回 repo,Cloud 重新部署後自動恢復。"):
+                if os.path.exists(DATA_FILE):
+                    ok = _push_file_to_github(
+                        DATA_FILE, "dashboard_data.json",
+                        "dashboard_data: 雲端備份學習進度",
+                    )
+                    if ok:
+                        st.session_state["_last_data_backup"] = \
+                            datetime.now().strftime("%m/%d %H:%M")
+                else:
+                    st.caption("尚無 dashboard_data.json 可備份")
+            last_bk = st.session_state.get("_last_data_backup")
+            if last_bk:
+                st.caption(f"💾 上次備份:{last_bk}")
         else:
-            st.caption("⚪ GitHub Token 未設（無法自動推回）")
+            st.caption("⚪ GitHub Token 未設（無法自動推回 / 雲端備份）")
 
     st.title(view)
     st.caption(date.today().strftime("%Y 年 %m 月 %d 日"))

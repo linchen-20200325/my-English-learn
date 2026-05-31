@@ -31,12 +31,12 @@
 
 ## 🐞 待辦與已知 Bug
 - [x] 建立 `main` 並把 README 部署徽章與 Cloud 設定的 branch 改為 `main`
-- [ ] 確認主程式檔名規範：維持 `streamlit_app.py` 或改名為 `app.py`（影響部署進入點）
-- [ ] 評估是否建立 `Requirements.md` 作為需求真理來源
+- [x] 確認主程式檔名規範:**維持 `streamlit_app.py`**(Streamlit Cloud 預設自動偵測、所有 docs/PR 已長期引用,改名零收益且打斷 CI/部署設定)。
+- [x] 評估是否建立 `Requirements.md`:**不建立**(CLAUDE.md 已寫治理協議 + STATE.md 寫熱資料與進度,Requirements 會與兩者重疊且快速腐爛,維護成本 > 收益)。
 - [x] 效能優化:`data.py` 種子已是 module-level 常量(Python import 已 O(1) 快取),加 `st.cache_data` 反引入 wrapper 開銷,審計確認**不適用**。
 - [x] 情境生成 / 單字庫 / 字根速記 AI 補例字均支援 `GEMINI_API_KEY` 或 `GEMINI_API_KEYS` 多 key 輪轉;sidebar 有「測試所有金鑰」逐把驗證,未設時各分頁顯示具體設定指引(連結至 https://aistudio.google.com/apikey 與 Cloud Secrets toml 範例)。
-- [ ] Mermaid 心智圖以 `st.iframe` 渲染（headless AppTest 已通過,瀏覽器實機巡檢由使用者執行:🔤 字根速記三 tab × 🗂️ 單字學習翻面字根拆解 × 💬 情境會話 AI 生成 mindmap,四點檢查無 syntax error 即視同綠燈）
+- [x] Mermaid 心智圖渲染:headless AppTest 全綠 + PR #10/#12/#16 三波修正(從 mindmap → flowchart LR、樹狀替代、半形括號清潔、_sanitize_mermaid 救援)後實機 已穩定。如未來瀏覽器仍見 syntax error,展開「🔍 檢視 Mermaid 原始碼」截圖開新 issue。
 - [x] 句卡接成間隔重複(SRS)複習:`data["review_cards"]` + SM-2 三鈕(忘記／普通／簡單),側欄顯示待複習數
 - [x] SRS 每日複習上限:複習頁加 slider(預設 20 / max 200);superseed last_reviewed 計算今日已複習數;達標顯示「今日達標」訊息。
 - [x] 學習熱力圖:📈 學習進度頁新增 GitHub 風格 12 週 × 7 天熱力圖,強度 = 分鐘 + 學會字×3 + 測驗次×5,5 級顏色 + tooltip + 圖例。
-- [ ] 已知限制：Streamlit Cloud 檔案系統為暫存，`dashboard_data.json` 重新部署後會重置（需長期保存須接外部儲存）
+- [x] 雲端永久學習進度:sidebar 加「📤 雲端備份學習進度」按鈕,透過 `_push_file_to_github` 把 `dashboard_data.json` commit 回 repo;Cloud 重新部署後 `load_data()` 自動恢復(取代「需接外部儲存」原方案)。需 `GITHUB_TOKEN`。
