@@ -15,10 +15,26 @@
 - **SRS 每日複習上限**:預設 20/可調 5-200;`last_reviewed` 計算今日已複習數,達標自動停止避免疲乏。
 - **學習熱力圖**:GitHub 風格 12 週 × 7 天網格,強度公式 = 分鐘 + 學會字×3 + 測驗次×5,5 級漸層配色 + tooltip + 圖例。
 
+## 🆕 遺產稅規劃系統（分支 `claude/streamlit-estate-tax-planner-r5kzrc`）
+- `app.py`: 獨立 Streamlit 工具「自動化遺產分配・特留分計算・保險避稅補償規劃系統」。
+- 四階段確定性演算法（純函式與 UI 解耦，通過單元測試 + AppTest）：
+  1) 淨遺產（喪葬費 138 萬，負值歸零＝限定繼承）
+  2) 2026 遺產稅（免稅額 1,333 萬／配偶 553 萬／子女 56 萬；10/15/20% 累進，差額 281.05 萬・843.15 萬）
+  3) 民法應繼分＝1/繼承人數、特留分＝應繼分×½（§1223）、特留分總額
+  4) 保險策略Ａ 預留稅源＝遺產稅、策略Ｂ 特留分補償＝特留分總額（保險法 §112）
+- 實質課稅警示：資產≥1 億或年齡≥75 → 建議分期繳＋分年贈與 244 萬。
+- **資料架構（SSOT）**：無持久化。所有 2026 稅法/民法數字集中於 `app.py` 頂端「法定常數區塊」（`FUNERAL_DEDUCTION`、`BASIC_EXEMPTION`、`SPOUSE_DEDUCTION`、`CHILD_DEDUCTION`、`TAX_BRACKET_1/2`、`PROGRESSIVE_DIFF_15/20`、`ANNUAL_GIFT_EXEMPTION`、`HIGH_ASSET_ALERT`、`HIGH_AGE_ALERT`）→ 為稅法參數的**單一真實來源**，未來修法只改此區塊。輸入→純函式（`calc_net_estate`／`calc_estate_tax`／`calc_reserved_portion`／`calc_insurance_plan`）→UI 呈現，單向資料流，無 session state 依賴、無外部 I/O。
+
+## 🧠 記憶點 (Memory Checkpoint) — 2026-07-03
+- **里程碑**：遺產稅規劃系統 v1.0 完成並 **merge 進 `main`**（PR）。
+- **驗證狀態**：9 項純函式單元測試 + Streamlit AppTest headless 全綠（14 個 st.metric、級距交界稅額連續、除零/負值/超額防禦）。
+- **下一步接手點**：如需擴充，候選為 ①第二/三順位繼承人（父母、兄弟姊妹）②農地/公設地扣除額 ③配偶剩餘財產差額分配請求權。修改前務必先讀 `app.py` 法定常數區塊（SSOT）。
+
 ## 🛠️ 檔案結構與核心組件
 - `CLAUDE.md`: 核心開發與治理協議 (v2.0)
 - `STATE.md`: 專案熱資料與進度追蹤（本檔）
 - `streamlit_app.py`: Streamlit 主程式入口（九分頁：總覽／單字學習／測驗／字根速記／單字庫／情境生成／複習／進度／計畫）
+- `app.py`: 遺產稅・特留分・保險傳承規劃系統（獨立 Streamlit 工具，四階段確定性演算法，稅法常數 SSOT）
 - `data.py`: 種子單字、每日一句、每週計畫範本
 - `morphology.py`: 字根字首字尾構詞元件 + SEED 單字台味諧音速記（離線資料）
 - `vocab_bank.json`: 大型單字庫（由 `scripts/generate_vocab.py` 透過 Gemini API 批次填入，含諧音／例句／用法／詞性／同源衍生字）
